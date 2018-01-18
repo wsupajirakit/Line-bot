@@ -18,11 +18,13 @@ if (!is_null($events['events'])) {
 
 			// Build message to reply back
       $context = substr($text, 0, 2);
-      if(strtoupper($context) == "PL"){
 
+
+      if(strtoupper($context) == "PL"){
+        $result = explode(' +',$text);
         $messages = [
           'type' => 'text',
-          'text' => 'บวก'
+          'text' => $result[0]
         ];
       }
       else if(strtoupper($context) == "MU"){
