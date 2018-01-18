@@ -24,9 +24,11 @@ if (!is_null($events['events'])) {
 
         $forwardtext = strstr($text, '+', true);
         $num1 = substr($forwardtext, 3);
+        $num2  = substr($forwardtext, (strpos($forwardtext, '+') ?: -1) + 1);
+        $sumall = $num1+$num2;
         $messages = [
           'type' => 'text',
-          'text' => $num1
+          'text' => $sumall
         ];
       }
       else if(strtoupper($context) == "MU"){
