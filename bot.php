@@ -23,7 +23,7 @@ if (!is_null($events['events'])) {
       if(strtoupper($context) == "PL"){
 
         $forwardtext = strstr($text, '+', true);
-        $num1 = substr($forwardtext, 1);
+        $num1 = substr($forwardtext, 3);
         $messages = [
           'type' => 'text',
           'text' => $num1
