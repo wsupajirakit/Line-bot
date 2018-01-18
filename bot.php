@@ -24,7 +24,7 @@ if (!is_null($events['events'])) {
 
         $messages = [
           'type' => 'text',
-          'text' => 'บวก'
+          'text' => strstr($text, '+', true)
         ];
       }
       else if(strtoupper($context) == "MU"){
