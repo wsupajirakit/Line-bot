@@ -33,24 +33,36 @@ if (!is_null($events['events'])) {
       }
       else if(strtoupper($context) == "MU"){
 
+        $forwardtext = strstr($text, '*', true);
+        $num1 = substr($forwardtext, 3);
+        $num2  = substr($text, (strpos($text, '*') ?: -1) + 1);
+        $sumall = $num1*$num2;
         $messages = [
           'type' => 'text',
-          'text' => 'คูณ'
+          'text' => $sumall
         ];
       }
       else if(strtoupper($context) == "MI"){
 
+        $forwardtext = strstr($text, '-', true);
+        $num1 = substr($forwardtext, 3);
+        $num2  = substr($text, (strpos($text, '-') ?: -1) + 1);
+        $sumall = $num1-$num2;
         $messages = [
           'type' => 'text',
-          'text' => 'ลบ'
+          'text' => $sumall
         ];
       }
 
       else if(strtoupper($context) == "DI"){
 
+        $forwardtext = strstr($text, '/', true);
+        $num1 = substr($forwardtext, 3);
+        $num2  = substr($text, (strpos($text, '/') ?: -1) + 1);
+        $sumall = $num1/$num2;
         $messages = [
           'type' => 'text',
-          'text' => 'หาร'
+          'text' => $sumall
         ];
       }
 
