@@ -22,9 +22,10 @@ if (!is_null($events['events'])) {
 
       if(strtoupper($context) == "PL"){
 
+        $sum = strstr($text, '+', true);
         $messages = [
           'type' => 'text',
-          'text' => strstr($text, '+', true)
+          'text' => $sum
         ];
       }
       else if(strtoupper($context) == "MU"){
