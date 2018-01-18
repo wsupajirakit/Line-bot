@@ -17,15 +17,15 @@ if (!is_null($events['events'])) {
 			$replyToken = $event['replyToken'];
 
 			// Build message to reply back
-      $context = substr($text, 0, 1);
-      if(strtoupper($context) == "P"){
+      $context = substr($text, 0, 2);
+      if(strtoupper($context) == "PL"){
 
         $messages = [
           'type' => 'text',
           'text' => 'บวก'
         ];
       }
-      else if(strtoupper($context) == "M"){
+      else if(strtoupper($context) == "MU"){
 
         $messages = [
           'type' => 'text',
