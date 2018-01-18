@@ -32,7 +32,7 @@ if (!is_null($events['events'])) {
           'text' => 'คูณ'
         ];
       }
-      else if(strtoupper($context) == "MN"){
+      else if(strtoupper($context) == "MI"){
 
         $messages = [
           'type' => 'text',
