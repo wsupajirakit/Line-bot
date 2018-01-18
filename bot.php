@@ -21,10 +21,9 @@ if (!is_null($events['events'])) {
 
 
       if(strtoupper($context) == "PL"){
-        $result = explode(' +',$text);
         $messages = [
           'type' => 'text',
-          'text' => $result[0]
+          'text' => strtok($text, '+');
         ];
       }
       else if(strtoupper($context) == "MU"){
