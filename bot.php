@@ -18,21 +18,35 @@ if (!is_null($events['events'])) {
 
 			// Build message to reply back
       $context = substr($text, 0, 1);
-      if($context == "P"){
+      if(strtoupper($context) == "P"){
 
         $messages = [
           'type' => 'text',
           'text' => 'บวก'
         ];
       }
-      else if($context == "M"){
+      else if(strtoupper($context) == "M"){
 
         $messages = [
           'type' => 'text',
           'text' => 'คูณ'
         ];
       }
+      else if(strtoupper($context) == "MN"){
 
+        $messages = [
+          'type' => 'text',
+          'text' => 'ลบ'
+        ];
+      }
+
+      else if(strtoupper($context) == "DI"){
+
+        $messages = [
+          'type' => 'text',
+          'text' => 'หาร'
+        ];
+      }
 
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
