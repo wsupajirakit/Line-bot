@@ -21,9 +21,10 @@ if (!is_null($events['events'])) {
 
 
       if(strtoupper($context) == "PL"){
+
         $messages = [
           'type' => 'text',
-          'text' => strtok($text, '+');
+          'text' => 'บวก'
         ];
       }
       else if(strtoupper($context) == "MU"){
