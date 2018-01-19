@@ -27,6 +27,6 @@ if ($err) {
   echo "cURL Error #:" . $err;
 } else {
   $json = json_decode($response, true);
-  echo $json['success'];
+  echo $json;
   echo $response->result[0];
 }
