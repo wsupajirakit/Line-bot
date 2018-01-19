@@ -33,7 +33,7 @@ if (!is_null($events['events'])) {
 			    $sum = $response->body->result[0]->balance_tks_balance;
         $messages = [
           'type' => 'text',
-          'text' => 'ฝากเงิน'
+          'text' => $sum
         ];
       }
 
