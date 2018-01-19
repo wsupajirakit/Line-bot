@@ -34,7 +34,7 @@ if (!is_null($events['events'])) {
 					$sum = $sum+$money;
         $messages = [
           'type' => 'text',
-          'text' => 'ฝากเงินสำเร็๗ คุณมียอดเงินคงเหลือ :'.$sum
+          'text' => 'ฝากเงินสำเร็จ คุณมียอดเงินคงเหลือ :'.$sum.' บาท'
         ];
       }
 
