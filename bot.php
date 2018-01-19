@@ -23,17 +23,17 @@ if (!is_null($events['events'])) {
 			$ftext = substr($text, 0, 1);
 
 			if(strtoupper($ftext) == "@"){
-				$forwardtext = strstr($text, '+', true);
-				$id = substr($forwardtext, 3);
-
-				$uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20balance_tks_userid='".$id."'%20;";
-				$response = \Httpful\Request::get($uri)->send();
-				// echo $response;
-				$sumall = $response->body->result[0]->balance_tks_balance;
+				// $forwardtext = strstr($text, '+', true);
+				// $id = substr($forwardtext, 3);
+        //
+				// $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20balance_tks_userid='".$id."'%20;";
+				// $response = \Httpful\Request::get($uri)->send();
+				// // echo $response;
+				// $sumall = $response->body->result[0]->balance_tks_balance;
 
         $messages = [
           'type' => 'text',
-          'text' => $sumall
+          'text' => 'ทดสอบฝาก'
         ];
       }
 
