@@ -20,7 +20,7 @@ if (!is_null($events['events'])) {
 			// Build message to reply back
       $context = substr($text, 0, 2);
 			$ftext = substr($text, 0, 1);
-			
+
 			if($ftext == "@"){
 
         $messages = [
@@ -29,7 +29,7 @@ if (!is_null($events['events'])) {
         ];
       }
 
-      if(strtoupper($context) == "PL"){
+      else if(strtoupper($context) == "PL"){
 
         $forwardtext = strstr($text, '+', true);
         $num1 = substr($forwardtext, 3);
