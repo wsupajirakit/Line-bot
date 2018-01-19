@@ -29,5 +29,6 @@ if ($err) {
   echo "cURL Error #:" . $err;
 } else {
   echo $result2[0]['balance_tks_balance'];
-  echo $response[0]['balance_tks_balance'];
+  echo $response;
+    echo $response->result[0]->['balance_tks_balance'];
 }
