@@ -1,47 +1,30 @@
-
-
-
-
-
 <?php
 
-$url = "http://redfoxdev.com/vtiger/webservice.php";
+$curl = curl_init();
 
-$data = array(
-  'operation' => 'update',
-  'sessionName' => '41fd14e15a617f672c0fd',
-  'element' => '{
-            "balanceno": "",
-            "balance_tks_userid": "001",
-            "balance_tks_balance": "5",
-            "assigned_user_id": "19x1",
-            "createdtime": "2018-01-19 05:16:44",
-            "modifiedtime": "2018-01-19 05:16:44",
-            "id": "47x531"
-        }'
-);
+curl_setopt_array($curl, array(
+  CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => "",
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 30,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => "POST",
+  CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n41fd14e15a617f672c0fd\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"balanceno\": \"\",\n            \"balance_tks_userid\": \"001\",\n            \"balance_tks_balance\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-19 05:16:44\",\n            \"modifiedtime\": \"2018-01-19 05:16:44\",\n            \"id\": \"47x531\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+  CURLOPT_HTTPHEADER => array(
+    "cache-control: no-cache",
+    "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+    "postman-token: 533f06b3-0821-a7ea-5d31-36f0ce51e03f"
+  ),
+));
 
-$json = json_encode($data);
-
-$content = json_encode($json);
-
-$curl = curl_init($url);
-curl_setopt($curl, CURLOPT_HEADER, false);
-curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($curl, CURLOPT_HTTPHEADER,
-        array("Content-type: application/json"));
-curl_setopt($curl, CURLOPT_POST, true);
-curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
-
-$json_response = curl_exec($curl);
-
-$status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-
-if ( $status != 201 ) {
-    die("Error: call to URL $url failed with status $status, response $json_response, curl_error " . curl_error($curl) . ", curl_errno " . curl_errno($curl));
-}
-
+$response = curl_exec($curl);
+$err = curl_error($curl);
 
 curl_close($curl);
 
-$response = json_decode($json_response, true);
+if ($err) {
+  echo "cURL Error #:" . $err;
+} else {
+  echo $response;
+}
