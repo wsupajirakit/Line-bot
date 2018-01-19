@@ -60,7 +60,6 @@ if (!is_null($events['events'])) {
 					if ($err) {
 					  echo "cURL Error #:" . $err;
 					} else {
-					  echo $response;
 					}
 
 
