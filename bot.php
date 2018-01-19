@@ -20,7 +20,7 @@ if (!is_null($events['events'])) {
 			// Build message to reply back
       $context = substr($text, 0, 2);
 			$ftext = substr($text, 0, 1);
-			if(strtoupper($ftext) == "@"){
+			if(strtoupper($ftext) == "A"){
 
         $messages = [
           'type' => 'text',
