@@ -31,9 +31,10 @@ if (!is_null($events['events'])) {
 			    $response = \Httpful\Request::get($uri)->send();
 			    // echo $response;
 			    $sum = $response->body->result[0]->balance_tks_balance;
+					$sum = $sum+$money;
         $messages = [
           'type' => 'text',
-          'text' => $sum
+          'text' => 'ฝากเงินสำเร็๗ คุณมียอดเงินคงเหลือ :'$sum
         ];
       }
 
