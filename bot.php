@@ -1,4 +1,5 @@
 <?php
+  include('./httpful.phar');
 $access_token = 'MvaBOn28FTS3LauWjll8BKWyV3jxSw+4WfcvERCq+ANM03tnQ9vtZI0DJBxgT2IWU6ouir3bOeDcpShjwTOJib4P6jWHYh31pVMM2CAwUeUqzuUdkGGYXsR3x7oaG1TdhFw2oumm6taqN300id4ffAdB04t89/1O/w1cDnyilFU=';
 
 // Get POST body content
@@ -19,6 +20,22 @@ if (!is_null($events['events'])) {
 			// Build message to reply back
       $context = substr($text, 0, 2);
 
+			$ftext = substr($text, 0, 1);
+
+			if(strtoupper($context) == "@"){
+				$forwardtext = strstr($text, '+', true);
+				$id = substr($forwardtext, 3);
+
+				$uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20balance_tks_userid='".$id."'%20;";
+				$response = \Httpful\Request::get($uri)->send();
+				// echo $response;
+				$sumall = $response->body->result[0]->balance_tks_balance;
+
+        $messages = [
+          'type' => 'text',
+          'text' => $sumall
+        ];
+      }
 
       if(strtoupper($context) == "PL"){
 
@@ -31,6 +48,7 @@ if (!is_null($events['events'])) {
           'text' => $sumall
         ];
       }
+
       else if(strtoupper($context) == "MU"){
 
         $forwardtext = strstr($text, '*', true);
@@ -66,13 +84,13 @@ if (!is_null($events['events'])) {
         ];
       }
 
-      else {
-
-        $messages = [
-          'type' => 'text',
-          'text' => 'ไม่พบสิ่งที่คุณต้องการ โปรดลองใหม่อีกครั้งนะครับ :)'
-        ];
-      }
+      // else {
+      //
+      //   $messages = [
+      //     'type' => 'text',
+      //     'text' => 'ไม่พบสิ่งที่คุณต้องการ โปรดลองใหม่อีกครั้งนะครับ :)'
+      //   ];
+      // }
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
 			$data = [
