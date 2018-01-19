@@ -26,5 +26,5 @@ curl_close($curl);
 if ($err) {
   echo "cURL Error #:" . $err;
 } else {
-  echo $response.result[0].balance_tks_balance;
+  echo $response->result[0]->balance_tks_balance;
 }
