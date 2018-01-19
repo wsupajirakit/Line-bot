@@ -1,4 +1,5 @@
 <?php
+  include('./httpful.phar');
 $access_token =
 'oOuhFrVkrCn3ngWNcdA96wED/ZtTR3Y8xEozvIP0zdAfamJCNsuZZHDAByWu70/7U6ouir3bOeDcpShjwTOJib4P6jWHYh31pVMM2CAwUeVVUpnDm09h8C0VmOEcKNsi9RHTFNbBv5V5EA3FaugRewdB04t89/1O/w1cDnyilFU=';
 
@@ -22,7 +23,13 @@ if (!is_null($events['events'])) {
 			$ftext = substr($text, 0, 1);
 
 			if($ftext == "@"){
+					$id = substr($forwardtext, 1);
+					$money  = substr($text, (strpos($text, '+') ?: -1) + 1);
 
+					$uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20balance_tks_userid='".$id."'%20;";
+			    $response = \Httpful\Request::get($uri)->send();
+			    // echo $response;
+			    $sum = $response->body->result[0]->balance_tks_balance;
         $messages = [
           'type' => 'text',
           'text' => 'ฝากเงิน'
