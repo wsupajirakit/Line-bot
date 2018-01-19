@@ -19,7 +19,14 @@ if (!is_null($events['events'])) {
 
 			// Build message to reply back
       $context = substr($text, 0, 2);
+			$ftext = substr($text, 0, 1);
+			if(strtoupper($ftext) == "@"){
 
+        $messages = [
+          'type' => 'text',
+          'text' => 'ฝากเงิน'
+        ];
+      }
 
       if(strtoupper($context) == "PL"){
 
