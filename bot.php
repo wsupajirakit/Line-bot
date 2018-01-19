@@ -22,7 +22,7 @@ if (!is_null($events['events'])) {
 
 			$ftext = substr($text, 0, 1);
 
-			if(strtoupper($context) == "@"){
+			if(strtoupper($ftext) == "@"){
 				$forwardtext = strstr($text, '+', true);
 				$id = substr($forwardtext, 3);
 
