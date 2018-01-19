@@ -1,6 +1,8 @@
 <?php
 $access_token =
-'X+Hs7VK4FWrHIHrncVsWlb1V0rZxEehZLLrs3by2HgpQ0x9C2YcNhJRjDPZGomgN/nMHGx1Ejz0/ggPx2O4+ul+0uQO3FeQkx1ufBJmMBthBfC1g7SO19SnxdOmkuAfQI8HP1bUV5Ubv0Em1Yz8fdQdB04t89/1O/w1cDnyilFU=';
+'oOuhFrVkrCn3ngWNcdA96wED/ZtTR3Y8xEozvIP0zdAfamJCNsuZZHDAByWu70/7U6ouir3bOeDcpShjwTOJib4P6jWHYh31pVMM2CAwUeVVUpnDm09h8C0VmOEcKNsi9RHTFNbBv5V5EA3FaugRewdB04t89/1O/w1cDnyilFU=';
+
+// Get POST body content
 $content = file_get_contents('php://input');
 // Parse JSON
 $events = json_decode($content, true);
@@ -16,11 +18,62 @@ if (!is_null($events['events'])) {
 			$replyToken = $event['replyToken'];
 
 			// Build message to reply back
-			$messages = [
-				'type' => 'text',
-				'text' => $text
-			];
+      $context = substr($text, 0, 2);
 
+
+      if(strtoupper($context) == "PL"){
+
+        $forwardtext = strstr($text, '+', true);
+        $num1 = substr($forwardtext, 3);
+        $num2  = substr($text, (strpos($text, '+') ?: -1) + 1);
+        $sumall = $num1+$num2;
+        $messages = [
+          'type' => 'text',
+          'text' => $sumall
+        ];
+      }
+      else if(strtoupper($context) == "MU"){
+
+        $forwardtext = strstr($text, '*', true);
+        $num1 = substr($forwardtext, 3);
+        $num2  = substr($text, (strpos($text, '*') ?: -1) + 1);
+        $sumall = $num1*$num2;
+        $messages = [
+          'type' => 'text',
+          'text' => $sumall
+        ];
+      }
+      else if(strtoupper($context) == "MI"){
+
+        $forwardtext = strstr($text, '-', true);
+        $num1 = substr($forwardtext, 3);
+        $num2  = substr($text, (strpos($text, '-') ?: -1) + 1);
+        $sumall = $num1-$num2;
+        $messages = [
+          'type' => 'text',
+          'text' => $sumall
+        ];
+      }
+
+      else if(strtoupper($context) == "DI"){
+
+        $forwardtext = strstr($text, '/', true);
+        $num1 = substr($forwardtext, 3);
+        $num2  = substr($text, (strpos($text, '/') ?: -1) + 1);
+        $sumall = $num1/$num2;
+        $messages = [
+          'type' => 'text',
+          'text' => $sumall
+        ];
+      }
+
+      else {
+
+        $messages = [
+          'type' => 'text',
+          'text' => 'ไม่พบสิ่งที่คุณต้องการ โปรดลองใหม่อีกครั้งนะครับ :)'
+        ];
+      }
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
 			$data = [
