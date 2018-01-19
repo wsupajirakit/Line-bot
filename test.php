@@ -19,6 +19,8 @@ curl_setopt_array($curl, array(
 ));
 
 $response = curl_exec($curl);
+$result2 = json_decode($response,true);
+
 $err = curl_error($curl);
 
 curl_close($curl);
@@ -26,7 +28,7 @@ curl_close($curl);
 if ($err) {
   echo "cURL Error #:" . $err;
 } else {
-  $json = json_decode($response, true);
-  echo $json;
+
+  echo $result2;
   echo $response->result[0];
 }
