@@ -1,10 +1,13 @@
+
+
+
+
+
 <?php
 
-$client = new http\Client;
-$request = new http\Client\Request;
+$url = "http://redfoxdev.com/vtiger/webservice.php";
 
-$body = new http\Message\Body;
-$body->addForm(array(
+$data = array(
   'operation' => 'update',
   'sessionName' => '41fd14e15a617f672c0fd',
   'element' => '{
@@ -16,18 +19,29 @@ $body->addForm(array(
             "modifiedtime": "2018-01-19 05:16:44",
             "id": "47x531"
         }'
-), NULL);
+);
 
-$request->setRequestUrl('http://redfoxdev.com/vtiger/webservice.php');
-$request->setRequestMethod('POST');
-$request->setBody($body);
+$json = json_encode($data);
 
-$request->setHeaders(array(
-  'postman-token' => 'd70b73d8-7bac-ba8e-af5f-40490d8e1eb1',
-  'cache-control' => 'no-cache'
-));
+$content = json_encode($json);
 
-$client->enqueue($request)->send();
-$response = $client->getResponse();
+$curl = curl_init($url);
+curl_setopt($curl, CURLOPT_HEADER, false);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($curl, CURLOPT_HTTPHEADER,
+        array("Content-type: application/json"));
+curl_setopt($curl, CURLOPT_POST, true);
+curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
 
-echo $response->getBody();
+$json_response = curl_exec($curl);
+
+$status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+if ( $status != 201 ) {
+    die("Error: call to URL $url failed with status $status, response $json_response, curl_error " . curl_error($curl) . ", curl_errno " . curl_errno($curl));
+}
+
+
+curl_close($curl);
+
+$response = json_decode($json_response, true);
