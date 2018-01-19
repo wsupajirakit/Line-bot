@@ -23,6 +23,7 @@ if (!is_null($events['events'])) {
 			$ftext = substr($text, 0, 1);
 
 			if($ftext == "@"){
+					$forwardtext = strstr($text, '+', true);
 					$id = substr($forwardtext, 1);
 					$money  = substr($text, (strpos($text, '+') ?: -1) + 1);
 
