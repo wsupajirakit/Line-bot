@@ -23,6 +23,18 @@ if (!is_null($events['events'])) {
       $context = substr($text, 0, 2);
 			$ftext = substr($text, 0, 1);
 
+      if(strtoupper($ftext) == "P"){
+        $forwardtext = strstr($text, '-', true);
+        $player = substr($forwardtext, 1);
+
+        $money  = substr($text, (strpos($text, '-') ?: -1) + 1);
+
+        $messages = [
+          'type' => 'text',
+          'text' => 'แทงผู้เล่น : '.$player.' จำนวนเงิน'.'by'.$money
+        ];
+      }
+
 			if($ftext == "@"){
 					$forwardtext = strstr($text, '+', true);
 					$id = substr($forwardtext, 1);
