@@ -149,7 +149,7 @@ if (!is_null($events['events'])) {
 
 
              $username = $response->body->result[$i]->cf_958;
-              $userID = $response->body->result[$i]->id;
+              $userID = $response->body->result[$i]->balance_tks_userid;
              $vid = $response->body->result[$i]->id;
              $balance = $response->body->result[$i]->balance_tks_balance;
              $bet = $response->body->result[$i]->cf_956;
