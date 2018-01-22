@@ -130,13 +130,25 @@ if (!is_null($events['events'])) {
         // echo $extext[3]; // piece2
 
         $x1 = substr($extext[0], 2);
+
+        if ($x1=="-1"){
+           $msg = 'ขา 1 เสียให้เจ้ามือ 1 เท่า';
+        } else if  ($x1=="+1"){
+           $msg = 'ขา 1 ได้ 1 เท่า';
+        }else if  ($x1=="+0"){
+           $msg = 'เจ๊า';
+        }else if  ($x1=="-2"){
+           $msg = 'ขา 1 เสียให้เจ้ามือ 2 เท่า';
+        }else if  ($x1=="+2"){
+           $msg = 'ขา 1 ได้ 2 เท่า';
+        }
         $x2 = substr($extext[1], 1);
         $x3 = substr($extext[2], 1);
         $x4 = substr($extext[3], 1);
 
         $messages = [
           'type' => 'text',
-          'text' =>  $x1.$x2.$x3.$x4
+          'text' =>  $msg.$x2.$x3.$x4
         ];
 
       }
