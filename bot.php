@@ -749,9 +749,6 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance - $bet;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
-
-
                     $curl = curl_init();
                      curl_setopt_array($curl, array(
                        CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
@@ -778,6 +775,11 @@ if (!is_null($events['events'])) {
                    } else {
                    }
                       curl_close($curl);
+
+
+                                   $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+
+
              }
 
 
