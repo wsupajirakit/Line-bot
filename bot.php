@@ -129,7 +129,7 @@ if (!is_null($events['events'])) {
         // echo $extext[2]; // piece2
         // echo $extext[3]; // piece2
 
-        $listname= '';
+        $listname= 'สรุปผล :';
 
         $x1 = substr($extext[0], 2);
 
