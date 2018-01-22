@@ -738,20 +738,20 @@ if (!is_null($events['events'])) {
                    $total = $total+1;
            }
 
-           for( $i=0; $i<$total; $i++ ) {
+           foreach($data as $item) { //foreach element in $arr
 
+                $username = $item['cf_958'];
+                $userID = $item['balance_tks_userid'];
+                $vid = $item['id'];
+                $balance = $item['balance_tks_balance'];
+                $bet = $item['cf_956'];
+                $player = $item['cf_960'];
+                $newbalance = $balance - $bet;
 
-             $username = $response->body->result[$i]->cf_958;
-             $userID = $response->body->result[$i]->balance_tks_userid;
-             $vid = $response->body->result[$i]->id;
-             $balance = $response->body->result[$i]->balance_tks_balance;
-             $bet = $response->body->result[$i]->cf_956;
-             $player = $response->body->result[$i]->cf_960;
-             $newbalance = $balance - $bet;
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
 
 
-                   // 
+                   //
                    //  $curl = curl_init();
                    //   curl_setopt_array($curl, array(
                    //     CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
