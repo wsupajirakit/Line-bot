@@ -154,7 +154,7 @@ if (!is_null($events['events'])) {
              $bet = $response->body->result[$i]->cf_956;
              $newbalance = $balance - $bet;
 
-             $listname = $listname."/n".$username;
+             $listname = $listname."\n".$username."-".$bet;
          }
 
 
