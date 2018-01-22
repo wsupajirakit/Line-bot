@@ -84,7 +84,39 @@ if (!is_null($events['events'])) {
                 //
         				// 	curl_close($curl);
 
+                $client = new http\Client;
+                $request = new http\Client\Request;
 
+                $body = new http\Message\Body;
+                $body->addForm(array(
+                  'operation' => 'update',
+                  'sessionName' => '244bae35a6579977f668',
+                  'element' => '{
+                            "balanceno": "",
+                            "balance_tks_userid": "Uea8f71000cb4673f4d4431dee2318edd",
+                            "balance_tks_balance": "207000",
+                            "assigned_user_id": "19x1",
+                            "createdtime": "2018-01-22 04:44:00",
+                            "modifiedtime": "2018-01-22 05:50:35",
+                            "cf_956": "70",
+                            "cf_958": "wsupajirakit",
+                            "cf_960": "P1",
+                            "id": "47x535"
+                        }',
+                  'elementType' => 'Balance'
+                ), NULL);
+
+                $request->setRequestUrl('http://redfoxdev.com/vtiger/webservice.php');
+                $request->setRequestMethod('POST');
+                $request->setBody($body);
+
+                $request->setHeaders(array(
+                  'Postman-Token' => '1f24c573-e58e-3f1d-1f60-db3f92c9b2af',
+                  'Cache-Control' => 'no-cache'
+                ));
+
+                $client->enqueue($request)->send();
+                $response = $client->getResponse();
 
         $messages = [
           'type' => 'text',
