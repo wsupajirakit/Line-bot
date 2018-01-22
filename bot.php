@@ -174,7 +174,7 @@ if (!is_null($events['events'])) {
       }
       }
 
-      if(strtoupper($ftext) == "X"){
+      else if(strtoupper($ftext) == "X"){
         $player= strtoupper(strstr($text, '-', true));
         $money  = substr($text, (strpos($text, '-') ?: -1) + 1);
 
