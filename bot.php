@@ -23,11 +23,13 @@ if (!is_null($events['events'])) {
       $context = substr($text, 0, 2);
 			$ftext = substr($text, 0, 1);
 
-      if($ftext == "P"){
+      if(strtoupper($ftext) == "P"){
+        $player= strstr($text, '-', true);
+        $money  = substr($text, (strpos($text, '-') ?: -1) + 1);
 
         $messages = [
           'type' => 'text',
-          'text' => 'แทงผู้เล่น'
+          'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money
         ];
       }
 
