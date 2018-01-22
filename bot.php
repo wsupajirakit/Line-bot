@@ -160,7 +160,7 @@ if (!is_null($events['events'])) {
 
          }
 
-         for( $i=0; $i<$total; $i++ ) {
+         for( $i=0; $i<=$total; $i++ ) {
 
                $username = $response->body->result[$i]->cf_958;
                $userID = $response->body->result[$i]->balance_tks_userid;
