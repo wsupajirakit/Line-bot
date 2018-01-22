@@ -168,7 +168,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance - $bet;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop :'.$i;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop :'.$i.'total'.$total;
 
          }
 
