@@ -23,7 +23,7 @@ if (!is_null($events['events'])) {
       $context = substr($text, 0, 2);
 			$ftext = substr($text, 0, 1);
 
-      if($ftext == "@"){
+      if($ftext == "P"){
 
         $messages = [
           'type' => 'text',
