@@ -22,12 +22,13 @@ if (!is_null($events['events'])) {
 			// Build message to reply back
       $context = substr($text, 0, 2);
 			$ftext = substr($text, 0, 1);
+      $sectext = strtoupper(substr($text, 0, 2));
 
       if(strtoupper($ftext) == "P"){
         $player= strtoupper(strstr($text, '-', true));
         $money  = substr($text, (strpos($text, '-') ?: -1) + 1);
 
-
+        if($sectext =="P1" || $sectext =="P2" || $sectext =="P3" || $sectext =="P4") {
         $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20balance_tks_userid='".$userID."'%20;";
         $response = \Httpful\Request::get($uri)->send();
         // echo $response;
@@ -118,6 +119,15 @@ if (!is_null($events['events'])) {
           // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
           'text' => 'คุณ '.$username.' แทงพนันผู้เล่น '.$player.' จำนวน '.$money.' บาท ยอดคงเหลือปัจจุบัน(ก่อนหัก) '.$balance.' บาท'
         ];
+
+      }  else {
+        $messages = [
+          'type' => 'text',
+          // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
+          'text' => 'แทงได้แค่ P1 - P4 เท่านั้น'
+        ];
+
+      }
       }
 
 
@@ -199,7 +209,7 @@ if (!is_null($events['events'])) {
          //     }
          //
          //     curl_close($curl);
-         
+
         } else if  ($x1=="+1"){
            $msg1 = 'ขา 1 ได้ 1 เท่า';
            $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20cf_960='P1'%20;";
