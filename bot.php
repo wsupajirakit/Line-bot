@@ -24,7 +24,7 @@ if (!is_null($events['events'])) {
 			$ftext = substr($text, 0, 1);
 
       if(strtoupper($ftext) == "P"){
-        $player= strstr($text, '-', true);
+        $player= strtoupper(strstr($text, '-', true));
         $money  = substr($text, (strpos($text, '-') ?: -1) + 1);
 
 
@@ -133,6 +133,12 @@ if (!is_null($events['events'])) {
 
         if ($x1=="-1"){
            $msg1 = 'ขา 1 เสียให้เจ้ามือ 1 เท่า';
+
+           $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20cf_960='P1'%20;";
+           $response = \Httpful\Request::get($uri)->send();
+
+
+
         } else if  ($x1=="+1"){
            $msg1 = 'ขา 1 ได้ 1 เท่า';
         }else if  ($x1=="+0"){
