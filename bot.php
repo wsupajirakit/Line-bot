@@ -243,6 +243,30 @@ if (!is_null($events['events'])) {
 
         }else if  ($x1=="+2"){
            $msg1 = 'ขา 1 ได้ 2 เท่า';
+
+           $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20cf_960='P1'%20;";
+           $response = \Httpful\Request::get($uri)->send();
+
+           $data = json_decode($response,true);
+           $total = 0;
+           foreach ($data["result"] as $value) {
+                   $total = $total+1;
+           }
+
+           for( $i=0; $i<$total; $i++ ) {
+
+
+             $username = $response->body->result[$i]->cf_958;
+             $userID = $response->body->result[$i]->balance_tks_userid;
+             $vid = $response->body->result[$i]->id;
+             $balance = $response->body->result[$i]->balance_tks_balance;
+             $bet = $response->body->result[$i]->cf_956*2;
+             $player = $response->body->result[$i]->cf_960;
+             $newbalance = $balance + $bet;
+
+             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.'บาท';
+
+         }
         }
         $x2 = substr($extext[1], 1);
         if ($x2=="-1"){
