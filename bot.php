@@ -23,7 +23,7 @@ if (!is_null($events['events'])) {
       $context = substr($text, 0, 2);
 			$ftext = substr($text, 0, 1);
 
-      if(strtoupper($ftext) == "P"{
+      if(strtoupper($ftext) == "@"{
         // $forwardtext = strstr($text, '-', true);
         // $player = substr($forwardtext, 1);
         //
