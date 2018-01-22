@@ -773,11 +773,12 @@ if (!is_null($events['events'])) {
                    if ($err) {
                      echo "cURL Error #:" . $err;
                    } else {
+                            $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
                    }
                       curl_close($curl);
 
 
-                                   $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+
 
 
              }
