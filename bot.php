@@ -27,12 +27,12 @@ if (!is_null($events['events'])) {
       $newtext = substr($alltext, 1);
 
       $lentext = strlen($newtext);
-      if($lentext==4){
+      // if($lentext==4){
         $n1 = 'P'.substr($newtext,0,1);
         $n2 = 'P'.substr($newtext,1,1);
         $n3 = 'P'.substr($newtext,2,1);
         $n4 = 'P'.substr($newtext,3,1);
-      }
+      // }
 
 
       if(strtoupper($ftext) == "P"){
