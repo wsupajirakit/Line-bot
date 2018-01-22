@@ -35,7 +35,7 @@ if (!is_null($events['events'])) {
       //   ];
       // }
 
-			if($ftext == "P1"){
+			if(strtoupper($context) == "PA"){
 					$forwardtext = strstr($text, '+', true);
 					$id = substr($forwardtext, 1);
 					$money  = substr($text, (strpos($text, '+') ?: -1) + 1);
@@ -86,8 +86,6 @@ if (!is_null($events['events'])) {
       }
 
       else if(strtoupper($text) == "REGISTER"){
-
-
         $messages = [
           'type' => 'text',
           'text' => $userID
