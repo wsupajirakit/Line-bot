@@ -129,7 +129,7 @@ if (!is_null($events['events'])) {
         // echo $extext[2]; // piece2
         // echo $extext[3]; // piece2
 
-        $listname;
+        $listname= '';
 
         $x1 = substr($extext[0], 2);
 
@@ -145,7 +145,7 @@ if (!is_null($events['events'])) {
                    $total = $total+1;
            }
 
-           for( $i=0; $i<=$total; $i++ ) {
+           for( $i=0; $i<$total; $i++ ) {
 
 
              $username = $response->body->result[$i]->cf_958;
