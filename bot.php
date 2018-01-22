@@ -15,6 +15,7 @@ if (!is_null($events['events'])) {
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			// Get text sent
 			$text = $event['message']['text'];
+      $userID = $event['source']['userId'];
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 
@@ -68,7 +69,7 @@ if (!is_null($events['events'])) {
 
         $messages = [
           'type' => 'text',
-          'text' => 'ฝากเงินสำเร็จ คุณมียอดเงินคงเหลือ : '.$sum.' บาท'
+          'text' => 'ฝากเงินสำเร็จ คุณมียอดเงินคงเหลือ : '.$sum.' บาท'.'by'.$userID
         ];
       }
 
