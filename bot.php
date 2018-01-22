@@ -30,7 +30,7 @@ if (!is_null($events['events'])) {
         $player= strtoupper(strstr($text, '-', true));
         $money  = substr($text, (strpos($text, '-') ?: -1) + 1);
 
-        if($newtext <=4 && $newtext != 0 && $money >= 10 && $monney <= 200) {
+        if($newtext <=4 && $newtext != 0 && <= 200) {
         $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20balance_tks_userid='".$userID."'%20;";
         $response = \Httpful\Request::get($uri)->send();
         // echo $response;
