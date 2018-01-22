@@ -156,8 +156,6 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance - $bet;
 
-             $listname = $listname."\n ".$username."  -".$bet;
-
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
@@ -186,6 +184,11 @@ if (!is_null($events['events'])) {
                echo "cURL Error #:" . $err;
              } else {
              }
+
+
+
+             $listname = $listname."\n ".$username."  -".$bet;
+
          }
 
 
