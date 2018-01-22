@@ -748,6 +748,9 @@ if (!is_null($events['events'])) {
              $bet = $response->body->result[$i]->cf_956;
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance - $bet;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+
+
 
                     $curl = curl_init();
                      curl_setopt_array($curl, array(
@@ -773,7 +776,7 @@ if (!is_null($events['events'])) {
                    if ($err) {
                      echo "cURL Error #:" . $err;
                    } else {
-                            $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+
                    }
                       curl_close($curl);
 
