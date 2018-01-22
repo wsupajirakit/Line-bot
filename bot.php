@@ -738,7 +738,7 @@ if (!is_null($events['events'])) {
                    $total = $total+1;
            }
 
-           foreach($data as $item) { //foreach element in $arr
+           foreach($data["result"] as $item) { //foreach element in $arr
 
                 $username = $item['cf_958'];
                 $userID = $item['balance_tks_userid'];
