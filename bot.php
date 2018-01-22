@@ -23,12 +23,13 @@ if (!is_null($events['events'])) {
       $context = substr($text, 0, 2);
 			$ftext = substr($text, 0, 1);
       $sectext = strtoupper(substr($text, 0, 2));
+      $alltext= strtoupper(strstr($text, '-', true));
 
       if(strtoupper($ftext) == "P"){
         $player= strtoupper(strstr($text, '-', true));
         $money  = substr($text, (strpos($text, '-') ?: -1) + 1);
 
-        if($sectext =="P1" || $sectext =="P2" || $sectext =="P3" || $sectext =="P4") {
+        if($sectext =="P1" || $sectext =="P2" || $sectext =="P3" || $sectext =="P4" && strlen($alltext) <=2) {
         $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20balance_tks_userid='".$userID."'%20;";
         $response = \Httpful\Request::get($uri)->send();
         // echo $response;
