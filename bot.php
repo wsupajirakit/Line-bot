@@ -160,7 +160,6 @@ if (!is_null($events['events'])) {
 
          }
 
-   $curl = curl_init();
          for( $i=0; $i<=$total; $i++ ) {
 
                $username = $response->body->result[$i]->cf_958;
@@ -171,6 +170,7 @@ if (!is_null($events['events'])) {
                $player = $response->body->result[$i]->cf_960;
                $newbalance = $balance - $bet;
 
+              $curl = curl_init();
                curl_setopt_array($curl, array(
                  CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
                  CURLOPT_RETURNTRANSFER => true,
@@ -191,14 +191,13 @@ if (!is_null($events['events'])) {
                $response = curl_exec($curl);
                $err = curl_error($curl);
 
-
-
                if ($err) {
                  echo "cURL Error #:" . $err;
                } else {
                }
 
              }
+             
              curl_close($curl);
         } else if  ($x1=="+1"){
            $msg1 = 'ขา 1 ได้ 1 เท่า';
