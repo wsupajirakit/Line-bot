@@ -27,6 +27,65 @@ if (!is_null($events['events'])) {
         $player= strstr($text, '-', true);
         $money  = substr($text, (strpos($text, '-') ?: -1) + 1);
 
+
+        $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20balance_tks_userid='".$userID."'%20;";
+        $response = \Httpful\Request::get($uri)->send();
+        // echo $response;
+        $username = $response->body->result[0]->cf_958;
+        $vid = $response->body->result[0]->id;
+        $balance = $response->body->result[0]->id;
+
+                $mydata = [
+                  'operation' => 'update',
+                  'sessionName' => '244bae35a6579977f668',
+                  'element' => '"balanceno": "",
+                            "balance_tks_userid": '.$userID.',
+                            "balance_tks_balance": '.$balance.',
+                            "assigned_user_id": "19x1",
+                            "createdtime": "2018-01-22 04:44:00",
+                            "modifiedtime": "2018-01-22 04:45:29",
+                            "cf_956": '.$money.',
+                            "cf_958": '.$username.',
+                            "cf_960": '.$player.',
+                            "id": '.$vid.'',
+                  'elementType' => 'Balance',
+                ];
+                $mypost = json_encode($mydata);
+
+
+        					$curl = curl_init();
+
+        					curl_setopt_array($curl, array(
+        					  CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+        					  CURLOPT_RETURNTRANSFER => true,
+        					  CURLOPT_ENCODING => "",
+        					  CURLOPT_MAXREDIRS => 10,
+        					  CURLOPT_TIMEOUT => 30,
+        					  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        					  CURLOPT_CUSTOMREQUEST => "POST",
+        					  CURLOPT_POSTFIELDS => $mypost,
+                    CURLOPT_HTTPHEADER => array(
+        					    "cache-control: no-cache",
+        					    "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+        					    "postman-token: 533f06b3-0821-a7ea-5d31-36f0ce51e03f"
+        					  ),
+        					));
+
+        					$response = curl_exec($curl);
+        					$result = json_decode($response);
+
+        					$err = curl_error($curl);
+
+        					if ($err) {
+        					  echo "cURL Error #:" . $err;
+        					} else {
+        					}
+
+
+        					curl_close($curl);
+
+
+
         $messages = [
           'type' => 'text',
           'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money
@@ -43,7 +102,6 @@ if (!is_null($events['events'])) {
 			    // echo $response;
 			    $sum = $response->body->result[0]->balance_tks_balance;
 					$sum = $sum+$money;
-
 
 					$curl = curl_init();
 
