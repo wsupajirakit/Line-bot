@@ -132,7 +132,6 @@ if (!is_null($events['events'])) {
       }
       }
 
-
       else if(strtoupper($ftext) == "S"){
 
         $extext = explode(",", $text);
