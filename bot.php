@@ -122,9 +122,17 @@ if (!is_null($events['events'])) {
 
 
       else if(strtoupper($ftext) == "S"){
+
+        $extext = explode(",", $text);
+        // echo $extext[0]; // piece1
+        // echo $extext[1]; // piece2
+        // echo $extext[2]; // piece2
+        // echo $extext[3]; // piece2
+
+
         $messages = [
           'type' => 'text',
-          'text' => 'สรุปผล :'
+          'text' =>  $extext[0]. $extext[1]. $extext[2]. $extext[3]
         ];
 
       }
