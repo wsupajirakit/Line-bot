@@ -121,7 +121,7 @@ if (!is_null($events['events'])) {
       }
 
 
-      else if if(strtoupper($ftext) == "S"){
+      else if(strtoupper($ftext) == "S"){
         $messages = [
           'type' => 'text',
           'text' => 'สรุปผล :'
