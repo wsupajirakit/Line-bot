@@ -129,10 +129,14 @@ if (!is_null($events['events'])) {
         // echo $extext[2]; // piece2
         // echo $extext[3]; // piece2
 
+        $x1 = substr($extext[0], 2);
+        $x2 = substr($extext[1], 1);
+        $x3 = substr($extext[2], 1);
+        $x4 = substr($extext[3], 1);
 
         $messages = [
           'type' => 'text',
-          'text' =>  $extext[0]. $extext[1]. $extext[2]. $extext[3]
+          'text' =>  $x1.$x2.$x3.$x4
         ];
 
       }
