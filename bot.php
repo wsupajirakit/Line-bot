@@ -149,8 +149,6 @@ if (!is_null($events['events'])) {
 
 
              $username = $response->body->result[$i]->cf_958;
-
-             $listname = $listname.'\n'.$username'-'.$bet;
              $vid = $response->body->result[$i]->id;
              $balance = $response->body->result[$i]->balance_tks_balance;
              $bet = $response->body->result[$i]->cf_956;
@@ -209,7 +207,7 @@ if (!is_null($events['events'])) {
 
         $messages = [
           'type' => 'text',
-          'text' =>  $listname
+          'text' =>  'success'
         ];
 
       }
