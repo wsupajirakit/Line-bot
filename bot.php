@@ -73,6 +73,15 @@ if (!is_null($events['events'])) {
         ];
       }
 
+      else if(strtoupper($text) == "REGISTER"){
+
+
+        $messages = [
+          'type' => 'text',
+          'text' => $userID
+        ];
+      }
+
       else if(strtoupper($context) == "PL"){
 
         $forwardtext = strstr($text, '+', true);
