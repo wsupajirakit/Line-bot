@@ -25,10 +25,10 @@ if (!is_null($events['events'])) {
       $sectext = strtoupper(substr($text, 0, 2));
       $alltext= strtoupper(strstr($text, '-', true));
       $newtext = substr($alltext, 1);
-      $n1 = substr($newtext,0,1);
-      $n2 = substr($newtext,1,2);
-      $n3 = substr($newtext,2,1);
-      $n4 = substr($newtext,3,0);
+      $n1 = 'P'.substr($newtext,0,1);
+      $n2 = 'P'.substr($newtext,1,2);
+      $n3 = 'P'.substr($newtext,2,1);
+      $n4 = 'P'.substr($newtext,3,0);
 
       if(strtoupper($ftext) == "P"){
         $player= strtoupper(strstr($text, '-', true));
