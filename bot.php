@@ -26,7 +26,7 @@ if (!is_null($events['events'])) {
       $alltext= strtoupper(strstr($text, '-', true));
       $newtext = substr($alltext, 1);
       $n1 = 'P'.substr($newtext,0,1);
-      $n2 = 'P'.substr($newtext,1,2);
+      $n2 = 'P'.substr($newtext,1,3);
       $n3 = 'P'.substr($newtext,2,1);
       $n4 = 'P'.substr($newtext,4,0);
 
