@@ -160,6 +160,7 @@ if (!is_null($events['events'])) {
 
          }
 
+   $curl = curl_init();
          for( $i=0; $i<=$total; $i++ ) {
 
                $username = $response->body->result[$i]->cf_958;
@@ -169,8 +170,6 @@ if (!is_null($events['events'])) {
                $bet = $response->body->result[$i]->cf_956;
                $player = $response->body->result[$i]->cf_960;
                $newbalance = $balance - $bet;
-
-               $curl = curl_init();
 
                curl_setopt_array($curl, array(
                  CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
@@ -192,7 +191,7 @@ if (!is_null($events['events'])) {
                $response = curl_exec($curl);
                $err = curl_error($curl);
 
-               curl_close($curl);
+
 
                if ($err) {
                  echo "cURL Error #:" . $err;
@@ -200,7 +199,7 @@ if (!is_null($events['events'])) {
                }
 
              }
-
+             curl_close($curl);
         } else if  ($x1=="+1"){
            $msg1 = 'ขา 1 ได้ 1 เท่า';
            $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20cf_960='P1'%20;";
