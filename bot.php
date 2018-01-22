@@ -158,7 +158,7 @@ if (!is_null($events['events'])) {
 
 
 
-             $listname = $listname."\n ".$username."  -".$bet."= + ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท';
 
          }
 
