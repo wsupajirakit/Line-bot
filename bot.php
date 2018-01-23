@@ -125,10 +125,10 @@ if (!is_null($events['events'])) {
         $response3x = \Httpful\Request::get($uri3x)->send();
         // echo $response;
         $xround = $response3x->body->result[0]->games_tks_username;
+        $xround = $xround-1
 
-
-        $listname= 'สรุปผล : รอบที่# '.$xround;
-        $resultlist= 'สรุปผล : รอบที่# '.$xround;
+        $listname= 'สรุปผล : รอบที่ # '.$xround;
+        $resultlist= 'สรุปผล : รอบที่ # '.$xround;
 
         $x1 = substr($extext[0], 2);
 
