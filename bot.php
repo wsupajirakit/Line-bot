@@ -367,8 +367,9 @@ if (!is_null($events['events'])) {
                 $vid = $item['id'];
                 $balance = $item['balance_tks_balance'];
                 $bet = $item['cf_956'];
+                $betx = $bet*2;
                 $player = $item['cf_960'];
-                $expend = $item['cf_966'];
+                $expend = $item['cf_966']+betx;
                 $income = $item['cf_968'];
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
