@@ -1408,7 +1408,7 @@ if (!is_null($events['events'])) {
                     $newbalance = $balance - $newsum;
                     $resultlist = $resultlist."\n".$username." -".$newsum,"=".$newbalance."บาท";
                   }
-                  if ($sum >0 ){
+                  else if ($sum >0 ){
                       $newbalance = $balance + $sum;
                     $resultlist = $resultlist."\n".$username." +".$sum,"=".$newbalance."บาท";
                   }
