@@ -1409,7 +1409,7 @@ if (!is_null($events['events'])) {
                 $resultlist = $resultlist."\n".$username." +".$sum." = ".$newbalance;
               }
 
-
+                $resultlist = $resultlist."\n".$income." +".$expend." = ".$username;
 
             }
 
