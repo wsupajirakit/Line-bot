@@ -1409,8 +1409,8 @@ if (!is_null($events['events'])) {
                       }
 
 
-                              $curl = curl_init();
-                               curl_setopt_array($curl, array(
+                              $curl2 = curl_init();
+                               curl_setopt_array($curl2, array(
                                  CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
                                  CURLOPT_RETURNTRANSFER => true,
                                  CURLOPT_ENCODING => "",
@@ -1426,16 +1426,16 @@ if (!is_null($events['events'])) {
                                    "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
                                  ),
                                ));
-                      
-                             $response = curl_exec($curl);
-                             $err = curl_error($curl);
 
-                             if ($err) {
-                               echo "cURL Error #:" . $err;
+                             $response3 = curl_exec($curl2);
+                             $err3 = curl_error($curl2);
+
+                             if ($err3) {
+                               echo "cURL Error #:" . $err3;
                              } else {
 
                              }
-                                curl_close($curl);
+                                curl_close($curl2);
                        }
 
 
