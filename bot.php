@@ -105,7 +105,7 @@ if (!is_null($events['events'])) {
         } else if ($gameStatus ==0){
           $messages = [
             'type' => 'text',
-            'text' => 'ขณะนี้ ไม่ใช่เวลาแทง เปิดรอรอบใหม่อีกครั้ง'
+            'text' => 'ขณะนี้ ไม่ใช่เวลาแทง รอเปิดรอบใหม่อีกครั้ง'
           ];
         }
 
@@ -2382,7 +2382,10 @@ if (!is_null($events['events'])) {
 
 
       }else {
-
+        $messages = [
+          'type' => 'text',
+          'text' => $userID
+        ];
       }
 
 
