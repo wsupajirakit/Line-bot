@@ -2287,10 +2287,6 @@ if (!is_null($events['events'])) {
         ];
 
       }else {
-        $messages = [
-          'type' => 'text',
-          'text' => 'คุณไม่ใช่ Admin สถานะ 0'.$adminID.$userID
-        ];
 
       }
 
