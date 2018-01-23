@@ -368,8 +368,7 @@ if (!is_null($events['events'])) {
                 $vid = $item['id'];
                 $balance = $item['balance_tks_balance'];
                 $bet = $item['cf_956'];
-                $betx = ($bet+$bet)-1;
-                $moneyx = 1;
+                $betx = ($bet+$bet);
                 $expend = $item['cf_966']+$betx;
                 $income = $item['cf_968'];
                 $playerbet = $item['cf_964'];
@@ -1415,7 +1414,7 @@ if (!is_null($events['events'])) {
               $xmoneyx = $itemx['cf_960'];
               $expend = $itemx['cf_966'];
               $income = $itemx['cf_968'];
-              $sum = ($income - $expend)-$xmoney;
+              $sum = $income - $expend;
               $playerbet = $itemx['cf_964'];
 
                       if($income == 0){
@@ -1484,7 +1483,7 @@ if (!is_null($events['events'])) {
                         }
                            curl_close($curl);
 
-                      }else if ($sum > 0){
+                      }else if ($sum >= 0){
                         $newbalance = $balance + $sum;
                        $resultlist = $resultlist."\n".$username."ได้+".$sum."เหลือ=".$newbalance."";
 

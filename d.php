@@ -55,6 +55,7 @@ if (!is_null($events['events'])) {
                   $username = $response->body->result[0]->cf_958;
                   $vid = $response->body->result[0]->id;
                   $balance = $response->body->result[0]->balance_tks_balance;
+                  $moneyx = $money*2;
 
 
                         $curl = curl_init();
@@ -68,7 +69,7 @@ if (!is_null($events['events'])) {
                           CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                           CURLOPT_CUSTOMREQUEST => "POST",
                           CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n244bae35a6579977f668\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"balanceno\": \"\",\n            \"balance_tks_userid\": \"$userID\",\n            \"balance_tks_balance\": \"$balance\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-22 04:44:56\",\n            \"modifiedtime\": \"2018-01-22 09:50:55\",\n
-                            \"cf_956\": \"$money\",\n            \"cf_958\": \"$username\",\n    \"cf_970\": \"1\",\n   \"cf_966\": \"0\",\n    \"cf_968\": \"0\",\n    \"cf_960\": \"$player\",\n            \"cf_964\": \"$n1 |##| $n2 |##| $n3 |##| $n4\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                            \"cf_956\": \"$money\",\n            \"cf_958\": \"$username\",\n    \"cf_970\": \"1\",\n   \"cf_966\": \"0\",\n    \"cf_968\": \"0\",\n    \"cf_960\": \"0\",\n            \"cf_964\": \"$n1 |##| $n2 |##| $n3 |##| $n4\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                           CURLOPT_HTTPHEADER => array(
                             "Cache-Control: no-cache",
                             "Postman-Token: c2bcfb7c-6bff-0d04-9232-39fdc17796d0",
@@ -349,7 +350,8 @@ if (!is_null($events['events'])) {
              }
 
         }else if  ($x1=="-2"){
-           $msg1 = 'ขา 1 เสียให้เจ้ามือ 2 เท่า';
+           $msg1 = 'ขา 1 ได้ 2 เท่า';
+
            $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20cf_964%20LIKE%20'%P1%'%20;";
            $response = \Httpful\Request::get($uri)->send();
 
@@ -366,11 +368,16 @@ if (!is_null($events['events'])) {
                 $vid = $item['id'];
                 $balance = $item['balance_tks_balance'];
                 $bet = $item['cf_956'];
-                $player = $item['cf_960'];
-                $expend = $item['cf_966']+($bet*2);
+                $betx = ($bet+$bet)-1;
+                $moneyx = 1;
+                $expend = $item['cf_966']+$betx;
                 $income = $item['cf_968'];
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
+
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
+
+
 
                     $curl = curl_init();
                      curl_setopt_array($curl, array(
@@ -382,7 +389,7 @@ if (!is_null($events['events'])) {
                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                        CURLOPT_CUSTOMREQUEST => "POST",
                        CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n244bae35a6579977f668\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"balanceno\": \"\",\n            \"balance_tks_userid\": \"$userID\",\n            \"balance_tks_balance\": \"$newbalance\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-22 04:44:00\",\n            \"modifiedtime\": \"2018-01-22 05:50:35\",\n
-                         \"cf_956\": \"$bet\",\n            \"cf_958\": \"$username\",\n      \"cf_966\": \"$expend\",\n  \"cf_964\": \"$playerbet\",\n   \"cf_968\": \"$income\",\n    \"cf_960\": \"\",\n     \"cf_970\": \"1\",\n       \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                         \"cf_956\": \"$bet\",\n            \"cf_958\": \"$username\",\n      \"cf_966\": \"$expend\",\n  \"cf_964\": \"$playerbet\",\n   \"cf_968\": \"$income\",\n    \"cf_960\": \"1\",\n     \"cf_970\": \"1\",\n       \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                        CURLOPT_HTTPHEADER => array(
                          "Cache-Control: no-cache",
                          "Postman-Token: 8cf07109-175f-5368-08c6-63279568d118",
@@ -405,7 +412,6 @@ if (!is_null($events['events'])) {
 
 
              }
-
         }else if  ($x1=="+2"){
            $msg1 = 'ขา 1 ได้ 2 เท่า';
 
@@ -1406,10 +1412,10 @@ if (!is_null($events['events'])) {
               $vid = $itemx['id'];
               $balance = $itemx['balance_tks_balance'];
               $bet = $itemx['cf_956'];
-              $player = $itemx['cf_960'];
+              $xmoneyx = $itemx['cf_960'];
               $expend = $itemx['cf_966'];
               $income = $itemx['cf_968'];
-              $sum = $income - $expend;
+              $sum = ($income - $expend)-$xmoney;
               $playerbet = $itemx['cf_964'];
 
                       if($income == 0){
