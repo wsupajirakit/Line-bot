@@ -1394,11 +1394,23 @@ if (!is_null($events['events'])) {
               $bet = $itemx['cf_956'];
               $player = $itemx['cf_960'];
               $expend = $itemx['cf_966'];
-              $income = $itemx['cf_968']+($bet*2);
+              $income = $itemx['cf_968'];
+              $sum = $income - $expend;
               $playerbet = $itemx['cf_964'];
-              $newbalance = $balance - $bet;
 
-                $resultlist = $resultlist."   สุดท้าย".$datax."  ".$username;
+
+              if($sum < 0){
+                  $sum = substr($sum,1);
+                  $newbalance = $balance - $sum;
+                  $resultlist = $resultlist."\n".$username." -".$sum." = ".$newbalance;
+
+              } else if ($sum >0){
+                $newbalance = $balance + $sum;
+                $resultlist = $resultlist."\n".$username." +".$sum." = ".$newbalance;
+              }
+
+
+
             }
 
 
