@@ -2270,11 +2270,29 @@ if (!is_null($events['events'])) {
 
       $pid = $event['message']['packageId'];
       $sid = $event['message']['stickerId'];
+        $userID = $event['source']['userId'];
 			$replyToken = $event['replyToken'];
-			$messages = [
-				'type' => 'text',
-				'text' => $pid."///".$sid
-			];
+
+      $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Games%20Where%20id%20=%20'43x539';";
+      $response = \Httpful\Request::get($uri)->send();
+      // echo $response;
+      $adminID = $response->body->result[0]->games_tks_password;
+      $gameStatus = $response->body->result[0]->games_tks_gameid;
+
+      if($adminID == $userID){
+        $messages = [
+          'type' => 'text',
+          'text' => 'คุณคือ Admin สถานะ'.$gameStatus
+        ];
+
+      }else {
+        $messages = [
+          'type' => 'text',
+          'text' => $pid."///".$sid
+        ];
+
+      }
+
 
 
 
