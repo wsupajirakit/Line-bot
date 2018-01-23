@@ -2281,10 +2281,20 @@ if (!is_null($events['events'])) {
 
 
         if(strcmp($adminID,$userID) == 0){
-        $messages = [
-          'type' => 'text',
-          'text' => 'คุณคือ Admin สถานะ'.$gameStatus
-        ];
+
+        if($gameStatus ==0){
+          $messages = [
+            'type' => 'text',
+            'text' => 'เริ่มรอบใหม่'
+          ];
+        }else{
+          $messages = [
+            'type' => 'text',
+            'text' => 'ปิดรอบการแทง'
+          ];
+          
+        }
+
 
       }else {
 
