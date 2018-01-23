@@ -2279,7 +2279,8 @@ if (!is_null($events['events'])) {
       $adminID = $response->body->result[0]->games_tks_password;
       $gameStatus = $response->body->result[0]->games_tks_gameid;
 
-      if($adminID == $userID){
+
+        if(strcmp($adminID,$userID)){
         $messages = [
           'type' => 'text',
           'text' => 'คุณคือ Admin สถานะ'.$gameStatus
@@ -2288,7 +2289,7 @@ if (!is_null($events['events'])) {
       }else {
         $messages = [
           'type' => 'text',
-          'text' => 'คุณคือ Admin สถานะ'.$gameStatus
+          'text' => 'คุณไม่ใช่ Admin สถานะ 0'
         ];
 
       }
