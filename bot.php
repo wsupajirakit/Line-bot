@@ -121,8 +121,14 @@ if (!is_null($events['events'])) {
         // echo $extext[2]; // piece2
         // echo $extext[3]; // piece2
 
-        $listname= 'สรุปผล :';
-        $resultlist= 'สรุปผล :';
+        $uri3x = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Games%20Where%20id%20=%20'43x543';";
+        $response3x = \Httpful\Request::get($uri3x)->send();
+        // echo $response;
+        $xround = $response3x->body->result[0]->games_tks_username;
+
+
+        $listname= 'สรุปผล : รอบที่# '.$xround;
+        $resultlist= 'สรุปผล : รอบที่# '.$xround;
 
         $x1 = substr($extext[0], 2);
 
@@ -2381,7 +2387,7 @@ if (!is_null($events['events'])) {
 
                     $messages = [
                       'type' => 'text',
-                      'text' => 'เริ่มรอบใหม่ รอบที่#'.$cround
+                      'text' => 'เริ่มรอบที่ #'.$cround
                     ];
                   }else{
 
@@ -2444,7 +2450,7 @@ if (!is_null($events['events'])) {
 
                     $messages = [
                       'type' => 'text',
-                      'text' => 'ปิดรอบการแทง รอบที่#'.$cround
+                      'text' => 'ปิดรอบที่ # '.$cround
                     ];
 
                   }
