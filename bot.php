@@ -1398,11 +1398,11 @@ if (!is_null($events['events'])) {
               if($sum < 0){
                 $sum = substr($sum,1);
                 $newbalance = $balance - $sum;
-                 $resultlist = $resultlist."คุณ".$username." - ".$sum." = ".$newbalance;
+                 $resultlist = $resultlist."\nคุณ ".$username." - ".$sum." = ".$newbalance."บาท";
 
               }else if ($sum > 0){
                 $newbalance = $balance + $sum;
-               $resultlist = $resultlist."คุณ".$username." + ".$sum." = ".$newbalance;
+               $resultlist = $resultlist."\nคุณ ".$username." + ".$sum." = ".$newbalance."บาท";
               }
 
 
