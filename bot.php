@@ -103,8 +103,7 @@ if (!is_null($events['events'])) {
         // echo $extext[2]; // piece2
         // echo $extext[3]; // piece2
 
-        $listname = 'สรุปผล :';
-        $resultall = 'สรุปผล :';
+        $listname= 'สรุปผล :';
 
         $x1 = substr($extext[0], 2);
 
@@ -1384,12 +1383,11 @@ if (!is_null($events['events'])) {
 
 
              }
+        }
 
-
-           }
         $messages = [
           'type' => 'text',
-          'text' =>  $resultall
+          'text' =>  $listname
         ];
 
       }
