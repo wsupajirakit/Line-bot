@@ -1376,7 +1376,6 @@ if (!is_null($events['events'])) {
                       curl_close($curl);
              }
         } else if ($x4 != "") {
-
           $urix = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20cf_970%20LIKE%20'1'%20;";
           $responsex = \Httpful\Request::get($urix)->send();
 
