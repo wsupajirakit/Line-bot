@@ -1444,7 +1444,7 @@ if (!is_null($events['events'])) {
                       }
                       else if($sum < 0){
                         $newbalance = $balance - $sum;
-                         $resultlist = $resultlist."\nคุณ ".$username."".$sum." = ".$newbalance."บาท";
+                         $resultlist = $resultlist."\nคุณ ".$username." เสีย ".$sum." เหลือ = ".$newbalance."บาท";
 
                          $curl = curl_init();
                           curl_setopt_array($curl, array(
@@ -1476,7 +1476,7 @@ if (!is_null($events['events'])) {
 
                       }else if ($sum > 0){
                         $newbalance = $balance + $sum;
-                       $resultlist = $resultlist."\nคุณ ".$username." + ".$sum." = ".$newbalance."บาท";
+                       $resultlist = $resultlist."\nคุณ ".$username." ได้ + ".$sum." เหลือ = ".$newbalance."บาท";
 
 
                        $curl = curl_init();
@@ -2239,7 +2239,7 @@ if (!is_null($events['events'])) {
         } else {
           echo $response;
         }
-        
+
         $messages = [
           'type' => 'text',
           'text' => 'กำลังเริ่มรอบแรกเตรียมตัว ...'
