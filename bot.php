@@ -1391,11 +1391,21 @@ if (!is_null($events['events'])) {
               $player = $itemx['cf_960'];
               $expend = $itemx['cf_966'];
               $income = $itemx['cf_968'];
+              $sum = $income - $expend;
               $playerbet = $itemx['cf_964'];
-              $newbalance = $balance - $bet;
 
 
-                $resultlist = $resultlist."   สุดท้าย".$datax."  ".$username;
+              if($sum < 0){
+                $sum = substr($sum,1);
+                $newbalance = $balance - $sum;
+                 $resultlist = $resultlist."คุณ".$username." - ".$sum." = ".$newbalance;
+
+              }else if ($sum > 0){
+                $newbalance = $balance + $sum;
+               $resultlist = $resultlist."คุณ".$username." + ".$sum." = ".$newbalance;
+              }
+
+
             }
 
 
@@ -1450,7 +1460,7 @@ if (!is_null($events['events'])) {
           //           curl_close($curl);
           //  }
 
-    
+
 
         $messages = [
           'type' => 'text',
