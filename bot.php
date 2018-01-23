@@ -15,8 +15,9 @@ if (!is_null($events['events'])) {
 
 		   if ($event['type'] == 'message' && $event['message']['type'] == 'text' ||  $event['message']['type'] == 'sticker') {
          $text = $event['message']['text'];
+         $pid = $event['message']['packageId'];
 
-         if($text==""){
+         if($pid!=""){
            $pid = $event['message']['packageId'];
            $sid = $event['message']['stickerId'];
 
