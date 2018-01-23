@@ -91,14 +91,14 @@ if (!is_null($events['events'])) {
                   $messages = [
                     'type' => 'text',
                     // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-                    'text' => '  '.$username.' แทงพนันผู้เล่น '.$player.' จำนวน '.$money.' บาท ยอดคงเหลือปัจจุบัน(ก่อนหัก) '.$balance.' บาท'
+                    'text' => '  '.$username.' แทงพนันผู้เล่น '.$player.' จำนวน '.$money.'   ยอดคงเหลือปัจจุบัน(ก่อนหัก) '.$balance.'  '
                   ];
 
                 }  else {
                   $messages = [
                     'type' => 'text',
                     // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-                    'text' => 'แทงได้แค่ P1 - P4 เท่านั้น ต่ำสุด 10 สูงสุด 200 บาท'
+                    'text' => 'แทงได้แค่ P1 - P4 เท่านั้น ต่ำสุด 10 สูงสุด 200  '
                   ];
 
                 }
@@ -156,7 +156,7 @@ if (!is_null($events['events'])) {
          //     $player = $response->body->result[$i]->cf_960;
          //     $newbalance = $balance - $bet;
          //
-         //     $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท';
+         //     $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.' ';
          //
          // }
 
@@ -183,7 +183,7 @@ if (!is_null($events['events'])) {
                    $playerbet = $item['cf_964'];
                    $newbalance = $balance;
 
-                $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+                $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -247,7 +247,7 @@ if (!is_null($events['events'])) {
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -310,7 +310,7 @@ if (!is_null($events['events'])) {
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -372,7 +372,7 @@ if (!is_null($events['events'])) {
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -436,7 +436,7 @@ if (!is_null($events['events'])) {
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -498,7 +498,7 @@ if (!is_null($events['events'])) {
                $playerbet = $item['cf_964'];
                $newbalance = $balance;
 
-            $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+            $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -562,7 +562,7 @@ if (!is_null($events['events'])) {
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -624,7 +624,7 @@ if (!is_null($events['events'])) {
                 $income = $item['cf_968'];
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -685,7 +685,7 @@ if (!is_null($events['events'])) {
                 $income = $item['cf_968'];
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -747,7 +747,7 @@ if (!is_null($events['events'])) {
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -812,7 +812,7 @@ if (!is_null($events['events'])) {
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -874,7 +874,7 @@ if (!is_null($events['events'])) {
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -935,7 +935,7 @@ if (!is_null($events['events'])) {
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -996,7 +996,7 @@ if (!is_null($events['events'])) {
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -1057,7 +1057,7 @@ if (!is_null($events['events'])) {
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -1122,7 +1122,7 @@ if (!is_null($events['events'])) {
                            $playerbet = $item['cf_964'];
                            $newbalance = $balance;
 
-                        $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+                        $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -1183,7 +1183,7 @@ if (!is_null($events['events'])) {
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -1244,7 +1244,7 @@ if (!is_null($events['events'])) {
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -1305,7 +1305,7 @@ if (!is_null($events['events'])) {
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -1366,7 +1366,7 @@ if (!is_null($events['events'])) {
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -1420,7 +1420,7 @@ if (!is_null($events['events'])) {
                       if($income == 0){
                           $sum = substr($sum,1);
                         $newbalance = $balance - $sum;
-                         $resultlist = $resultlist."\n  ".$username." เสีย - ".$sum." เหลือ = ".$newbalance."บาท";
+                         $resultlist = $resultlist."\n  ".$username." เสีย - ".$sum." เหลือ = ".$newbalance." ";
                          $curl = curl_init();
                           curl_setopt_array($curl, array(
                             CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
@@ -1453,7 +1453,7 @@ if (!is_null($events['events'])) {
                       else if($sum < 0){
                           $sum = substr($sum,1);
                         $newbalance = $balance - $sum;
-                         $resultlist = $resultlist."\n  ".$username." เสีย -".$sum." เหลือ = ".$newbalance."บาท";
+                         $resultlist = $resultlist."\n  ".$username." เสีย -".$sum." เหลือ = ".$newbalance." ";
 
                          $curl = curl_init();
                           curl_setopt_array($curl, array(
@@ -1485,7 +1485,7 @@ if (!is_null($events['events'])) {
 
                       }else if ($sum > 0){
                         $newbalance = $balance + $sum;
-                       $resultlist = $resultlist."\n  ".$username." ได้ + ".$sum." เหลือ = ".$newbalance."บาท";
+                       $resultlist = $resultlist."\n  ".$username." ได้ + ".$sum." เหลือ = ".$newbalance." ";
 
 
                        $curl = curl_init();
@@ -1617,7 +1617,7 @@ if (!is_null($events['events'])) {
                 $player = $item['cf_960'];
                 $newbalance = $balance - $bet;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -1679,7 +1679,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance + $bet;
 
-             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.' ';
 
          }
 
@@ -1706,7 +1706,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance + 0;
 
-             $listname = $listname."\n ".$username."  + 0 = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  + 0 = ".$newbalance.' ';
 
          }
 
@@ -1732,7 +1732,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance - $bet;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.' ';
 
          }
 
@@ -1760,7 +1760,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance + $bet;
 
-             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.' ';
 
          }
         }
@@ -1786,7 +1786,7 @@ if (!is_null($events['events'])) {
             $player = $response->body->result[$i]->cf_960;
             $newbalance = $balance - $bet;
 
-            $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท';
+            $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.' ';
 
          }
 
@@ -1814,7 +1814,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance + $bet;
 
-             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.' ';
            }
 
         }else if  ($x2=="+0"){
@@ -1839,7 +1839,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance + 0;
 
-             $listname = $listname."\n ".$username."  + 0 = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  + 0 = ".$newbalance.' ';
            }
 
         }else if  ($x2=="-2"){
@@ -1864,7 +1864,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance - $bet;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.' ';
 
          }
         }else if  ($x2=="+2"){
@@ -1889,7 +1889,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance + $bet;
 
-             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.' ';
 
          }
         }
@@ -1919,7 +1919,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance - $bet;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.' ';
            }
 
         } else if  ($x3=="+1"){
@@ -1944,7 +1944,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance + $bet;
 
-             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.' ';
            }
         }else if  ($x3=="+0"){
            $msg3 = 'เจ๊า';
@@ -1968,7 +1968,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance + 0;
 
-             $listname = $listname."\n ".$username."  + 0 = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  + 0 = ".$newbalance.' ';
 
          }
         }else if  ($x3=="-2"){
@@ -1993,7 +1993,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance - $bet;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.' ';
 
          }
         }else if  ($x3=="+2"){
@@ -2018,7 +2018,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance + $bet;
 
-             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.' ';
 
          }
 
@@ -2048,7 +2048,7 @@ if (!is_null($events['events'])) {
                         $player = $response->body->result[$i]->cf_960;
                         $newbalance = $balance - $bet;
 
-                        $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท';
+                        $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.' ';
 
                     }
         } else if  ($x4=="+1"){
@@ -2073,7 +2073,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance + $bet;
 
-             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.' ';
 
          }
         }else if  ($x4=="+0"){
@@ -2098,7 +2098,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance + 0;
 
-             $listname = $listname."\n ".$username."  + 0 = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  + 0 = ".$newbalance.' ';
 
          }
         }else if  ($x4=="-2"){
@@ -2123,7 +2123,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance - $bet;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.' ';
 
          }
         }else if  ($x4=="+2"){
@@ -2148,7 +2148,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance + $bet;
 
-             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.' ';
 
          }
         }
@@ -2205,7 +2205,7 @@ if (!is_null($events['events'])) {
 
         $messages = [
           'type' => 'text',
-          'text' => 'ฝากเงินสำเร็จ  มียอดเงินคงเหลือ : '.$sum.' บาท'.'by'.$userID
+          'text' => 'ฝากเงินสำเร็จ  มียอดเงินคงเหลือ : '.$sum.'  '.'by'.$userID
         ];
       }
 
