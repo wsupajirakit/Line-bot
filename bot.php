@@ -2382,10 +2382,7 @@ if (!is_null($events['events'])) {
 
 
       }else {
-        $messages = [
-          'type' => 'text',
-          'text' => $userID
-        ];
+
       }
 
 
