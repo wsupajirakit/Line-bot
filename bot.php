@@ -2282,18 +2282,79 @@ if (!is_null($events['events'])) {
 
         if(strcmp($adminID,$userID) == 0){
 
-        if($gameStatus ==0){
-          $messages = [
-            'type' => 'text',
-            'text' => 'เริ่มรอบใหม่'
-          ];
-        }else{
-          $messages = [
-            'type' => 'text',
-            'text' => 'ปิดรอบการแทง'
-          ];
-          
-        }
+                  if($gameStatus ==0){
+
+                    $curl = curl_init();
+
+                    curl_setopt_array($curl, array(
+                      CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                      CURLOPT_RETURNTRANSFER => true,
+                      CURLOPT_ENCODING => "",
+                      CURLOPT_MAXREDIRS => 10,
+                      CURLOPT_TIMEOUT => 30,
+                      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                      CURLOPT_CUSTOMREQUEST => "POST",
+                      CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n34888a365a670207dd6aa\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"gamesno\": \"\",\n            \"games_tks_username\": \"are\",\n            \"games_tks_password\": \"Uea8f71000cb4673f4d4431dee2318edd\",\n            \"games_tks_gamename\": \"are\",\n            \"games_tks_gameid\": \"1\",\n            \"games_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-23 09:17:53\",\n            \"modifiedtime\": \"2018-01-23 09:35:24\",\n            \"cf_948\": \"\",\n            \"id\": \"43x539\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                      CURLOPT_HTTPHEADER => array(
+                        "cache-control: no-cache",
+                        "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                        "postman-token: 18e9d752-7db1-7306-210b-2216aa4e7a39"
+                      ),
+                    ));
+
+                    $response = curl_exec($curl);
+                    $err = curl_error($curl);
+
+                    curl_close($curl);
+
+                    if ($err) {
+                      echo "cURL Error #:" . $err;
+                    } else {
+                      echo $response;
+                    }
+
+
+                    $messages = [
+                      'type' => 'text',
+                      'text' => 'เริ่มรอบใหม่'
+                    ];
+                  }else{
+
+                    $curl = curl_init();
+
+                    curl_setopt_array($curl, array(
+                      CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                      CURLOPT_RETURNTRANSFER => true,
+                      CURLOPT_ENCODING => "",
+                      CURLOPT_MAXREDIRS => 10,
+                      CURLOPT_TIMEOUT => 30,
+                      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                      CURLOPT_CUSTOMREQUEST => "POST",
+                      CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n34888a365a670207dd6aa\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"gamesno\": \"\",\n            \"games_tks_username\": \"are\",\n            \"games_tks_password\": \"Uea8f71000cb4673f4d4431dee2318edd\",\n            \"games_tks_gamename\": \"are\",\n            \"games_tks_gameid\": \"0\",\n            \"games_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-23 09:17:53\",\n            \"modifiedtime\": \"2018-01-23 09:35:24\",\n            \"cf_948\": \"\",\n            \"id\": \"43x539\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                      CURLOPT_HTTPHEADER => array(
+                        "cache-control: no-cache",
+                        "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                        "postman-token: 18e9d752-7db1-7306-210b-2216aa4e7a39"
+                      ),
+                    ));
+
+                    $response = curl_exec($curl);
+                    $err = curl_error($curl);
+
+                    curl_close($curl);
+
+                    if ($err) {
+                      echo "cURL Error #:" . $err;
+                    } else {
+                      echo $response;
+                    }
+
+                    $messages = [
+                      'type' => 'text',
+                      'text' => 'ปิดรอบการแทง'
+                    ];
+
+                  }
 
 
       }else {
