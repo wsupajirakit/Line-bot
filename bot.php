@@ -360,7 +360,7 @@ if (!is_null($events['events'])) {
                 $balance = $item['balance_tks_balance'];
                 $bet = $item['cf_956'];
                 $player = $item['cf_960'];
-                $expend = $item['cf_966']-($bet*2);
+                $expend = $item['cf_966']+($bet*2);
                 $income = $item['cf_968'];
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance - $bet;
@@ -486,7 +486,7 @@ if (!is_null($events['events'])) {
                $balance = $item['balance_tks_balance'];
                $bet = $item['cf_956'];
                $player = $item['cf_960'];
-               $expend = $item['cf_966']-$bet;
+               $expend = $item['cf_966']+$bet;
                $income = $item['cf_968'];
                $playerbet = $item['cf_964'];
                $newbalance = $balance - $bet;
@@ -675,7 +675,7 @@ if (!is_null($events['events'])) {
                 $balance = $item['balance_tks_balance'];
                 $bet = $item['cf_956'];
                 $player = $item['cf_960'];
-                $expend = $item['cf_966']-($bet*2);
+                $expend = $item['cf_966']+($bet*2);
                 $income = $item['cf_968'];
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance - $bet;
@@ -802,7 +802,7 @@ if (!is_null($events['events'])) {
                 $balance = $item['balance_tks_balance'];
                 $bet = $item['cf_956'];
                 $player = $item['cf_960'];
-                $expend = $item['cf_966']-$bet;
+                $expend = $item['cf_966']+$bet;
                 $income = $item['cf_968'];
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance - $bet;
@@ -986,7 +986,7 @@ if (!is_null($events['events'])) {
                 $balance = $item['balance_tks_balance'];
                 $bet = $item['cf_956'];
                 $player = $item['cf_960'];
-                $expend = $item['cf_966']-($bet*2);
+                $expend = $item['cf_966']+($bet*2);
                 $income = $item['cf_968'];
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance - $bet;
@@ -1112,7 +1112,7 @@ if (!is_null($events['events'])) {
                            $balance = $item['balance_tks_balance'];
                            $bet = $item['cf_956'];
                            $player = $item['cf_960'];
-                           $expend = $item['cf_966']-$bet;
+                           $expend = $item['cf_966']+$bet;
                            $income = $item['cf_968'];
                            $playerbet = $item['cf_964'];
                            $newbalance = $balance - $bet;
@@ -1295,7 +1295,7 @@ if (!is_null($events['events'])) {
                 $balance = $item['balance_tks_balance'];
                 $bet = $item['cf_956'];
                 $player = $item['cf_960'];
-                $expend = $item['cf_966']-($bet*2);
+                $expend = $item['cf_966']+($bet*2);
                 $income = $item['cf_968'];
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance - $bet;
