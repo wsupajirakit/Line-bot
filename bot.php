@@ -1400,7 +1400,7 @@ if (!is_null($events['events'])) {
            $newbalance = $balance - $bet;
 
 
-           $resultlist= $resultlist."\n".$username
+           $resultlist= $resultlist."\n".$username."==".$income-$expend
 
                $curl = curl_init();
                 curl_setopt_array($curl, array(
