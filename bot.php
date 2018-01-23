@@ -1412,10 +1412,10 @@ if (!is_null($events['events'])) {
               $vid = $itemx['id'];
               $balance = $itemx['balance_tks_balance'];
               $bet = $itemx['cf_956'];
-              $player = $itemx['cf_960'];
+              $xmoneyx = $itemx['cf_960'];
               $expend = $itemx['cf_966'];
               $income = $itemx['cf_968'];
-              $sum = $income - $expend;
+              $sum = ($income - $expend)-$xmoneyx;
               $playerbet = $itemx['cf_964'];
 
                       if($income == 0){
