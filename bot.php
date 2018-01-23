@@ -2280,7 +2280,7 @@ if (!is_null($events['events'])) {
       $gameStatus = $response->body->result[0]->games_tks_gameid;
 
 
-        if(strcmp($adminID,$userID)){
+        if(strcmp($adminID,$userID) == true){
         $messages = [
           'type' => 'text',
           'text' => 'คุณคือ Admin สถานะ'.$gameStatus
