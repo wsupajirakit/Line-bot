@@ -38,64 +38,79 @@ if (!is_null($events['events'])) {
         // echo $response;
         $gameStatus = $response->body->result[0]->games_tks_gameid;
 
-      if(strtoupper($ftext) == "P" && $gameStatus ==1){
+      if(strtoupper($ftext) == "P"){
+
+
         $player= strtoupper(strstr($text, '-', true));
         $money  = substr($text, (strpos($text, '-') ?: -1) + 1);
 
-        if($money <= 200 && $money >=20) {
-        $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20balance_tks_userid='".$userID."'%20;";
-        $response = \Httpful\Request::get($uri)->send();
-        // echo $response;
-        $username = $response->body->result[0]->cf_958;
-        $vid = $response->body->result[0]->id;
-        $balance = $response->body->result[0]->balance_tks_balance;
 
 
-              $curl = curl_init();
+        if($gameStatus ==1) {
 
-              curl_setopt_array($curl, array(
-                CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => "",
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 30,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => "POST",
-                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n244bae35a6579977f668\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"balanceno\": \"\",\n            \"balance_tks_userid\": \"$userID\",\n            \"balance_tks_balance\": \"$balance\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-22 04:44:56\",\n            \"modifiedtime\": \"2018-01-22 09:50:55\",\n
-                  \"cf_956\": \"$money\",\n            \"cf_958\": \"$username\",\n    \"cf_970\": \"1\",\n   \"cf_966\": \"0\",\n    \"cf_968\": \"0\",\n    \"cf_960\": \"$player\",\n            \"cf_964\": \"$n1 |##| $n2 |##| $n3 |##| $n4\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
-                CURLOPT_HTTPHEADER => array(
-                  "Cache-Control: no-cache",
-                  "Postman-Token: c2bcfb7c-6bff-0d04-9232-39fdc17796d0",
-                  "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
-                ),
-              ));
-
-              $response = curl_exec($curl);
-              $err = curl_error($curl);
-
-              curl_close($curl);
-
-              if ($err) {
-                echo "cURL Error #:" . $err;
-              } else {
-
-              }
+                  if($money <= 200 && $money >=20) {
+                  $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20balance_tks_userid='".$userID."'%20;";
+                  $response = \Httpful\Request::get($uri)->send();
+                  // echo $response;
+                  $username = $response->body->result[0]->cf_958;
+                  $vid = $response->body->result[0]->id;
+                  $balance = $response->body->result[0]->balance_tks_balance;
 
 
-        $messages = [
-          'type' => 'text',
-          // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-          'text' => 'คุณ '.$username.' แทงพนันผู้เล่น '.$player.' จำนวน '.$money.' บาท ยอดคงเหลือปัจจุบัน(ก่อนหัก) '.$balance.' บาท'
-        ];
+                        $curl = curl_init();
 
-      }  else {
-        $messages = [
-          'type' => 'text',
-          // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-          'text' => 'แทงได้แค่ P1 - P4 เท่านั้น ต่ำสุด 10 สูงสุด 200 บาท'
-        ];
+                        curl_setopt_array($curl, array(
+                          CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                          CURLOPT_RETURNTRANSFER => true,
+                          CURLOPT_ENCODING => "",
+                          CURLOPT_MAXREDIRS => 10,
+                          CURLOPT_TIMEOUT => 30,
+                          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                          CURLOPT_CUSTOMREQUEST => "POST",
+                          CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n244bae35a6579977f668\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"balanceno\": \"\",\n            \"balance_tks_userid\": \"$userID\",\n            \"balance_tks_balance\": \"$balance\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-22 04:44:56\",\n            \"modifiedtime\": \"2018-01-22 09:50:55\",\n
+                            \"cf_956\": \"$money\",\n            \"cf_958\": \"$username\",\n    \"cf_970\": \"1\",\n   \"cf_966\": \"0\",\n    \"cf_968\": \"0\",\n    \"cf_960\": \"$player\",\n            \"cf_964\": \"$n1 |##| $n2 |##| $n3 |##| $n4\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                          CURLOPT_HTTPHEADER => array(
+                            "Cache-Control: no-cache",
+                            "Postman-Token: c2bcfb7c-6bff-0d04-9232-39fdc17796d0",
+                            "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
+                          ),
+                        ));
 
-      }
+                        $response = curl_exec($curl);
+                        $err = curl_error($curl);
+
+                        curl_close($curl);
+
+                        if ($err) {
+                          echo "cURL Error #:" . $err;
+                        } else {
+
+                        }
+
+
+                  $messages = [
+                    'type' => 'text',
+                    // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
+                    'text' => 'คุณ '.$username.' แทงพนันผู้เล่น '.$player.' จำนวน '.$money.' บาท ยอดคงเหลือปัจจุบัน(ก่อนหัก) '.$balance.' บาท'
+                  ];
+
+                }  else {
+                  $messages = [
+                    'type' => 'text',
+                    // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
+                    'text' => 'แทงได้แค่ P1 - P4 เท่านั้น ต่ำสุด 10 สูงสุด 200 บาท'
+                  ];
+
+                }
+        } else if ($gameStatus ==0){
+          $messages = [
+            'type' => 'text',
+            'text' => 'ขณะนี้ ไม่ใช่เวลาแทง เปิดรอรอบใหม่อีกครั้ง'
+          ];
+        }
+
+
+
       }
 
       else if(strtoupper($ftext) == "S"){
@@ -2242,14 +2257,20 @@ if (!is_null($events['events'])) {
           'text' => $sumall
         ];
       }
-
       else if($gameStatus==0) {
 
-        $messages = [
-          'type' => 'text',
-          'text' => 'ขณะนี้ ไม่ใช่เวลาแทง เปิดรอรอบใหม่อีกครั้ง'
-        ];
+        // $messages = [
+        //   'type' => 'text',
+        //   'text' => 'ขณะนี้ ไม่ใช่เวลาแทง เปิดรอรอบใหม่อีกครั้ง'
+        // ];
       }
+      // else if($gameStatus==0) {
+      //
+      //   $messages = [
+      //     'type' => 'text',
+      //     'text' => 'ขณะนี้ ไม่ใช่เวลาแทง เปิดรอรอบใหม่อีกครั้ง'
+      //   ];
+      // }
 			// Make a POST Request to Messaging API to reply to sender
 			$url = 'https://api.line.me/v2/bot/message/reply';
 			$data = [
