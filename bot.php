@@ -2243,11 +2243,11 @@ if (!is_null($events['events'])) {
         ];
       }
 
-      else {
+      else if($gameStatus==0) {
 
         $messages = [
           'type' => 'text',
-          'text' => 'ไม่พบสิ่งที่คุณต้องการ โปรดลองใหม่อีกครั้งนะครับ :)'
+          'text' => 'ขณะนี้ ไม่ใช่เวลาแทง เปิดรอรอบใหม่อีกครั้ง'
         ];
       }
 			// Make a POST Request to Messaging API to reply to sender
