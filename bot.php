@@ -1394,8 +1394,11 @@ if (!is_null($events['events'])) {
               $sum = $income - $expend;
               $playerbet = $itemx['cf_964'];
 
-
-              if($sum < 0){
+              if($income == 0){
+                $newbalance = $balance - $sum;
+                 $resultlist = $resultlist."\nคุณ ".$username." - ".$sum." = ".$newbalance."บาท";
+              }
+              else if($sum < 0){
                 $sum = substr($sum,1);
                 $newbalance = $balance - $sum;
                  $resultlist = $resultlist."\nคุณ ".$username." - ".$sum." = ".$newbalance."บาท";
