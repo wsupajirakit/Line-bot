@@ -174,7 +174,7 @@ if (!is_null($events['events'])) {
                    $expend = $item['cf_966']+$bet;
                    $income = $item['cf_968'];
                    $playerbet = $item['cf_964'];
-                   $newbalance = $balance - $bet;
+                   $newbalance = $balance;
 
                 $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
 
@@ -238,7 +238,7 @@ if (!is_null($events['events'])) {
                 $expend = $item['cf_966'];
                 $income = $item['cf_968']+$bet;
                 $playerbet = $item['cf_964'];
-                $newbalance = $balance - $bet;
+                $newbalance = $balance;
 
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
 
@@ -301,7 +301,7 @@ if (!is_null($events['events'])) {
                 $expend = $item['cf_966'];
                 $income = $item['cf_968'];
                 $playerbet = $item['cf_964'];
-                $newbalance = $balance - $bet;
+                $newbalance = $balance;
 
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
 
@@ -363,7 +363,7 @@ if (!is_null($events['events'])) {
                 $expend = $item['cf_966']+($bet*2);
                 $income = $item['cf_968'];
                 $playerbet = $item['cf_964'];
-                $newbalance = $balance - $bet;
+                $newbalance = $balance;
 
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
 
@@ -427,7 +427,7 @@ if (!is_null($events['events'])) {
                 $expend = $item['cf_966'];
                 $income = $item['cf_968']+($bet*2);
                 $playerbet = $item['cf_964'];
-                $newbalance = $balance - $bet;
+                $newbalance = $balance;
 
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
 
@@ -489,7 +489,7 @@ if (!is_null($events['events'])) {
                $expend = $item['cf_966']+$bet;
                $income = $item['cf_968'];
                $playerbet = $item['cf_964'];
-               $newbalance = $balance - $bet;
+               $newbalance = $balance;
 
             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
 
@@ -553,7 +553,7 @@ if (!is_null($events['events'])) {
                 $expend = $item['cf_966'];
                 $income = $item['cf_968']+$bet;
                 $playerbet = $item['cf_964'];
-                $newbalance = $balance - $bet;
+                $newbalance = $balance;
 
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
 
@@ -616,8 +616,7 @@ if (!is_null($events['events'])) {
                 $expend = $item['cf_966'];
                 $income = $item['cf_968'];
                 $playerbet = $item['cf_964'];
-                $newbalance = $balance - $bet;
-
+                $newbalance = $balance;
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
 
 
@@ -678,8 +677,7 @@ if (!is_null($events['events'])) {
                 $expend = $item['cf_966']+($bet*2);
                 $income = $item['cf_968'];
                 $playerbet = $item['cf_964'];
-                $newbalance = $balance - $bet;
-
+                $newbalance = $balance;
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
 
 
@@ -740,7 +738,7 @@ if (!is_null($events['events'])) {
                 $expend = $item['cf_966'];
                 $income = $item['cf_968']+($bet*2);
                 $playerbet = $item['cf_964'];
-                $newbalance = $balance - $bet;
+                $newbalance = $balance;
 
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
 
@@ -805,7 +803,7 @@ if (!is_null($events['events'])) {
                 $expend = $item['cf_966']+$bet;
                 $income = $item['cf_968'];
                 $playerbet = $item['cf_964'];
-                $newbalance = $balance - $bet;
+                $newbalance = $balance;
 
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
 
@@ -867,7 +865,7 @@ if (!is_null($events['events'])) {
                 $expend = $item['cf_966'];
                 $income = $item['cf_968']+$bet;
                 $playerbet = $item['cf_964'];
-                $newbalance = $balance - $bet;
+                $newbalance = $balance;
 
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
 
@@ -928,7 +926,7 @@ if (!is_null($events['events'])) {
                 $expend = $item['cf_966'];
                 $income = $item['cf_968'];
                 $playerbet = $item['cf_964'];
-                $newbalance = $balance - $bet;
+                $newbalance = $balance;
 
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
 
@@ -989,7 +987,7 @@ if (!is_null($events['events'])) {
                 $expend = $item['cf_966']+($bet*2);
                 $income = $item['cf_968'];
                 $playerbet = $item['cf_964'];
-                $newbalance = $balance - $bet;
+                $newbalance = $balance;
 
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
 
@@ -1050,7 +1048,7 @@ if (!is_null($events['events'])) {
                 $expend = $item['cf_966'];
                 $income = $item['cf_968']+($bet*2);
                 $playerbet = $item['cf_964'];
-                $newbalance = $balance - $bet;
+                $newbalance = $balance;
 
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
 
@@ -1115,7 +1113,7 @@ if (!is_null($events['events'])) {
                            $expend = $item['cf_966']+$bet;
                            $income = $item['cf_968'];
                            $playerbet = $item['cf_964'];
-                           $newbalance = $balance - $bet;
+                           $newbalance = $balance;
 
                         $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
 
@@ -1176,7 +1174,7 @@ if (!is_null($events['events'])) {
                 $expend = $item['cf_966'];
                 $income = $item['cf_968']+$bet;
                 $playerbet = $item['cf_964'];
-                $newbalance = $balance - $bet;
+                $newbalance = $balance;
 
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
 
@@ -1237,7 +1235,7 @@ if (!is_null($events['events'])) {
                 $expend = $item['cf_966'];
                 $income = $item['cf_968'];
                 $playerbet = $item['cf_964'];
-                $newbalance = $balance - $bet;
+                $newbalance = $balance;
 
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
 
@@ -1298,7 +1296,7 @@ if (!is_null($events['events'])) {
                 $expend = $item['cf_966']+($bet*2);
                 $income = $item['cf_968'];
                 $playerbet = $item['cf_964'];
-                $newbalance = $balance - $bet;
+                $newbalance = $balance;
 
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
 
@@ -1359,7 +1357,7 @@ if (!is_null($events['events'])) {
                 $expend = $item['cf_966'];
                 $income = $item['cf_968']+($bet*2);
                 $playerbet = $item['cf_964'];
-                $newbalance = $balance - $bet;
+                $newbalance = $balance;
 
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
 
