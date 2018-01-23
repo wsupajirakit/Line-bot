@@ -1384,6 +1384,25 @@ if (!is_null($events['events'])) {
           $datax = json_decode($responsex,true);
 
           $resultlist = $resultlist."   สุดท้าย".$datax;
+
+
+          foreach($datax["result"] as $itemx) {
+              $username = $itemx['cf_958'];
+              $userID = $itemx['balance_tks_userid'];
+              $vid = $itemx['id'];
+              $balance = $itemx['balance_tks_balance'];
+              $bet = $itemx['cf_956'];
+              $player = $itemx['cf_960'];
+              $expend = $itemx['cf_966'];
+              $income = $itemx['cf_968']+($bet*2);
+              $playerbet = $itemx['cf_964'];
+              $newbalance = $balance - $bet;
+
+                $resultlist = $resultlist."   สุดท้าย".$datax."  ".$username;
+            }
+
+
+
           // // $total = 0;
           // // foreach ($data["result"] as $value) {
           // //        $total = $total+1;
