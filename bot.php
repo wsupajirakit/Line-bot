@@ -348,7 +348,7 @@ if (!is_null($events['events'])) {
 
              }
 
-        }else if  ($x1=="-2"){
+        }else if  ($x1=="*2"){
            $msg1 = 'ขา 1 เสียให้เจ้ามือ 2 เท่า';
            $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20cf_964%20LIKE%20'%P1%'%20;";
            $response = \Httpful\Request::get($uri)->send();
