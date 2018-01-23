@@ -91,14 +91,14 @@ if (!is_null($events['events'])) {
                   $messages = [
                     'type' => 'text',
                     // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-                    'text' => 'คุณ '.$username.' แทงพนันผู้เล่น '.$player.' จำนวน '.$money.' บาท ยอดคงเหลือปัจจุบัน(ก่อนหัก) '.$balance.' บาท'
+                    'text' => '  '.$username.' แทงพนันผู้เล่น '.$player.' จำนวน '.$money.'   ยอดคงเหลือปัจจุบัน(ก่อนหัก) '.$balance.'  '
                   ];
 
                 }  else {
                   $messages = [
                     'type' => 'text',
                     // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-                    'text' => 'แทงได้แค่ P1 - P4 เท่านั้น ต่ำสุด 10 สูงสุด 200 บาท'
+                    'text' => 'แทงได้แค่ P1 - P4 เท่านั้น ต่ำสุด 10 สูงสุด 200  '
                   ];
 
                 }
@@ -121,8 +121,15 @@ if (!is_null($events['events'])) {
         // echo $extext[2]; // piece2
         // echo $extext[3]; // piece2
 
-        $listname= 'สรุปผล :';
-        $resultlist= 'สรุปผล :';
+        $uri3x = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Games%20Where%20id%20=%20'43x543';";
+        $response3x = \Httpful\Request::get($uri3x)->send();
+        // echo $response;
+        $xround = $response3x->body->result[0]->games_tks_username;
+        $xround = $xround-1;
+
+
+        $listname= 'สรุปผล : รอบที่ # '.$xround;
+        $resultlist= 'สรุปผล : รอบที่ # '.$xround;
 
         $x1 = substr($extext[0], 2);
 
@@ -149,7 +156,7 @@ if (!is_null($events['events'])) {
          //     $player = $response->body->result[$i]->cf_960;
          //     $newbalance = $balance - $bet;
          //
-         //     $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท';
+         //     $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.' ';
          //
          // }
 
@@ -176,7 +183,7 @@ if (!is_null($events['events'])) {
                    $playerbet = $item['cf_964'];
                    $newbalance = $balance;
 
-                $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+                $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -240,7 +247,7 @@ if (!is_null($events['events'])) {
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -303,7 +310,7 @@ if (!is_null($events['events'])) {
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -365,10 +372,6 @@ if (!is_null($events['events'])) {
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
-
-
-
                     $curl = curl_init();
                      curl_setopt_array($curl, array(
                        CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
@@ -403,7 +406,6 @@ if (!is_null($events['events'])) {
 
              }
 
-
         }else if  ($x1=="+2"){
            $msg1 = 'ขา 1 ได้ 2 เท่า';
 
@@ -429,7 +431,7 @@ if (!is_null($events['events'])) {
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -491,7 +493,7 @@ if (!is_null($events['events'])) {
                $playerbet = $item['cf_964'];
                $newbalance = $balance;
 
-            $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+            $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -555,7 +557,7 @@ if (!is_null($events['events'])) {
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -617,7 +619,7 @@ if (!is_null($events['events'])) {
                 $income = $item['cf_968'];
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -678,7 +680,7 @@ if (!is_null($events['events'])) {
                 $income = $item['cf_968'];
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -740,7 +742,7 @@ if (!is_null($events['events'])) {
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -805,7 +807,7 @@ if (!is_null($events['events'])) {
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -867,7 +869,7 @@ if (!is_null($events['events'])) {
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -928,7 +930,7 @@ if (!is_null($events['events'])) {
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -989,7 +991,7 @@ if (!is_null($events['events'])) {
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -1050,7 +1052,7 @@ if (!is_null($events['events'])) {
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -1115,7 +1117,7 @@ if (!is_null($events['events'])) {
                            $playerbet = $item['cf_964'];
                            $newbalance = $balance;
 
-                        $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+                        $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -1176,7 +1178,7 @@ if (!is_null($events['events'])) {
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -1237,7 +1239,7 @@ if (!is_null($events['events'])) {
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -1298,7 +1300,7 @@ if (!is_null($events['events'])) {
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -1359,7 +1361,7 @@ if (!is_null($events['events'])) {
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -1411,8 +1413,9 @@ if (!is_null($events['events'])) {
               $playerbet = $itemx['cf_964'];
 
                       if($income == 0){
+                          $sum = substr($sum,1);
                         $newbalance = $balance - $sum;
-                         $resultlist = $resultlist."\nคุณ ".$username." - ".$sum." = ".$newbalance."บาท";
+                         $resultlist = $resultlist."\n".$username."เสีย-".$sum."เหลือ=".$newbalance."";
                          $curl = curl_init();
                           curl_setopt_array($curl, array(
                             CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
@@ -1443,8 +1446,9 @@ if (!is_null($events['events'])) {
 
                       }
                       else if($sum < 0){
+                          $sum = substr($sum,1);
                         $newbalance = $balance - $sum;
-                         $resultlist = $resultlist."\nคุณ ".$username."".$sum." = ".$newbalance."บาท";
+                         $resultlist = $resultlist."\n".$username."เสีย-".$sum."เหลือ=".$newbalance."";
 
                          $curl = curl_init();
                           curl_setopt_array($curl, array(
@@ -1476,7 +1480,7 @@ if (!is_null($events['events'])) {
 
                       }else if ($sum > 0){
                         $newbalance = $balance + $sum;
-                       $resultlist = $resultlist."\nคุณ ".$username." + ".$sum." = ".$newbalance."บาท";
+                       $resultlist = $resultlist."\n".$username."ได้+".$sum."เหลือ=".$newbalance."";
 
 
                        $curl = curl_init();
@@ -1573,7 +1577,7 @@ if (!is_null($events['events'])) {
 
       }
 
-      else if(strtoupper($ftext) == "A"){
+      else if(strtoupper($ftext) == "zz"){
 
         $extext = explode(",", $text);
         // echo $extext[0]; // piece1
@@ -1608,7 +1612,7 @@ if (!is_null($events['events'])) {
                 $player = $item['cf_960'];
                 $newbalance = $balance - $bet;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -1670,7 +1674,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance + $bet;
 
-             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.' ';
 
          }
 
@@ -1697,7 +1701,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance + 0;
 
-             $listname = $listname."\n ".$username."  + 0 = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  + 0 = ".$newbalance.' ';
 
          }
 
@@ -1723,7 +1727,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance - $bet;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.' ';
 
          }
 
@@ -1751,7 +1755,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance + $bet;
 
-             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.' ';
 
          }
         }
@@ -1777,7 +1781,7 @@ if (!is_null($events['events'])) {
             $player = $response->body->result[$i]->cf_960;
             $newbalance = $balance - $bet;
 
-            $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท';
+            $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.' ';
 
          }
 
@@ -1805,7 +1809,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance + $bet;
 
-             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.' ';
            }
 
         }else if  ($x2=="+0"){
@@ -1830,7 +1834,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance + 0;
 
-             $listname = $listname."\n ".$username."  + 0 = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  + 0 = ".$newbalance.' ';
            }
 
         }else if  ($x2=="-2"){
@@ -1855,7 +1859,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance - $bet;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.' ';
 
          }
         }else if  ($x2=="+2"){
@@ -1880,7 +1884,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance + $bet;
 
-             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.' ';
 
          }
         }
@@ -1910,7 +1914,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance - $bet;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.' ';
            }
 
         } else if  ($x3=="+1"){
@@ -1935,7 +1939,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance + $bet;
 
-             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.' ';
            }
         }else if  ($x3=="+0"){
            $msg3 = 'เจ๊า';
@@ -1959,7 +1963,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance + 0;
 
-             $listname = $listname."\n ".$username."  + 0 = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  + 0 = ".$newbalance.' ';
 
          }
         }else if  ($x3=="-2"){
@@ -1984,7 +1988,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance - $bet;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.' ';
 
          }
         }else if  ($x3=="+2"){
@@ -2009,7 +2013,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance + $bet;
 
-             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.' ';
 
          }
 
@@ -2039,7 +2043,7 @@ if (!is_null($events['events'])) {
                         $player = $response->body->result[$i]->cf_960;
                         $newbalance = $balance - $bet;
 
-                        $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท';
+                        $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.' ';
 
                     }
         } else if  ($x4=="+1"){
@@ -2064,7 +2068,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance + $bet;
 
-             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.' ';
 
          }
         }else if  ($x4=="+0"){
@@ -2089,7 +2093,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance + 0;
 
-             $listname = $listname."\n ".$username."  + 0 = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  + 0 = ".$newbalance.' ';
 
          }
         }else if  ($x4=="-2"){
@@ -2114,7 +2118,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance - $bet;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.' ';
 
          }
         }else if  ($x4=="+2"){
@@ -2139,7 +2143,7 @@ if (!is_null($events['events'])) {
              $player = $response->body->result[$i]->cf_960;
              $newbalance = $balance + $bet;
 
-             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.'บาท';
+             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.' ';
 
          }
         }
@@ -2196,7 +2200,7 @@ if (!is_null($events['events'])) {
 
         $messages = [
           'type' => 'text',
-          'text' => 'ฝากเงินสำเร็จ คุณมียอดเงินคงเหลือ : '.$sum.' บาท'.'by'.$userID
+          'text' => 'ฝากเงินสำเร็จ  มียอดเงินคงเหลือ : '.$sum.'  '.'by'.$userID
         ];
       }
 
@@ -2206,6 +2210,43 @@ if (!is_null($events['events'])) {
         $messages = [
           'type' => 'text',
           'text' => $userID
+        ];
+      }
+
+      else if(strtoupper($context) == "OP"){
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => "",
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 30,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => "POST",
+          CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n34888a365a670207dd6aa\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"gamesno\": \"\",\n            \"games_tks_username\": \"1\",\n            \"games_tks_password\": \"x\",\n            \"games_tks_gamename\": \"1\",\n            \"games_tks_gameid\": \"round\",\n            \"games_tks_status\": \"0\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-23 13:05:02\",\n            \"modifiedtime\": \"2018-01-23 13:05:13\",\n            \"cf_948\": \"\",\n            \"id\": \"43x543\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+          CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache",
+            "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+            "postman-token: 504ff875-281d-57cd-eb79-acde564c4bdf"
+          ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+          echo "cURL Error #:" . $err;
+        } else {
+          echo $response;
+        }
+
+        $messages = [
+          'type' => 'text',
+          'text' => 'กำลังเริ่มรอบแรกเตรียมตัว ...'
         ];
       }
 
@@ -2300,6 +2341,11 @@ if (!is_null($events['events'])) {
       $adminID = $response->body->result[0]->games_tks_password;
       $gameStatus = $response->body->result[0]->games_tks_gameid;
 
+      $uri2x = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Games%20Where%20id%20=%20'43x543';";
+      $response2x = \Httpful\Request::get($uri2x)->send();
+      // echo $response;
+      $cround = $response2x->body->result[0]->games_tks_username;
+
 
         if(strcmp($adminID,$userID) == 0){
 
@@ -2315,7 +2361,7 @@ if (!is_null($events['events'])) {
                       CURLOPT_TIMEOUT => 30,
                       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                       CURLOPT_CUSTOMREQUEST => "POST",
-                      CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n34888a365a670207dd6aa\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"gamesno\": \"\",\n            \"games_tks_username\": \"are\",\n            \"games_tks_password\": \"Ub2734665c8c26331fc77b68cb0f12142\",\n            \"games_tks_gamename\": \"are\",\n            \"games_tks_gameid\": \"1\",\n            \"games_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-23 09:17:53\",\n            \"modifiedtime\": \"2018-01-23 09:35:24\",\n            \"cf_948\": \"\",\n            \"id\": \"43x539\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                      CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n34888a365a670207dd6aa\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"gamesno\": \"\",\n            \"games_tks_username\": \"are\",\n            \"games_tks_password\": \"$adminID\",\n            \"games_tks_gamename\": \"are\",\n            \"games_tks_gameid\": \"1\",\n            \"games_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-23 09:17:53\",\n            \"modifiedtime\": \"2018-01-23 09:35:24\",\n            \"cf_948\": \"\",\n            \"id\": \"43x539\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                       CURLOPT_HTTPHEADER => array(
                         "cache-control: no-cache",
                         "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
@@ -2337,7 +2383,7 @@ if (!is_null($events['events'])) {
 
                     $messages = [
                       'type' => 'text',
-                      'text' => 'เริ่มรอบใหม่'
+                      'text' => 'เริ่มรอบที่ # '.$cround
                     ];
                   }else{
 
@@ -2351,7 +2397,7 @@ if (!is_null($events['events'])) {
                       CURLOPT_TIMEOUT => 30,
                       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                       CURLOPT_CUSTOMREQUEST => "POST",
-                      CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n34888a365a670207dd6aa\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"gamesno\": \"\",\n            \"games_tks_username\": \"are\",\n            \"games_tks_password\": \"Ub2734665c8c26331fc77b68cb0f12142\",\n            \"games_tks_gamename\": \"are\",\n            \"games_tks_gameid\": \"0\",\n            \"games_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-23 09:17:53\",\n            \"modifiedtime\": \"2018-01-23 09:35:24\",\n            \"cf_948\": \"\",\n            \"id\": \"43x539\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                      CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n34888a365a670207dd6aa\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"gamesno\": \"\",\n            \"games_tks_username\": \"are\",\n            \"games_tks_password\": \"$adminID\",\n            \"games_tks_gamename\": \"are\",\n            \"games_tks_gameid\": \"0\",\n            \"games_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-23 09:17:53\",\n            \"modifiedtime\": \"2018-01-23 09:35:24\",\n            \"cf_948\": \"\",\n            \"id\": \"43x539\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                       CURLOPT_HTTPHEADER => array(
                         "cache-control: no-cache",
                         "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
@@ -2367,12 +2413,40 @@ if (!is_null($events['events'])) {
                     if ($err) {
                       echo "cURL Error #:" . $err;
                     } else {
-                      echo $response;
+                      $cround2 = $cround+1;
+                      $curl = curl_init();
+
+                          curl_setopt_array($curl, array(
+                            CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                            CURLOPT_RETURNTRANSFER => true,
+                            CURLOPT_ENCODING => "",
+                            CURLOPT_MAXREDIRS => 10,
+                            CURLOPT_TIMEOUT => 30,
+                            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                            CURLOPT_CUSTOMREQUEST => "POST",
+                            CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n34888a365a670207dd6aa\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"gamesno\": \"\",\n            \"games_tks_username\": \"$cround2\",\n            \"games_tks_password\": \"x\",\n            \"games_tks_gamename\": \"1\",\n            \"games_tks_gameid\": \"\",\n            \"games_tks_status\": \"0\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-23 13:05:02\",\n            \"modifiedtime\": \"2018-01-23 13:05:13\",\n            \"cf_948\": \"\",\n            \"id\": \"43x543\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                            CURLOPT_HTTPHEADER => array(
+                              "cache-control: no-cache",
+                              "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                              "postman-token: 504ff875-281d-57cd-eb79-acde564c4bdf"
+                            ),
+                          ));
+
+                          $response = curl_exec($curl);
+                          $err = curl_error($curl);
+
+                          curl_close($curl);
+
+                          if ($err) {
+                            echo "cURL Error #:" . $err;
+                          } else {
+                            echo $response;
+                          }
                     }
 
                     $messages = [
                       'type' => 'text',
-                      'text' => 'ปิดรอบการแทง'
+                      'text' => 'ปิดรอบที่ # '.$cround
                     ];
 
                   }
