@@ -1383,9 +1383,6 @@ if (!is_null($events['events'])) {
 
           $datax = json_decode($responsex,true);
 
-          $resultlist = $resultlist."   สุดท้าย".$datax;
-
-
           foreach($datax["result"] as $itemx) {
               $username = $itemx['cf_958'];
               $userID = $itemx['balance_tks_userid'];
@@ -1399,7 +1396,7 @@ if (!is_null($events['events'])) {
               $newbalance = $balance - $bet;
 
 
-                $resultlist = $resultlist." +++ ".$username.$income.$expend;
+                $resultlist = $resultlist."   สุดท้าย".$datax."  ".$username;
             }
 
 
