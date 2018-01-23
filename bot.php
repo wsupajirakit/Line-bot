@@ -2412,7 +2412,7 @@ if (!is_null($events['events'])) {
                       echo "cURL Error #:" . $err;
                     } else {
                       $cround = $cround+1;
-                          $curl = curl_init();
+                      $curl = curl_init();
 
                           curl_setopt_array($curl, array(
                             CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
@@ -2444,7 +2444,7 @@ if (!is_null($events['events'])) {
 
                     $messages = [
                       'type' => 'text',
-                      'text' => 'ปิดรอบการแทง รอบที่#'.$cround
+                      'text' => 'ปิดรอบการแทง รอบที่#'.$cround-1
                     ];
 
                   }
