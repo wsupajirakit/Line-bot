@@ -1582,7 +1582,7 @@ if (!is_null($events['events'])) {
 
       }
 
-      else if(strtoupper($ftext) == "A"){
+      else if(strtoupper($ftext) == "zz"){
 
         $extext = explode(",", $text);
         // echo $extext[0]; // piece1
