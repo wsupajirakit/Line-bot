@@ -91,7 +91,7 @@ if (!is_null($events['events'])) {
                   $messages = [
                     'type' => 'text',
                     // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-                    'text' => 'คุณ '.$username.' แทงพนันผู้เล่น '.$player.' จำนวน '.$money.' บาท ยอดคงเหลือปัจจุบัน(ก่อนหัก) '.$balance.' บาท'
+                    'text' => '  '.$username.' แทงพนันผู้เล่น '.$player.' จำนวน '.$money.' บาท ยอดคงเหลือปัจจุบัน(ก่อนหัก) '.$balance.' บาท'
                   ];
 
                 }  else {
@@ -1420,7 +1420,7 @@ if (!is_null($events['events'])) {
                       if($income == 0){
                           $sum = substr($sum,1);
                         $newbalance = $balance - $sum;
-                         $resultlist = $resultlist."\nคุณ ".$username." เสีย - ".$sum." เหลือ = ".$newbalance."บาท";
+                         $resultlist = $resultlist."\n  ".$username." เสีย - ".$sum." เหลือ = ".$newbalance."บาท";
                          $curl = curl_init();
                           curl_setopt_array($curl, array(
                             CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
@@ -1453,7 +1453,7 @@ if (!is_null($events['events'])) {
                       else if($sum < 0){
                           $sum = substr($sum,1);
                         $newbalance = $balance - $sum;
-                         $resultlist = $resultlist."\nคุณ ".$username." เสีย -".$sum." เหลือ = ".$newbalance."บาท";
+                         $resultlist = $resultlist."\n  ".$username." เสีย -".$sum." เหลือ = ".$newbalance."บาท";
 
                          $curl = curl_init();
                           curl_setopt_array($curl, array(
@@ -1485,7 +1485,7 @@ if (!is_null($events['events'])) {
 
                       }else if ($sum > 0){
                         $newbalance = $balance + $sum;
-                       $resultlist = $resultlist."\nคุณ ".$username." ได้ + ".$sum." เหลือ = ".$newbalance."บาท";
+                       $resultlist = $resultlist."\n  ".$username." ได้ + ".$sum." เหลือ = ".$newbalance."บาท";
 
 
                        $curl = curl_init();
@@ -2205,7 +2205,7 @@ if (!is_null($events['events'])) {
 
         $messages = [
           'type' => 'text',
-          'text' => 'ฝากเงินสำเร็จ คุณมียอดเงินคงเหลือ : '.$sum.' บาท'.'by'.$userID
+          'text' => 'ฝากเงินสำเร็จ  มียอดเงินคงเหลือ : '.$sum.' บาท'.'by'.$userID
         ];
       }
 
