@@ -125,6 +125,7 @@ if (!is_null($events['events'])) {
         $response3x = \Httpful\Request::get($uri3x)->send();
         // echo $response;
         $xround = $response3x->body->result[0]->games_tks_username;
+        $xround = $xround-1;
 
 
         $listname= 'สรุปผล : รอบที่# '.$xround;
