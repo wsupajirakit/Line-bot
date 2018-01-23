@@ -128,8 +128,8 @@ if (!is_null($events['events'])) {
         $xround = $xround-1;
 
 
-        $listname= 'สรุปผล : รอบที่# '.$xround;
-        $resultlist= 'สรุปผล : รอบที่# '.$xround;
+        $listname= 'สรุปผล : รอบที่ # '.$xround;
+        $resultlist= 'สรุปผล : รอบที่ # '.$xround;
 
         $x1 = substr($extext[0], 2);
 
@@ -2388,7 +2388,7 @@ if (!is_null($events['events'])) {
 
                     $messages = [
                       'type' => 'text',
-                      'text' => 'เริ่มรอบที่ #'.$cround
+                      'text' => 'เริ่มรอบที่ # '.$cround
                     ];
                   }else{
 
