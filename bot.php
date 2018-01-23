@@ -1383,8 +1383,6 @@ if (!is_null($events['events'])) {
 
           $datax = json_decode($responsex,true);
 
-          $resultlist = $resultlist."   สุดท้าย".$datax;
-
 
           foreach($datax["result"] as $itemx) {
               $username = $itemx['cf_958'];
@@ -1399,15 +1397,15 @@ if (!is_null($events['events'])) {
               $playerbet = $itemx['cf_964'];
 
 
-              if($sum < 0){
-                  $sum = substr($sum,1);
-                  $newbalance = $balance - $sum;
-                  $resultlist = $resultlist."\n".$username." -".$sum." = ".$newbalance;
-
-              } else if ($sum >0){
-                $newbalance = $balance + $sum;
-                $resultlist = $resultlist."\n".$username." +".$sum." = ".$newbalance;
-              }
+              // if($sum < 0){
+              //     $sum = substr($sum,1);
+              //     $newbalance = $balance - $sum;
+              //     $resultlist = $resultlist."\n".$username." -".$sum." = ".$newbalance;
+              //
+              // } else if ($sum >0){
+              //   $newbalance = $balance + $sum;
+              //   $resultlist = $resultlist."\n".$username." +".$sum." = ".$newbalance;
+              // }
 
                 $resultlist = $resultlist."\n".$income." +".$expend." = ".$username;
 
