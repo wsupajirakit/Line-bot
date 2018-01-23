@@ -372,10 +372,6 @@ if (!is_null($events['events'])) {
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
-
-
-
                     $curl = curl_init();
                      curl_setopt_array($curl, array(
                        CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
@@ -409,7 +405,6 @@ if (!is_null($events['events'])) {
 
 
              }
-
 
         }else if  ($x1=="+2"){
            $msg1 = 'ขา 1 ได้ 2 เท่า';
