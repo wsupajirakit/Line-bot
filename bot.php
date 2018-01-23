@@ -189,7 +189,7 @@ if (!is_null($events['events'])) {
         if ($x1=="-1"){
            $msg1 = 'ขา 1 เสียให้เจ้ามือ 1 เท่า';
 
-           $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20cf_964='P1%'%20;";
+           $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20cf_964%20LIKE%20'%P1%'%20;";
            $response = \Httpful\Request::get($uri)->send();
 
            $data = json_decode($response,true);
@@ -362,7 +362,7 @@ if (!is_null($events['events'])) {
         }
         $x2 = substr($extext[1], 1);
         if ($x2=="-1"){
-          $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20cf_964='%P2%'%20;";
+          $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20cf_964%20LIKE%20'%P2%'%20;";
           $response = \Httpful\Request::get($uri)->send();
 
           $data = json_decode($response,true);
