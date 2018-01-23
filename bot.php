@@ -33,9 +33,12 @@ if (!is_null($events['events'])) {
         $n3 = 'P'.substr($newtext,2,1);
         $n4 = 'P'.substr($newtext,3,1);
 
+        $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Games%20Where%20id%20=%20'43x539';";
+        $response = \Httpful\Request::get($uri)->send();
+        // echo $response;
+        $gameStatus = $response->body->result[0]->games_tks_gameid;
 
-
-      if(strtoupper($ftext) == "P"){
+      if(strtoupper($ftext) == "P" && $gameStatus ==1){
         $player= strtoupper(strstr($text, '-', true));
         $money  = substr($text, (strpos($text, '-') ?: -1) + 1);
 
