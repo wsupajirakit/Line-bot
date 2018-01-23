@@ -459,56 +459,20 @@ if (!is_null($events['events'])) {
                   $total = $total+1;
           }
 
-          foreach($data["result"] as $item) { //foreach element in $arr
-
-               $username = $item['cf_958'];
-               $userID = $item['balance_tks_userid'];
-               $vid = $item['id'];
-               $balance = $item['balance_tks_balance'];
-               $bet = $item['cf_956'];
-               $player = $item['cf_960'];
-               $expend = $item['cf_966']-$bet;
-               $income = $item['cf_968'];
-               $playerbet = $item['cf_964'];
-               $newbalance = $balance - $bet;
-
-            $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+          for( $i=0; $i<$total; $i++ ) {
 
 
+            $username = $response->body->result[$i]->cf_958;
+            $userID = $response->body->result[$i]->balance_tks_userid;
+            $vid = $response->body->result[$i]->id;
+            $balance = $response->body->result[$i]->balance_tks_balance;
+            $bet = $response->body->result[$i]->cf_956;
+            $player = $response->body->result[$i]->cf_960;
+            $newbalance = $balance - $bet;
 
-                   $curl = curl_init();
-                    curl_setopt_array($curl, array(
-                      CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
-                      CURLOPT_RETURNTRANSFER => true,
-                      CURLOPT_ENCODING => "",
-                      CURLOPT_MAXREDIRS => 10,
-                      CURLOPT_TIMEOUT => 30,
-                      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                      CURLOPT_CUSTOMREQUEST => "POST",
-                      CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n244bae35a6579977f668\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"balanceno\": \"\",\n            \"balance_tks_userid\": \"$userID\",\n            \"balance_tks_balance\": \"$newbalance\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-22 04:44:00\",\n            \"modifiedtime\": \"2018-01-22 05:50:35\",\n
-                        \"cf_956\": \"$bet\",\n            \"cf_958\": \"$username\",\n      \"cf_966\": \"$expend\",\n  \"cf_964\": \"$playerbet\",\n   \"cf_968\": \"$income\",\n    \"cf_960\": \"\",\n     \"cf_960\": \"1\",\n       \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
-                      CURLOPT_HTTPHEADER => array(
-                        "Cache-Control: no-cache",
-                        "Postman-Token: 8cf07109-175f-5368-08c6-63279568d118",
-                        "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
-                      ),
-                    ));
+            $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท';
 
-                  $response = curl_exec($curl);
-                  $err = curl_error($curl);
-
-                  if ($err) {
-                    echo "cURL Error #:" . $err;
-                  } else {
-
-                  }
-                     curl_close($curl);
-
-
-
-
-
-            }
+         }
 
         } else if  ($x2=="+1"){
 
@@ -523,57 +487,19 @@ if (!is_null($events['events'])) {
                    $total = $total+1;
            }
 
-           foreach($data["result"] as $item) { //foreach element in $arr
-
-                $username = $item['cf_958'];
-                $userID = $item['balance_tks_userid'];
-                $vid = $item['id'];
-                $balance = $item['balance_tks_balance'];
-                $bet = $item['cf_956'];
-                $player = $item['cf_960'];
-                $expend = $item['cf_966'];
-                $income = $item['cf_968']+$bet;
-                $playerbet = $item['cf_964'];
-                $newbalance = $balance - $bet;
-
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+           for( $i=0; $i<$total; $i++ ) {
 
 
+             $username = $response->body->result[$i]->cf_958;
+             $userID = $response->body->result[$i]->balance_tks_userid;
+             $vid = $response->body->result[$i]->id;
+             $balance = $response->body->result[$i]->balance_tks_balance;
+             $bet = $response->body->result[$i]->cf_956;
+             $player = $response->body->result[$i]->cf_960;
+             $newbalance = $balance + $bet;
 
-                    $curl = curl_init();
-                     curl_setopt_array($curl, array(
-                       CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
-                       CURLOPT_RETURNTRANSFER => true,
-                       CURLOPT_ENCODING => "",
-                       CURLOPT_MAXREDIRS => 10,
-                       CURLOPT_TIMEOUT => 30,
-                       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                       CURLOPT_CUSTOMREQUEST => "POST",
-                       CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n244bae35a6579977f668\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"balanceno\": \"\",\n            \"balance_tks_userid\": \"$userID\",\n            \"balance_tks_balance\": \"$newbalance\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-22 04:44:00\",\n            \"modifiedtime\": \"2018-01-22 05:50:35\",\n
-                         \"cf_956\": \"$bet\",\n            \"cf_958\": \"$username\",\n      \"cf_966\": \"$expend\",\n  \"cf_964\": \"$playerbet\",\n   \"cf_968\": \"$income\",\n    \"cf_960\": \"\",\n     \"cf_960\": \"1\",\n       \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
-                       CURLOPT_HTTPHEADER => array(
-                         "Cache-Control: no-cache",
-                         "Postman-Token: 8cf07109-175f-5368-08c6-63279568d118",
-                         "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
-                       ),
-                     ));
-
-                   $response = curl_exec($curl);
-                   $err = curl_error($curl);
-
-                   if ($err) {
-                     echo "cURL Error #:" . $err;
-                   } else {
-
-                   }
-                      curl_close($curl);
-
-
-
-
-
-             }
-
+             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.'บาท';
+           }
 
         }else if  ($x2=="+0"){
            $msg2 = 'เจ๊า';
@@ -586,57 +512,19 @@ if (!is_null($events['events'])) {
                    $total = $total+1;
            }
 
-           foreach($data["result"] as $item) { //foreach element in $arr
-
-                $username = $item['cf_958'];
-                $userID = $item['balance_tks_userid'];
-                $vid = $item['id'];
-                $balance = $item['balance_tks_balance'];
-                $bet = $item['cf_956'];
-                $player = $item['cf_960'];
-                $expend = $item['cf_966'];
-                $income = $item['cf_968'];
-                $playerbet = $item['cf_964'];
-                $newbalance = $balance - $bet;
-
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+           for( $i=0; $i<$total; $i++ ) {
 
 
+             $username = $response->body->result[$i]->cf_958;
+             $userID = $response->body->result[$i]->balance_tks_userid;
+             $vid = $response->body->result[$i]->id;
+             $balance = $response->body->result[$i]->balance_tks_balance;
+             $bet = $response->body->result[$i]->cf_956;
+             $player = $response->body->result[$i]->cf_960;
+             $newbalance = $balance + 0;
 
-                    $curl = curl_init();
-                     curl_setopt_array($curl, array(
-                       CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
-                       CURLOPT_RETURNTRANSFER => true,
-                       CURLOPT_ENCODING => "",
-                       CURLOPT_MAXREDIRS => 10,
-                       CURLOPT_TIMEOUT => 30,
-                       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                       CURLOPT_CUSTOMREQUEST => "POST",
-                       CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n244bae35a6579977f668\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"balanceno\": \"\",\n            \"balance_tks_userid\": \"$userID\",\n            \"balance_tks_balance\": \"$newbalance\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-22 04:44:00\",\n            \"modifiedtime\": \"2018-01-22 05:50:35\",\n
-                         \"cf_956\": \"$bet\",\n            \"cf_958\": \"$username\",\n      \"cf_966\": \"$expend\",\n  \"cf_964\": \"$playerbet\",\n   \"cf_968\": \"$income\",\n    \"cf_960\": \"\",\n     \"cf_960\": \"1\",\n       \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
-                       CURLOPT_HTTPHEADER => array(
-                         "Cache-Control: no-cache",
-                         "Postman-Token: 8cf07109-175f-5368-08c6-63279568d118",
-                         "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
-                       ),
-                     ));
-
-                   $response = curl_exec($curl);
-                   $err = curl_error($curl);
-
-                   if ($err) {
-                     echo "cURL Error #:" . $err;
-                   } else {
-
-                   }
-                      curl_close($curl);
-
-
-
-
-
-             }
-
+             $listname = $listname."\n ".$username."  + 0 = ".$newbalance.'บาท';
+           }
 
         }else if  ($x2=="-2"){
            $msg2 = 'ขา 2 เสียให้เจ้ามือ 2 เท่า';
@@ -649,57 +537,18 @@ if (!is_null($events['events'])) {
                    $total = $total+1;
            }
 
-           foreach($data["result"] as $item) { //foreach element in $arr
-
-                $username = $item['cf_958'];
-                $userID = $item['balance_tks_userid'];
-                $vid = $item['id'];
-                $balance = $item['balance_tks_balance'];
-                $bet = $item['cf_956'];
-                $player = $item['cf_960'];
-                $expend = $item['cf_966']-($bet*2);
-                $income = $item['cf_968'];
-                $playerbet = $item['cf_964'];
-                $newbalance = $balance - $bet;
-
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+           for( $i=0; $i<$total; $i++ ) {
 
 
+             $username = $response->body->result[$i]->cf_958;
+             $userID = $response->body->result[$i]->balance_tks_userid;
+             $vid = $response->body->result[$i]->id;
+             $balance = $response->body->result[$i]->balance_tks_balance;
+             $bet = $response->body->result[$i]->cf_956*2;
+             $player = $response->body->result[$i]->cf_960;
+             $newbalance = $balance - $bet;
 
-                    $curl = curl_init();
-                     curl_setopt_array($curl, array(
-                       CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
-                       CURLOPT_RETURNTRANSFER => true,
-                       CURLOPT_ENCODING => "",
-                       CURLOPT_MAXREDIRS => 10,
-                       CURLOPT_TIMEOUT => 30,
-                       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                       CURLOPT_CUSTOMREQUEST => "POST",
-                       CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n244bae35a6579977f668\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"balanceno\": \"\",\n            \"balance_tks_userid\": \"$userID\",\n            \"balance_tks_balance\": \"$newbalance\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-22 04:44:00\",\n            \"modifiedtime\": \"2018-01-22 05:50:35\",\n
-                         \"cf_956\": \"$bet\",\n            \"cf_958\": \"$username\",\n      \"cf_966\": \"$expend\",\n  \"cf_964\": \"$playerbet\",\n   \"cf_968\": \"$income\",\n    \"cf_960\": \"\",\n     \"cf_960\": \"1\",\n       \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
-                       CURLOPT_HTTPHEADER => array(
-                         "Cache-Control: no-cache",
-                         "Postman-Token: 8cf07109-175f-5368-08c6-63279568d118",
-                         "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
-                       ),
-                     ));
-
-                   $response = curl_exec($curl);
-                   $err = curl_error($curl);
-
-                   if ($err) {
-                     echo "cURL Error #:" . $err;
-                   } else {
-
-                   }
-                      curl_close($curl);
-
-
-
-
-
-             }
-
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท';
 
          }
         }else if  ($x2=="+2"){
@@ -713,56 +562,20 @@ if (!is_null($events['events'])) {
                    $total = $total+1;
            }
 
-           foreach($data["result"] as $item) { //foreach element in $arr
-
-                $username = $item['cf_958'];
-                $userID = $item['balance_tks_userid'];
-                $vid = $item['id'];
-                $balance = $item['balance_tks_balance'];
-                $bet = $item['cf_956'];
-                $player = $item['cf_960'];
-                $expend = $item['cf_966'];
-                $income = $item['cf_968']+($bet*2);
-                $playerbet = $item['cf_964'];
-                $newbalance = $balance - $bet;
-
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+           for( $i=0; $i<$total; $i++ ) {
 
 
+             $username = $response->body->result[$i]->cf_958;
+             $userID = $response->body->result[$i]->balance_tks_userid;
+             $vid = $response->body->result[$i]->id;
+             $balance = $response->body->result[$i]->balance_tks_balance;
+             $bet = $response->body->result[$i]->cf_956*2;
+             $player = $response->body->result[$i]->cf_960;
+             $newbalance = $balance + $bet;
 
-                    $curl = curl_init();
-                     curl_setopt_array($curl, array(
-                       CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
-                       CURLOPT_RETURNTRANSFER => true,
-                       CURLOPT_ENCODING => "",
-                       CURLOPT_MAXREDIRS => 10,
-                       CURLOPT_TIMEOUT => 30,
-                       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                       CURLOPT_CUSTOMREQUEST => "POST",
-                       CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n244bae35a6579977f668\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"balanceno\": \"\",\n            \"balance_tks_userid\": \"$userID\",\n            \"balance_tks_balance\": \"$newbalance\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-22 04:44:00\",\n            \"modifiedtime\": \"2018-01-22 05:50:35\",\n
-                         \"cf_956\": \"$bet\",\n            \"cf_958\": \"$username\",\n      \"cf_966\": \"$expend\",\n  \"cf_964\": \"$playerbet\",\n   \"cf_968\": \"$income\",\n    \"cf_960\": \"\",\n     \"cf_960\": \"1\",\n       \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
-                       CURLOPT_HTTPHEADER => array(
-                         "Cache-Control: no-cache",
-                         "Postman-Token: 8cf07109-175f-5368-08c6-63279568d118",
-                         "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
-                       ),
-                     ));
+             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.'บาท';
 
-                   $response = curl_exec($curl);
-                   $err = curl_error($curl);
-
-                   if ($err) {
-                     echo "cURL Error #:" . $err;
-                   } else {
-
-                   }
-                      curl_close($curl);
-
-
-
-
-
-             }
+         }
         }
 
 
@@ -779,56 +592,19 @@ if (!is_null($events['events'])) {
                    $total = $total+1;
            }
 
-           foreach($data["result"] as $item) { //foreach element in $arr
-
-                $username = $item['cf_958'];
-                $userID = $item['balance_tks_userid'];
-                $vid = $item['id'];
-                $balance = $item['balance_tks_balance'];
-                $bet = $item['cf_956'];
-                $player = $item['cf_960'];
-                $expend = $item['cf_966']-$bet;
-                $income = $item['cf_968'];
-                $playerbet = $item['cf_964'];
-                $newbalance = $balance - $bet;
-
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+           for( $i=0; $i<$total; $i++ ) {
 
 
+             $username = $response->body->result[$i]->cf_958;
+             $userID = $response->body->result[$i]->balance_tks_userid;
+             $vid = $response->body->result[$i]->id;
+             $balance = $response->body->result[$i]->balance_tks_balance;
+             $bet = $response->body->result[$i]->cf_956;
+             $player = $response->body->result[$i]->cf_960;
+             $newbalance = $balance - $bet;
 
-                    $curl = curl_init();
-                     curl_setopt_array($curl, array(
-                       CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
-                       CURLOPT_RETURNTRANSFER => true,
-                       CURLOPT_ENCODING => "",
-                       CURLOPT_MAXREDIRS => 10,
-                       CURLOPT_TIMEOUT => 30,
-                       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                       CURLOPT_CUSTOMREQUEST => "POST",
-                       CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n244bae35a6579977f668\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"balanceno\": \"\",\n            \"balance_tks_userid\": \"$userID\",\n            \"balance_tks_balance\": \"$newbalance\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-22 04:44:00\",\n            \"modifiedtime\": \"2018-01-22 05:50:35\",\n
-                         \"cf_956\": \"$bet\",\n            \"cf_958\": \"$username\",\n      \"cf_966\": \"$expend\",\n  \"cf_964\": \"$playerbet\",\n   \"cf_968\": \"$income\",\n    \"cf_960\": \"\",\n     \"cf_960\": \"1\",\n       \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
-                       CURLOPT_HTTPHEADER => array(
-                         "Cache-Control: no-cache",
-                         "Postman-Token: 8cf07109-175f-5368-08c6-63279568d118",
-                         "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
-                       ),
-                     ));
-
-                   $response = curl_exec($curl);
-                   $err = curl_error($curl);
-
-                   if ($err) {
-                     echo "cURL Error #:" . $err;
-                   } else {
-
-                   }
-                      curl_close($curl);
-
-
-
-
-
-             }
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท';
+           }
 
         } else if  ($x3=="+1"){
            $msg3 = 'ขา 3 ได้ 1 เท่า';
@@ -841,56 +617,19 @@ if (!is_null($events['events'])) {
                    $total = $total+1;
            }
 
-           foreach($data["result"] as $item) { //foreach element in $arr
-
-                $username = $item['cf_958'];
-                $userID = $item['balance_tks_userid'];
-                $vid = $item['id'];
-                $balance = $item['balance_tks_balance'];
-                $bet = $item['cf_956'];
-                $player = $item['cf_960'];
-                $expend = $item['cf_966'];
-                $income = $item['cf_968']+$bet;
-                $playerbet = $item['cf_964'];
-                $newbalance = $balance - $bet;
-
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+           for( $i=0; $i<$total; $i++ ) {
 
 
+             $username = $response->body->result[$i]->cf_958;
+             $userID = $response->body->result[$i]->balance_tks_userid;
+             $vid = $response->body->result[$i]->id;
+             $balance = $response->body->result[$i]->balance_tks_balance;
+             $bet = $response->body->result[$i]->cf_956;
+             $player = $response->body->result[$i]->cf_960;
+             $newbalance = $balance + $bet;
 
-                    $curl = curl_init();
-                     curl_setopt_array($curl, array(
-                       CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
-                       CURLOPT_RETURNTRANSFER => true,
-                       CURLOPT_ENCODING => "",
-                       CURLOPT_MAXREDIRS => 10,
-                       CURLOPT_TIMEOUT => 30,
-                       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                       CURLOPT_CUSTOMREQUEST => "POST",
-                       CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n244bae35a6579977f668\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"balanceno\": \"\",\n            \"balance_tks_userid\": \"$userID\",\n            \"balance_tks_balance\": \"$newbalance\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-22 04:44:00\",\n            \"modifiedtime\": \"2018-01-22 05:50:35\",\n
-                         \"cf_956\": \"$bet\",\n            \"cf_958\": \"$username\",\n      \"cf_966\": \"$expend\",\n  \"cf_964\": \"$playerbet\",\n   \"cf_968\": \"$income\",\n    \"cf_960\": \"\",\n     \"cf_960\": \"1\",\n       \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
-                       CURLOPT_HTTPHEADER => array(
-                         "Cache-Control: no-cache",
-                         "Postman-Token: 8cf07109-175f-5368-08c6-63279568d118",
-                         "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
-                       ),
-                     ));
-
-                   $response = curl_exec($curl);
-                   $err = curl_error($curl);
-
-                   if ($err) {
-                     echo "cURL Error #:" . $err;
-                   } else {
-
-                   }
-                      curl_close($curl);
-
-
-
-
-
-             }
+             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.'บาท';
+           }
         }else if  ($x3=="+0"){
            $msg3 = 'เจ๊า';
            $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20cf_964%20LIKE%20'%P3%'%20;";
@@ -902,56 +641,20 @@ if (!is_null($events['events'])) {
                    $total = $total+1;
            }
 
-           foreach($data["result"] as $item) { //foreach element in $arr
-
-                $username = $item['cf_958'];
-                $userID = $item['balance_tks_userid'];
-                $vid = $item['id'];
-                $balance = $item['balance_tks_balance'];
-                $bet = $item['cf_956'];
-                $player = $item['cf_960'];
-                $expend = $item['cf_966'];
-                $income = $item['cf_968'];
-                $playerbet = $item['cf_964'];
-                $newbalance = $balance - $bet;
-
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+           for( $i=0; $i<$total; $i++ ) {
 
 
+             $username = $response->body->result[$i]->cf_958;
+             $userID = $response->body->result[$i]->balance_tks_userid;
+             $vid = $response->body->result[$i]->id;
+             $balance = $response->body->result[$i]->balance_tks_balance;
+             $bet = $response->body->result[$i]->cf_956;
+             $player = $response->body->result[$i]->cf_960;
+             $newbalance = $balance + 0;
 
-                    $curl = curl_init();
-                     curl_setopt_array($curl, array(
-                       CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
-                       CURLOPT_RETURNTRANSFER => true,
-                       CURLOPT_ENCODING => "",
-                       CURLOPT_MAXREDIRS => 10,
-                       CURLOPT_TIMEOUT => 30,
-                       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                       CURLOPT_CUSTOMREQUEST => "POST",
-                       CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n244bae35a6579977f668\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"balanceno\": \"\",\n            \"balance_tks_userid\": \"$userID\",\n            \"balance_tks_balance\": \"$newbalance\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-22 04:44:00\",\n            \"modifiedtime\": \"2018-01-22 05:50:35\",\n
-                         \"cf_956\": \"$bet\",\n            \"cf_958\": \"$username\",\n      \"cf_966\": \"$expend\",\n  \"cf_964\": \"$playerbet\",\n   \"cf_968\": \"$income\",\n    \"cf_960\": \"\",\n     \"cf_960\": \"1\",\n       \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
-                       CURLOPT_HTTPHEADER => array(
-                         "Cache-Control: no-cache",
-                         "Postman-Token: 8cf07109-175f-5368-08c6-63279568d118",
-                         "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
-                       ),
-                     ));
+             $listname = $listname."\n ".$username."  + 0 = ".$newbalance.'บาท';
 
-                   $response = curl_exec($curl);
-                   $err = curl_error($curl);
-
-                   if ($err) {
-                     echo "cURL Error #:" . $err;
-                   } else {
-
-                   }
-                      curl_close($curl);
-
-
-
-
-
-             }
+         }
         }else if  ($x3=="-2"){
            $msg3 = 'ขา 3 เสียให้เจ้ามือ 2 เท่า';
            $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20cf_964%20LIKE%20'%P3%'%20;";
@@ -963,56 +666,20 @@ if (!is_null($events['events'])) {
                    $total = $total+1;
            }
 
-           foreach($data["result"] as $item) { //foreach element in $arr
-
-                $username = $item['cf_958'];
-                $userID = $item['balance_tks_userid'];
-                $vid = $item['id'];
-                $balance = $item['balance_tks_balance'];
-                $bet = $item['cf_956'];
-                $player = $item['cf_960'];
-                $expend = $item['cf_966']-($bet*2);
-                $income = $item['cf_968'];
-                $playerbet = $item['cf_964'];
-                $newbalance = $balance - $bet;
-
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+           for( $i=0; $i<$total; $i++ ) {
 
 
+             $username = $response->body->result[$i]->cf_958;
+             $userID = $response->body->result[$i]->balance_tks_userid;
+             $vid = $response->body->result[$i]->id;
+             $balance = $response->body->result[$i]->balance_tks_balance;
+             $bet = $response->body->result[$i]->cf_956*2;
+             $player = $response->body->result[$i]->cf_960;
+             $newbalance = $balance - $bet;
 
-                    $curl = curl_init();
-                     curl_setopt_array($curl, array(
-                       CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
-                       CURLOPT_RETURNTRANSFER => true,
-                       CURLOPT_ENCODING => "",
-                       CURLOPT_MAXREDIRS => 10,
-                       CURLOPT_TIMEOUT => 30,
-                       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                       CURLOPT_CUSTOMREQUEST => "POST",
-                       CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n244bae35a6579977f668\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"balanceno\": \"\",\n            \"balance_tks_userid\": \"$userID\",\n            \"balance_tks_balance\": \"$newbalance\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-22 04:44:00\",\n            \"modifiedtime\": \"2018-01-22 05:50:35\",\n
-                         \"cf_956\": \"$bet\",\n            \"cf_958\": \"$username\",\n      \"cf_966\": \"$expend\",\n  \"cf_964\": \"$playerbet\",\n   \"cf_968\": \"$income\",\n    \"cf_960\": \"\",\n     \"cf_960\": \"1\",\n       \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
-                       CURLOPT_HTTPHEADER => array(
-                         "Cache-Control: no-cache",
-                         "Postman-Token: 8cf07109-175f-5368-08c6-63279568d118",
-                         "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
-                       ),
-                     ));
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท';
 
-                   $response = curl_exec($curl);
-                   $err = curl_error($curl);
-
-                   if ($err) {
-                     echo "cURL Error #:" . $err;
-                   } else {
-
-                   }
-                      curl_close($curl);
-
-
-
-
-
-             }
+         }
         }else if  ($x3=="+2"){
            $msg3 = 'ขา 3 ได้ 2 เท่า';
            $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20cf_964%20LIKE%20'%P3%'%20;";
@@ -1024,56 +691,21 @@ if (!is_null($events['events'])) {
                    $total = $total+1;
            }
 
-           foreach($data["result"] as $item) { //foreach element in $arr
-
-                $username = $item['cf_958'];
-                $userID = $item['balance_tks_userid'];
-                $vid = $item['id'];
-                $balance = $item['balance_tks_balance'];
-                $bet = $item['cf_956'];
-                $player = $item['cf_960'];
-                $expend = $item['cf_966'];
-                $income = $item['cf_968']+($bet*2);
-                $playerbet = $item['cf_964'];
-                $newbalance = $balance - $bet;
-
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+           for( $i=0; $i<$total; $i++ ) {
 
 
+             $username = $response->body->result[$i]->cf_958;
+             $userID = $response->body->result[$i]->balance_tks_userid;
+             $vid = $response->body->result[$i]->id;
+             $balance = $response->body->result[$i]->balance_tks_balance;
+             $bet = $response->body->result[$i]->cf_956*2;
+             $player = $response->body->result[$i]->cf_960;
+             $newbalance = $balance + $bet;
 
-                    $curl = curl_init();
-                     curl_setopt_array($curl, array(
-                       CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
-                       CURLOPT_RETURNTRANSFER => true,
-                       CURLOPT_ENCODING => "",
-                       CURLOPT_MAXREDIRS => 10,
-                       CURLOPT_TIMEOUT => 30,
-                       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                       CURLOPT_CUSTOMREQUEST => "POST",
-                       CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n244bae35a6579977f668\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"balanceno\": \"\",\n            \"balance_tks_userid\": \"$userID\",\n            \"balance_tks_balance\": \"$newbalance\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-22 04:44:00\",\n            \"modifiedtime\": \"2018-01-22 05:50:35\",\n
-                         \"cf_956\": \"$bet\",\n            \"cf_958\": \"$username\",\n      \"cf_966\": \"$expend\",\n  \"cf_964\": \"$playerbet\",\n   \"cf_968\": \"$income\",\n    \"cf_960\": \"\",\n     \"cf_960\": \"1\",\n       \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
-                       CURLOPT_HTTPHEADER => array(
-                         "Cache-Control: no-cache",
-                         "Postman-Token: 8cf07109-175f-5368-08c6-63279568d118",
-                         "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
-                       ),
-                     ));
+             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.'บาท';
 
-                   $response = curl_exec($curl);
-                   $err = curl_error($curl);
+         }
 
-                   if ($err) {
-                     echo "cURL Error #:" . $err;
-                   } else {
-
-                   }
-                      curl_close($curl);
-
-
-
-
-
-             }
         }
 
         $x4 = substr($extext[3], 1);
@@ -1089,56 +721,20 @@ if (!is_null($events['events'])) {
                               $total = $total+1;
                       }
 
-                      foreach($data["result"] as $item) { //foreach element in $arr
-
-                           $username = $item['cf_958'];
-                           $userID = $item['balance_tks_userid'];
-                           $vid = $item['id'];
-                           $balance = $item['balance_tks_balance'];
-                           $bet = $item['cf_956'];
-                           $player = $item['cf_960'];
-                           $expend = $item['cf_966']-$bet;
-                           $income = $item['cf_968'];
-                           $playerbet = $item['cf_964'];
-                           $newbalance = $balance - $bet;
-
-                        $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+                      for( $i=0; $i<$total; $i++ ) {
 
 
+                        $username = $response->body->result[$i]->cf_958;
+                        $userID = $response->body->result[$i]->balance_tks_userid;
+                        $vid = $response->body->result[$i]->id;
+                        $balance = $response->body->result[$i]->balance_tks_balance;
+                        $bet = $response->body->result[$i]->cf_956;
+                        $player = $response->body->result[$i]->cf_960;
+                        $newbalance = $balance - $bet;
 
-                               $curl = curl_init();
-                                curl_setopt_array($curl, array(
-                                  CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
-                                  CURLOPT_RETURNTRANSFER => true,
-                                  CURLOPT_ENCODING => "",
-                                  CURLOPT_MAXREDIRS => 10,
-                                  CURLOPT_TIMEOUT => 30,
-                                  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                                  CURLOPT_CUSTOMREQUEST => "POST",
-                                  CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n244bae35a6579977f668\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"balanceno\": \"\",\n            \"balance_tks_userid\": \"$userID\",\n            \"balance_tks_balance\": \"$newbalance\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-22 04:44:00\",\n            \"modifiedtime\": \"2018-01-22 05:50:35\",\n
-                                    \"cf_956\": \"$bet\",\n            \"cf_958\": \"$username\",\n      \"cf_966\": \"$expend\",\n  \"cf_964\": \"$playerbet\",\n   \"cf_968\": \"$income\",\n    \"cf_960\": \"\",\n     \"cf_960\": \"1\",\n       \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
-                                  CURLOPT_HTTPHEADER => array(
-                                    "Cache-Control: no-cache",
-                                    "Postman-Token: 8cf07109-175f-5368-08c6-63279568d118",
-                                    "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
-                                  ),
-                                ));
+                        $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท';
 
-                              $response = curl_exec($curl);
-                              $err = curl_error($curl);
-
-                              if ($err) {
-                                echo "cURL Error #:" . $err;
-                              } else {
-
-                              }
-                                 curl_close($curl);
-
-
-
-
-
-                        }
+                    }
         } else if  ($x4=="+1"){
            $msg4 = 'ขา 4 ได้ 1 เท่า';
              $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20cf_964%20LIKE%20'%P4%'%20;";
@@ -1150,56 +746,20 @@ if (!is_null($events['events'])) {
                    $total = $total+1;
            }
 
-           foreach($data["result"] as $item) { //foreach element in $arr
-
-                $username = $item['cf_958'];
-                $userID = $item['balance_tks_userid'];
-                $vid = $item['id'];
-                $balance = $item['balance_tks_balance'];
-                $bet = $item['cf_956'];
-                $player = $item['cf_960'];
-                $expend = $item['cf_966'];
-                $income = $item['cf_968']+$bet;
-                $playerbet = $item['cf_964'];
-                $newbalance = $balance - $bet;
-
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+           for( $i=0; $i<$total; $i++ ) {
 
 
+             $username = $response->body->result[$i]->cf_958;
+             $userID = $response->body->result[$i]->balance_tks_userid;
+             $vid = $response->body->result[$i]->id;
+             $balance = $response->body->result[$i]->balance_tks_balance;
+             $bet = $response->body->result[$i]->cf_956;
+             $player = $response->body->result[$i]->cf_960;
+             $newbalance = $balance + $bet;
 
-                    $curl = curl_init();
-                     curl_setopt_array($curl, array(
-                       CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
-                       CURLOPT_RETURNTRANSFER => true,
-                       CURLOPT_ENCODING => "",
-                       CURLOPT_MAXREDIRS => 10,
-                       CURLOPT_TIMEOUT => 30,
-                       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                       CURLOPT_CUSTOMREQUEST => "POST",
-                       CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n244bae35a6579977f668\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"balanceno\": \"\",\n            \"balance_tks_userid\": \"$userID\",\n            \"balance_tks_balance\": \"$newbalance\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-22 04:44:00\",\n            \"modifiedtime\": \"2018-01-22 05:50:35\",\n
-                         \"cf_956\": \"$bet\",\n            \"cf_958\": \"$username\",\n      \"cf_966\": \"$expend\",\n  \"cf_964\": \"$playerbet\",\n   \"cf_968\": \"$income\",\n    \"cf_960\": \"\",\n     \"cf_960\": \"1\",\n       \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
-                       CURLOPT_HTTPHEADER => array(
-                         "Cache-Control: no-cache",
-                         "Postman-Token: 8cf07109-175f-5368-08c6-63279568d118",
-                         "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
-                       ),
-                     ));
+             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.'บาท';
 
-                   $response = curl_exec($curl);
-                   $err = curl_error($curl);
-
-                   if ($err) {
-                     echo "cURL Error #:" . $err;
-                   } else {
-
-                   }
-                      curl_close($curl);
-
-
-
-
-
-             }
+         }
         }else if  ($x4=="+0"){
            $msg4 = 'เจ๊า';
              $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20cf_964%20LIKE%20'%P4%'%20;";
@@ -1211,56 +771,20 @@ if (!is_null($events['events'])) {
                    $total = $total+1;
            }
 
-           foreach($data["result"] as $item) { //foreach element in $arr
-
-                $username = $item['cf_958'];
-                $userID = $item['balance_tks_userid'];
-                $vid = $item['id'];
-                $balance = $item['balance_tks_balance'];
-                $bet = $item['cf_956'];
-                $player = $item['cf_960'];
-                $expend = $item['cf_966'];
-                $income = $item['cf_968'];
-                $playerbet = $item['cf_964'];
-                $newbalance = $balance - $bet;
-
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+           for( $i=0; $i<$total; $i++ ) {
 
 
+             $username = $response->body->result[$i]->cf_958;
+             $userID = $response->body->result[$i]->balance_tks_userid;
+             $vid = $response->body->result[$i]->id;
+             $balance = $response->body->result[$i]->balance_tks_balance;
+             $bet = $response->body->result[$i]->cf_956;
+             $player = $response->body->result[$i]->cf_960;
+             $newbalance = $balance + 0;
 
-                    $curl = curl_init();
-                     curl_setopt_array($curl, array(
-                       CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
-                       CURLOPT_RETURNTRANSFER => true,
-                       CURLOPT_ENCODING => "",
-                       CURLOPT_MAXREDIRS => 10,
-                       CURLOPT_TIMEOUT => 30,
-                       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                       CURLOPT_CUSTOMREQUEST => "POST",
-                       CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n244bae35a6579977f668\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"balanceno\": \"\",\n            \"balance_tks_userid\": \"$userID\",\n            \"balance_tks_balance\": \"$newbalance\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-22 04:44:00\",\n            \"modifiedtime\": \"2018-01-22 05:50:35\",\n
-                         \"cf_956\": \"$bet\",\n            \"cf_958\": \"$username\",\n      \"cf_966\": \"$expend\",\n  \"cf_964\": \"$playerbet\",\n   \"cf_968\": \"$income\",\n    \"cf_960\": \"\",\n     \"cf_960\": \"1\",\n       \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
-                       CURLOPT_HTTPHEADER => array(
-                         "Cache-Control: no-cache",
-                         "Postman-Token: 8cf07109-175f-5368-08c6-63279568d118",
-                         "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
-                       ),
-                     ));
+             $listname = $listname."\n ".$username."  + 0 = ".$newbalance.'บาท';
 
-                   $response = curl_exec($curl);
-                   $err = curl_error($curl);
-
-                   if ($err) {
-                     echo "cURL Error #:" . $err;
-                   } else {
-
-                   }
-                      curl_close($curl);
-
-
-
-
-
-             }
+         }
         }else if  ($x4=="-2"){
            $msg4 = 'ขา 4 เสียให้เจ้ามือ 2 เท่า';
         $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20cf_964%20LIKE%20'%P4%'%20;";
@@ -1272,56 +796,20 @@ if (!is_null($events['events'])) {
                    $total = $total+1;
            }
 
-           foreach($data["result"] as $item) { //foreach element in $arr
-
-                $username = $item['cf_958'];
-                $userID = $item['balance_tks_userid'];
-                $vid = $item['id'];
-                $balance = $item['balance_tks_balance'];
-                $bet = $item['cf_956'];
-                $player = $item['cf_960'];
-                $expend = $item['cf_966']-($bet*2);
-                $income = $item['cf_968'];
-                $playerbet = $item['cf_964'];
-                $newbalance = $balance - $bet;
-
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+           for( $i=0; $i<$total; $i++ ) {
 
 
+             $username = $response->body->result[$i]->cf_958;
+             $userID = $response->body->result[$i]->balance_tks_userid;
+             $vid = $response->body->result[$i]->id;
+             $balance = $response->body->result[$i]->balance_tks_balance;
+             $bet = $response->body->result[$i]->cf_956*2;
+             $player = $response->body->result[$i]->cf_960;
+             $newbalance = $balance - $bet;
 
-                    $curl = curl_init();
-                     curl_setopt_array($curl, array(
-                       CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
-                       CURLOPT_RETURNTRANSFER => true,
-                       CURLOPT_ENCODING => "",
-                       CURLOPT_MAXREDIRS => 10,
-                       CURLOPT_TIMEOUT => 30,
-                       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                       CURLOPT_CUSTOMREQUEST => "POST",
-                       CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n244bae35a6579977f668\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"balanceno\": \"\",\n            \"balance_tks_userid\": \"$userID\",\n            \"balance_tks_balance\": \"$newbalance\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-22 04:44:00\",\n            \"modifiedtime\": \"2018-01-22 05:50:35\",\n
-                         \"cf_956\": \"$bet\",\n            \"cf_958\": \"$username\",\n      \"cf_966\": \"$expend\",\n  \"cf_964\": \"$playerbet\",\n   \"cf_968\": \"$income\",\n    \"cf_960\": \"\",\n     \"cf_960\": \"1\",\n       \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
-                       CURLOPT_HTTPHEADER => array(
-                         "Cache-Control: no-cache",
-                         "Postman-Token: 8cf07109-175f-5368-08c6-63279568d118",
-                         "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
-                       ),
-                     ));
+             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท';
 
-                   $response = curl_exec($curl);
-                   $err = curl_error($curl);
-
-                   if ($err) {
-                     echo "cURL Error #:" . $err;
-                   } else {
-
-                   }
-                      curl_close($curl);
-
-
-
-
-
-             }
+         }
         }else if  ($x4=="+2"){
            $msg4 = 'ขา 4 ได้ 2 เท่า';
              $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20cf_964%20LIKE%20'%P4%'%20;";
@@ -1333,56 +821,20 @@ if (!is_null($events['events'])) {
                    $total = $total+1;
            }
 
-           foreach($data["result"] as $item) { //foreach element in $arr
-
-                $username = $item['cf_958'];
-                $userID = $item['balance_tks_userid'];
-                $vid = $item['id'];
-                $balance = $item['balance_tks_balance'];
-                $bet = $item['cf_956'];
-                $player = $item['cf_960'];
-                $expend = $item['cf_966'];
-                $income = $item['cf_968']+($bet*2);
-                $playerbet = $item['cf_964'];
-                $newbalance = $balance - $bet;
-
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'บาท Loop +:'.$i.'total'.$total;
+           for( $i=0; $i<$total; $i++ ) {
 
 
+             $username = $response->body->result[$i]->cf_958;
+             $userID = $response->body->result[$i]->balance_tks_userid;
+             $vid = $response->body->result[$i]->id;
+             $balance = $response->body->result[$i]->balance_tks_balance;
+             $bet = $response->body->result[$i]->cf_956*2;
+             $player = $response->body->result[$i]->cf_960;
+             $newbalance = $balance + $bet;
 
-                    $curl = curl_init();
-                     curl_setopt_array($curl, array(
-                       CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
-                       CURLOPT_RETURNTRANSFER => true,
-                       CURLOPT_ENCODING => "",
-                       CURLOPT_MAXREDIRS => 10,
-                       CURLOPT_TIMEOUT => 30,
-                       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                       CURLOPT_CUSTOMREQUEST => "POST",
-                       CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n244bae35a6579977f668\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"balanceno\": \"\",\n            \"balance_tks_userid\": \"$userID\",\n            \"balance_tks_balance\": \"$newbalance\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-22 04:44:00\",\n            \"modifiedtime\": \"2018-01-22 05:50:35\",\n
-                         \"cf_956\": \"$bet\",\n            \"cf_958\": \"$username\",\n      \"cf_966\": \"$expend\",\n  \"cf_964\": \"$playerbet\",\n   \"cf_968\": \"$income\",\n    \"cf_960\": \"\",\n     \"cf_960\": \"1\",\n       \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
-                       CURLOPT_HTTPHEADER => array(
-                         "Cache-Control: no-cache",
-                         "Postman-Token: 8cf07109-175f-5368-08c6-63279568d118",
-                         "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
-                       ),
-                     ));
+             $listname = $listname."\n ".$username."  +".$bet." = ".$newbalance.'บาท';
 
-                   $response = curl_exec($curl);
-                   $err = curl_error($curl);
-
-                   if ($err) {
-                     echo "cURL Error #:" . $err;
-                   } else {
-
-                   }
-                      curl_close($curl);
-
-
-
-
-
-             }
+         }
         }
 
         $messages = [
