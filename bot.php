@@ -1377,11 +1377,13 @@ if (!is_null($events['events'])) {
              }
         } else if ($x4 != "") {
 
-          $resultlist = $resultlist."   สุดท้าย";
-          // $urix = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20cf_970%20LIKE%20'1'%20;";
-          // $responsex = \Httpful\Request::get($urix)->send();
-          //
-          // $datax = json_decode($responsex,true);
+
+          $urix = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20cf_970%20LIKE%20'1'%20;";
+          $responsex = \Httpful\Request::get($urix)->send();
+
+          $datax = json_decode($responsex,true);
+
+          $resultlist = $resultlist."   สุดท้าย".$datax;
           // // $total = 0;
           // // foreach ($data["result"] as $value) {
           // //        $total = $total+1;
