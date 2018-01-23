@@ -1411,8 +1411,9 @@ if (!is_null($events['events'])) {
               $playerbet = $itemx['cf_964'];
 
                       if($income == 0){
+                          $sum = substr($sum,1);
                         $newbalance = $balance - $sum;
-                         $resultlist = $resultlist."\nคุณ ".$username." - ".$sum." = ".$newbalance."บาท";
+                         $resultlist = $resultlist."\nคุณ ".$username." เสีย - ".$sum." เหลือ = ".$newbalance."บาท";
                          $curl = curl_init();
                           curl_setopt_array($curl, array(
                             CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
@@ -1443,8 +1444,9 @@ if (!is_null($events['events'])) {
 
                       }
                       else if($sum < 0){
+                          $sum = substr($sum,1);
                         $newbalance = $balance - $sum;
-                         $resultlist = $resultlist."\nคุณ ".$username." เสีย ".$sum." เหลือ = ".$newbalance."บาท";
+                         $resultlist = $resultlist."\nคุณ ".$username." เสีย -".$sum." เหลือ = ".$newbalance."บาท";
 
                          $curl = curl_init();
                           curl_setopt_array($curl, array(
@@ -2221,7 +2223,7 @@ if (!is_null($events['events'])) {
           CURLOPT_TIMEOUT => 30,
           CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
           CURLOPT_CUSTOMREQUEST => "POST",
-          CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n34888a365a670207dd6aa\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"gamesno\": \"\",\n            \"games_tks_username\": \"1\",\n            \"games_tks_password\": \"x\",\n            \"games_tks_gamename\": \"1\",\n            \"games_tks_gameid\": \"\",\n            \"games_tks_status\": \"0\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-23 13:05:02\",\n            \"modifiedtime\": \"2018-01-23 13:05:13\",\n            \"cf_948\": \"\",\n            \"id\": \"43x543\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+          CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n34888a365a670207dd6aa\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"gamesno\": \"\",\n            \"games_tks_username\": \"1\",\n            \"games_tks_password\": \"x\",\n            \"games_tks_gamename\": \"1\",\n            \"games_tks_gameid\": \"round\",\n            \"games_tks_status\": \"0\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-23 13:05:02\",\n            \"modifiedtime\": \"2018-01-23 13:05:13\",\n            \"cf_948\": \"\",\n            \"id\": \"43x543\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
           CURLOPT_HTTPHEADER => array(
             "cache-control: no-cache",
             "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
@@ -2337,6 +2339,11 @@ if (!is_null($events['events'])) {
       $adminID = $response->body->result[0]->games_tks_password;
       $gameStatus = $response->body->result[0]->games_tks_gameid;
 
+      $uri2x = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Games%20Where%20id%20=%20'43x543';";
+      $response2x = \Httpful\Request::get($uri2x)->send();
+      // echo $response;
+      $cround = $response2x->body->result[0]->games_tks_username;
+
 
         if(strcmp($adminID,$userID) == 0){
 
@@ -2352,7 +2359,7 @@ if (!is_null($events['events'])) {
                       CURLOPT_TIMEOUT => 30,
                       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                       CURLOPT_CUSTOMREQUEST => "POST",
-                      CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n34888a365a670207dd6aa\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"gamesno\": \"\",\n            \"games_tks_username\": \"are\",\n            \"games_tks_password\": \"Ub2734665c8c26331fc77b68cb0f12142\",\n            \"games_tks_gamename\": \"are\",\n            \"games_tks_gameid\": \"1\",\n            \"games_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-23 09:17:53\",\n            \"modifiedtime\": \"2018-01-23 09:35:24\",\n            \"cf_948\": \"\",\n            \"id\": \"43x539\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                      CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n34888a365a670207dd6aa\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"gamesno\": \"\",\n            \"games_tks_username\": \"are\",\n            \"games_tks_password\": \"$adminID\",\n            \"games_tks_gamename\": \"are\",\n            \"games_tks_gameid\": \"1\",\n            \"games_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-23 09:17:53\",\n            \"modifiedtime\": \"2018-01-23 09:35:24\",\n            \"cf_948\": \"\",\n            \"id\": \"43x539\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                       CURLOPT_HTTPHEADER => array(
                         "cache-control: no-cache",
                         "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
@@ -2374,7 +2381,7 @@ if (!is_null($events['events'])) {
 
                     $messages = [
                       'type' => 'text',
-                      'text' => 'เริ่มรอบใหม่'
+                      'text' => 'เริ่มรอบใหม่ รอบที่#'.$cround
                     ];
                   }else{
 
@@ -2388,7 +2395,7 @@ if (!is_null($events['events'])) {
                       CURLOPT_TIMEOUT => 30,
                       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                       CURLOPT_CUSTOMREQUEST => "POST",
-                      CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n34888a365a670207dd6aa\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"gamesno\": \"\",\n            \"games_tks_username\": \"are\",\n            \"games_tks_password\": \"Ub2734665c8c26331fc77b68cb0f12142\",\n            \"games_tks_gamename\": \"are\",\n            \"games_tks_gameid\": \"0\",\n            \"games_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-23 09:17:53\",\n            \"modifiedtime\": \"2018-01-23 09:35:24\",\n            \"cf_948\": \"\",\n            \"id\": \"43x539\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                      CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n34888a365a670207dd6aa\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"gamesno\": \"\",\n            \"games_tks_username\": \"are\",\n            \"games_tks_password\": \"$adminID\",\n            \"games_tks_gamename\": \"are\",\n            \"games_tks_gameid\": \"0\",\n            \"games_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-23 09:17:53\",\n            \"modifiedtime\": \"2018-01-23 09:35:24\",\n            \"cf_948\": \"\",\n            \"id\": \"43x539\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                       CURLOPT_HTTPHEADER => array(
                         "cache-control: no-cache",
                         "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
@@ -2404,12 +2411,40 @@ if (!is_null($events['events'])) {
                     if ($err) {
                       echo "cURL Error #:" . $err;
                     } else {
-                      echo $response;
+                      $cround = $cround+1;
+                          $curl = curl_init();
+
+                          curl_setopt_array($curl, array(
+                            CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                            CURLOPT_RETURNTRANSFER => true,
+                            CURLOPT_ENCODING => "",
+                            CURLOPT_MAXREDIRS => 10,
+                            CURLOPT_TIMEOUT => 30,
+                            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                            CURLOPT_CUSTOMREQUEST => "POST",
+                            CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n34888a365a670207dd6aa\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"gamesno\": \"\",\n            \"games_tks_username\": \"$cround\",\n            \"games_tks_password\": \"x\",\n            \"games_tks_gamename\": \"1\",\n            \"games_tks_gameid\": \"\",\n            \"games_tks_status\": \"0\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-23 13:05:02\",\n            \"modifiedtime\": \"2018-01-23 13:05:13\",\n            \"cf_948\": \"\",\n            \"id\": \"43x543\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                            CURLOPT_HTTPHEADER => array(
+                              "cache-control: no-cache",
+                              "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                              "postman-token: 504ff875-281d-57cd-eb79-acde564c4bdf"
+                            ),
+                          ));
+
+                          $response = curl_exec($curl);
+                          $err = curl_error($curl);
+
+                          curl_close($curl);
+
+                          if ($err) {
+                            echo "cURL Error #:" . $err;
+                          } else {
+                            echo $response;
+                          }
                     }
 
                     $messages = [
                       'type' => 'text',
-                      'text' => 'ปิดรอบการแทง'
+                      'text' => 'ปิดรอบการแทง รอบที่#'.$cround
                     ];
 
                   }
