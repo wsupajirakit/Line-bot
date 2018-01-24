@@ -2242,12 +2242,12 @@ if (!is_null($events['events'])) {
         ];
 
       }
-			else if($ftext == "#"){
+			else if($ftext == "@"){
 					$forwardtext = strstr($text, '+', true);
 					$id = substr($forwardtext, 1);
 					$money  = substr($text, (strpos($text, '+') ?: -1) + 1);
 
-					$uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20balance_tks_userid='".$id."'%20;";
+					$uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20balance_tks_username='".$id."'%20;";
 			    $response = \Httpful\Request::get($uri)->send();
 			    // echo $response;
 			    $sum = $response->body->result[0]->balance_tks_balance;
