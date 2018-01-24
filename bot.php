@@ -71,7 +71,7 @@ if (!is_null($events['events'])) {
           $ix=1;
         }
 
-      if(strlen($username)>0){
+      if(strlen($usernamex)>0){
             if ($ix != 1) {
                     if($gameStatus == 1) {
 
