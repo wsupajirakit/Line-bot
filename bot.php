@@ -48,7 +48,7 @@ if (!is_null($events['events'])) {
         $response = \Httpful\Request::get($uri)->send();
         $choice = $response->body->result[0]->cf_964;
         $choicebet = $response->body->result[0]->cf_956;
-
+        $usernamex = $response->body->result[0]->cf_958;
         $newchoice = str_replace("|##|", "", $choice);
         $newchoice2 = str_replace("P", "", $newchoice);
         $newchoice3 = str_replace(" ", "", $newchoice2);
@@ -71,6 +71,7 @@ if (!is_null($events['events'])) {
           $ix=1;
         }
 
+      if(strlen($username)>0){
             if ($ix != 1) {
                     if($gameStatus == 1) {
 
@@ -152,7 +153,13 @@ if (!is_null($events['events'])) {
                   'text' => 'แทงได้แค่ P1 - P4 เท่านั้น ต่ำสุด 20 สูงสุด 200  '
                 ];
               }
-
+            }else {
+              $messages = [
+                'type' => 'text',
+                // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
+                'text' => 'คุณไม่ได้เป็นสมาชิก'
+              ];
+            }
 
       }
 
