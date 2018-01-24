@@ -185,13 +185,13 @@ if (!is_null($events['events'])) {
               //
               $data = json_decode($response,true);
               $dname =  $data['displayName'];
-
-              $messages = [
-                'type' => 'text',
-                // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-                'text' => .$dname.'ไม่ได้เป็นสมาชิก'
-              ];
             }
+
+            $messages = [
+              'type' => 'text',
+              // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
+              'text' => $dname.'ไม่ได้เป็นสมาชิก'
+            ];
 
             }
 
