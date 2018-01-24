@@ -2243,15 +2243,36 @@ if (!is_null($events['events'])) {
 
       }
 			else if($ftext == "@"){
-					$forwardtext = strstr($text, '+', true);
-					$id = substr($forwardtext, 1);
-					$money  = substr($text, (strpos($text, '+') ?: -1) + 1);
 
+        $cont= '';
+
+        if (strpos($text, '+') !== false) {
+          $forwardtext = strstr($text, '+', true);
+          $money  = substr($text, (strpos($text, '+') ?: -1) + 1);
+          $cont=1;
+        }
+        if (strpos($text, '-') !== false) {
+          $forwardtext = strstr($text, '-', true);
+          $money  = substr($text, (strpos($text, '-') ?: -1) + 1);
+          $cont=2;
+        }
+
+
+
+
+          $id = substr($forwardtext, 1);
 					$uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20id=%27".$id."%27%20;";
 			    $response = \Httpful\Request::get($uri)->send();
 			    // echo $response;
 			    $sum = $response->body->result[0]->balance_tks_balance;
-					$sum = $sum+$money;
+
+
+          if($cont==1){
+            					$sum = $sum+$money;
+          }else {
+            					$sum = $sum-$money;
+          }
+
 
 
           $usernamex = $response->body->result[0]->cf_958;
@@ -2294,7 +2315,7 @@ if (!is_null($events['events'])) {
 
         $messages = [
           'type' => 'text',
-          'text' => 'ฝากเงินสำเร็จ'.$usernamex.'มียอดเงินคงเหลือ : '.$sum
+          'text' => 'ปรับยอดเงินสำเร็จ'.$usernamex.'มียอดเงินคงเหลือ : '.$sum
         ];
       }
 
