@@ -62,9 +62,9 @@ if (!is_null($events['events'])) {
           $ix=1;
         }
 
-        if($gameStatus == 1 && $ix != 1) {
+        if($gameStatus == 1) {
 
-                  if($money <= 200 && $money >=20) {
+                  if($money <= 200 && $money >=20 && $ix != 1) {
                   $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20balance_tks_userid='".$userID."'%20;";
                   $response = \Httpful\Request::get($uri)->send();
                   // echo $response;
@@ -111,13 +111,17 @@ if (!is_null($events['events'])) {
                     'text' => '  '.$username.' แทงพนันผู้เล่น '.$player.' จำนวน '.$money.'   ยอดคงเหลือปัจจุบัน(ก่อนหัก) '.$balance.'  '
                   ];
 
-                }  else {
+                }  else if ($ix== 1){
                   $messages = [
                     'type' => 'text',
                     // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
                     'text' => 'แทงได้แค่ P1 - P4 เท่านั้น ต่ำสุด 20 สูงสุด 200  '
                   ];
 
+                } else {
+                  'type' => 'text',
+                  // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
+                  'text' => 'แทงได้แค่ P1 - P4 เท่านั้น ต่ำสุด 20 สูงสุด 200  '
                 }
         } else if ($gameStatus ==0){
           $messages = [
