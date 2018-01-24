@@ -32,6 +32,10 @@ if (!is_null($events['events'])) {
         $n2 = 'P'.substr($newtext,1,1);
         $n3 = 'P'.substr($newtext,2,1);
         $n4 = 'P'.substr($newtext,3,1);
+        $nn1 = substr($newtext,0,1);
+        $nn2 = substr($newtext,1,1);
+        $nn3 = substr($newtext,2,1);
+        $nn4 = substr($newtext,3,1);
 
         $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Games%20Where%20id%20=%20'43x539';";
         $response = \Httpful\Request::get($uri)->send();
@@ -45,16 +49,16 @@ if (!is_null($events['events'])) {
         $money  = substr($text, (strpos($text, '-') ?: -1) + 1);
         $ix= '';
 
-        if($n1>4){
+        if($nn1>4){
           $ix=1;
         }
-        if($n2>4){
+        if($nn2>4){
           $ix=1;
         }
-        if($n3>4){
+        if($nn3>4){
           $ix=1;
         }
-        if($n4>4){
+        if($nn4>4){
           $ix=1;
         }
 
