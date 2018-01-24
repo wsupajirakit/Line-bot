@@ -49,6 +49,8 @@ if (!is_null($events['events'])) {
         $choice = $response->body->result[0]->cf_964;
 
         $newchoice = str_replace("|##|", "", $choice);
+        $newchoice2 = str_replace("P", "", $choice);
+        $newchoice3 = str_replace(" ", "", $choice);
         $lenchoice = strlen($newchoice);
 
         $player= strtoupper(strstr($text, '-', true));
@@ -117,7 +119,7 @@ if (!is_null($events['events'])) {
                       $messages = [
                         'type' => 'text',
                         // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-                        'text' => '  '.$username.' เปลี่ยนแปลงการแทงจาก '.$newchoice.' เป็น'.$player
+                        'text' => '  '.$username.' เปลี่ยนแปลงการแทงจาก '.$newchoice3.' เป็น'.$player
                       ];
                     }else {
                       $messages = [
