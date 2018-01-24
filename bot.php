@@ -62,18 +62,18 @@ if (!is_null($events['events'])) {
           $ix=1;
         }
 
-
-
             if ($ix != 1) {
                     if($gameStatus == 1) {
 
-                      $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20balance_tks_userid='".$userID."'%20;";
-                      $response = \Httpful\Request::get($uri)->send();
-                      // echo $response;
-                      $username = $response->body->result[0]->cf_958;
-                      $username = $response->body->result[0]->cf_958;
-                      $vid = $response->body->result[0]->id;
-                      $balance = $response->body->result[0]->balance_tks_balance;
+                  if($money <= 200 && $money >=20) {
+                  $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20balance_tks_userid='".$userID."'%20;";
+                  $response = \Httpful\Request::get($uri)->send();
+                  // echo $response;
+                  $username = $response->body->result[0]->cf_958;
+                  $vid = $response->body->result[0]->id;
+                  $balance = $response->body->result[0]->balance_tks_balance;
+                  $moneyx = $money*2;
+
 
                         $curl = curl_init();
 
