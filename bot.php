@@ -47,10 +47,11 @@ if (!is_null($events['events'])) {
         $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20balance_tks_userid='".$userID."'%20;";
         $response = \Httpful\Request::get($uri)->send();
         $choice = $response->body->result[0]->cf_964;
+        $choicebet = $response->body->result[0]->cf_956;
 
         $newchoice = str_replace("|##|", "", $choice);
-        $newchoice2 = str_replace("P", "", $choice);
-        $newchoice3 = str_replace(" ", "", $choice);
+        $newchoice2 = str_replace("P", "", $newchoice);
+        $newchoice3 = str_replace(" ", "", $newchoice2);
         $lenchoice = strlen($newchoice);
 
         $player= strtoupper(strstr($text, '-', true));
@@ -119,7 +120,7 @@ if (!is_null($events['events'])) {
                       $messages = [
                         'type' => 'text',
                         // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-                        'text' => '  '.$username.' เปลี่ยนแปลงการแทงจาก '.$newchoice3.' เป็น'.$player
+                        'text' => '  '.$username.' เปลี่ยนแปลงการแทงจาก '.$newchoice3.'จำนวน'.$choicebet.'เป็น '.$player.' จำนวน'.$money
                       ];
                     }else {
                       $messages = [
