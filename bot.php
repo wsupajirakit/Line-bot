@@ -2675,7 +2675,7 @@ if (!is_null($events['events'])) {
       } else if(strtoupper($context) == "OX"){
         $messages = [
           'type' => 'text',
-          'text' =>  $grouID
+          'text' =>  $groupID
         ];
       }
 
