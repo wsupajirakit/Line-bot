@@ -1,7 +1,7 @@
 <?php
   include('./httpful.phar');
 $access_token =
-'oOuhFrVkrCn3ngWNcdA96wED/ZtTR3Y8xEozvIP0zdAfamJCNsuZZHDAByWu70/7U6ouir3bOeDcpShjwTOJib4P6jWHYh31pVMM2CAwUeVVUpnDm09h8C0VmOEcKNsi9RHTFNbBv5V5EA3FaugRewdB04t89/1O/w1cDnyilFU=';
+'QyHSaarki7OaukcmDqWBZJD88fJb5N4evyOobmL7QyJOPpfV9YQz+gDgIvGXVXAEU6ouir3bOeDcpShjwTOJib4P6jWHYh31pVMM2CAwUeVFq5PVGR/AHd5Ze80zm5YFBcjYGRUDqMHIDs9qSaLzLQdB04t89/1O/w1cDnyilFU=';
 
 // Get POST body content
 $content = file_get_contents('php://input');
@@ -16,6 +16,7 @@ if (!is_null($events['events'])) {
 			// Get text sent
 			$text = $event['message']['text'];
       $userID = $event['source']['userId'];
+      $groupID = $event['source']['groupID'];
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 
@@ -2593,7 +2594,7 @@ if (!is_null($events['events'])) {
 
                                     $messages = [
                                       'type' => 'text',
-                                      'text' => 'สมัครสมาชิกสำเร็จ '.$dname.' id: '.$userID
+                                      'text' => 'สมัครสมาชิกสำเร็จ '.$dname.' id: '.$groupID
                                     ];
 
                                   }
