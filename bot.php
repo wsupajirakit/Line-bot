@@ -2269,10 +2269,21 @@ if (!is_null($events['events'])) {
           $vid = $response->body->result[0]->id;
           $balance = $response->body->result[0]->balance_tks_balance;
 
-          $messages = [
-            'type' => 'text',
-            'text' =>  $username.' ID คือ '.$vid.' ยอดเงินคงเหลือ '.$balance
-          ];
+          $userlen = strlen($vid);
+          if($vid > 2) {
+
+                      $messages = [
+                        'type' => 'text',
+                        'text' =>  $username.' ID คือ '.$vid.' ยอดเงินคงเหลือ '.$balance
+                      ];
+          } else {
+
+                      $messages = [
+                        'type' => 'text',
+                        'text' =>  'คุณไม่ได้เป็นสมาชิกโปรดสมัครด้วย คำสั่ง " Register "'
+                      ];
+          }
+
 
         } else {
 
