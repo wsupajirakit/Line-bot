@@ -166,7 +166,7 @@ if (!is_null($events['events'])) {
                                   $curl = curl_init();
 
                                   curl_setopt_array($curl, array(
-                                    CURLOPT_URL => "https://api.line.me/v2/bot/profile/".$userID,
+                                    CURLOPT_URL => "https://api.line.me/v2/bot/group/".$groupID."/member/".$userID,
                                     CURLOPT_RETURNTRANSFER => true,
                                     CURLOPT_ENCODING => "",
                                     CURLOPT_MAXREDIRS => 10,
@@ -204,7 +204,7 @@ if (!is_null($events['events'])) {
                                   $curl = curl_init();
 
                                   curl_setopt_array($curl, array(
-                                    CURLOPT_URL => "https://api.line.me/v2/bot/profile/".$userID,
+                                    CURLOPT_URL => "https://api.line.me/v2/bot/group/".$groupID."/member/".$userID,
                                     CURLOPT_RETURNTRANSFER => true,
                                     CURLOPT_ENCODING => "",
                                     CURLOPT_MAXREDIRS => 10,
@@ -274,7 +274,7 @@ if (!is_null($events['events'])) {
               $curl = curl_init();
 
               curl_setopt_array($curl, array(
-                CURLOPT_URL => "https://api.line.me/v2/bot/profile/".$userID,
+                CURLOPT_URL => "https://api.line.me/v2/bot/group/".$groupID."/member/".$userID,
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => "",
                 CURLOPT_MAXREDIRS => 10,
@@ -1621,7 +1621,7 @@ if (!is_null($events['events'])) {
               $curl = curl_init();
 
               curl_setopt_array($curl, array(
-                CURLOPT_URL => "https://api.line.me/v2/bot/profile/".$userID,
+                CURLOPT_URL => "https://api.line.me/v2/bot/group/".$groupID."/member/".$userID,
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => "",
                 CURLOPT_MAXREDIRS => 10,
@@ -2536,7 +2536,7 @@ if (!is_null($events['events'])) {
                       $curl = curl_init();
 
                       curl_setopt_array($curl, array(
-                        CURLOPT_URL => "https://api.line.me/v2/bot/profile/".$userID,
+                        CURLOPT_URL => "https://api.line.me/v2/bot/group/".$groupID."/member/".$userID,
                         CURLOPT_RETURNTRANSFER => true,
                         CURLOPT_ENCODING => "",
                         CURLOPT_MAXREDIRS => 10,
