@@ -82,8 +82,8 @@ if (!is_null($events['events'])) {
 
                               if($lentext==1){
 
-                                $money = $money*2;
-                                if($money<=$mbalance){
+                                $moneyx = $money*2;
+                                if($moneyx<=$mbalance){
                                     $nowbet = 1;
                                 }else {
                                   $nowbet = 0;
@@ -91,8 +91,8 @@ if (!is_null($events['events'])) {
 
                               }else if ($lentext==2){
 
-                                $money = $money*4;
-                                if($money<=$mbalance){
+                                $moneyx = $money*4;
+                                if($moneyx<=$mbalance){
                                     $nowbet = 1;
                                 }else {
                                   $nowbet = 0;
@@ -100,8 +100,8 @@ if (!is_null($events['events'])) {
 
                               }else if ($lentext==3){
 
-                                $money = $money*6;
-                                if($money<=$mbalance){
+                                $moneyx = $money*6;
+                                if($moneyx<=$mbalance){
                                     $nowbet = 1;
                                 }else {
                                   $nowbet = 0;
@@ -109,8 +109,8 @@ if (!is_null($events['events'])) {
 
 
                               }else if ($lentext==4){
-                                $money = $money*8;
-                                if($money<=$mbalance){
+                                $moneyx = $money*8;
+                                if($moneyx<=$mbalance){
                                     $nowbet = 1;
                                 }else {
                                   $nowbet = 0;
