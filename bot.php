@@ -191,7 +191,7 @@ if (!is_null($events['events'])) {
                                   $data = json_decode($response,true);
                                   $username =  $data['displayName'];
                                   }
-                                  
+
                                   $messages = [
                                     'type' => 'text',
                                     // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
@@ -2593,7 +2593,7 @@ if (!is_null($events['events'])) {
 
                                     $messages = [
                                       'type' => 'text',
-                                      'text' => 'สมัครสมาชิกสำเร็จ '.$dname
+                                      'text' => 'สมัครสมาชิกสำเร็จ '.$dname.' id: '.$userID
                                     ];
 
                                   }
