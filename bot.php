@@ -1660,7 +1660,7 @@ if (!is_null($events['events'])) {
                       if($income == 0){
                           $sum = substr($sum,1);
                         $newbalance = $balance - $sum;
-                         $resultlist = $resultlist."\n@".$username." เสีย-".$sum."เหลือ=".$newbalance."";
+                         $resultlist = $resultlist."\n".$username." เสีย-".$sum."เหลือ".$newbalance."";
                          $curl = curl_init();
                           curl_setopt_array($curl, array(
                             CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
@@ -1693,7 +1693,7 @@ if (!is_null($events['events'])) {
                       else if($sum < 0){
                           $sum = substr($sum,1);
                         $newbalance = $balance - $sum;
-                         $resultlist = $resultlist."\n@".$username." เสีย-".$sum."เหลือ=".$newbalance."";
+                         $resultlist = $resultlist."\n".$username." เสีย-".$sum."เหลือ".$newbalance."";
 
                          $curl = curl_init();
                           curl_setopt_array($curl, array(
@@ -1725,7 +1725,7 @@ if (!is_null($events['events'])) {
 
                       }else if ($sum >= 0){
                         $newbalance = $balance + $sum;
-                       $resultlist = $resultlist."\n@".$username." ได้+".$sum."เหลือ=".$newbalance."";
+                       $resultlist = $resultlist."\n".$username." ได้+".$sum."เหลือ".$newbalance."";
 
 
                        $curl = curl_init();
@@ -2405,6 +2405,39 @@ if (!is_null($events['events'])) {
       }
 			else if($ftext == "@"){
 
+        $dname= '';
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => "https://api.line.me/v2/bot/group/".$groupID."/member/".$userID,
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => "",
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 30,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => "GET",
+          CURLOPT_HTTPHEADER => array(
+            "authorization: Bearer oOuhFrVkrCn3ngWNcdA96wED/ZtTR3Y8xEozvIP0zdAfamJCNsuZZHDAByWu70/7U6ouir3bOeDcpShjwTOJib4P6jWHYh31pVMM2CAwUeVVUpnDm09h8C0VmOEcKNsi9RHTFNbBv5V5EA3FaugRewdB04t89/1O/w1cDnyilFU=",
+            "cache-control: no-cache",
+            "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
+          ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+          echo "cURL Error #:" . $err;
+        } else {
+
+        $data = json_decode($response,true);
+        $dname =  $data['displayName'];
+        }
+
+
+
         $myid = substr($text,1);
 
         if(strcmp($myid,"id") == 0){
@@ -2419,9 +2452,10 @@ if (!is_null($events['events'])) {
           $userlen = strlen($vid);
           if($vid > 2) {
 
+
                       $messages = [
                         'type' => 'text',
-                        'text' =>  $username.' ID คือ '.$vid.' ยอดเงินคงเหลือ '.$balance
+                        'text' =>  $dname.' ID คือ '.$vid.' ยอดเงินคงเหลือ '.$balance
                       ];
           } else {
 
@@ -2512,7 +2546,7 @@ if (!is_null($events['events'])) {
 
                           $messages = [
                             'type' => 'text',
-                            'text' => 'ปรับยอดเงินสำเร็จ'.$usernamex.'มียอดเงินคงเหลือ : '.$sum
+                            'text' => 'ปรับยอดเงินสำเร็จ'.$dname.'มียอดเงินคงเหลือ : '.$sum
                           ];
 
                         } else {
