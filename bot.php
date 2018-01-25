@@ -2262,9 +2262,16 @@ if (!is_null($events['events'])) {
 
         if(strcmp($myid,"id") == 0){
 
+          $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20balance_tks_userid='".$userID."'%20;";
+          $response = \Httpful\Request::get($uri)->send();
+          // echo $response;
+          $username = $response->body->result[$i]->cf_958;
+          $vid = $response->body->result[0]->id;
+          $balance = $response->body->result[$i]->balance_tks_balance;
+
           $messages = [
             'type' => 'text',
-            'text' =>  'ID ของคุณคือ'
+            'text' =>  $username.' ID คือ '.$vid.' ยอดเงินคงเหลือ '.$balance
           ];
 
         } else {
