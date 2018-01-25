@@ -46,6 +46,8 @@ if (!is_null($events['events'])) {
 
         $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20balance_tks_userid='".$userID."'%20;";
         $response = \Httpful\Request::get($uri)->send();
+
+        $mbalance = $response->body->result[0]->balance_tks_balance;
         $choice = $response->body->result[0]->cf_964;
         $choicebet = $response->body->result[0]->cf_956;
         $usernamex = $response->body->result[0]->cf_958;
@@ -53,6 +55,7 @@ if (!is_null($events['events'])) {
         $newchoice2 = str_replace("P", "", $newchoice);
         $newchoice3 = str_replace(" ", "", $newchoice2);
         $lenchoice = strlen($newchoice);
+        $nowbet = '';
 
         $player= strtoupper(strstr($text, '-', true));
         $money  = substr($text, (strpos($text, '-') ?: -1) + 1);
@@ -76,62 +79,108 @@ if (!is_null($events['events'])) {
                     if($gameStatus == 1) {
 
                   if($money <= 200 && $money >=20) {
-                  $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20balance_tks_userid='".$userID."'%20;";
-                  $response = \Httpful\Request::get($uri)->send();
-                  // echo $response;
-                  $username = $response->body->result[0]->cf_958;
-                  $vid = $response->body->result[0]->id;
-                  $balance = $response->body->result[0]->balance_tks_balance;
-                  $moneyx = $money*2;
+
+                              if($lentext==1){
+
+                                $money = $money*2;
+                                if($money<=$mbalance){
+                                    $nowbet = 1;
+                                }else {
+                                  $nowbet = 0;
+                                }
+
+                              }else if ($lentext==2){
+
+                                $money = $money*4;
+                                if($money<=$mbalance){
+                                    $nowbet = 1;
+                                }else {
+                                  $nowbet = 0;
+                                }
+
+                              }else if ($lentext==3){
+
+                                $money = $money*6;
+                                if($money<=$mbalance){
+                                    $nowbet = 1;
+                                }else {
+                                  $nowbet = 0;
+                                }
 
 
-                        $curl = curl_init();
+                              }else if ($lentext==4){
+                                $money = $money*8;
+                                if($money<=$mbalance){
+                                    $nowbet = 1;
+                                }else {
+                                  $nowbet = 0;
+                                }
+                              }
 
-                        curl_setopt_array($curl, array(
-                          CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
-                          CURLOPT_RETURNTRANSFER => true,
-                          CURLOPT_ENCODING => "",
-                          CURLOPT_MAXREDIRS => 10,
-                          CURLOPT_TIMEOUT => 30,
-                          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                          CURLOPT_CUSTOMREQUEST => "POST",
-                          CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n244bae35a6579977f668\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"balanceno\": \"\",\n            \"balance_tks_userid\": \"$userID\",\n            \"balance_tks_balance\": \"$balance\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-22 04:44:56\",\n            \"modifiedtime\": \"2018-01-22 09:50:55\",\n
-                            \"cf_956\": \"$money\",\n            \"cf_958\": \"$username\",\n    \"cf_970\": \"1\",\n   \"cf_966\": \"0\",\n    \"cf_968\": \"0\",\n    \"cf_960\": \"0\",\n            \"cf_964\": \"$n1 |##| $n2 |##| $n3 |##| $n4\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
-                          CURLOPT_HTTPHEADER => array(
-                            "Cache-Control: no-cache",
-                            "Postman-Token: c2bcfb7c-6bff-0d04-9232-39fdc17796d0",
-                            "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
-                          ),
-                        ));
-
-                        $response = curl_exec($curl);
-                        $err = curl_error($curl);
-
-                        curl_close($curl);
-
-                        if ($err) {
-                          echo "cURL Error #:" . $err;
-                        } else {
-
-                        }
+                              if($nowbet==1){
+                              $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20balance_tks_userid='".$userID."'%20;";
+                              $response = \Httpful\Request::get($uri)->send();
+                              // echo $response;
+                              $username = $response->body->result[0]->cf_958;
+                              $vid = $response->body->result[0]->id;
+                              $balance = $response->body->result[0]->balance_tks_balance;
+                              $moneyx = $money*2;
 
 
-                    if($lenchoice >=2)
-                    {
-                      $messages = [
-                        'type' => 'text',
-                        // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-                        'text' => '  '.$username.' เปลี่ยนแปลงการแทงจาก P'.$newchoice3.' จำนวน'.$choicebet.'->เป็น '.$player.' จำนวน'.$money
-                      ];
-                    }else {
-                      $messages = [
-                        'type' => 'text',
-                        // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-                        'text' => '  '.$username.' แทงพนันผู้เล่น '.$player.' จำนวน '.$money.'   ยอดคงเหลือปัจจุบัน(ก่อนหัก) '.$balance.'  '
-                      ];
-                    }
+                                    $curl = curl_init();
+
+                                    curl_setopt_array($curl, array(
+                                      CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                      CURLOPT_RETURNTRANSFER => true,
+                                      CURLOPT_ENCODING => "",
+                                      CURLOPT_MAXREDIRS => 10,
+                                      CURLOPT_TIMEOUT => 30,
+                                      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                      CURLOPT_CUSTOMREQUEST => "POST",
+                                      CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n244bae35a6579977f668\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"balanceno\": \"\",\n            \"balance_tks_userid\": \"$userID\",\n            \"balance_tks_balance\": \"$balance\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-22 04:44:56\",\n            \"modifiedtime\": \"2018-01-22 09:50:55\",\n
+                                        \"cf_956\": \"$money\",\n            \"cf_958\": \"$username\",\n    \"cf_970\": \"1\",\n   \"cf_966\": \"0\",\n    \"cf_968\": \"0\",\n    \"cf_960\": \"0\",\n            \"cf_964\": \"$n1 |##| $n2 |##| $n3 |##| $n4\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                      CURLOPT_HTTPHEADER => array(
+                                        "Cache-Control: no-cache",
+                                        "Postman-Token: c2bcfb7c-6bff-0d04-9232-39fdc17796d0",
+                                        "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
+                                      ),
+                                    ));
+
+                                    $response = curl_exec($curl);
+                                    $err = curl_error($curl);
+
+                                    curl_close($curl);
+
+                                    if ($err) {
+                                      echo "cURL Error #:" . $err;
+                                    } else {
+
+                                    }
 
 
+                                if($lenchoice >=2)
+                                {
+                                  $messages = [
+                                    'type' => 'text',
+                                    // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
+                                    'text' => '  '.$username.' เปลี่ยนแปลงการแทงจาก P'.$newchoice3.' จำนวน'.$choicebet.'->เป็น '.$player.' จำนวน'.$money
+                                  ];
+                                }else {
+                                  $messages = [
+                                    'type' => 'text',
+                                    // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
+                                    'text' => '  '.$username.' แทงพนันผู้เล่น '.$player.' จำนวน '.$money.'   ยอดคงเหลือปัจจุบัน(ก่อนหัก) '.$balance.'  '
+                                  ];
+                                }
+
+                      }                     //////*
+                      else if ($nowbet==0){
+                        $messages = [
+                          'type' => 'text',
+                          'text' => 'ยอดเงินไม่พอสำหรับการแทง'
+                        ];
+
+                      }
                 }  else {
                   $messages = [
                     'type' => 'text',
