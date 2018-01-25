@@ -199,6 +199,16 @@ if (!is_null($events['events'])) {
 
       else if(strtoupper($ftext) == "S"){
 
+
+        $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Games%20Where%20id%20=%20'43x539';";
+        $response = \Httpful\Request::get($uri)->send();
+
+        $adminID = $response->body->result[0]->games_tks_password;
+
+
+          if(strcmp($adminID,$userID) == 0){
+
+
         $extext = explode(",", $text);
         // echo $extext[0]; // piece1
         // echo $extext[1]; // piece2
@@ -1663,7 +1673,11 @@ if (!is_null($events['events'])) {
           'text' =>  $resultlist
         ];
 
+      }else {
+        
       }
+
+    }
 
       else if(strtoupper($ftext) == "zz"){
 
@@ -2407,6 +2421,14 @@ if (!is_null($events['events'])) {
 
       else if(strtoupper($context) == "OP"){
 
+        $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Games%20Where%20id%20=%20'43x539';";
+        $response = \Httpful\Request::get($uri)->send();
+
+        $adminID = $response->body->result[0]->games_tks_password;
+
+
+          if(strcmp($adminID,$userID) == 0){
+
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
@@ -2435,11 +2457,14 @@ if (!is_null($events['events'])) {
         } else {
           echo $response;
         }
-
         $messages = [
           'type' => 'text',
           'text' => 'กำลังเริ่มรอบแรกเตรียมตัว ...'
         ];
+      } else {
+      }
+
+
       }
 
       else if(strtoupper($context) == "PL"){
