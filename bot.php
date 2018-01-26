@@ -314,9 +314,16 @@ if (!is_null($events['events'])) {
 
       else if(strtoupper($ftext) == "S"){
 
-        $urit = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Games%20Where%20id%20=%20'43x539';";
-        $responset = \Httpful\Request::get($urit)->send();
-        $gameStatust = $responset->body->result[0]->games_tks_gameid;
+      $scheck = substr($context,1);
+
+            if (strcmp($scheck,"1") == 0 || strcmp($scheck,"2") == 0 || strcmp($scheck,"3") == 0 || strcmp($scheck,"4") == 0)
+            {
+                $scheck=1;
+            }
+            else
+            {
+            $scheck=0;
+            }
 
         $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Games%20Where%20id%20=%20'43x539';";
         $response = \Httpful\Request::get($uri)->send();
@@ -324,7 +331,7 @@ if (!is_null($events['events'])) {
         $adminID = $response->body->result[0]->games_tks_password;
 
 
-          if(strcmp($adminID,$userID) == 0 || $gameStatust ==1){
+          if(strcmp($adminID,$userID) == 0 && $scheck ==1){
 
 
         $extext = explode(",", $text);
