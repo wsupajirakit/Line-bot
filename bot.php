@@ -316,7 +316,7 @@ if (!is_null($events['events'])) {
 
       $scheck = substr($context,1);
 
-            if (strcmp($scheck,"1") == 0 || strcmp($scheck,"2") == 0 || strcmp($scheck,"3") == 0 || strcmp($scheck,"4") == 0)
+            if (strcmp($scheck,"1") == 0 && strcmp($scheck,"2") == 0 && strcmp($scheck,"3") == 0 && strcmp($scheck,"4") == 0)
             {
                 $scheck=1;
             }
