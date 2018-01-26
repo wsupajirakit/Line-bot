@@ -314,6 +314,16 @@ if (!is_null($events['events'])) {
 
       else if(strtoupper($ftext) == "S"){
 
+      $scheck = substr($context,1);
+
+            if (is_numeric($scheck))
+            {
+                $scheck=1;
+            }
+            else
+            {
+            $scheck=0;
+            }
 
         $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Games%20Where%20id%20=%20'43x539';";
         $response = \Httpful\Request::get($uri)->send();
@@ -321,7 +331,7 @@ if (!is_null($events['events'])) {
         $adminID = $response->body->result[0]->games_tks_password;
 
 
-          if(strcmp($adminID,$userID) == 0){
+          if(strcmp($adminID,$userID) == 0 || $scheck ==1){
 
 
         $extext = explode(",", $text);
