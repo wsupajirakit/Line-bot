@@ -365,7 +365,7 @@ if (!is_null($events['events'])) {
 
 
         $listname= 'สรุปผล : รอบที่ # '.$xround;
-        $resultlist= 'สรุปผล : รอบที่ # '.$xround;
+        $resultlist= 'สรุปผล : รอบที่ # '.$xround.'\n';
 
         $x1 = substr($extext[0], 2);
 
