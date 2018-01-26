@@ -330,10 +330,6 @@ if (!is_null($events['events'])) {
 
         $adminID = $response->body->result[0]->games_tks_password;
         $extext = explode(",", $text);
-        $a1 = substr($extext[0], 2);
-        $a2 = substr($extext[1], 1);
-        $a3 = substr($extext[2], 1);
-        $a4 = substr($extext[3], 1);
 
           if(strcmp($adminID,$userID) == 0 && $scheck ==1){
 
