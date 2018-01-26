@@ -329,12 +329,17 @@ if (!is_null($events['events'])) {
         $response = \Httpful\Request::get($uri)->send();
 
         $adminID = $response->body->result[0]->games_tks_password;
+        $extext = explode(",", $text);
+        $a1 = substr($extext[0], 2);
+        $a2 = substr($extext[1], 1);
+        $a3 = substr($extext[2], 1);
+        $a4 = substr($extext[3], 1);
 
 
           if(strcmp($adminID,$userID) == 0 && $scheck ==1){
 
+              if(strelen($a1)>1 && strelen($a2)>1 && strelen($a3)>1 && strelen($a4)>1) {
 
-        $extext = explode(",", $text);
         // echo $extext[0]; // piece1
         // echo $extext[1]; // piece2
         // echo $extext[2]; // piece2
@@ -1830,6 +1835,13 @@ if (!is_null($events['events'])) {
           'text' =>  $resultlist
         ];
 
+      }
+          else {
+            $messages = [
+              'type' => 'text',
+              'text' =>  "รูปแบบสรุปผลไม่ถูกต้อง"
+            ];
+          }
       }else {
 
       }
