@@ -314,15 +314,9 @@ if (!is_null($events['events'])) {
 
       else if(strtoupper($ftext) == "S"){
 
-        $extext = explode(",", $text);
-        $a1 = substr($extext[0],0,1);
-        $a2 = substr($extext[1],0,1);
-        $a3 = substr($extext[2],0,1);
-        $a4 = substr($extext[3],0,1);
+      $scheck = substr($context,1);
 
-      $scheck = '';
-
-            if (strcmp($a1,"1") == 0 && strcmp($a2,"2") == 0 && strcmp($a3,"3") == 0 && strcmp($a3,"4") == 0)
+            if (strcmp($scheck,"1"))
             {
                 $scheck=1;
             }
@@ -335,7 +329,11 @@ if (!is_null($events['events'])) {
         $response = \Httpful\Request::get($uri)->send();
 
         $adminID = $response->body->result[0]->games_tks_password;
-
+        $extext = explode(",", $text);
+        $a1 = substr($extext[0], 2);
+        $a2 = substr($extext[1], 1);
+        $a3 = substr($extext[2], 1);
+        $a4 = substr($extext[3], 1);
 
           if(strcmp($adminID,$userID) == 0 && $scheck ==1){
 
