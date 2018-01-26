@@ -60,7 +60,9 @@ if (!is_null($events['events'])) {
 
         $player= strtoupper(strstr($text, '-', true));
         $money  = substr($text, (strpos($text, '-') ?: -1) + 1);
+        $moneylen = strlen($money);
         $ix= '';
+        $tx= '';
 
         if($nn1>4){
           $ix=1;
@@ -75,8 +77,33 @@ if (!is_null($events['events'])) {
           $ix=1;
         }
 
+          if(strcmp($nn1,$nn2) == 0){
+            $tx=1;
+
+          }
+          if(strcmp($nn1,$nn3) == 0){
+            $tx=1;
+          }
+          if(strcmp($nn1,$nn4) == 0){
+            $tx=1;
+          }
+          if(strcmp($nn2,$nn3) == 0){
+            $tx=1;
+          }
+          if(strcmp($nn2,$nn4) == 0){
+            $tx=1;
+          }
+
+          if(strcmp($nn3,$nn4) == 0){
+            $tx=1;
+          }
+
+          if($moneylen >3){
+            $tx=1;
+          }
+
       if(strlen($usernamex)>0){
-            if ($ix != 1) {
+            if ($ix != 1 && $tx != 1) {
                     if($gameStatus == 1) {
 
                   if($money <= 200 && $money >=20) {
