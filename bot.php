@@ -335,10 +335,9 @@ if (!is_null($events['events'])) {
         $a3 = substr($extext[2], 1);
         $a4 = substr($extext[3], 1);
 
-
           if(strcmp($adminID,$userID) == 0 && $scheck ==1){
 
-              if(strelen($a1)>1 && strelen($a2)>1 && strelen($a3)>1 && strelen($a4)>1) {
+
 
         // echo $extext[0]; // piece1
         // echo $extext[1]; // piece2
@@ -1835,13 +1834,6 @@ if (!is_null($events['events'])) {
           'text' =>  $resultlist
         ];
 
-      }
-          else {
-            $messages = [
-              'type' => 'text',
-              'text' =>  "รูปแบบสรุปผลไม่ถูกต้อง"
-            ];
-          }
       }else {
 
       }
