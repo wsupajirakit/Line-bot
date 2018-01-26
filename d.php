@@ -60,7 +60,9 @@ if (!is_null($events['events'])) {
 
         $player= strtoupper(strstr($text, '-', true));
         $money  = substr($text, (strpos($text, '-') ?: -1) + 1);
+        $moneylen = strlen($money);
         $ix= '';
+        $tx= '';
 
         if($nn1>4){
           $ix=1;
@@ -75,8 +77,33 @@ if (!is_null($events['events'])) {
           $ix=1;
         }
 
+          if(strcmp($nn1,$nn2) == 0){
+            $tx=1;
+
+          }
+          if(strcmp($nn1,$nn3) == 0){
+            $tx=1;
+          }
+          if(strcmp($nn1,$nn4) == 0){
+            $tx=1;
+          }
+          if(strcmp($nn2,$nn3) == 0){
+            $tx=1;
+          }
+          if(strcmp($nn2,$nn4) == 0){
+            $tx=1;
+          }
+
+          if(strcmp($nn3,$nn4) == 0){
+            $tx=1;
+          }
+
+          if($moneylen >3){
+            $tx=1;
+          }
+
       if(strlen($usernamex)>0){
-            if ($ix != 1) {
+            if ($ix != 1 && $tx != 1) {
                     if($gameStatus == 1) {
 
                   if($money <= 200 && $money >=20) {
@@ -251,7 +278,7 @@ if (!is_null($events['events'])) {
                   $messages = [
                     'type' => 'text',
                     // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-                    'text' => 'แทงได้แค่ P1 - P4 เท่านั้น ต่ำสุด 20 สูงสุด 200  '
+                    'text' => 'แทงได้แค่ P1 - P4 เท่านั้น ต่ำสุด 20 สูงสุด 200  ตัวอย่าง : P1234-50 หรือ P1-200'
                   ];
 
                 }
@@ -265,7 +292,7 @@ if (!is_null($events['events'])) {
                 $messages = [
                   'type' => 'text',
                   // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-                  'text' => 'แทงได้แค่ P1 - P4 เท่านั้น ต่ำสุด 20 สูงสุด 200  '
+                  'text' => 'แทงได้แค่ P1 - P4 เท่านั้น ต่ำสุด 20 สูงสุด 200  ตัวอย่าง : P1234-50 หรือ P1-200'
                 ];
               }
             }else {
@@ -314,27 +341,17 @@ if (!is_null($events['events'])) {
 
       else if(strtoupper($ftext) == "S"){
 
-      $scheck = substr($context,1);
-
-            if (strcmp($scheck,"1") == 0 || strcmp($scheck,"2") == 0 || strcmp($scheck,"3") == 0 || strcmp($scheck,"4") == 0)
-            {
-                $scheck=1;
-            }
-            else
-            {
-            $scheck=0;
-            }
 
         $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Games%20Where%20id%20=%20'43x539';";
         $response = \Httpful\Request::get($uri)->send();
 
         $adminID = $response->body->result[0]->games_tks_password;
+
+
+          if(strcmp($adminID,$userID) == 0){
+
+
         $extext = explode(",", $text);
-
-          if(strcmp($adminID,$userID) == 0 && $scheck ==1){
-
-
-
         // echo $extext[0]; // piece1
         // echo $extext[1]; // piece2
         // echo $extext[2]; // piece2
@@ -1462,7 +1479,7 @@ if (!is_null($events['events'])) {
                 $playerbet = $item['cf_964'];
                 $newbalance = $balance;
 
-             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
+             $listname = $listname."\n\n".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
 
 
@@ -1670,7 +1687,7 @@ if (!is_null($events['events'])) {
                       if($income == 0){
                           $sum = substr($sum,1);
                         $newbalance = $balance - $sum;
-                         $resultlist = $resultlist."\n".$username." เสีย-".$sum."เหลือ".$newbalance."";
+                         $resultlist = $resultlist."\n\n".$username." เสีย-".$sum."=".$newbalance."";
                          $curl = curl_init();
                           curl_setopt_array($curl, array(
                             CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
@@ -1703,7 +1720,7 @@ if (!is_null($events['events'])) {
                       else if($sum < 0){
                           $sum = substr($sum,1);
                         $newbalance = $balance - $sum;
-                         $resultlist = $resultlist."\n".$username." เสีย-".$sum."เหลือ".$newbalance."";
+                         $resultlist = $resultlist."\n\n".$username." เสีย-".$sum."=".$newbalance."";
 
                          $curl = curl_init();
                           curl_setopt_array($curl, array(
@@ -1735,7 +1752,7 @@ if (!is_null($events['events'])) {
 
                       }else if ($sum >= 0){
                         $newbalance = $balance + $sum;
-                       $resultlist = $resultlist."\n".$username." ได้+".$sum."เหลือ".$newbalance."";
+                       $resultlist = $resultlist."\n\n".$username." ได้+".$sum."=".$newbalance."";
 
 
                        $curl = curl_init();
