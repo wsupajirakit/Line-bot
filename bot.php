@@ -67,6 +67,12 @@ if (!is_null($events['events'])) {
         $ix= '';
         $tx= '';
 
+        if(is_numeric($nn1)){
+        
+        }else {
+          $ix=1;
+        }
+
         if($nn1>4){
           $ix=1;
         }
