@@ -194,7 +194,7 @@ error_reporting(0);
                 <div class="form-group row">
                     <label for="lname" class="col-3 col-form-label">จำนวนเงินที่ต้องการลด</label>
                     <div class="col-6">
-                        <input type="number" min="0"
+                        <input type="number" min="0" max="<?php echo $balance;?>"
                                class="form-control" id="dnewbalance" name="dnewbalance" placeholder="จำนวนเงินที่ต้องการลด">
                                <input type="text"
                                       readonly
