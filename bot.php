@@ -7,9 +7,7 @@ $content = file_get_contents('php://input');
 // Parse JSON
 $events = json_decode($content, true);
 // Validate parsed JSON data
-if (!is_null($events['events'])) {
 	// Loop through each event
-	foreach ($events['events'] as $event) {
 		// Reply only when message sent is in 'text' format
 			// Get text sent
 			// $text = $event['message']['text'];
@@ -41,6 +39,6 @@ if (!is_null($events['events'])) {
 			curl_close($ch);
 
 			echo $result . "\r\n";
-	}
-}
+
+
 echo "OK";
