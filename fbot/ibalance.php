@@ -53,7 +53,7 @@ if ($err) {
       $messages = [
         'type' => 'text',
         // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-        'text' => '\uDBC0\uDC84 เติมเงินให้ '.$iname.' จำนวน'.$newbalance.' รวม'.$sum
+        'text' => '0x1000B0  0x1000B1  0x1000B2 เติมเงินให้ '.$iname.' จำนวน'.$newbalance.' รวม'.$sum
       ];
 
 
