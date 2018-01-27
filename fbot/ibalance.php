@@ -1,9 +1,11 @@
 <?php
 include('./httpful.phar');
+include('./line-bot-api/php/line-bot.php');
 //
 $vid = $_POST['iid'];
 $newbalance= $_POST['inewbalance'];
 $currentbalance= $_POST['ibalance'];
+$iname= $_POST['iname'];
 
 $sum = $newbalance+$currentbalance;
 
@@ -45,8 +47,30 @@ $err = curl_error($curl);
 if ($err) {
   echo "cURL Error #:" . $err;
 } else {
-  header("Location: fbot.php?check=1");
-  die();
+
+
+
+
+
+  $channelSecret = '56c7d7a131821a15a2f406ce300ea4eb';
+  $access_token  = 'QyHSaarki7OaukcmDqWBZJD88fJb5N4evyOobmL7QyJOPpfV9YQz+gDgIvGXVXAEU6ouir3bOeDcpShjwTOJib4P6jWHYh31pVMM2CAwUeVFq5PVGR/AHd5Ze80zm5YFBcjYGRUDqMHIDs9qSaLzLQdB04t89/1O/w1cDnyilFU=';
+
+  $bot = new BOT_API($channelSecret, $access_token);
+
+  $bot->sendMessageNew('Ccab41b434c5bffb33de6b56baa03f642', 'เติมเงินให้ '.$iname.'จำนวน '.$sum);
+
+  if ($bot->isSuccess()) {
+  	// echo 'Succeeded!';
+  	// exit();
+    //
+    header("Location: fbot.php?check=1");
+    die();
+  }
+
+  echo $bot->response->getHTTPStatus . ' ' . $bot->response->getRawBody();
+  exit();
+
+
 }
 
 

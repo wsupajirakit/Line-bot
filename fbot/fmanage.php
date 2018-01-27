@@ -177,6 +177,11 @@ error_reporting(0);
                                              readonly
                                              hidden
                                              value="<?php echo $balance;?>" class="form-control" id="ibalance" name="ibalance" placeholder="">
+                                             <input type="text"
+                                                    readonly
+                                                    hidden
+                                                    oninvalid="this.setCustomValidity('โปรดกรอกนามสกุล')"
+                                                    value="<?php echo $username;?>" class="form-control" id="iname" name="iname" placeholder="">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -206,6 +211,11 @@ error_reporting(0);
                                              readonly
                                              hidden
                                              value="<?php echo $balance;?>" class="form-control" id="dbalance" name="dbalance" placeholder="">
+                                             <input type="text"
+                                                    readonly
+                                                    hidden
+                                                    oninvalid="this.setCustomValidity('โปรดกรอกนามสกุล')"
+                                                    value="<?php echo $username;?>" class="form-control" id="dname" name="dname" placeholder="">
                     </div>
                 </div>
                 <div class="form-group row">
