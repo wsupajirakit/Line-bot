@@ -21,6 +21,8 @@ if (!is_null($events['events'])) {
 			$replyToken = $event['replyToken'];
 
 			// Build message to reply back
+      // $thirdtext = substr($text, 0, 3);
+      // $thirdtext = substr($text, 0, 3);
       $context = substr($text, 0, 2);
 			$ftext = substr($text, 0, 1);
       $sectext = strtoupper(substr($text, 0, 2));
@@ -347,11 +349,11 @@ if (!is_null($events['events'])) {
 
         $adminID = $response->body->result[0]->games_tks_password;
 
-
-          if(strcmp($adminID,$userID) == 0){
-
-
         $extext = explode(",", $text);
+          if(strcmp($adminID,$userID) == 0 && $extext[0]>1 && $extext[1]>1 && $extext[2]>1 && $extext[3]>1 ){
+
+
+
         // echo $extext[0]; // piece1
         // echo $extext[1]; // piece2
         // echo $extext[2]; // piece2
@@ -2605,10 +2607,11 @@ if (!is_null($events['events'])) {
                   					curl_close($curl);
 
 
-                          $messages = [
-                            'type' => 'text',
-                            'text' => 'ปรับยอดเงินสำเร็จ'.$dname.'มียอดเงินคงเหลือ : '.$sum
-                          ];
+                          // $messages = [
+                          //   'type' => 'text',
+                          //   'text' => 'ปรับยอดเงินสำเร็จ'.$dname.'มียอดเงินคงเหลือ : '.$sum
+                          // ];
+
 
                         } else {
 
