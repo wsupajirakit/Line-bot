@@ -167,7 +167,7 @@ error_reporting(0);
                     <label for="lname" class="col-3 col-form-label">จำนวนเงินที่ต้องการเพิ่ม</label>
                     <div class="col-6">
                         <input type="number" min="0"
-                               class="form-control" id="abalance" name="inewbalance" id="inewbalance" placeholder="จำนวนเงินที่ต้องการลด">
+                               class="form-control" id="abalance" name="inewbalance" id="inewbalance" placeholder="จำนวนเงินที่ต้องการเพิ่ม">
                                <input type="text"
                                       readonly
                                       hidden
