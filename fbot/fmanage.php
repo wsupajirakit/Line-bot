@@ -211,6 +211,7 @@ error_reporting(0);
                                              readonly
                                              hidden
                                              value="<?php echo $balance;?>" class="form-control" id="dbalance" name="dbalance" placeholder="">
+
                                              <input type="text"
                                                     readonly
                                                     hidden
