@@ -105,7 +105,7 @@ if (!is_null($events['events'])) {
           }
 
       if(strlen($usernamex)>0){
-            if ($ix != 1 && $tx != 1) {
+            if ($ix != 1) {
                     if($gameStatus == 1) {
 
                   if($money <= 200 && $money >=20) {
