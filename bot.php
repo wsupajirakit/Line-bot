@@ -62,7 +62,7 @@ if (!is_null($events['events'])) {
 
         $player= strtoupper(strstr($text, '-', true));
         $money  = substr($text, (strpos($text, '-') ?: -1) + 1);
-        $money = substr($money,3,0);
+        $money = substr($money,0,3);
         $moneylen = strlen($money);
         $ix= '';
         $tx= '';
