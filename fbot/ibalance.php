@@ -1,6 +1,6 @@
 <?php
 include('./httpful.phar');
-include('./line-bot-api/php/line-bot.php');
+include('line-bot-api/php/line-bot.php');
 //
 $vid = $_POST['iid'];
 $newbalance= $_POST['inewbalance'];
