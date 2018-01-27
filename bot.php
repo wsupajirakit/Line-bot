@@ -1,5 +1,5 @@
 <?php
-$access_token = 'QyHSaarki7OaukcmDqWBZJD88fJb5N4evyOobmL7QyJOPpfV9YQz+gDgIvGXVXAEU6ouir3bOeDcpShjwTOJib4P6jWHYh31pVMM2CAwUeVFq5PVGR/AHd5Ze80zm5YFBcjYGRUDqMHIDs9qSaLzLQdB04t89/1O/w1cDnyilFU=';
+$access_token ='QyHSaarki7OaukcmDqWBZJD88fJb5N4evyOobmL7QyJOPpfV9YQz+gDgIvGXVXAEU6ouir3bOeDcpShjwTOJib4P6jWHYh31pVMM2CAwUeVFq5PVGR/AHd5Ze80zm5YFBcjYGRUDqMHIDs9qSaLzLQdB04t89/1O/w1cDnyilFU=';
 
 
 // Get POST body content
@@ -7,17 +7,20 @@ $content = file_get_contents('php://input');
 // Parse JSON
 $events = json_decode($content, true);
 // Validate parsed JSON data
+if (!is_null($events['events'])) {
 	// Loop through each event
+	foreach ($events['events'] as $event) {
 		// Reply only when message sent is in 'text' format
+		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			// Get text sent
-			// $text = $event['message']['text'];
+			$text = $event['message']['text'];
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 
 			// Build message to reply back
 			$messages = [
 				'type' => 'text',
-				'text' => $events
+				'text' => $text
 			];
 
 			// Make a POST Request to Messaging API to reply to sender
@@ -39,6 +42,7 @@ $events = json_decode($content, true);
 			curl_close($ch);
 
 			echo $result . "\r\n";
-
-
+		}
+	}
+}
 echo "OK";
