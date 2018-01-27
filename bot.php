@@ -68,7 +68,7 @@ if (!is_null($events['events'])) {
         $tx= '';
 
         if(is_numeric($nn1)){
-        
+
         }else {
           $ix=1;
         }
@@ -89,30 +89,43 @@ if (!is_null($events['events'])) {
           $ix=1;
         }
 
-          if(strcmp($nn1,$nn2) == 0){
-            $tx=1;
+        if(substr_count($alltext,1)>1){
+          $tx=1;
+        }
+        if(substr_count($alltext,2)>1){
+          $tx=1;
+        }
+        if(substr_count($alltext,3)>1){
+          $tx=1;
+        }
+        if(substr_count($alltext,4)>1){
+          $tx=1;
+        }
 
-          }
-          if(strcmp($nn1,$nn3) == 0){
-            $tx=1;
-          }
-          if(strcmp($nn1,$nn4) == 0){
-            $tx=1;
-          }
-          if(strcmp($nn2,$nn3) == 0){
-            $tx=1;
-          }
-          if(strcmp($nn2,$nn4) == 0){
-            $tx=1;
-          }
+          // if(strcmp($nn1,$nn2) == 0){
+          //   $tx=1;
+          //
+          // }
+          // if(strcmp($nn1,$nn3) == 0){
+          //   $tx=1;
+          // }
+          // if(strcmp($nn1,$nn4) == 0){
+          //   $tx=1;
+          // }
+          // if(strcmp($nn2,$nn3) == 0){
+          //   $tx=1;
+          // }
+          // if(strcmp($nn2,$nn4) == 0){
+          //   $tx=1;
+          // }
+          //
+          // if(strcmp($nn3,$nn4) == 0){
+          //   $tx=1;
+          // }
 
-          if(strcmp($nn3,$nn4) == 0){
-            $tx=1;
-          }
-
-          if($moneylen >3){
-            $tx=1;
-          }
+          // if($moneylen >3){
+          //   $tx=1;
+          // }
 
       if(strlen($usernamex)>0){
             if ($ix != 1) {
