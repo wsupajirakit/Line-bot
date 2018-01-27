@@ -78,6 +78,9 @@ if (!is_null($events['events'])) {
         if($nn4>4){
           $ix=1;
         }
+        if(strlen($player)>5){
+          $ix=1;
+        }
 
           if(strcmp($nn1,$nn2) == 0){
             $tx=1;
