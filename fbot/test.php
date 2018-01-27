@@ -1,6 +1,6 @@
 <?php
 
-    $alltext = "1224";
+    $alltext = "12244";
 
     if(substr_count($alltext,1)>1){
       echo "fuck";
