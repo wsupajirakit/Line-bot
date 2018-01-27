@@ -8,7 +8,7 @@ $access_token  = 'QyHSaarki7OaukcmDqWBZJD88fJb5N4evyOobmL7QyJOPpfV9YQz+gDgIvGXVX
 
 $bot = new BOT_API($channelSecret, $access_token);
 
-$bot->sendMessageNew('Ccab41b434c5bffb33de6b56baa03f642', 'Hello World !!');
+$bot->sendMessageNew('Uea8f71000cb4673f4d4431dee2318edd', 'Hello World !!');
 
 if ($bot->isSuccess()) {
     echo 'Succeeded!';
