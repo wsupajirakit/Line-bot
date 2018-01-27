@@ -14,12 +14,17 @@ $body = file_get_contents("php://input");
 
 $events = $bot->parseEventRequest($body, $signature);
 
-foreach ($events as $event) {
-    if ($event instanceof \LINE\LINEBot\Event\MessageEvent\TextMessage) {
-        $reply_token = $event->getReplyToken();
-        $text = $event->getText();
-        $bot->replyMessageNew($bot->replyToken, json_encode($bot->message));
-    }
-}
+if (!empty($bot->isEvents)) {
 
-echo "OK";
+	$bot->replyMessageNew($bot->replyToken, json_encode($bot->message));
+
+	if ($bot->isSuccess()) {
+		echo 'Succeeded!';
+		exit();
+	}
+
+	// Failed
+	echo $bot->response->getHTTPStatus . ' ' . $bot->response->getRawBody();
+	exit();
+
+}
