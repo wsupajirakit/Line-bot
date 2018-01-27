@@ -14,7 +14,12 @@ $body = file_get_contents("php://input");
 
 $events = $bot->parseEventRequest($body, $signature);
 
+foreach ($events as $event) {
+        $reply_token = $event->getReplyToken();
+        // $text = $event->getText();
+        // $bot->replyText($reply_token, $text);
 
-$bot->replyText($reply_token, json_encode($bot->message));
+        $bot->replyText($reply_token, json_encode($bot->message));
+}
 
 echo "OK";
