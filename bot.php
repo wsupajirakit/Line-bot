@@ -1674,7 +1674,7 @@ if (!is_null($events['events'])) {
               } else {
 
               $data = json_decode($response,true);
-              $username =  $data['displayName'];
+              $username =  '001';
               }
 
               $vid = $itemx['id'];
