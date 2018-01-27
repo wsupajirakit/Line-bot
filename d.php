@@ -21,6 +21,8 @@ if (!is_null($events['events'])) {
 			$replyToken = $event['replyToken'];
 
 			// Build message to reply back
+      // $thirdtext = substr($text, 0, 3);
+      // $thirdtext = substr($text, 0, 3);
       $context = substr($text, 0, 2);
 			$ftext = substr($text, 0, 1);
       $sectext = strtoupper(substr($text, 0, 2));
@@ -60,9 +62,16 @@ if (!is_null($events['events'])) {
 
         $player= strtoupper(strstr($text, '-', true));
         $money  = substr($text, (strpos($text, '-') ?: -1) + 1);
+        $money = substr($money,0,3);
         $moneylen = strlen($money);
         $ix= '';
         $tx= '';
+
+        if(is_numeric($nn1)){
+
+        }else {
+          $ix=1;
+        }
 
         if($nn1>4){
           $ix=1;
@@ -76,34 +85,50 @@ if (!is_null($events['events'])) {
         if($nn4>4){
           $ix=1;
         }
+        if(strlen($player)>5){
+          $ix=1;
+        }
 
-          if(strcmp($nn1,$nn2) == 0){
-            $tx=1;
+        if(substr_count($alltext,1)>1){
+          $tx=1;
+        }
+        if(substr_count($alltext,2)>1){
+          $tx=1;
+        }
+        if(substr_count($alltext,3)>1){
+          $tx=1;
+        }
+        if(substr_count($alltext,4)>1){
+          $tx=1;
+        }
 
-          }
-          if(strcmp($nn1,$nn3) == 0){
-            $tx=1;
-          }
-          if(strcmp($nn1,$nn4) == 0){
-            $tx=1;
-          }
-          if(strcmp($nn2,$nn3) == 0){
-            $tx=1;
-          }
-          if(strcmp($nn2,$nn4) == 0){
-            $tx=1;
-          }
+          // if(strcmp($nn1,$nn2) == 0){
+          //   $tx=1;
+          //
+          // }
+          // if(strcmp($nn1,$nn3) == 0){
+          //   $tx=1;
+          // }
+          // if(strcmp($nn1,$nn4) == 0){
+          //   $tx=1;
+          // }
+          // if(strcmp($nn2,$nn3) == 0){
+          //   $tx=1;
+          // }
+          // if(strcmp($nn2,$nn4) == 0){
+          //   $tx=1;
+          // }
+          //
+          // if(strcmp($nn3,$nn4) == 0){
+          //   $tx=1;
+          // }
 
-          if(strcmp($nn3,$nn4) == 0){
-            $tx=1;
-          }
-
-          if($moneylen >3){
-            $tx=1;
-          }
+          // if($moneylen >3){
+          //   $tx=1;
+          // }
 
       if(strlen($usernamex)>0){
-            if ($ix != 1 && $tx != 1) {
+            if ($ix != 1 && $tx!=1) {
                     if($gameStatus == 1) {
 
                   if($money <= 200 && $money >=20) {
@@ -347,11 +372,11 @@ if (!is_null($events['events'])) {
 
         $adminID = $response->body->result[0]->games_tks_password;
 
-
+        $extext = explode(",", $text);
           if(strcmp($adminID,$userID) == 0){
 
 
-        $extext = explode(",", $text);
+
         // echo $extext[0]; // piece1
         // echo $extext[1]; // piece2
         // echo $extext[2]; // piece2
@@ -1698,7 +1723,7 @@ if (!is_null($events['events'])) {
                             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                             CURLOPT_CUSTOMREQUEST => "POST",
                             CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n244bae35a6579977f668\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"balanceno\": \"\",\n            \"balance_tks_userid\": \"$userID\",\n            \"balance_tks_balance\": \"$newbalance\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-22 04:44:00\",\n            \"modifiedtime\": \"2018-01-22 05:50:35\",\n
-                              \"cf_956\": \"\",\n            \"cf_958\": \"$username\",\n      \"cf_966\": \"\",\n  \"cf_964\": \"\",\n   \"cf_968\": \"\",\n    \"cf_960\": \"\",\n     \"cf_970\": \"\",\n       \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                              \"cf_956\": \"\",\n            \"cf_958\": \"001\",\n      \"cf_966\": \"\",\n  \"cf_964\": \"\",\n   \"cf_968\": \"\",\n    \"cf_960\": \"\",\n     \"cf_970\": \"\",\n       \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                             CURLOPT_HTTPHEADER => array(
                               "Cache-Control: no-cache",
                               "Postman-Token: 8cf07109-175f-5368-08c6-63279568d118",
@@ -1732,7 +1757,7 @@ if (!is_null($events['events'])) {
                             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                             CURLOPT_CUSTOMREQUEST => "POST",
                             CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n244bae35a6579977f668\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"balanceno\": \"\",\n            \"balance_tks_userid\": \"$userID\",\n            \"balance_tks_balance\": \"$newbalance\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-22 04:44:00\",\n            \"modifiedtime\": \"2018-01-22 05:50:35\",\n
-                              \"cf_956\": \"\",\n            \"cf_958\": \"$username\",\n      \"cf_966\": \"\",\n  \"cf_964\": \"\",\n   \"cf_968\": \"\",\n    \"cf_960\": \"\",\n     \"cf_970\": \"\",\n       \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                              \"cf_956\": \"\",\n            \"cf_958\": \"001\",\n      \"cf_966\": \"\",\n  \"cf_964\": \"\",\n   \"cf_968\": \"\",\n    \"cf_960\": \"\",\n     \"cf_970\": \"\",\n       \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                             CURLOPT_HTTPHEADER => array(
                               "Cache-Control: no-cache",
                               "Postman-Token: 8cf07109-175f-5368-08c6-63279568d118",
@@ -1765,7 +1790,7 @@ if (!is_null($events['events'])) {
                           CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                           CURLOPT_CUSTOMREQUEST => "POST",
                           CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n244bae35a6579977f668\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"balanceno\": \"\",\n            \"balance_tks_userid\": \"$userID\",\n            \"balance_tks_balance\": \"$newbalance\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-22 04:44:00\",\n            \"modifiedtime\": \"2018-01-22 05:50:35\",\n
-                            \"cf_956\": \"\",\n            \"cf_958\": \"$username\",\n      \"cf_966\": \"\",\n  \"cf_964\": \"\",\n   \"cf_968\": \"\",\n    \"cf_960\": \"\",\n     \"cf_970\": \"\",\n       \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                            \"cf_956\": \"\",\n            \"cf_958\": \"001\",\n      \"cf_966\": \"\",\n  \"cf_964\": \"\",\n   \"cf_968\": \"\",\n    \"cf_960\": \"\",\n     \"cf_970\": \"\",\n       \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                           CURLOPT_HTTPHEADER => array(
                             "Cache-Control: no-cache",
                             "Postman-Token: 8cf07109-175f-5368-08c6-63279568d118",
@@ -2605,10 +2630,11 @@ if (!is_null($events['events'])) {
                   					curl_close($curl);
 
 
-                          $messages = [
-                            'type' => 'text',
-                            'text' => 'ปรับยอดเงินสำเร็จ'.$dname.'มียอดเงินคงเหลือ : '.$sum
-                          ];
+                          // $messages = [
+                          //   'type' => 'text',
+                          //   'text' => 'ปรับยอดเงินสำเร็จ'.$dname.'มียอดเงินคงเหลือ : '.$sum
+                          // ];
+
 
                         } else {
 
