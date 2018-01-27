@@ -14,17 +14,7 @@ $body = file_get_contents("php://input");
 
 $events = $bot->parseEventRequest($body, $signature);
 
-if (!empty($bot->isEvents)) {
 
-	$bot->replyMessageNew($bot->replyToken, json_encode($bot->message));
+$bot->replyText($reply_token, json_encode($bot->message));
 
-	if ($bot->isSuccess()) {
-		echo 'Succeeded!';
-		exit();
-	}
-
-	// Failed
-	echo $bot->response->getHTTPStatus . ' ' . $bot->response->getRawBody();
-	exit();
-
-}
+echo "OK";
