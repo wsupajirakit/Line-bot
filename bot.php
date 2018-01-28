@@ -1712,7 +1712,7 @@ if (!is_null($events['events'])) {
                       if($income == 0){
                           $sum = substr($sum,1);
                         $newbalance = $balance - $sum;
-                         $resultlist = $resultlist."\n\n".$username." เสีย-".$sum."=".$newbalance."";
+                         $resultlist = $resultlist."\n".$username." เสีย-".$sum."=".$newbalance."";
                          $curl = curl_init();
                           curl_setopt_array($curl, array(
                             CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
@@ -1745,7 +1745,7 @@ if (!is_null($events['events'])) {
                       else if($sum < 0){
                           $sum = substr($sum,1);
                         $newbalance = $balance - $sum;
-                         $resultlist = $resultlist."\n\n".$username." เสีย-".$sum."=".$newbalance."";
+                         $resultlist = $resultlist."\n".$username." เสีย-".$sum."=".$newbalance."";
 
                          $curl = curl_init();
                           curl_setopt_array($curl, array(
@@ -1777,7 +1777,7 @@ if (!is_null($events['events'])) {
 
                       }else if ($sum >= 0){
                         $newbalance = $balance + $sum;
-                       $resultlist = $resultlist."\n\n".$username." ได้+".$sum."=".$newbalance."";
+                       $resultlist = $resultlist."\n".$username." ได้+".$sum."=".$newbalance."";
 
 
                        $curl = curl_init();
