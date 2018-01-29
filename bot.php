@@ -1893,7 +1893,7 @@ if (!is_null($events['events'])) {
       $datax = json_decode($responsex,true);
 
       foreach($datax["result"] as $itemx) {
-          $username = '';
+          $username = '001';
           $userID = $itemx['balance_tks_userid'];
           $vid = $itemx['id'];
           $balance = $itemx['balance_tks_balance'];
