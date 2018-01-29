@@ -1944,7 +1944,7 @@ if (!is_null($events['events'])) {
         $myid = substr($text,1);
         $teststr = substr($myid,0,2);
 
-        if(strcmp($myid,"id") == 0){
+        if(strcmp($teststr,"id") == 0){
 
           $dname= '';
           $curl = curl_init();
@@ -2003,7 +2003,7 @@ if (!is_null($events['events'])) {
           }
 
 
-        } else if (strcmp($myid,"ok") == 0){
+        } else if (strcmp($teststr,"ok") == 0){
 
 
           $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Games%20Where%20id%20=%20'43x539';";
