@@ -1942,6 +1942,7 @@ if (!is_null($events['events'])) {
 			else if($ftext == "@"){
 
         $myid = substr($text,1);
+        $teststr = substr($myid,0,2);
 
         if(strcmp($myid,"id") == 0){
 
@@ -2014,7 +2015,7 @@ if (!is_null($events['events'])) {
             if(strcmp($adminID,$userID) == 0){
                 $messages = [
                   'type' => 'text',
-                  'text' =>  'ทดสอบ confirm'
+                  'text' =>  'ทดสอบ confirm'.$teststr
                 ];
 
               }
