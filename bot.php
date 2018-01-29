@@ -3257,6 +3257,17 @@ if (!is_null($events['events'])) {
 
 			else if($ftext == "@"){
 
+        $uri3x = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Games%20Where%20id%20=%20'43x543';";
+        $response3x = \Httpful\Request::get($uri3x)->send();
+        // echo $response;
+        $xround = $response3x->body->result[0]->games_tks_username;
+        $xround = $xround-1;
+
+
+        $listname= 'สรุปผล : รอบที่ # '.$xround;
+        $resultlist= 'สรุปผล : รอบที่ # '.$xround;
+      
+
         $myid = substr($text,1);
         $teststr = substr($myid,0,2);
 
