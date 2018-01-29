@@ -35,17 +35,24 @@ if (!is_null($events['events'])) {
         $n2 = 'P'.substr($newtext,1,1);
         $n3 = 'P'.substr($newtext,2,1);
         $n4 = 'P'.substr($newtext,3,1);
+        $txc='';
+
+
         $nn1 = substr($newtext,0,1);
         $nn2 = substr($newtext,1,1);
         $nn3 = substr($newtext,2,1);
         $nn4 = substr($newtext,3,1);
+
+        if($nn1>=1){
+            $txc=1;
+        }
 
         $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Games%20Where%20id%20=%20'43x539';";
         $response = \Httpful\Request::get($uri)->send();
         // echo $response;
         $gameStatus = $response->body->result[0]->games_tks_gameid;
 
-      if(strtoupper($ftext) == "P"){
+      if(strtoupper($ftext) == "P" && $txc==1){
 
         $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20balance_tks_userid='".$userID."'%20;";
         $response = \Httpful\Request::get($uri)->send();
@@ -2112,14 +2119,14 @@ if (!is_null($events['events'])) {
 
       }
 
-      else if(strtoupper($context) == "WMD"){
+      else if(strtoupper($context) == "OX"){
         $messages = [
           'type' => 'text',
           'text' =>  'groupID : '.$groupID.'  userID :'.$userID
         ];
       }
 
-      else if(strtoupper($context) == "OPEN"){
+      else if(strtoupper($context) == "OP"){
 
         $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Games%20Where%20id%20=%20'43x539';";
         $response = \Httpful\Request::get($uri)->send();
