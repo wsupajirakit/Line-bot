@@ -35,17 +35,24 @@ if (!is_null($events['events'])) {
         $n2 = 'P'.substr($newtext,1,1);
         $n3 = 'P'.substr($newtext,2,1);
         $n4 = 'P'.substr($newtext,3,1);
+        $txc='';
+
+
         $nn1 = substr($newtext,0,1);
         $nn2 = substr($newtext,1,1);
         $nn3 = substr($newtext,2,1);
         $nn4 = substr($newtext,3,1);
+
+        if($nn1>=1){
+            $txc=1;
+        }
 
         $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Games%20Where%20id%20=%20'43x539';";
         $response = \Httpful\Request::get($uri)->send();
         // echo $response;
         $gameStatus = $response->body->result[0]->games_tks_gameid;
 
-      if(strtoupper($ftext) == "P"){
+      if(strtoupper($ftext) == "P" && $txc==1){
 
         $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20balance_tks_userid='".$userID."'%20;";
         $response = \Httpful\Request::get($uri)->send();
@@ -1879,58 +1886,58 @@ if (!is_null($events['events'])) {
     }
 
     else if(strtoupper($ftext) == "F"){
-      //
-      // $urix = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20cf_970=1;";
-      // $responsex = \Httpful\Request::get($urix)->send();
-      //
-      // $datax = json_decode($responsex,true);
-      //
-      // foreach($datax["result"] as $itemx) {
-      //     $username = '';
-      //     $userID = $itemx['balance_tks_userid'];
-      //     $vid = $itemx['id'];
-      //     $balance = $itemx['balance_tks_balance'];
-      //     $moneybet = $itemx['cf_956'];
-      //     $xmoneyx = $itemx['cf_960'];
-      //     $expend = 0;
-      //     $income = 0;
-      //     $playerbet = $itemx['cf_964'];
-      //
-      //
-      //     $curl = curl_init();
-      //
-      //     curl_setopt_array($curl, array(
-      //       CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
-      //       CURLOPT_RETURNTRANSFER => true,
-      //       CURLOPT_ENCODING => "",
-      //       CURLOPT_MAXREDIRS => 10,
-      //       CURLOPT_TIMEOUT => 30,
-      //       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-      //       CURLOPT_CUSTOMREQUEST => "POST",
-      //       CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n244bae35a6579977f668\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"balanceno\": \"\",\n            \"balance_tks_userid\": \"$userID\",\n            \"balance_tks_balance\": \"$balance\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-22 04:44:56\",\n            \"modifiedtime\": \"2018-01-22 09:50:55\",\n
-      //         \"cf_956\": \"$moneybet\",\n            \"cf_958\": \"$username\",\n    \"cf_970\": \"1\",\n   \"cf_966\": \"0\",\n    \"cf_968\": \"0\",\n    \"cf_960\": \"0\",\n            \"cf_964\": \"$playerbet\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
-      //       CURLOPT_HTTPHEADER => array(
-      //         "Cache-Control: no-cache",
-      //         "Postman-Token: c2bcfb7c-6bff-0d04-9232-39fdc17796d0",
-      //         "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
-      //       ),
-      //     ));
-      //
-      //     $response = curl_exec($curl);
-      //     $err = curl_error($curl);
-      //
-      //     curl_close($curl);
-      //
-      //     if ($err) {
-      //       echo "cURL Error #:" . $err;
-      //     } else {
-      //
-      //     }
-      //
-      //      curl_close($curl);
-      //
-      //
-      //   }
+
+      $urix = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20cf_970=1;";
+      $responsex = \Httpful\Request::get($urix)->send();
+
+      $datax = json_decode($responsex,true);
+
+      foreach($datax["result"] as $itemx) {
+          $username = '';
+          $userID = $itemx['balance_tks_userid'];
+          $vid = $itemx['id'];
+          $balance = $itemx['balance_tks_balance'];
+          $moneybet = $itemx['cf_956'];
+          $xmoneyx = $itemx['cf_960'];
+          $expend = 0;
+          $income = 0;
+          $playerbet = $itemx['cf_964'];
+
+
+          $curl = curl_init();
+
+          curl_setopt_array($curl, array(
+            CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n244bae35a6579977f668\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"balanceno\": \"\",\n            \"balance_tks_userid\": \"$userID\",\n            \"balance_tks_balance\": \"$balance\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-22 04:44:56\",\n            \"modifiedtime\": \"2018-01-22 09:50:55\",\n
+              \"cf_956\": \"$moneybet\",\n            \"cf_958\": \"$username\",\n    \"cf_970\": \"1\",\n   \"cf_966\": \"0\",\n    \"cf_968\": \"0\",\n    \"cf_960\": \"0\",\n            \"cf_964\": \"$playerbet\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+            CURLOPT_HTTPHEADER => array(
+              "Cache-Control: no-cache",
+              "Postman-Token: c2bcfb7c-6bff-0d04-9232-39fdc17796d0",
+              "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
+            ),
+          ));
+
+          $response = curl_exec($curl);
+          $err = curl_error($curl);
+
+          curl_close($curl);
+
+          if ($err) {
+            echo "cURL Error #:" . $err;
+          } else {
+
+          }
+
+           curl_close($curl);
+
+
+        }
 
 
 
@@ -2025,7 +2032,94 @@ if (!is_null($events['events'])) {
         }
 
 
-      } else if(strtoupper($context) == "OX"){
+      }
+      else if(strtoupper($text) == "PLAY"){
+
+        $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20balance_tks_userid='".$userID."'%20;";
+        $response = \Httpful\Request::get($uri)->send();
+        // echo $response;
+        $exid = $response->body->result[0]->balance_tks_userid;
+        if(strcmp($exid,$userID) == 0){
+          $messages = [
+            'type' => 'text',
+            'text' => 'คุณเป็นสมาชิกอยู่แล้ว'
+          ];
+        } else {
+                      $dname= '';
+                      $curl = curl_init();
+
+                      curl_setopt_array($curl, array(
+                        CURLOPT_URL => "https://api.line.me/v2/bot/group/".$groupID."/member/".$userID,
+                        CURLOPT_RETURNTRANSFER => true,
+                        CURLOPT_ENCODING => "",
+                        CURLOPT_MAXREDIRS => 10,
+                        CURLOPT_TIMEOUT => 30,
+                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                        CURLOPT_CUSTOMREQUEST => "GET",
+                        CURLOPT_HTTPHEADER => array(
+                          "authorization: Bearer QyHSaarki7OaukcmDqWBZJD88fJb5N4evyOobmL7QyJOPpfV9YQz+gDgIvGXVXAEU6ouir3bOeDcpShjwTOJib4P6jWHYh31pVMM2CAwUeVFq5PVGR/AHd5Ze80zm5YFBcjYGRUDqMHIDs9qSaLzLQdB04t89/1O/w1cDnyilFU=",
+                          "cache-control: no-cache",
+                          "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
+                        ),
+                      ));
+
+                      $response = curl_exec($curl);
+                      $err = curl_error($curl);
+
+                      curl_close($curl);
+
+                      if ($err) {
+                        echo "cURL Error #:" . $err;
+                      } else {
+                      //   echo $response;
+                      //
+                      $data = json_decode($response,true);
+                      $dname =  $data['displayName'];
+
+                                  $curl = curl_init();
+
+                                  curl_setopt_array($curl, array(
+                                    CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                    CURLOPT_RETURNTRANSFER => true,
+                                    CURLOPT_ENCODING => "",
+                                    CURLOPT_MAXREDIRS => 10,
+                                    CURLOPT_TIMEOUT => 30,
+                                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                    CURLOPT_CUSTOMREQUEST => "POST",
+                                    CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\ncreate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n41fd14e15a617f672c0fd\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"balanceno\": \"\",\n            \"balance_tks_userid\": \"$userID\",\n            \"balance_tks_balance\": \"95900\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-23 09:53:40\",\n            \"modifiedtime\": \"2018-01-23 15:15:10\",\n            \"cf_956\": \"\",\n
+                                      \"cf_958\": \"0001\",\n            \"cf_960\": \"\",\n            \"cf_964\": \"\",\n            \"cf_966\": \"\",\n            \"cf_968\": \"\",\n            \"cf_970\": \"\",\n            \"id\": \"47x540\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                    CURLOPT_HTTPHEADER => array(
+                                      "cache-control: no-cache",
+                                      "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                      "postman-token: dbaad94c-740c-257e-10b7-15c262154ba1"
+                                    ),
+                                  ));
+
+                                  $response = curl_exec($curl);
+                                  $err = curl_error($curl);
+
+                                  curl_close($curl);
+
+                                  if ($err) {
+                                    echo "cURL Error #:" . $err;
+                                  } else {
+                                    echo $response;
+
+                                    $messages = [
+                                      'type' => 'text',
+                                      'text' => 'สมัครสมาชิกสำเร็จ '.$dname
+                                    ];
+
+                                  }
+
+                      }
+
+        }
+
+
+      }
+
+      else if(strtoupper($context) == "OX"){
         $messages = [
           'type' => 'text',
           'text' =>  'groupID : '.$groupID.'  userID :'.$userID
