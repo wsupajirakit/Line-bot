@@ -2003,10 +2003,21 @@ if (!is_null($events['events'])) {
 
 
         } else if (strcmp($myid,"ok") == 0){
-          $messages = [
-            'type' => 'text',
-            'text' =>  'ทดสอบ confirm'
-          ];
+
+
+          $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Games%20Where%20id%20=%20'43x539';";
+          $response = \Httpful\Request::get($uri)->send();
+
+          $adminID = $response->body->result[0]->games_tks_password;
+
+
+            if(strcmp($adminID,$userID) == 0){
+                $messages = [
+                  'type' => 'text',
+                  'text' =>  'ทดสอบ confirm'
+                ];
+
+              }
 
         } else {
 
