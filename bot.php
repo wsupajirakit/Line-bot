@@ -3600,7 +3600,7 @@ if (!is_null($events['events'])) {
         ];
       }
 
-      else if(strtoupper($ttrdtext) == "End"){
+      else if(strtoupper($context) == "ED"){
         $messages = [
           'type' => 'text',
           'text' =>  'ทดสอบสรุปผล'
