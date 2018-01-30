@@ -1,5 +1,66 @@
+<?php
+if(isset($_POST['submit']))
+{
+  $username =  ($_POST['username']);
+  $password = ($_POST['password']);
 
-<!DOCTYPE html><html class=''>
+
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+              CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+              CURLOPT_RETURNTRANSFER => true,
+              CURLOPT_ENCODING => "",
+              CURLOPT_MAXREDIRS => 10,
+              CURLOPT_TIMEOUT => 30,
+              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+              CURLOPT_CUSTOMREQUEST => "POST",
+              CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nulogin\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"username\"\r\n\r\n$username\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"password\"\r\n\r\n$password\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+              CURLOPT_HTTPHEADER => array(
+                "cache-control: no-cache",
+                "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                "postman-token: 0487bcdc-7e96-c81f-d616-b84a68050bc5"
+              ),
+            ));
+
+            $response = curl_exec($curl);
+            $err = curl_error($curl);
+
+            curl_close($curl);
+
+            if ($err) {
+              echo "cURL Error #:" . $err;
+            } else {
+
+              $data = json_decode($response,true);
+              $success =  $data['success'];
+              $userID =  $data['result']['userId'];
+              $idendcode = base64_encode($userID);
+              if($success == 1){
+                // echo "<script>
+                // alert('Username : Password.$idendcode');
+                // </script>";
+                header( "location: fmain.php?var=$idendcode" );
+                exit(0);
+              }else{
+                echo "<script>
+                alert('Username หรือ Password ไม่ถูกต้อง');
+                </script>";
+              }
+              // echo "<script>
+              // alert('Username หรือ Password ไม่ถูกต้อง $success;');
+              // </script>";
+              //
+              //
+              // echo "<script>
+              // alert('Username หรือ Password ไม่ถูกต้อง $response;');
+              // </script>";
+            }
+
+
+}
+?>
+<!DOCTYPE html><html>
 <head><script src='//production-assets.codepen.io/assets/editor/live/console_runner-079c09a0e3b9ff743e39ee2d5637b9216b3545af0de366d4b9aad9dc87e26bfd.js'></script><script src='//production-assets.codepen.io/assets/editor/live/events_runner-73716630c22bbc8cff4bd0f07b135f00a0bdc5d14629260c3ec49e5606f98fdd.js'></script><script src='//production-assets.codepen.io/assets/editor/live/css_live_reload_init-2c0dc5167d60a5af3ee189d570b1835129687ea2a61bee3513dee3a50c115a77.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="//production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" /><link rel="mask-icon" type="" href="//production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/Lewitje/pen/BNNJjo?limit=all&page=21&q=animation" />
 
 
@@ -46,11 +107,9 @@ body :-ms-input-placeholder {
   background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
   background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
   position: absolute;
-  top: 50%;
   left: 0;
   width: 100%;
-  height: 400px;
-  margin-top: -200px;
+  height: 100%;
   overflow: hidden;
 }
 .wrapper.form-success .container h1 {
@@ -84,7 +143,7 @@ form input {
   outline: 0;
   border: 1px solid rgba(255, 255, 255, 0.4);
   background-color: rgba(255, 255, 255, 0.2);
-  width: 250px;
+  width: 400px;
   border-radius: 3px;
   padding: 10px 15px;
   margin: 0 auto 10px auto;
@@ -114,7 +173,7 @@ form button {
   padding: 10px 15px;
   color: #53e3a6;
   border-radius: 3px;
-  width: 250px;
+  width: 400px;
   cursor: pointer;
   font-size: 18px;
   -webkit-transition-duration: 0.25s;
@@ -153,8 +212,8 @@ form button:hover {
   height: 80px;
   -webkit-animation-delay: 2s;
           animation-delay: 2s;
-  -webkit-animation-duration: 17s;
-          animation-duration: 17s;
+  -webkit-animation-duration: 8s;
+          animation-duration: 8s;
 }
 .bg-bubbles li:nth-child(3) {
   left: 25%;
@@ -165,8 +224,8 @@ form button:hover {
   left: 40%;
   width: 60px;
   height: 60px;
-  -webkit-animation-duration: 22s;
-          animation-duration: 22s;
+  -webkit-animation-duration: 8s;
+          animation-duration: 8s;
   background-color: rgba(255, 255, 255, 0.25);
 }
 .bg-bubbles li:nth-child(5) {
@@ -193,8 +252,8 @@ form button:hover {
   height: 20px;
   -webkit-animation-delay: 15s;
           animation-delay: 15s;
-  -webkit-animation-duration: 40s;
-          animation-duration: 40s;
+  -webkit-animation-duration: 12s;
+          animation-duration: 12s;
 }
 .bg-bubbles li:nth-child(9) {
   left: 25%;
@@ -202,8 +261,8 @@ form button:hover {
   height: 10px;
   -webkit-animation-delay: 2s;
           animation-delay: 2s;
-  -webkit-animation-duration: 40s;
-          animation-duration: 40s;
+  -webkit-animation-duration: 15s;
+          animation-duration: 15s;
   background-color: rgba(255, 255, 255, 0.3);
 }
 .bg-bubbles li:nth-child(10) {
@@ -238,10 +297,10 @@ form button:hover {
 	<div class="container">
 		<h1>Welcome</h1>
 
-		<form class="form">
-			<input type="text" placeholder="Username">
-			<input type="password" placeholder="Password">
-			<button type="submit" id="login-button">Login</button>
+		<form class="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+			<input type="text" id="username" name="username" placeholder="Username">
+			<input type="password" id="password" name="password"placeholder="Password">
+			<button type="submit" id="submit" name="submit">Login</button>
 		</form>
 	</div>
 
