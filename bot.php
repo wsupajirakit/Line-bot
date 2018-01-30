@@ -3667,7 +3667,7 @@ if (!is_null($events['events'])) {
 
               $messages = [
                 'type' => 'text',
-                'text' =>  "ทดสอบสรุปผล ณ เวลา".date("h:i:sa")."\nรายรับ : ".$allincome."\nรายจ่าย : ".$allexpend
+                'text' =>  "ทดสอบสรุปผล ณ เวลา ".date("Y-m-d H:i:s")."\nรายรับ : ".$allincome."\nรายจ่าย : ".$allexpend
               ];
             } else {
 
