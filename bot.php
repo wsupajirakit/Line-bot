@@ -3654,9 +3654,19 @@ if (!is_null($events['events'])) {
 
 
           if(strcmp($adminID,$userID) == 0){
+
+            $urit = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Games%20Where%20id%20=%2743x613%27;";
+            $responset = \Httpful\Request::get($urit)->send();
+
+          //รายรับจ้าวมือ
+            $allincome = $response->body->result[0]->cf_972;
+          //รายจ่ายจ้าวมือ
+            $allexpend = $response->body->result[0]->cf_974;
+
+
               $messages = [
                 'type' => 'text',
-                'text' =>  'ทดสอบสรุปผล'
+                'text' =>  'ทดสอบสรุปผล \n รายรับ :'.$allincome.'  รายจ่าย :'.$allexpend
               ];
             } else {
 
