@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('Asia/Bangkok');
   include('./httpful.phar');
 $access_token =
 'QyHSaarki7OaukcmDqWBZJD88fJb5N4evyOobmL7QyJOPpfV9YQz+gDgIvGXVXAEU6ouir3bOeDcpShjwTOJib4P6jWHYh31pVMM2CAwUeVFq5PVGR/AHd5Ze80zm5YFBcjYGRUDqMHIDs9qSaLzLQdB04t89/1O/w1cDnyilFU=';
@@ -3666,7 +3667,7 @@ if (!is_null($events['events'])) {
 
               $messages = [
                 'type' => 'text',
-                'text' =>  "ทดสอบสรุปผล ณ เวลา".date("h:i:sa")."\n รายรับ : ".$allincome."\nรายจ่าย : ".$allexpend
+                'text' =>  "ทดสอบสรุปผล ณ เวลา".date("h:i:sa")."\nรายรับ : ".$allincome."\nรายจ่าย : ".$allexpend
               ];
             } else {
 
