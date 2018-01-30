@@ -25,6 +25,7 @@ if (!is_null($events['events'])) {
       // $thirdtext = substr($text, 0, 3);
       // $thirdtext = substr($text, 0, 3);
       $context = substr($text, 0, 2);
+      $ttrdtext = substr($text, 0, 3);
 			$ftext = substr($text, 0, 1);
       $sectext = strtoupper(substr($text, 0, 2));
       $alltext= strtoupper(strstr($text, '-', true));
@@ -3266,7 +3267,7 @@ if (!is_null($events['events'])) {
 
         $listname= 'สรุปผล : รอบที่ # '.$xround;
         $resultlist= 'สรุปผล : รอบที่ # '.$xround;
-      
+
 
         $myid = substr($text,1);
         $teststr = substr($myid,0,2);
@@ -3599,6 +3600,12 @@ if (!is_null($events['events'])) {
         ];
       }
 
+      else if(strtoupper($ttrdtext) == "End"){
+        $messages = [
+          'type' => 'text',
+          'text' =>  'ทดสอบสรุปผล'
+        ];
+      }
       else if(strtoupper($context) == "OP"){
 
         $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Games%20Where%20id%20=%20'43x539';";
