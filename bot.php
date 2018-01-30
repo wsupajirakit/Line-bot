@@ -3398,8 +3398,8 @@ if (!is_null($events['events'])) {
                   $allincome = $response->body->result[0]->cf_972;
                   $allexpend = $response->body->result[0]->cf_974;
 
-                  $newincome = $allincome+$income;
-                  $newexpend = $allexpend+$expend;
+                  $newincome = $allincome+$expend;
+                  $newexpend = $allexpend+$income;
 
 
                   $curl = curl_init();
@@ -3413,7 +3413,7 @@ if (!is_null($events['events'])) {
                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                     CURLOPT_CUSTOMREQUEST => "POST",
                     CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n5e5efce15a70108c9e59f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"gamesno\": \"\",\n            \"games_tks_username\": \"000\",\n            \"games_tks_password\": \"x\",\n            \"games_tks_gamename\": \"000\",\n            \"games_tks_gameid\": \"000\",\n            \"games_tks_status\": \"0\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-30 08:56:35\",\n            \"modifiedtime\": \"2018-01-30 08:56:35\",\n            \"cf_948\": \"\",\n
-                      \"cf_972\": \"$newexpend\",\n            \"cf_974\": \"$newincome\",\n            \"id\": \"43x613\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                      \"cf_972\": \"$newincome\",\n            \"cf_974\": \"$newexpend\",\n            \"id\": \"43x613\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                     CURLOPT_HTTPHEADER => array(
                       "cache-control: no-cache",
                       "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
