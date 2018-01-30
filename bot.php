@@ -3392,13 +3392,16 @@ if (!is_null($events['events'])) {
                   $playerbet = $itemx['cf_964'];
                   // เริ่ม
 
-                  $urit = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Games%20Where%20id%20=%20'43x613';";
+                  $urit = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Games%20Where%20id%20=%2743x613%27;";
                   $responset = \Httpful\Request::get($urit)->send();
 
+                //รายรับจ้าวมือ
                   $allincome = $response->body->result[0]->cf_972;
+                //รายจ่ายจ้าวมือ
                   $allexpend = $response->body->result[0]->cf_974;
-
+                    //รายรับจ้าวมือ = รายจ่ายของผู้เล่น
                   $newincome = $allincome+$expend;
+                  //รายรับจ้าวมือ = รายรับของผู้เล่น
                   $newexpend = $allexpend+$income;
 
 
