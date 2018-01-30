@@ -3396,9 +3396,9 @@ if (!is_null($events['events'])) {
                   $responset = \Httpful\Request::get($urit)->send();
 
                 //รายรับจ้าวมือ
-                  $allincome = $response->body->result[0]->cf_972;
+                  $allincome = $responset->body->result[0]->cf_972;
                 //รายจ่ายจ้าวมือ
-                  $allexpend = $response->body->result[0]->cf_974;
+                  $allexpend = $responset->body->result[0]->cf_974;
                     //รายรับจ้าวมือ = รายจ่ายของผู้เล่น
                   $newincome = $allincome+$expend;
                   //รายรับจ้าวมือ = รายรับของผู้เล่น
@@ -3659,14 +3659,14 @@ if (!is_null($events['events'])) {
             $responset = \Httpful\Request::get($urit)->send();
 
           //รายรับจ้าวมือ
-            $allincome = $response->body->result[0]->cf_972;
+            $allincome = $responset->body->result[0]->cf_972;
           //รายจ่ายจ้าวมือ
-            $allexpend = $response->body->result[0]->cf_974;
+            $allexpend = $responset->body->result[0]->cf_974;
 
 
               $messages = [
                 'type' => 'text',
-                'text' =>  'ทดสอบสรุปผล \n รายรับ :'.$allincome.'  รายจ่าย :'.$allexpend
+                'text' =>  "ทดสอบสรุปผล \n รายรับ : ".$allincome."\nรายจ่าย : ".$allexpend
               ];
             } else {
 
