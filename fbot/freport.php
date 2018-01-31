@@ -3,7 +3,7 @@
     $check = $_GET['check'];
       $curl = curl_init();
       curl_setopt_array($curl, array(
-        CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%3B",
+        CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=3ff2d70b5a716b68b7a3c&query=select%20*%20from%20Activitylog;",
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => "",
         CURLOPT_MAXREDIRS => 10,
@@ -162,9 +162,9 @@
          <thead>
            <tr>
              <th class="text-center">ชื่อ</th>
-             <th class="text-center">ID</th>
-             <th class="text-center">ยอดเงินคงเหลือ</th>
-             <th class="text-center">จัดการ</th>
+             <th class="text-center">ประเภทรายการ</th>
+             <th class="text-center">ยอดเงิน</th>
+             <th class="text-center">วัน-เวลา</th>
            </tr>
          </thead>
          <tbody>
@@ -176,7 +176,7 @@
           <?php
 
           foreach($data["result"] as $item) { //foreach element in $arr
-            $userID = $item['balance_tks_userid'];
+            $userID = $item['activitylog_tks_userid'];
             $username= '';
             $curl = curl_init();
 
@@ -208,15 +208,34 @@
                     $username =  $data['displayName'];
                     }
 
-
-
+                    $deposit  = $item['activitylog_tks_deposit'];
+                    $withdraw = $item['activitylog_tks_withdraw'];
                     ?>
 
                     <tr>
                       <td class="text-center"><?php echo $username; ?></td>
-                      <td class="text-center"><?php echo $item['id']; ?></td>
-                      <td class="text-center"><?php echo $item['balance_tks_balance']; ?></td>
-                      <td class="text-center"><a href="fmanage.php?var=<?php echo $item['id']; ?>&var2=<?php echo $username; ?>&var3=<?php echo $item['balance_tks_balance'];?>" class="btn btn-primary" role="button">จัดการข้อมูล</a></td>
+                      <td class="text-center"><?php
+
+                      if($deposit>0){
+                        echo "ฝาก";
+                      }
+
+                      if($withdraw>0){
+                        echo "ถอน";
+                      }
+                      ?></td>
+                      <td class="text-center"><?php
+
+                      if($deposit>0){
+                        echo $item['activitylog_tks_deposit'];
+                      }
+
+                      if($withdraw>0){
+                        echo $item['activitylog_tks_withdraw'];
+                      }
+
+                      ?></td>
+                      <td class="text-center"><?php echo $item['activitylog_tks_datetime']; ?></td>
                     </tr>
 
                <?php
@@ -244,6 +263,7 @@
             }
           }
           </script>
+
         </div>
 
 

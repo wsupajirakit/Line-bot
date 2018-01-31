@@ -175,8 +175,10 @@ body::-webkit-scrollbar-thumb{
 	</div>
 
 	<div class="item tm4">
-		<img src="https://img3.goodfon.com/wallpaper/big/5/f8/poker-poker-karty-tuzy-fishki.jpg">
-		<p>Game #10</p>
+    <a target="_blank"  href="freport.php">
+		<img src="http://chengco.com.my/wp/wp-content/uploads/2017/12/finance-2837085_640.png">
+  </a>
+		<p>รายงาน Report</p>
 	</div>
 	</div>
 </div>
