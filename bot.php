@@ -344,7 +344,7 @@ if (!is_null($events['events'])) {
 
                         $messages = [
                           'type' => 'text',
-                          'text' => $username.' ยอดเงินไม่พอสำหรับการแทง กรุณาเติมเงิน ยอดคงเหลือปัจจุบัน : '.$$xbalance
+                          'text' => $username.' ยอดเงินไม่พอสำหรับการแทง กรุณาเติมเงิน ยอดคงเหลือปัจจุบัน : '.$xbalance
                         ];
 
                       }
