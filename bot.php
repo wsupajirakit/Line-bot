@@ -344,7 +344,7 @@ if (!is_null($events['events'])) {
 
                         $messages = [
                           'type' => 'text',
-                          'text' => $username.' ยอดเงินไม่พอสำหรับการแทง กรุณาเติมเงิน ยอดคงเหลือปัจจุบัน : '.$xbalance
+                          'text' => $username.' ยอดเงินคงเหลือ '.$xbalance.' ไม่พอสำหรับการแทง กรุณาเติมเงินด้วยคะ'
                         ];
 
                       }
@@ -3476,7 +3476,7 @@ if (!is_null($events['events'])) {
                                               if($income == 0 && $expend >=1){
                                                   $sum = substr($sum,1);
                                                 $newbalance = $balance - $sum;
-                                                 $resultlist = $resultlist."\n".$username." เสีย-".$sum."=".$newbalance."";
+                                                 $resultlist = $resultlist."\n".$username." -".$sum."=".$newbalance."";
                                                  $curl = curl_init();
                                                   curl_setopt_array($curl, array(
                                                     CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
@@ -3509,7 +3509,7 @@ if (!is_null($events['events'])) {
                                               else if($sum < 0){
                                                   $sum = substr($sum,1);
                                                 $newbalance = $balance - $sum;
-                                                 $resultlist = $resultlist."\n".$username." เสีย-".$sum."=".$newbalance."";
+                                                 $resultlist = $resultlist."\n".$username." -".$sum."=".$newbalance."";
 
                                                  $curl = curl_init();
                                                   curl_setopt_array($curl, array(
@@ -3541,7 +3541,7 @@ if (!is_null($events['events'])) {
 
                                               }else if ($sum >= 0){
                                                 $newbalance = $balance + $sum;
-                                               $resultlist = $resultlist."\n".$username." ได้+".$sum."=".$newbalance."";
+                                               $resultlist = $resultlist."\n".$username." +".$sum."=".$newbalance."";
 
 
                                                $curl = curl_init();
