@@ -304,6 +304,13 @@ if (!is_null($events['events'])) {
                       }                     //////*
                       else if ($nowbet==0){
 
+                        $xbalance=0;
+
+                        $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20balance_tks_userid='".$userID."'%20;";
+                        $response = \Httpful\Request::get($uri)->send();
+                        // echo $response;
+                        $xbalance = $response->body->result[0]->balance_tks_balance;
+
                         $dname= '';
                         $curl = curl_init();
 
@@ -337,7 +344,7 @@ if (!is_null($events['events'])) {
 
                         $messages = [
                           'type' => 'text',
-                          'text' => $username.' ยอดเงินไม่พอสำหรับการแทง'
+                          'text' => $username.' ยอดเงินไม่พอสำหรับการแทง ยอดคงเหลือปัจจุบัน : '.$$xbalance
                         ];
 
                       }
