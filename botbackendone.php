@@ -3665,7 +3665,7 @@ if (!is_null($events['events'])) {
       $gameStatus = $response->body->result[0]->bgame_tks_gamestatus;
       $allincome = $response->body->result[0]->bgame_tks_allincome;
       $allexpend = $response->body->result[0]->bgame_tks_allexpend;
-      $cround = $response3x->body->result[0]->bgame_tks_round;
+      $cround = $response->body->result[0]->bgame_tks_round;
 
 
         if(strcmp($adminID,$userID) == 0){
