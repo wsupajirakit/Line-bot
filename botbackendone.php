@@ -1784,7 +1784,7 @@ if (!is_null($events['events'])) {
         $response = \Httpful\Request::get($uri)->send();
 
         $adminID = $response->body->result[0]->bgame_tks_adminid;
-        $xround = $response3x->body->result[0]->bgame_tks_round;
+        $xround = $response->body->result[0]->bgame_tks_round;
         $extext = explode(",", $text);
           if(strcmp($adminID,$userID) == 0){
         // echo $extext[0]; // piece1
