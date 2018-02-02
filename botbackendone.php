@@ -3093,7 +3093,6 @@ if (!is_null($events['events'])) {
         $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x3';";
         $response = \Httpful\Request::get($uri)->send();
         $xround = $response3x->body->result[0]->bgame_tks_round;
-        $xround = $xround-1;
 
 
         $listname= 'สรุปผล : รอบที่ # '.$xround;
