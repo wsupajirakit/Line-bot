@@ -5,7 +5,7 @@ $access_token =
 'kr0/dRJjngoA6G+CdO94xUaR+SqEZia6jBbCUwA7yTQN1Wf/1fPhOuG5JyCQYsEKZTuvzSgamawjblXWaKBxIQQfGBE+J6vZDO14WrIA09wYh0iWl3isYfGlwUwb7dIWLmNC6HX/lPvg8cEUr2Vz/gdB04t89/1O/w1cDnyilFU=';
 
 $sidname='70abafee5a74367f7bd78';
-$vturl='http://redfoxdev.com/backend2/'';
+$vturl='http://redfoxdev.com/backend2/';
 // Get POST body content
 $content = file_get_contents('php://input');
 // Parse JSON
