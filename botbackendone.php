@@ -195,7 +195,7 @@ if (!is_null($events['events'])) {
                               $curl = curl_init();
 
                               curl_setopt_array($curl, array(
-                                CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+                                CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                                 CURLOPT_RETURNTRANSFER => true,
                                 CURLOPT_ENCODING => "",
                                 CURLOPT_MAXREDIRS => 10,
@@ -476,7 +476,7 @@ if (!is_null($events['events'])) {
                 $curl = curl_init();
 
                 curl_setopt_array($curl, array(
-                  CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+                  CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                   CURLOPT_RETURNTRANSFER => true,
                   CURLOPT_ENCODING => "",
                   CURLOPT_MAXREDIRS => 10,
@@ -540,7 +540,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -606,7 +606,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -671,7 +671,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -736,7 +736,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -800,7 +800,7 @@ if (!is_null($events['events'])) {
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-              CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+              CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
               CURLOPT_RETURNTRANSFER => true,
               CURLOPT_ENCODING => "",
               CURLOPT_MAXREDIRS => 10,
@@ -867,7 +867,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -930,7 +930,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -995,7 +995,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -1058,7 +1058,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -1126,7 +1126,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -1189,7 +1189,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -1251,7 +1251,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -1310,7 +1310,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -1372,7 +1372,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -1437,7 +1437,7 @@ if (!is_null($events['events'])) {
                         $curl = curl_init();
 
                         curl_setopt_array($curl, array(
-                          CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+                          CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                           CURLOPT_RETURNTRANSFER => true,
                           CURLOPT_ENCODING => "",
                           CURLOPT_MAXREDIRS => 10,
@@ -1498,7 +1498,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -1558,7 +1558,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -1619,7 +1619,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -1679,7 +1679,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -1745,7 +1745,7 @@ if (!is_null($events['events'])) {
           $curl = curl_init();
 
           curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+            CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -1835,7 +1835,7 @@ if (!is_null($events['events'])) {
                 $curl = curl_init();
 
                 curl_setopt_array($curl, array(
-                  CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+                  CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                   CURLOPT_RETURNTRANSFER => true,
                   CURLOPT_ENCODING => "",
                   CURLOPT_MAXREDIRS => 10,
@@ -1899,7 +1899,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -1965,7 +1965,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -2030,7 +2030,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -2095,7 +2095,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -2159,7 +2159,7 @@ if (!is_null($events['events'])) {
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-              CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+              CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
               CURLOPT_RETURNTRANSFER => true,
               CURLOPT_ENCODING => "",
               CURLOPT_MAXREDIRS => 10,
@@ -2226,7 +2226,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -2289,7 +2289,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -2354,7 +2354,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -2417,7 +2417,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -2485,7 +2485,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -2548,7 +2548,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -2610,7 +2610,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -2669,7 +2669,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -2731,7 +2731,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -2796,7 +2796,7 @@ if (!is_null($events['events'])) {
                         $curl = curl_init();
 
                         curl_setopt_array($curl, array(
-                          CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+                          CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                           CURLOPT_RETURNTRANSFER => true,
                           CURLOPT_ENCODING => "",
                           CURLOPT_MAXREDIRS => 10,
@@ -2857,7 +2857,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -2917,7 +2917,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -2978,7 +2978,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -3038,7 +3038,7 @@ if (!is_null($events['events'])) {
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -3243,7 +3243,7 @@ if (!is_null($events['events'])) {
                   $curl = curl_init();
 
                   curl_setopt_array($curl, array(
-                    CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+                    CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                     CURLOPT_RETURNTRANSFER => true,
                     CURLOPT_ENCODING => "",
                     CURLOPT_MAXREDIRS => 10,
@@ -3279,7 +3279,7 @@ if (!is_null($events['events'])) {
                                                $curl = curl_init();
 
                                                curl_setopt_array($curl, array(
-                                                 CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+                                                 CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                                                  CURLOPT_RETURNTRANSFER => true,
                                                  CURLOPT_ENCODING => "",
                                                  CURLOPT_MAXREDIRS => 10,
@@ -3318,7 +3318,7 @@ if (!is_null($events['events'])) {
                        $curl = curl_init();
 
                        curl_setopt_array($curl, array(
-                         CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+                         CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                          CURLOPT_RETURNTRANSFER => true,
                          CURLOPT_ENCODING => "",
                          CURLOPT_MAXREDIRS => 10,
@@ -3354,7 +3354,7 @@ if (!is_null($events['events'])) {
                      $curl = curl_init();
 
                      curl_setopt_array($curl, array(
-                       CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+                       CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                        CURLOPT_RETURNTRANSFER => true,
                        CURLOPT_ENCODING => "",
                        CURLOPT_MAXREDIRS => 10,
@@ -3533,7 +3533,7 @@ if (!is_null($events['events'])) {
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-              CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+              CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
               CURLOPT_RETURNTRANSFER => true,
               CURLOPT_ENCODING => "",
               CURLOPT_MAXREDIRS => 10,
@@ -3676,7 +3676,7 @@ if (!is_null($events['events'])) {
                     $curl = curl_init();
 
                     curl_setopt_array($curl, array(
-                      CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+                      CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                       CURLOPT_RETURNTRANSFER => true,
                       CURLOPT_ENCODING => "",
                       CURLOPT_MAXREDIRS => 10,
@@ -3717,7 +3717,7 @@ if (!is_null($events['events'])) {
                     $curl = curl_init();
 
                     curl_setopt_array($curl, array(
-                      CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+                      CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                       CURLOPT_RETURNTRANSFER => true,
                       CURLOPT_ENCODING => "",
                       CURLOPT_MAXREDIRS => 10,
