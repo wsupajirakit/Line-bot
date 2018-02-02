@@ -3595,7 +3595,7 @@ if (!is_null($events['events'])) {
       }
       else if(strtoupper($text) == "PLAY"){
 
-        $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20balance_tks_userid='".$userID."'%20;";
+        $uri = "http://202.44.54.97/crm/webservice.php?operation=query&sessionName=47b77eae5a73f6aa08831&query=select%20*%20from%20Bmember%20where%20bmember_tks_userid='".$userID."';";
         $response = \Httpful\Request::get($uri)->send();
         // echo $response;
         $exid = $response->body->result[0]->balance_tks_userid;
@@ -3606,6 +3606,7 @@ if (!is_null($events['events'])) {
           ];
         } else {
                       $dname= '';
+
                       $curl = curl_init();
 
                       curl_setopt_array($curl, array(
@@ -3636,41 +3637,40 @@ if (!is_null($events['events'])) {
                       $data = json_decode($response,true);
                       $dname =  $data['displayName'];
 
-                                  $curl = curl_init();
 
-                                  curl_setopt_array($curl, array(
-                                    CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
-                                    CURLOPT_RETURNTRANSFER => true,
-                                    CURLOPT_ENCODING => "",
-                                    CURLOPT_MAXREDIRS => 10,
-                                    CURLOPT_TIMEOUT => 30,
-                                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                                    CURLOPT_CUSTOMREQUEST => "POST",
-                                    CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\ncreate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n41fd14e15a617f672c0fd\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"balanceno\": \"\",\n            \"balance_tks_userid\": \"$userID\",\n            \"balance_tks_balance\": \"0\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-23 09:53:40\",\n            \"modifiedtime\": \"2018-01-23 15:15:10\",\n            \"cf_956\": \"\",\n
-                                      \"cf_958\": \"0001\",\n            \"cf_960\": \"\",\n            \"cf_964\": \"\",\n            \"cf_966\": \"\",\n            \"cf_968\": \"\",\n            \"cf_970\": \"\",\n            \"id\": \"47x540\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
-                                    CURLOPT_HTTPHEADER => array(
-                                      "cache-control: no-cache",
-                                      "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
-                                      "postman-token: dbaad94c-740c-257e-10b7-15c262154ba1"
-                                    ),
-                                  ));
+                                            $curl = curl_init();
 
-                                  $response = curl_exec($curl);
-                                  $err = curl_error($curl);
+                                            curl_setopt_array($curl, array(
+                                              CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
+                                              CURLOPT_RETURNTRANSFER => true,
+                                              CURLOPT_ENCODING => "",
+                                              CURLOPT_MAXREDIRS => 10,
+                                              CURLOPT_TIMEOUT => 30,
+                                              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                              CURLOPT_CUSTOMREQUEST => "POST",
+                                              CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\ncreate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n47b77eae5a73f6aa08831\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bmemberno\": \"\",\n            \"bmember_tks_userid\": \"$userID\",\n            \"bmember_tks_balance\": \"0\",\n            \"bmember_tks_bet\": \"\",\n            \"bmember_tks_username\": \"001\",\n            \"bmember_tks_player\": \"\",\n            \"bmember_tks_playerbet\": \"\",\n            \"bmember_tks_expend\": \"\",\n            \"bmember_tks_income\": \"\",\n            \"bmember_tks_status\": \"\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 05:25:21\",\n            \"modifiedtime\": \"2018-02-02 07:09:13\",\n            \"id\": \"40x327\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                              CURLOPT_HTTPHEADER => array(
+                                                "cache-control: no-cache",
+                                                "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                                "postman-token: e8bdbcff-7ec2-4d41-e8bc-f6862c2833d0"
+                                              ),
+                                            ));
 
-                                  curl_close($curl);
+                                            $response = curl_exec($curl);
+                                            $err = curl_error($curl);
 
-                                  if ($err) {
-                                    echo "cURL Error #:" . $err;
-                                  } else {
-                                    echo $response;
+                                            curl_close($curl);
 
-                                    $messages = [
-                                      'type' => 'text',
-                                      'text' => 'สมัครสมาชิกสำเร็จ '.$dname
-                                    ];
+                                            if ($err) {
+                                              echo "cURL Error #:" . $err;
+                                            } else {
+                                              echo $response;
 
-                                  }
+                                              $messages = [
+                                                'type' => 'text',
+                                                'text' => 'สมัครสมาชิกสำเร็จ '.$dname
+                                              ];
+                                            }
 
                       }
 
