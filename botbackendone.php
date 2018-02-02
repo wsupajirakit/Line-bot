@@ -3595,10 +3595,36 @@ if (!is_null($events['events'])) {
       }
       else if(strtoupper($text) == "PLAY"){
 
-        $uri = "http://202.44.54.97/crm/webservice.php?operation=query&sessionName=47b77eae5a73f6aa08831&query=select%20*%20from%20Bmember%20where%20bmember_tks_userid='Ufbed5744c4fba282b72165ea40925abe';";
-        $response = \Httpful\Request::get($uri)->send();
-        // echo $response;
-        $exid = $response->body->result[0]->bmember_tks_userid;
+        $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+              CURLOPT_URL => "http://202.44.54.97/crm/webservice.php?operation=query&sessionName=47b77eae5a73f6aa08831&query=select%20*%20from%20Bmember%20where%20bmember_tks_userid%3D'Ufbed5744c4fba282b72165ea40925abe'%3B",
+              CURLOPT_RETURNTRANSFER => true,
+              CURLOPT_ENCODING => "",
+              CURLOPT_MAXREDIRS => 10,
+              CURLOPT_TIMEOUT => 30,
+              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+              CURLOPT_CUSTOMREQUEST => "GET",
+              CURLOPT_HTTPHEADER => array(
+                "authorization: Bearer kr0/dRJjngoA6G+CdO94xUaR+SqEZia6jBbCUwA7yTQN1Wf/1fPhOuG5JyCQYsEKZTuvzSgamawjblXWaKBxIQQfGBE+J6vZDO14WrIA09wYh0iWl3isYfGlwUwb7dIWLmNC6HX/lPvg8cEUr2Vz/gdB04t89/1O/w1cDnyilFU=",
+                "cache-control: no-cache",
+                "postman-token: f1cdf1c8-5f67-c019-fe77-77e3a494aa20"
+              ),
+            ));
+
+            $response = curl_exec($curl);
+            $err = curl_error($curl);
+
+            curl_close($curl);
+
+            if ($err) {
+              echo "cURL Error #:" . $err;
+            } else {
+              $data = json_decode($response,true);
+                  $exid =  $data['result']['bmember_tks_userid'];
+            }
+
+
         if(strcmp($exid,$userID) == 0){
           $messages = [
             'type' => 'text',
