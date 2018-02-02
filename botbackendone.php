@@ -66,7 +66,7 @@ if (!is_null($events['events'])) {
         $mbalance = $response->body->result[0]->bmember_tks_balance;
         $choice = $response->body->result[0]->bmember_tks_playerbet;
         $choicebet = $response->body->result[0]->bmember_tks_bet;
-        $usernamex = $response->body->result[0]->bmember_tks_username;
+        $usernamex = $response->body->result[0]->bmember_tks_userid;
         $newchoice = str_replace("|##|", "", $choice);
         $newchoice2 = str_replace("P", "", $newchoice);
         $newchoice3 = str_replace(" ", "", $newchoice2);
