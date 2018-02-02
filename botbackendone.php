@@ -58,14 +58,14 @@ if (!is_null($events['events'])) {
             $txc=1;
         }
 
-        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='41x328';";
+        $uri = "http://202.44.54.97/crm/webservice.php?operation=query&sessionName=47b77eae5a73f6aa08831&query=select%20*%20from%20Bgame%20Where%20id%20='41x328';";
         $response = \Httpful\Request::get($uri)->send();
         // echo $response;
         $gameStatus = $response->body->result[0]->bgame_tks_gamestatus;
 
         if(strtoupper($ftext) == "P" && $txc==1){
 
-          $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20where%20bmember_tks_userid='".$userID."';";
+          $uri = "http://202.44.54.97/crm/webservice.php?operation=query&sessionName=47b77eae5a73f6aa08831&query=select%20*%20from%20Bmember%20where%20bmember_tks_userid='".$userID."';";
           $response = \Httpful\Request::get($uri)->send();
 
           $mbalance = $response->body->result[0]->bmember_tks_balance;
@@ -165,7 +165,7 @@ if (!is_null($events['events'])) {
                                 }
 
                                 if($nowbet==1){
-                                $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20where%20bmember_tks_userid='".$userID."';";
+                                $uri = "http://202.44.54.97/crm/webservice.php?operation=query&sessionName=47b77eae5a73f6aa08831&query=select%20*%20from%20Bmember%20where%20bmember_tks_userid='".$userID."';";
                                 $response = \Httpful\Request::get($uri)->send();
                                 // echo $response;
                                 $username = $response->body->result[0]->bmember_tks_username;
@@ -290,7 +290,7 @@ if (!is_null($events['events'])) {
 
                           $xbalance=0;
 
-                          $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20where%20bmember_tks_userid='".$userID."';";
+                          $uri = "http://202.44.54.97/crm/webservice.php?operation=query&sessionName=47b77eae5a73f6aa08831&query=select%20*%20from%20Bmember%20where%20bmember_tks_userid='".$userID."';";
                           $response = \Httpful\Request::get($uri)->send();
                           // echo $response;
                           $xbalance = $response->body->result[0]->bmember_tks_balance;
