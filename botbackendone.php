@@ -3605,75 +3605,11 @@ if (!is_null($events['events'])) {
             'text' => 'คุณเป็นสมาชิกอยู่แล้ว'
           ];
         } else {
-                      $dname= '';
 
-                      $curl = curl_init();
-
-                      curl_setopt_array($curl, array(
-                        CURLOPT_URL => "https://api.line.me/v2/bot/group/".$groupID."/member/".$userID,
-                        CURLOPT_RETURNTRANSFER => true,
-                        CURLOPT_ENCODING => "",
-                        CURLOPT_MAXREDIRS => 10,
-                        CURLOPT_TIMEOUT => 30,
-                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                        CURLOPT_CUSTOMREQUEST => "GET",
-                        CURLOPT_HTTPHEADER => array(
-                          "authorization: Bearer kr0/dRJjngoA6G+CdO94xUaR+SqEZia6jBbCUwA7yTQN1Wf/1fPhOuG5JyCQYsEKZTuvzSgamawjblXWaKBxIQQfGBE+J6vZDO14WrIA09wYh0iWl3isYfGlwUwb7dIWLmNC6HX/lPvg8cEUr2Vz/gdB04t89/1O/w1cDnyilFU=",
-                          "cache-control: no-cache",
-                          "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
-                        ),
-                      ));
-
-                      $response = curl_exec($curl);
-                      $err = curl_error($curl);
-
-                      curl_close($curl);
-
-                      if ($err) {
-                        echo "cURL Error #:" . $err;
-                      } else {
-                      //   echo $response;
-                      //
-                      $data = json_decode($response,true);
-                      $dname =  $data['displayName'];
-
-
-                                            $curl = curl_init();
-
-                                            curl_setopt_array($curl, array(
-                                              CURLOPT_URL => "http://202.44.54.97/crm/webservice.php",
-                                              CURLOPT_RETURNTRANSFER => true,
-                                              CURLOPT_ENCODING => "",
-                                              CURLOPT_MAXREDIRS => 10,
-                                              CURLOPT_TIMEOUT => 30,
-                                              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                                              CURLOPT_CUSTOMREQUEST => "POST",
-                                              CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\ncreate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n47b77eae5a73f6aa08831\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bmemberno\": \"\",\n            \"bmember_tks_userid\": \"$userID\",\n            \"bmember_tks_balance\": \"0\",\n            \"bmember_tks_bet\": \"\",\n            \"bmember_tks_username\": \"001\",\n            \"bmember_tks_player\": \"\",\n            \"bmember_tks_playerbet\": \"\",\n            \"bmember_tks_expend\": \"\",\n            \"bmember_tks_income\": \"\",\n            \"bmember_tks_status\": \"\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 05:25:21\",\n            \"modifiedtime\": \"2018-02-02 07:09:13\",\n            \"id\": \"40x327\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
-                                              CURLOPT_HTTPHEADER => array(
-                                                "cache-control: no-cache",
-                                                "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
-                                                "postman-token: e8bdbcff-7ec2-4d41-e8bc-f6862c2833d0"
-                                              ),
-                                            ));
-
-                                            $response = curl_exec($curl);
-                                            $err = curl_error($curl);
-
-                                            curl_close($curl);
-
-                                            if ($err) {
-                                              echo "cURL Error #:" . $err;
-                                            } else {
-                                              echo $response;
-
-                                              $messages = [
-                                                'type' => 'text',
-                                                'text' => 'สมัครสมาชิกสำเร็จ '.$dname
-                                              ];
-                                            }
-
-                      }
-
+          $messages = [
+            'type' => 'text',
+            'text' => '::'.$ex.'  '.$userID    
+          ];
         }
 
 
