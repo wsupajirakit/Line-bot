@@ -3705,7 +3705,7 @@ if (!is_null($events['events'])) {
 
                     $messages = [
                       'type' => 'text',
-                      'text' => 'เริ่มรอบที่ # '.$cround
+                      'text' => 'เริ่มรอบที่ # '.$cround+1
                     ];
 
 
@@ -3746,7 +3746,7 @@ if (!is_null($events['events'])) {
 
                     $messages = [
                       'type' => 'text',
-                      'text' => 'ปิดรอบที่ # '.$cround
+                      'text' => 'ปิดรอบที่ # '.$cround+1
                     ];
 
                   }
