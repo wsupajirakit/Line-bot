@@ -3665,7 +3665,7 @@ if (!is_null($events['events'])) {
       $gameStatus = $response->body->result[0]->bgame_tks_gamestatus;
       $allincome = $response->body->result[0]->bgame_tks_allincome;
       $allexpend = $response->body->result[0]->bgame_tks_allexpend;
-      $cround = $response->body->result[0]->bgame_tks_round;
+      $cround = $response->body->result[0]->bgame_tks_round+1;
 
 
         if(strcmp($adminID,$userID) == 0){
@@ -3705,14 +3705,14 @@ if (!is_null($events['events'])) {
 
                     $messages = [
                       'type' => 'text',
-                      'text' => 'เริ่มรอบที่ # '.$cround+1
+                      'text' => 'เริ่มรอบที่ # '.$cround
                     ];
 
 
 
                   }else{
 
-                    $cround2 = $cround+1;
+                    $cround2 = $cround;
 
                     $curl = curl_init();
 
@@ -3746,7 +3746,7 @@ if (!is_null($events['events'])) {
 
                     $messages = [
                       'type' => 'text',
-                      'text' => 'ปิดรอบที่ # '.$cround+1
+                      'text' => 'ปิดรอบที่ # '.$cround
                     ];
 
                   }
