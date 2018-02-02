@@ -1,6 +1,6 @@
 <?php
 date_default_timezone_set('Asia/Bangkok');
-  include('./httpful.phar');
+include('./httpful.phar');
 $access_token =
 'kr0/dRJjngoA6G+CdO94xUaR+SqEZia6jBbCUwA7yTQN1Wf/1fPhOuG5JyCQYsEKZTuvzSgamawjblXWaKBxIQQfGBE+J6vZDO14WrIA09wYh0iWl3isYfGlwUwb7dIWLmNC6HX/lPvg8cEUr2Vz/gdB04t89/1O/w1cDnyilFU=';
 
@@ -3595,22 +3595,16 @@ if (!is_null($events['events'])) {
       }
       else if(strtoupper($text) == "PLAY"){
 
-        $uri = "http://202.44.54.97/crm/webservice.php?operation=query&sessionName=47b77eae5a73f6aa08831&query=select%20*%20from%20Bmember%20where%20bmember_tks_userid='Ufbed5744c4fba282b72165ea40925abe';";
+        $uri = "http://202.44.54.97/crm/webservice.php?operation=query&sessionName=47b77eae5a73f6aa08831&query=select%20*%20from%20Bmember%20where%20bmember_tks_userid=%27Ufbed5744c4fba282b72165ea40925abe%27;";
         $response = \Httpful\Request::get($uri)->send();
         // echo $response;
         $exid = $response->body->result[0]->bmember_tks_userid;
-        if(strcmp($exid,$userID) == 0){
-          $messages = [
-            'type' => 'text',
-            'text' => 'คุณเป็นสมาชิกอยู่แล้ว'
-          ];
-        } else {
 
           $messages = [
             'type' => 'text',
-            'text' => '::'.$ex.'  '.$userID    
+            'text' => '::'.$ex.'  '.$userID
           ];
-        }
+
 
 
       }
