@@ -3602,7 +3602,7 @@ if (!is_null($events['events'])) {
 
           $messages = [
             'type' => 'text',
-            'text' => '::'.$ex.'  '.$userID
+            'text' => '::'.$exid.'  '.$userID
           ];
 
 
