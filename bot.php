@@ -406,7 +406,7 @@ if (!is_null($events['events'])) {
             $messages = [
               'type' => 'text',
               // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-              'text' => $dname.'ไม่ได้เป็นสมาชิก'
+              'text' => $dname.'ไม่ได้เป็นสมาชิกโปรดสมัครด้วย คำสั่ง " Play "'
             ];
 
             }
