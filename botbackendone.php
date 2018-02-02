@@ -3595,10 +3595,10 @@ if (!is_null($events['events'])) {
       }
       else if(strtoupper($text) == "PLAY"){
 
-        $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20balance_tks_userid='".$userID."'%20;";
+        $uri = "http://202.44.54.97/crm/webservice.php?operation=query&sessionName=47b77eae5a73f6aa08831&query=select%20*%20from%20Bmember%20where%20bmember_tks_userid='Ufbed5744c4fba282b72165ea40925abe';";
         $response = \Httpful\Request::get($uri)->send();
         // echo $response;
-        $exid = $response->body->result[0]->balance_tks_userid;
+        $exid = $response->body->result[0]->bmember_tks_userid;
         if(strcmp($exid,$userID) == 0){
           $messages = [
             'type' => 'text',
