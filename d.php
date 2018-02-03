@@ -297,15 +297,54 @@ if (!is_null($events['events'])) {
                                   $messages = [
                                     'type' => 'text',
                                     // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-                                    'text' => '  '.$username.' แทงพนันผู้เล่น '.$player.' จำนวน '.$money.'   ยอดคงเหลือปัจจุบัน(ก่อนหัก) '.$balance.'  '
+                                    'text' => '  '.$username.' แทงขา '.$player.' ขาละ '.$money.'   ยอดคงเหลือก่อนแทง '.$balance.'  '
                                   ];
                                 }
 
                       }                     //////*
                       else if ($nowbet==0){
+
+                        $xbalance=0;
+
+                        $uri = "http://redfoxdev.com/vtiger/webservice.php?operation=query&sessionName=41fd14e15a617f672c0fd&query=select%20*%20from%20%20Balance%20where%20balance_tks_userid='".$userID."'%20;";
+                        $response = \Httpful\Request::get($uri)->send();
+                        // echo $response;
+                        $xbalance = $response->body->result[0]->balance_tks_balance;
+
+                        $dname= '';
+                        $curl = curl_init();
+
+                        curl_setopt_array($curl, array(
+                          CURLOPT_URL => "https://api.line.me/v2/bot/group/".$groupID."/member/".$userID,
+                          CURLOPT_RETURNTRANSFER => true,
+                          CURLOPT_ENCODING => "",
+                          CURLOPT_MAXREDIRS => 10,
+                          CURLOPT_TIMEOUT => 30,
+                          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                          CURLOPT_CUSTOMREQUEST => "GET",
+                          CURLOPT_HTTPHEADER => array(
+                            "authorization: Bearer QyHSaarki7OaukcmDqWBZJD88fJb5N4evyOobmL7QyJOPpfV9YQz+gDgIvGXVXAEU6ouir3bOeDcpShjwTOJib4P6jWHYh31pVMM2CAwUeVFq5PVGR/AHd5Ze80zm5YFBcjYGRUDqMHIDs9qSaLzLQdB04t89/1O/w1cDnyilFU=",
+                            "cache-control: no-cache",
+                            "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
+                          ),
+                        ));
+
+                        $response = curl_exec($curl);
+                        $err = curl_error($curl);
+
+                        curl_close($curl);
+
+                        if ($err) {
+                          echo "cURL Error #:" . $err;
+                        } else {
+
+                        $data = json_decode($response,true);
+                        $username =  $data['displayName'];
+                        }
+
                         $messages = [
                           'type' => 'text',
-                          'text' => 'ยอดเงินไม่พอสำหรับการแทง'
+                          'text' => $username.' ยอดเงินคงเหลือ '.$xbalance.' ไม่พอสำหรับการแทง กรุณาเติมเงินด้วยคะ'
                         ];
 
                       }
@@ -367,7 +406,7 @@ if (!is_null($events['events'])) {
             $messages = [
               'type' => 'text',
               // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-              'text' => $dname.'ไม่ได้เป็นสมาชิก'
+              'text' => $dname.'ไม่ได้เป็นสมาชิกโปรดสมัครด้วย คำสั่ง " Play "'
             ];
 
             }
@@ -3327,7 +3366,7 @@ if (!is_null($events['events'])) {
 
                       $messages = [
                         'type' => 'text',
-                        'text' =>  'คุณไม่ได้เป็นสมาชิกโปรดสมัครด้วย คำสั่ง " Register "'
+                        'text' =>  'คุณไม่ได้เป็นสมาชิกโปรดสมัครด้วย คำสั่ง " Play "'
                       ];
           }
 
@@ -3437,7 +3476,7 @@ if (!is_null($events['events'])) {
                                               if($income == 0 && $expend >=1){
                                                   $sum = substr($sum,1);
                                                 $newbalance = $balance - $sum;
-                                                 $resultlist = $resultlist."\n".$username." เสีย-".$sum."=".$newbalance."";
+                                                 $resultlist = $resultlist."\n".$username." -".$sum."=".$newbalance."";
                                                  $curl = curl_init();
                                                   curl_setopt_array($curl, array(
                                                     CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
@@ -3470,7 +3509,7 @@ if (!is_null($events['events'])) {
                                               else if($sum < 0){
                                                   $sum = substr($sum,1);
                                                 $newbalance = $balance - $sum;
-                                                 $resultlist = $resultlist."\n".$username." เสีย-".$sum."=".$newbalance."";
+                                                 $resultlist = $resultlist."\n".$username." -".$sum."=".$newbalance."";
 
                                                  $curl = curl_init();
                                                   curl_setopt_array($curl, array(
@@ -3502,7 +3541,7 @@ if (!is_null($events['events'])) {
 
                                               }else if ($sum >= 0){
                                                 $newbalance = $balance + $sum;
-                                               $resultlist = $resultlist."\n".$username." ได้+".$sum."=".$newbalance."";
+                                               $resultlist = $resultlist."\n".$username." +".$sum."=".$newbalance."";
 
 
                                                $curl = curl_init();
@@ -3607,7 +3646,7 @@ if (!is_null($events['events'])) {
                                     CURLOPT_TIMEOUT => 30,
                                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                                     CURLOPT_CUSTOMREQUEST => "POST",
-                                    CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\ncreate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n41fd14e15a617f672c0fd\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"balanceno\": \"\",\n            \"balance_tks_userid\": \"$userID\",\n            \"balance_tks_balance\": \"95900\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-23 09:53:40\",\n            \"modifiedtime\": \"2018-01-23 15:15:10\",\n            \"cf_956\": \"\",\n
+                                    CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\ncreate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n41fd14e15a617f672c0fd\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"balanceno\": \"\",\n            \"balance_tks_userid\": \"$userID\",\n            \"balance_tks_balance\": \"0\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-01-23 09:53:40\",\n            \"modifiedtime\": \"2018-01-23 15:15:10\",\n            \"cf_956\": \"\",\n
                                       \"cf_958\": \"0001\",\n            \"cf_960\": \"\",\n            \"cf_964\": \"\",\n            \"cf_966\": \"\",\n            \"cf_968\": \"\",\n            \"cf_970\": \"\",\n            \"id\": \"47x540\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalance\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                                     CURLOPT_HTTPHEADER => array(
                                       "cache-control: no-cache",
