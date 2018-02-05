@@ -2460,11 +2460,9 @@ Issue",
                     }
 
 
-                    $stremoji = utf8_chr('0x100005');
-
                     $messages = [
                       'type' => 'text',
-                      'text' => $stremoji.'ปิดรอบที่ # '.$cround
+                      'text' => json_decode('"\uD83D\uDE00"').'ปิดรอบที่ # '.$cround
                     ];
 
                   }
