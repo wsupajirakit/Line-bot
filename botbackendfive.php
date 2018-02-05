@@ -2462,7 +2462,7 @@ Issue",
 
                     $messages = [
                       'type' => 'text',
-                      'text' => json_decode('"\uD83D\uDE00","\u2705"').'ปิดรอบที่ # '.$cround
+                      'text' => json_decode('"\uD83D\uDE00"').'ปิดรอบที่ # '.$cround.json_decode('"\u2705"')
                     ];
 
                   }
