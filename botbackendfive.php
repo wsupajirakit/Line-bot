@@ -2459,13 +2459,12 @@ Issue",
                       echo $response;
                     }
 
-                    $code = '100005';
-                    $bin = hex2bin(str_repeat('0', 8 - strlen($code)) . $code);
-                    $emoticon =  mb_convert_encoding($bin, 'UTF-8', 'UTF-32BE');
+
+                    $stremoji = utf8_chr( 0x100005 );
 
                     $messages = [
                       'type' => 'text',
-                      'text' => $bin.'ปิดรอบที่ # '.$cround
+                      'text' => $stremoji.'ปิดรอบที่ # '.$cround
                     ];
 
                   }
