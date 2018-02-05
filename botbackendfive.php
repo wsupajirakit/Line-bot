@@ -2456,35 +2456,16 @@ Issue",
                     if ($err) {
                       echo "cURL Error #:" . $err;
                     } else {
-                      $messagex = [
-                        'type' => 'text',
-                        // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-                        'text' => 'ทดสอบโย่วๆ'
-                      ];
 
-
-                      $newurl = 'https://api.line.me/v2/bot/message/push';
-                      $newdata = [
-                        'to' => $groupID,
-                        'messages' => [$messagex],
-                      ];
-                      $postx = json_encode($newdatax);
-                      $headersx = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
-
-                      $chx = curl_init($newurl);
-                      curl_setopt($chx, CURLOPT_CUSTOMREQUEST, "POST");
-                      curl_setopt($chx, CURLOPT_RETURNTRANSFER, true);
-                      curl_setopt($chx, CURLOPT_POSTFIELDS, $postx);
-                      curl_setopt($chx, CURLOPT_HTTPHEADER, $headersx);
-                      curl_setopt($chx, CURLOPT_FOLLOWLOCATION, 1);
-                      $resultx = curl_exec($chx);
-                      curl_close($chx);
                     }
 
 
-                    $messagex = [
+                    $messages = [{
                       'type' => 'text',
-                      'text' => json_decode('"\uD83D\uDE00"').'ปิดรอบที่ # '.$cround.json_decode('"\u2705"')
+                      'text' => json_decode('"\uD83D\uDE00"').'ปิดรอบที่ # '.$cround.json_decode('"\u2705"')},
+                      {
+                        'type' => 'text',
+                        'text' => json_decode('"\uD83D\uDE00"').'ปิดรอบที่ # '.$cround.json_decode('"\u2705"')}
                     ];
 
                   }
