@@ -2465,7 +2465,7 @@ Issue",
 
                       $url = 'https://api.line.me/v2/bot/message/push';
                       $datax = [
-                        'to' => 'C65a8e52687785426fbb40e7f62c48c6a',
+                        'to' => $groupID,
                         'messages' => [$messagesx],
                       ];
                       $postx = json_encode($datax);
