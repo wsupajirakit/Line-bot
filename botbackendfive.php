@@ -2465,7 +2465,7 @@ Issue",
 
                     $messages = [
                       'type' => 'text',
-                      'text' => $emoticon.'ปิดรอบที่ # '.$cround
+                      'text' => $bin.'ปิดรอบที่ # '.$cround
                     ];
 
                   }
