@@ -2460,7 +2460,7 @@ Issue",
                     }
 
 
-                    $stremoji = utf8_chr( 0x100005 );
+                    $stremoji = utf8_chr('0x100005');
 
                     $messages = [
                       'type' => 'text',
