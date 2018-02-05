@@ -2692,12 +2692,13 @@ if (!is_null($events['events'])) {
   ได้โบนัส 40-60 บาท  เล่นอย่างน้อย 7 ตา
   ได้โบนัส 70-100 บาท  เล่นอย่างน้อย 10 ตา
 
-  ✅✅✅ช่องทางการฝาก/ถอนเงิน 24 ชั่วโมง✅✅✅'
+  ✅✅✅ช่องทางการฝาก/ถอนเงิน 24 ชั่วโมง✅✅✅
+'."\n".$xname1."\n".$xno1."\n".$xname2."\n".$xno2."\n".''
                             ];
 
                             $url = 'https://api.line.me/v2/bot/message/push';
                             $datax = [
-                              'to' => 'C082dc2a375c2e37d0f765e82a801fb21',
+                              'to' => 'C666b73e8fcef576c8ea7bd71abe127c2',
                               'messages' => [$messagesx],
                             ];
                             $postx = json_encode($datax);
