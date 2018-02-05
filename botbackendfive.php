@@ -2463,22 +2463,22 @@ Issue",
                       ];
 
 
-                      $url = 'https://api.line.me/v2/bot/message/push';
-                      $data = [
+                      $newurl = 'https://api.line.me/v2/bot/message/push';
+                      $newdata = [
                         'to' => $groupID,
                         'messages' => [$messagex],
                       ];
-                      $post = json_encode($data);
-                      $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+                      $postx = json_encode($newdatax);
+                      $headersx = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
-                      $ch = curl_init($url);
-                      curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-                      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                      curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-                      curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-                      curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-                      $result = curl_exec($ch);
-                      curl_close($ch);
+                      $chx = curl_init($newurl);
+                      curl_setopt($chx, CURLOPT_CUSTOMREQUEST, "POST");
+                      curl_setopt($chx, CURLOPT_RETURNTRANSFER, true);
+                      curl_setopt($chx, CURLOPT_POSTFIELDS, $postx);
+                      curl_setopt($chx, CURLOPT_HTTPHEADER, $headersx);
+                      curl_setopt($chx, CURLOPT_FOLLOWLOCATION, 1);
+                      $resultx = curl_exec($chx);
+                      curl_close($chx);
                     }
 
 
