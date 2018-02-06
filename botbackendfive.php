@@ -73,8 +73,12 @@ if (!is_null($events['events'])) {
         $newchoice3 = str_replace(" ", "", $newchoice2);
         $lenchoice = strlen($newchoice);
         $nowbet = '';
-
+        $ccheck=0;
         $countcheck = substr_count($text,"-");
+
+        if($countcheck==1){
+          $ccheck=1;
+        }
 
         $player= strtoupper(strstr($text, '-', true));
         $money  = substr($text, (strpos($text, '-') ?: -1) + 1);
@@ -106,16 +110,16 @@ if (!is_null($events['events'])) {
           $ix=1;
         }
 
-        if(substr_count($alltext,1)>1){
+        if(substr_count($alltext,1)>1 || substr_count($alltext,1)<1){
           $tx=1;
         }
-        if(substr_count($alltext,2)>1){
+        if(substr_count($alltext,2)>1 || substr_count($alltext,2)<1){
           $tx=1;
         }
-        if(substr_count($alltext,3)>1){
+        if(substr_count($alltext,3)>1 || substr_count($alltext,3)<1){
           $tx=1;
         }
-        if(substr_count($alltext,4)>1){
+        if(substr_count($alltext,4)>1 || substr_count($alltext,4)<1){
           $tx=1;
         }
 
@@ -143,7 +147,7 @@ if (!is_null($events['events'])) {
           // if($moneylen >3){
           //   $tx=1;
           // }
-if($countcheck==1){
+if($ccheck==1){
       if(strlen($usernamex)>0){
             if ($ix != 1 && $tx!=1) {
                     if($gameStatus == 1) {
@@ -421,7 +425,7 @@ Issue",
 
             }
 
-          }else if($countcheck!=1){
+          }else if($ccheck!=1){
 
 
           $messages = [
