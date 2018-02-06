@@ -73,7 +73,7 @@ if (!is_null($events['events'])) {
         $newchoice3 = str_replace(" ", "", $newchoice2);
         $lenchoice = strlen($newchoice);
         $nowbet = '';
-        $ccheck=0;
+        $ccheck=
         $countcheck = substr_count($text,"-");
 
         if($countcheck==1){
@@ -94,32 +94,32 @@ if (!is_null($events['events'])) {
           $ix=1;
         }
 
-        if($nn1>4){
+        if($nn1>4 || $nn1<1){
           $ix=1;
         }
-        if($nn2>4){
+        if($nn2>4 || $nn2<1){
           $ix=1;
         }
-        if($nn3>4){
+        if($nn3>4 || $nn3<1){
           $ix=1;
         }
-        if($nn4>4){
+        if($nn4>4 || $nn4<1){
           $ix=1;
         }
         if(strlen($player)>5){
           $ix=1;
         }
 
-        if(substr_count($alltext,1)>1 || substr_count($alltext,1)<1){
+        if(substr_count($alltext,1)>1){
           $tx=1;
         }
-        if(substr_count($alltext,2)>1 || substr_count($alltext,2)<1){
+        if(substr_count($alltext,2)>1){
           $tx=1;
         }
-        if(substr_count($alltext,3)>1 || substr_count($alltext,3)<1){
+        if(substr_count($alltext,3)>1){
           $tx=1;
         }
-        if(substr_count($alltext,4)>1 || substr_count($alltext,4)<1){
+        if(substr_count($alltext,4)>1){
           $tx=1;
         }
 
@@ -310,7 +310,7 @@ Issue",
                                   $messages = [
                                     'type' => 'text',
                                     // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-                                    'text' => '  '.$username.' แทงขา '.$player.' ขาละ '.$money.'   ยอดคงเหลือก่อนแทง '.$balance.'  '.$ccheck
+                                    'text' => '  '.$username.' แทงขา '.$player.' ขาละ '.$money.'   ยอดคงเหลือก่อนแทง '.$balance.'  '
                                   ];
                                 }
 
