@@ -77,6 +77,8 @@ if (!is_null($events['events'])) {
         $countcheck = 0;
         if(substr_count($text,"-")){
           $countcheck=1;
+        }else{
+          $countcheck=2;
         }
 
         $player= strtoupper(strstr($text, '-', true));
@@ -424,7 +426,7 @@ Issue",
 
             }
 
-          }else{
+          }else if($countcheck == 2){
 
 
           $messages = [
