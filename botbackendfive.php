@@ -94,16 +94,16 @@ if (!is_null($events['events'])) {
           $ix=1;
         }
 
-        if($nn1>4 || $nn1<1){
+        if($nn1>4){
           $ix=1;
         }
-        if($nn2>4 || $nn2<1){
+        if($nn2>4){
           $ix=1;
         }
-        if($nn3>4 || $nn3<1){
+        if($nn3>4){
           $ix=1;
         }
-        if($nn4>4 || $nn4<1){
+        if($nn4>4){
           $ix=1;
         }
         if(strlen($player)>5){
