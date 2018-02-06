@@ -73,7 +73,7 @@ if (!is_null($events['events'])) {
         $newchoice3 = str_replace(" ", "", $newchoice2);
         $lenchoice = strlen($newchoice);
         $nowbet = '';
-        $ccheck=
+        $ccheck=0;
         $countcheck = substr_count($text,"-");
 
         if($countcheck==1){
