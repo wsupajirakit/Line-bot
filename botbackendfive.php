@@ -74,7 +74,10 @@ if (!is_null($events['events'])) {
         $lenchoice = strlen($newchoice);
         $nowbet = '';
 
-        $countcheck = substr_count($text,"-");
+        $countcheck = 0;
+        if(substr_count($text,"-")){
+          $countcheck=1;
+        }
 
         $player= strtoupper(strstr($text, '-', true));
         $money  = substr($text, (strpos($text, '-') ?: -1) + 1);
