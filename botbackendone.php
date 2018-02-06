@@ -77,6 +77,7 @@ if (!is_null($events['events'])) {
         $player= strtoupper(strstr($text, '-', true));
         $money  = substr($text, (strpos($text, '-') ?: -1) + 1);
         $money = substr($money,0,3);
+        $money = preg_replace('/[^0-9]/', '', $money);
         $moneylen = strlen($money);
         $ix= '';
         $tx= '';
