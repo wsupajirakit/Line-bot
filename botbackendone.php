@@ -59,7 +59,7 @@ if (!is_null($events['events'])) {
         // echo $response;
         $gameStatus = $response->body->result[0]->bgame_tks_gamestatus;
 
-      if(strtoupper($ftext) == "P" && $txc==1){
+      if(strtoupper($ftext) == "T" && $txc==1){
 
         $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20where%20bmember_tks_userid='".$userID."';";
         $response = \Httpful\Request::get($uri)->send();
@@ -356,7 +356,7 @@ if (!is_null($events['events'])) {
                   $messages = [
                     'type' => 'text',
                     // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-                    'text' => 'แทงได้แค่ P1 - P4 เท่านั้น ต่ำสุด 20 สูงสุด 200  ตัวอย่าง : P1234-50 หรือ P1-200'
+                    'text' => 'แทงได้แค่ T1 - T4 เท่านั้น ต่ำสุด 20 สูงสุด 200  ตัวอย่าง : T1234-50 หรือ T1-200'
                   ];
 
                 }
@@ -370,7 +370,7 @@ if (!is_null($events['events'])) {
                 $messages = [
                   'type' => 'text',
                   // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-                  'text' => 'แทงได้แค่ P1 - P4 เท่านั้น ต่ำสุด 20 สูงสุด 200  ตัวอย่าง : P1234-50 หรือ P1-200'
+                  'text' => 'แทงได้แค่ T1 - T4 เท่านั้น ต่ำสุด 20 สูงสุด 200  ตัวอย่าง : T1234-50 หรือ T1-200'
                 ];
               }
             }else {
