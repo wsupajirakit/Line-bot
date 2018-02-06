@@ -73,12 +73,8 @@ if (!is_null($events['events'])) {
         $newchoice3 = str_replace(" ", "", $newchoice2);
         $lenchoice = strlen($newchoice);
         $nowbet = '';
-        $ccheck=0;
-        $countcheck = substr_count($text,"-");
 
-        if($countcheck==1){
-          $ccheck=1;
-        }
+        $countcheck = substr_count($text,"-");
 
         $player= strtoupper(strstr($text, '-', true));
         $money  = substr($text, (strpos($text, '-') ?: -1) + 1);
@@ -147,7 +143,7 @@ if (!is_null($events['events'])) {
           // if($moneylen >3){
           //   $tx=1;
           // }
-if($ccheck==1){
+if($countcheck==1){
       if(strlen($usernamex)>0){
             if ($ix != 1 && $tx!=1) {
                     if($gameStatus == 1) {
@@ -310,7 +306,7 @@ Issue",
                                   $messages = [
                                     'type' => 'text',
                                     // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-                                    'text' => '  '.$username.' แทงขา '.$player.' ขาละ '.$money.'   ยอดคงเหลือก่อนแทง '.$balance.' '.$ccheck;
+                                    'text' => '  '.$username.' แทงขา '.$player.' ขาละ '.$money.'   ยอดคงเหลือก่อนแทง '.$balance.'  '.$countcheck
                                   ];
                                 }
 
@@ -425,7 +421,7 @@ Issue",
 
             }
 
-          }else if($ccheck!=1){
+          }else{
 
 
           $messages = [
