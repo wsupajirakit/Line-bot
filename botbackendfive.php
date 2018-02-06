@@ -49,9 +49,6 @@ if (!is_null($events['events'])) {
         $nn3 = substr($newtext,2,1);
         $nn4 = substr($newtext,3,1);
 
-        if($nn1>=1){
-            $txc=1;
-        }
 
         //gamestatus
         $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x2';";
@@ -59,7 +56,7 @@ if (!is_null($events['events'])) {
         // echo $response;
         $gameStatus = $response->body->result[0]->bgame_tks_gamestatus;
 
-      if(strtoupper($ftext) == "T" && $txc==1){
+      if(strtoupper($ftext) == "T"){
 
         $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20where%20bmember_tks_userid='".$userID."';";
         $response = \Httpful\Request::get($uri)->send();
@@ -438,46 +435,6 @@ Issue",
           }
 
           ////
-
-          $dname= '';
-          $curl = curl_init();
-
-          curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://api.line.me/v2/bot/group/".$groupID."/member/".$userID,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "GET",
-            CURLOPT_HTTPHEADER => array(
-              "authorization: Bearer 9o50gvXgTT7Q21NzDrWXYnxgr/cH3nrnSuSSCmPeAEbvMqx94R0U09G4pCimuhwhjzJKLMmXX9wVfjj8GivN1qQWaMJ4q0JsuTegtZLgHLT7cbkCBw7XboVJr3BcZ7o1jWlFqqCs9Y6GI3eq7hGqHgdB04t89/1O/w1cDnyilFU=",
-              "cache-control: no-cache",
-              "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
-            ),
-          ));
-
-          $response = curl_exec($curl);
-          $err = curl_error($curl);
-
-          curl_close($curl);
-
-          if ($err) {
-            echo "cURL Error #:" . $err;
-          } else {
-          //   echo $response;
-          //
-          $data = json_decode($response,true);
-          $dname =  $data['displayName'];
-          }
-
-          $messages = [
-          'type' => 'text',
-          // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-          'text' => $dname.'ไม่ได้เป็นสมาชิกโปรดสมัครด้วย คำสั่ง " Play "'
-          ];
-
-
           ////
       }
 
