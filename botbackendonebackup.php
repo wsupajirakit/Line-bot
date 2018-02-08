@@ -49,14 +49,17 @@ if (!is_null($events['events'])) {
         $nn3 = substr($newtext,2,1);
         $nn4 = substr($newtext,3,1);
 
+        if($nn1>=1){
+            $txc=1;
+        }
 
         //gamestatus
-        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x2';";
+        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x3';";
         $response = \Httpful\Request::get($uri)->send();
         // echo $response;
         $gameStatus = $response->body->result[0]->bgame_tks_gamestatus;
 
-      if(strtoupper($ftext) == "T"){
+      if(strtoupper($ftext) == "T" && $txc==1){
 
         $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20where%20bmember_tks_userid='".$userID."';";
         $response = \Httpful\Request::get($uri)->send();
@@ -70,13 +73,6 @@ if (!is_null($events['events'])) {
         $newchoice3 = str_replace(" ", "", $newchoice2);
         $lenchoice = strlen($newchoice);
         $nowbet = '';
-
-        $countcheck = 0;
-        if(substr_count($text,"-")){
-          $countcheck=1;
-        }else{
-          $countcheck=2;
-        }
 
         $player= strtoupper(strstr($text, '-', true));
         $money  = substr($text, (strpos($text, '-') ?: -1) + 1);
@@ -145,7 +141,7 @@ if (!is_null($events['events'])) {
           // if($moneylen >3){
           //   $tx=1;
           // }
-if($countcheck==1){
+
       if(strlen($usernamex)>0){
             if ($ix != 1 && $tx!=1) {
                     if($gameStatus == 1) {
@@ -245,8 +241,7 @@ if($countcheck==1){
                                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                                     CURLOPT_CUSTOMREQUEST => "GET",
                                     CURLOPT_HTTPHEADER => array(
-                                      "authorization: Bearer kr0/dRJjngoA6G+CdO94xUaR+SqEZia6jBbCUwA7yTQN1Wf/1fPhOuG5JyCQYsEKZTuvzSgamawjblXWaKBxIQQfGBE+J6vZDO14WrIA09wYh0iWl3isYfGlwUwb7dIWLmNC6HX/lPvg8cEUr2Vz/gdB04t89/1O/w1cDnyilFU=
-Issue",
+                                      "authorization: Bearer kr0/dRJjngoA6G+CdO94xUaR+SqEZia6jBbCUwA7yTQN1Wf/1fPhOuG5JyCQYsEKZTuvzSgamawjblXWaKBxIQQfGBE+J6vZDO14WrIA09wYh0iWl3isYfGlwUwb7dIWLmNC6HX/lPvg8cEUr2Vz/gdB04t89/1O/w1cDnyilFU=",
                                       "cache-control: no-cache",
                                       "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
                                     ),
@@ -284,8 +279,7 @@ Issue",
                                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                                     CURLOPT_CUSTOMREQUEST => "GET",
                                     CURLOPT_HTTPHEADER => array(
-                                      "authorization: Bearer kr0/dRJjngoA6G+CdO94xUaR+SqEZia6jBbCUwA7yTQN1Wf/1fPhOuG5JyCQYsEKZTuvzSgamawjblXWaKBxIQQfGBE+J6vZDO14WrIA09wYh0iWl3isYfGlwUwb7dIWLmNC6HX/lPvg8cEUr2Vz/gdB04t89/1O/w1cDnyilFU=
-Issue",
+                                      "authorization: Bearer kr0/dRJjngoA6G+CdO94xUaR+SqEZia6jBbCUwA7yTQN1Wf/1fPhOuG5JyCQYsEKZTuvzSgamawjblXWaKBxIQQfGBE+J6vZDO14WrIA09wYh0iWl3isYfGlwUwb7dIWLmNC6HX/lPvg8cEUr2Vz/gdB04t89/1O/w1cDnyilFU=",
                                       "cache-control: no-cache",
                                       "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
                                     ),
@@ -334,8 +328,7 @@ Issue",
                           CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                           CURLOPT_CUSTOMREQUEST => "GET",
                           CURLOPT_HTTPHEADER => array(
-                            "authorization: Bearer kr0/dRJjngoA6G+CdO94xUaR+SqEZia6jBbCUwA7yTQN1Wf/1fPhOuG5JyCQYsEKZTuvzSgamawjblXWaKBxIQQfGBE+J6vZDO14WrIA09wYh0iWl3isYfGlwUwb7dIWLmNC6HX/lPvg8cEUr2Vz/gdB04t89/1O/w1cDnyilFU=
-Issue",
+                            "authorization: Bearer kr0/dRJjngoA6G+CdO94xUaR+SqEZia6jBbCUwA7yTQN1Wf/1fPhOuG5JyCQYsEKZTuvzSgamawjblXWaKBxIQQfGBE+J6vZDO14WrIA09wYh0iWl3isYfGlwUwb7dIWLmNC6HX/lPvg8cEUr2Vz/gdB04t89/1O/w1cDnyilFU=",
                             "cache-control: no-cache",
                             "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
                           ),
@@ -423,25 +416,12 @@ Issue",
 
             }
 
-          }else if($countcheck == 2){
-
-
-          $messages = [
-            'type' => 'text',
-            // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-            'text' => 'รูปแบบการแทงไม่ถูกต้อง ตัวอย่าง T1-200'
-          ];
-
-          }
-
-          ////
-          ////
       }
 
       else if(strtoupper($ftext) == "S"){
 
         //find admin
-        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x2';";
+        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x3';";
         $response = \Httpful\Request::get($uri)->send();
 
         $adminID = $response->body->result[0]->bgame_tks_adminid;
@@ -1747,7 +1727,8 @@ Issue",
       //แก้ไขผล
     else if(strtoupper($fivetext) == "CLEAR"){
 
-      $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x2';";
+
+      $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x3';";
       $response = \Httpful\Request::get($uri)->send();
 
       $adminID = $response->body->result[0]->bgame_tks_adminid;
@@ -1808,7 +1789,11 @@ Issue",
 
         }
 
-        }
+      }else {
+
+      }
+
+
 
     }
     //สิ้นสุดแก้ไขผล
@@ -1817,7 +1802,7 @@ Issue",
 
 			else if($ftext == "@"){
 
-        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x2';";
+        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x3';";
         $response = \Httpful\Request::get($uri)->send();
         $xround = $response->body->result[0]->bgame_tks_round-1;
 
@@ -1843,8 +1828,7 @@ Issue",
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPHEADER => array(
-              "authorization: Bearer kr0/dRJjngoA6G+CdO94xUaR+SqEZia6jBbCUwA7yTQN1Wf/1fPhOuG5JyCQYsEKZTuvzSgamawjblXWaKBxIQQfGBE+J6vZDO14WrIA09wYh0iWl3isYfGlwUwb7dIWLmNC6HX/lPvg8cEUr2Vz/gdB04t89/1O/w1cDnyilFU=
-Issue",
+              "authorization: Bearer kr0/dRJjngoA6G+CdO94xUaR+SqEZia6jBbCUwA7yTQN1Wf/1fPhOuG5JyCQYsEKZTuvzSgamawjblXWaKBxIQQfGBE+J6vZDO14WrIA09wYh0iWl3isYfGlwUwb7dIWLmNC6HX/lPvg8cEUr2Vz/gdB04t89/1O/w1cDnyilFU=",
               "cache-control: no-cache",
               "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
             ),
@@ -1891,7 +1875,7 @@ Issue",
         } else if (strcmp($teststr,"ok") == 0){
 
 
-          $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x2';";
+          $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x3';";
           $response = \Httpful\Request::get($uri)->send();
 
           $adminID = $response->body->result[0]->bgame_tks_adminid;
@@ -1920,8 +1904,7 @@ Issue",
                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                     CURLOPT_CUSTOMREQUEST => "GET",
                     CURLOPT_HTTPHEADER => array(
-                      "authorization: Bearer kr0/dRJjngoA6G+CdO94xUaR+SqEZia6jBbCUwA7yTQN1Wf/1fPhOuG5JyCQYsEKZTuvzSgamawjblXWaKBxIQQfGBE+J6vZDO14WrIA09wYh0iWl3isYfGlwUwb7dIWLmNC6HX/lPvg8cEUr2Vz/gdB04t89/1O/w1cDnyilFU=
-Issue",
+                      "authorization: Bearer kr0/dRJjngoA6G+CdO94xUaR+SqEZia6jBbCUwA7yTQN1Wf/1fPhOuG5JyCQYsEKZTuvzSgamawjblXWaKBxIQQfGBE+J6vZDO14WrIA09wYh0iWl3isYfGlwUwb7dIWLmNC6HX/lPvg8cEUr2Vz/gdB04t89/1O/w1cDnyilFU=",
                       "cache-control: no-cache",
                       "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
                     ),
@@ -1950,7 +1933,7 @@ Issue",
                   $playerbet = $itemx['bmember_tks_playerbet'];
                   // เริ่ม
 
-                  $urit = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x2';";
+                  $urit = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x3';";
                   $responset = \Httpful\Request::get($urit)->send();
 
                 //รายรับจ้าวมือ
@@ -1982,7 +1965,7 @@ Issue",
                     CURLOPT_CUSTOMREQUEST => "POST",
                     CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n70abafee5a74367f7bd78\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bgameno\": \"\",\n            \"bgame_tks_adminid\": \"$adminID\",\n            \"bgame_tks_gamestatus\": \"0\",\n            \"bgame_tks_round\": \"$xxround\",\n
                       \"bgame_tks_allincome\": \"$newincome\",\n            \"bgame_tks_allexpend\": \"$newexpend\",\n
-                      \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 06:06:23\",\n            \"modifiedtime\": \"2018-02-02 06:06:23\",\n            \"id\": \"37x2\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                      \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 06:06:23\",\n            \"modifiedtime\": \"2018-02-02 06:06:23\",\n            \"id\": \"37x3\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                     CURLOPT_HTTPHEADER => array(
                       "cache-control: no-cache",
                       "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
@@ -2155,8 +2138,7 @@ Issue",
                         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                         CURLOPT_CUSTOMREQUEST => "GET",
                         CURLOPT_HTTPHEADER => array(
-                          "authorization: Bearer kr0/dRJjngoA6G+CdO94xUaR+SqEZia6jBbCUwA7yTQN1Wf/1fPhOuG5JyCQYsEKZTuvzSgamawjblXWaKBxIQQfGBE+J6vZDO14WrIA09wYh0iWl3isYfGlwUwb7dIWLmNC6HX/lPvg8cEUr2Vz/gdB04t89/1O/w1cDnyilFU=
-Issue",
+                          "authorization: Bearer kr0/dRJjngoA6G+CdO94xUaR+SqEZia6jBbCUwA7yTQN1Wf/1fPhOuG5JyCQYsEKZTuvzSgamawjblXWaKBxIQQfGBE+J6vZDO14WrIA09wYh0iWl3isYfGlwUwb7dIWLmNC6HX/lPvg8cEUr2Vz/gdB04t89/1O/w1cDnyilFU=",
                           "cache-control: no-cache",
                           "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
                         ),
@@ -2226,7 +2208,7 @@ Issue",
       }
 
       else if(strtoupper($context) == "ED"){
-        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x2';";
+        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x3';";
         $response = \Httpful\Request::get($uri)->send();
 
         $adminID = $response->body->result[0]->bgame_tks_adminid;
@@ -2234,7 +2216,7 @@ Issue",
 
           if(strcmp($adminID,$userID) == 0){
 
-            $urit = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x2';";
+            $urit = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x3';";
             $responset = \Httpful\Request::get($urit)->send();
 
           //รายรับจ้าวมือ
@@ -2253,7 +2235,7 @@ Issue",
       }
       else if(strtoupper($context) == "OP"){
 
-        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x2';";
+        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x3';";
         $response = \Httpful\Request::get($uri)->send();
 
         $adminID = $response->body->result[0]->bgame_tks_adminid;
@@ -2271,7 +2253,7 @@ Issue",
               CURLOPT_TIMEOUT => 30,
               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
               CURLOPT_CUSTOMREQUEST => "POST",
-              CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n70abafee5a74367f7bd78\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n     {\n            \"bgameno\": \"\",\n            \"bgame_tks_adminid\": \"$adminID\",\n            \"bgame_tks_gamestatus\": \"0\",\n            \"bgame_tks_round\": \"1\",\n            \"bgame_tks_allincome\": \"\",\n            \"bgame_tks_allexpend\": \"\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 06:06:23\",\n            \"modifiedtime\": \"2018-02-02 06:06:23\",\n            \"id\": \"37x2\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+              CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n70abafee5a74367f7bd78\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n     {\n            \"bgameno\": \"\",\n            \"bgame_tks_adminid\": \"$adminID\",\n            \"bgame_tks_gamestatus\": \"0\",\n            \"bgame_tks_round\": \"1\",\n            \"bgame_tks_allincome\": \"\",\n            \"bgame_tks_allexpend\": \"\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 06:06:23\",\n            \"modifiedtime\": \"2018-02-02 06:06:23\",\n            \"id\": \"37x3\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
               CURLOPT_HTTPHEADER => array(
                 "cache-control: no-cache",
                 "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
@@ -2389,7 +2371,7 @@ Issue",
         $userID = $event['source']['userId'];
 			$replyToken = $event['replyToken'];
 
-      $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x2';";
+      $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x3';";
       $response = \Httpful\Request::get($uri)->send();
 
       $adminID = $response->body->result[0]->bgame_tks_adminid;
@@ -2416,7 +2398,7 @@ Issue",
                       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                       CURLOPT_CUSTOMREQUEST => "POST",
                       CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n70abafee5a74367f7bd78\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n     {\n            \"bgameno\": \"\",\n            \"bgame_tks_adminid\": \"$adminID\",\n            \"bgame_tks_gamestatus\": \"1\",\n            \"bgame_tks_round\": \"$cround\",\n            \"bgame_tks_allincome\": \"$allincome\",\n
-                        \"bgame_tks_allexpend\": \"$allexpend\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 06:06:23\",\n            \"modifiedtime\": \"2018-02-02 06:06:23\",\n            \"id\": \"37x2\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                        \"bgame_tks_allexpend\": \"$allexpend\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 06:06:23\",\n            \"modifiedtime\": \"2018-02-02 06:06:23\",\n            \"id\": \"37x3\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                       CURLOPT_HTTPHEADER => array(
                         "cache-control: no-cache",
                         "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
@@ -2457,7 +2439,7 @@ Issue",
                       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                       CURLOPT_CUSTOMREQUEST => "POST",
                       CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n70abafee5a74367f7bd78\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n     {\n            \"bgameno\": \"\",\n            \"bgame_tks_adminid\": \"$adminID\",\n            \"bgame_tks_gamestatus\": \"0\",\n            \"bgame_tks_round\": \"$cround2\",\n            \"bgame_tks_allincome\": \"$allincome\",\n
-                        \"bgame_tks_allexpend\": \"$allexpend\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 06:06:23\",\n            \"modifiedtime\": \"2018-02-02 06:06:23\",\n            \"id\": \"37x2\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                        \"bgame_tks_allexpend\": \"$allexpend\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 06:06:23\",\n            \"modifiedtime\": \"2018-02-02 06:06:23\",\n            \"id\": \"37x3\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                       CURLOPT_HTTPHEADER => array(
                         "cache-control: no-cache",
                         "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
@@ -2473,58 +2455,57 @@ Issue",
                     if ($err) {
                       echo "cURL Error #:" . $err;
                     } else {
-                      $messagesx = [
-                        'type' => 'text',
-                        // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-                        'text' => 'สำหรับผู้เล่นใหม่ ให้พิมพ์ play เพื่อลงทะเบียนก่อน®
-  ♠️♥️♦️♣️ กติกา ♠️♥️♦️♣️
 
-  พิมพ์ p ตามด้วยขาที่จะเล่น แล้ว ขีด (-) จำนวนเงิน เช่น p12-200 คือ แทงขา 1 และขา 2 ขาละ 200 บาท
-  ⬇️
-  จำนวนเงินในการแทง 20-200 บาทต่อ 1 ขา เล่นเผื่อซ่อมเด้งด้วย
-  ⬇️
-  ไพ่ 55♠ 1010♥ JJ♦️ QQ♣️ KK♠️ คือ 7 แต้มครึ่ง และ 2 เด้ง
-  ⬇️
-  ไพ่ JQ♥ JK♦️ QK♣️ คือ 7 แต้มครึ่งไม่เด้ง ยกเว้น ดอกเดียวกัน ถือว่าเด้ง
-  ⬇️
-  ไพ่ 10J♠️ 10Q♥ 10K♦️ 9+1 8+2 7+3 6+4 ถือว่าบอด เด้งก็บอด
-  ⬇️
-  ฝากขั้นต่ำ 40 บาท
-  ⬇️
-  ถ้าฝากเกิน 100 บาท ได้โบนัสเพิ่ม 10%  โบนัสสูงสุด 100 บาท
-  ⬇️
-  ได้โบนัส 10-30 บาท  เล่นอย่างน้อย 3 ตา
-  ได้โบนัส 40-60 บาท  เล่นอย่างน้อย 7 ตา
-  ได้โบนัส 70-100 บาท  เล่นอย่างน้อย 10 ตา
+                                                  $messagesx = [
+                                                    'type' => 'text',
+                                                    // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
+                                                    'text' => 'สำหรับผู้เล่นใหม่ ให้พิมพ์ play เพื่อลงทะเบียนก่อน®
 
-  ✅✅✅ช่องทางการฝาก/ถอนเงิน 24 ชั่วโมง✅✅✅
+♠️♥️♦️♣️ กติกา ♠️♥️♦️♣️
 
-  ✨พร้อมเพย์✨
-  0644318369🅿
-  ✨กสิกร ✨
-  0338744064
-  '
-                      ];
+พิมพ์ T ตามด้วยขาที่จะเล่น แล้ว ขีด (-) จำนวนเงิน เช่น T12-200 คือ แทงขา 1 และขา 2 ขาละ 200 บาท
+⬇️
+จำนวนเงินในการแทง 20-200 บาทต่อ 1 ขา เล่นเผื่อซ่อมเด้งด้วย
+⬇️
+ไพ่ 55♠ 1010♥ JJ♦️ QQ♣️ KK♠️ คือ 7 แต้มครึ่ง และ 2 เด้ง
+⬇️
+ไพ่ JQ♥ JK♦️ QK♣️ คือ 7 แต้มครึ่งไม่เด้ง ยกเว้น ดอกเดียวกัน ถือว่าเด้ง
+⬇️
+ไพ่ 10J♠️ 10Q♥ 10K♦️ 9+1 8+2 7+3 6+4 ถือว่าบอด เด้งก็บอด
+⬇️
+ฝากขั้นต่ำ 40 บาท
+⬇️
+ถ้าฝากเกิน 100 บาท ได้โบนัสเพิ่ม 10%  โบนัสสูงสุด 100 บาท
+⬇️
+ได้โบนัส 10-30 บาท  เล่นอย่างน้อย 3 ตา
+ได้โบนัส 40-60 บาท  เล่นอย่างน้อย 7 ตา
+ได้โบนัส 70-100 บาท  เล่นอย่างน้อย 10 ตา
 
+✅✅✅ช่องทางการฝาก/ถอนเงิน 24 ชั่วโมง✅✅✅
 
-                      $url = 'https://api.line.me/v2/bot/message/push';
-                      $datax = [
-                        'to' => 'C65fe1fdd1b8aa18d5cde13deb4f5997e',
-                        'messages' => [$messagesx],
-                      ];
-                      $postx = json_encode($datax);
-                      $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+✨พร้อมเพย์✨
+0644318369🅿
+✨กสิกร ✨
+0338744064'
+                                                  ];
 
-                      $ch = curl_init($url);
-                      curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-                      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                      curl_setopt($ch, CURLOPT_POSTFIELDS, $postx);
-                      curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-                      curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-                      $result = curl_exec($ch);
-                      curl_close($ch);
+                                                  $url = 'https://api.line.me/v2/bot/message/push';
+                                                  $datax = [
+                                                    'to' => 'C65fe1fdd1b8aa18d5cde13deb4f5997e',
+                                                    'messages' => [$messagesx],
+                                                  ];
+                                                  $postx = json_encode($datax);
+                                                  $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+
+                                                  $ch = curl_init($url);
+                                                  curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                                                  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                                                  curl_setopt($ch, CURLOPT_POSTFIELDS, $postx);
+                                                  curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                                                  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+                                                  $result = curl_exec($ch);
+                                                  curl_close($ch);
                     }
-
 
                     $messages = [
                       'type' => 'text',
