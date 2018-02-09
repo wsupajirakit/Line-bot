@@ -1,11 +1,11 @@
 <?php
 date_default_timezone_set('Asia/Bangkok');
   include('./httpful.phar');
-$access_token =
-'bRd7sGRmWtGGoUK/4QK+1jvftp3UUsxsm3h9tpZMXF3Kz7aP2B1yffpbzKlKGe9kVozo/98eAK5bbEYtmlGOOB1fGiWqLif9T7OzPbAxPMPlH5fT4RuPcKvO7JT8iwDCO0aHQzKg6qOQQ4Zv6bMWLAdB04t89/1O/w1cDnyilFU=';
+  $access_token =
+  'bRd7sGRmWtGGoUK/4QK+1jvftp3UUsxsm3h9tpZMXF3Kz7aP2B1yffpbzKlKGe9kVozo/98eAK5bbEYtmlGOOB1fGiWqLif9T7OzPbAxPMPlH5fT4RuPcKvO7JT8iwDCO0aHQzKg6qOQQ4Zv6bMWLAdB04t89/1O/w1cDnyilFU=';
 
-$sidname='2b0573625a7565d479a0d';
-$vturl='http://redfoxdev.com/backend4/';
+  $sidname='2b0573625a7565d479a0d';
+  $vturl='http://redfoxdev.com/backend4/';
 // Get POST body content
 $content = file_get_contents('php://input');
 // Parse JSON
@@ -49,9 +49,6 @@ if (!is_null($events['events'])) {
         $nn3 = substr($newtext,2,1);
         $nn4 = substr($newtext,3,1);
 
-        if($nn1>=1){
-            $txc=1;
-        }
 
         //gamestatus
         $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x2';";
@@ -59,7 +56,7 @@ if (!is_null($events['events'])) {
         // echo $response;
         $gameStatus = $response->body->result[0]->bgame_tks_gamestatus;
 
-      if(strtoupper($ftext) == "P" && $txc==1){
+      if(strtoupper($ftext) == "T"){
 
         $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20where%20bmember_tks_userid='".$userID."';";
         $response = \Httpful\Request::get($uri)->send();
@@ -74,9 +71,17 @@ if (!is_null($events['events'])) {
         $lenchoice = strlen($newchoice);
         $nowbet = '';
 
+        $countcheck = 0;
+        if(substr_count($text,"-")){
+          $countcheck=1;
+        }else{
+          $countcheck=2;
+        }
+
         $player= strtoupper(strstr($text, '-', true));
         $money  = substr($text, (strpos($text, '-') ?: -1) + 1);
         $money = substr($money,0,3);
+        $money = preg_replace('/[^0-9]/', '', $money);
         $moneylen = strlen($money);
         $ix= '';
         $tx= '';
@@ -140,7 +145,7 @@ if (!is_null($events['events'])) {
           // if($moneylen >3){
           //   $tx=1;
           // }
-
+if($countcheck==1){
       if(strlen($usernamex)>0){
             if ($ix != 1 && $tx!=1) {
                     if($gameStatus == 1) {
@@ -196,7 +201,7 @@ if (!is_null($events['events'])) {
                               $curl = curl_init();
 
                               curl_setopt_array($curl, array(
-                                CURLOPT_URL => "http://redfoxdev.com/backend4/webservice.php",
+                                CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                                 CURLOPT_RETURNTRANSFER => true,
                                 CURLOPT_ENCODING => "",
                                 CURLOPT_MAXREDIRS => 10,
@@ -240,7 +245,7 @@ if (!is_null($events['events'])) {
                                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                                     CURLOPT_CUSTOMREQUEST => "GET",
                                     CURLOPT_HTTPHEADER => array(
-                                      "authorization: Bearer bRd7sGRmWtGGoUK/4QK+1jvftp3UUsxsm3h9tpZMXF3Kz7aP2B1yffpbzKlKGe9kVozo/98eAK5bbEYtmlGOOB1fGiWqLif9T7OzPbAxPMPlH5fT4RuPcKvO7JT8iwDCO0aHQzKg6qOQQ4Zv6bMWLAdB04t89/1O/w1cDnyilFU=
+                                      "authorization: Bearer kr0/dRJjngoA6G+CdO94xUaR+SqEZia6jBbCUwA7yTQN1Wf/1fPhOuG5JyCQYsEKZTuvzSgamawjblXWaKBxIQQfGBE+J6vZDO14WrIA09wYh0iWl3isYfGlwUwb7dIWLmNC6HX/lPvg8cEUr2Vz/gdB04t89/1O/w1cDnyilFU=
 Issue",
                                       "cache-control: no-cache",
                                       "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
@@ -263,7 +268,7 @@ Issue",
                                   $messages = [
                                     'type' => 'text',
                                     // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-                                    'text' => '  '.$username.' เปลี่ยนแปลงการแทงจาก P'.$newchoice3.' จำนวน'.$choicebet.'->เป็น '.$player.' จำนวน'.$money
+                                    'text' => '  '.$username.' เปลี่ยนแปลงการแทงจาก T'.$newchoice3.' จำนวน'.$choicebet.'->เป็น '.$player.' จำนวน'.$money
                                   ];
                                 }else {
 
@@ -279,7 +284,7 @@ Issue",
                                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                                     CURLOPT_CUSTOMREQUEST => "GET",
                                     CURLOPT_HTTPHEADER => array(
-                                      "authorization: Bearer bRd7sGRmWtGGoUK/4QK+1jvftp3UUsxsm3h9tpZMXF3Kz7aP2B1yffpbzKlKGe9kVozo/98eAK5bbEYtmlGOOB1fGiWqLif9T7OzPbAxPMPlH5fT4RuPcKvO7JT8iwDCO0aHQzKg6qOQQ4Zv6bMWLAdB04t89/1O/w1cDnyilFU=
+                                      "authorization: Bearer kr0/dRJjngoA6G+CdO94xUaR+SqEZia6jBbCUwA7yTQN1Wf/1fPhOuG5JyCQYsEKZTuvzSgamawjblXWaKBxIQQfGBE+J6vZDO14WrIA09wYh0iWl3isYfGlwUwb7dIWLmNC6HX/lPvg8cEUr2Vz/gdB04t89/1O/w1cDnyilFU=
 Issue",
                                       "cache-control: no-cache",
                                       "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
@@ -329,7 +334,7 @@ Issue",
                           CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                           CURLOPT_CUSTOMREQUEST => "GET",
                           CURLOPT_HTTPHEADER => array(
-                            "authorization: Bearer bRd7sGRmWtGGoUK/4QK+1jvftp3UUsxsm3h9tpZMXF3Kz7aP2B1yffpbzKlKGe9kVozo/98eAK5bbEYtmlGOOB1fGiWqLif9T7OzPbAxPMPlH5fT4RuPcKvO7JT8iwDCO0aHQzKg6qOQQ4Zv6bMWLAdB04t89/1O/w1cDnyilFU=
+                            "authorization: Bearer kr0/dRJjngoA6G+CdO94xUaR+SqEZia6jBbCUwA7yTQN1Wf/1fPhOuG5JyCQYsEKZTuvzSgamawjblXWaKBxIQQfGBE+J6vZDO14WrIA09wYh0iWl3isYfGlwUwb7dIWLmNC6HX/lPvg8cEUr2Vz/gdB04t89/1O/w1cDnyilFU=
 Issue",
                             "cache-control: no-cache",
                             "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
@@ -359,7 +364,7 @@ Issue",
                   $messages = [
                     'type' => 'text',
                     // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-                    'text' => 'แทงได้แค่ P1 - P4 เท่านั้น ต่ำสุด 20 สูงสุด 200  ตัวอย่าง : P1234-50 หรือ P1-200'
+                    'text' => 'แทงได้แค่ T1 - T4 เท่านั้น ต่ำสุด 20 สูงสุด 200  ตัวอย่าง : T1234-50 หรือ T1-200'
                   ];
 
                 }
@@ -373,7 +378,7 @@ Issue",
                 $messages = [
                   'type' => 'text',
                   // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-                  'text' => 'แทงได้แค่ P1 - P4 เท่านั้น ต่ำสุด 20 สูงสุด 200  ตัวอย่าง : P1234-50 หรือ P1-200'
+                  'text' => 'แทงได้แค่ T1 - T4 เท่านั้น ต่ำสุด 20 สูงสุด 200  ตัวอย่าง : T1234-50 หรือ T1-200'
                 ];
               }
             }else {
@@ -390,8 +395,7 @@ Issue",
                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                 CURLOPT_CUSTOMREQUEST => "GET",
                 CURLOPT_HTTPHEADER => array(
-                  "authorization: Bearer bRd7sGRmWtGGoUK/4QK+1jvftp3UUsxsm3h9tpZMXF3Kz7aP2B1yffpbzKlKGe9kVozo/98eAK5bbEYtmlGOOB1fGiWqLif9T7OzPbAxPMPlH5fT4RuPcKvO7JT8iwDCO0aHQzKg6qOQQ4Zv6bMWLAdB04t89/1O/w1cDnyilFU=
-Issue",
+                  "authorization: Bearer kr0/dRJjngoA6G+CdO94xUaR+SqEZia6jBbCUwA7yTQN1Wf/1fPhOuG5JyCQYsEKZTuvzSgamawjblXWaKBxIQQfGBE+J6vZDO14WrIA09wYh0iWl3isYfGlwUwb7dIWLmNC6HX/lPvg8cEUr2Vz/gdB04t89/1O/w1cDnyilFU=",
                   "cache-control: no-cache",
                   "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
                 ),
@@ -419,6 +423,19 @@ Issue",
 
             }
 
+          }else if($countcheck == 2){
+
+
+          $messages = [
+            'type' => 'text',
+            // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
+            'text' => 'รูปแบบการแทงไม่ถูกต้อง ตัวอย่าง T1-200'
+          ];
+
+          }
+
+          ////
+          ////
       }
 
       else if(strtoupper($ftext) == "S"){
@@ -481,7 +498,7 @@ Issue",
                 $curl = curl_init();
 
                 curl_setopt_array($curl, array(
-                  CURLOPT_URL => "http://redfoxdev.com/backend4/webservice.php",
+                  CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                   CURLOPT_RETURNTRANSFER => true,
                   CURLOPT_ENCODING => "",
                   CURLOPT_MAXREDIRS => 10,
@@ -545,7 +562,7 @@ Issue",
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://redfoxdev.com/backend4/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -611,7 +628,7 @@ Issue",
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://redfoxdev.com/backend4/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -676,7 +693,7 @@ Issue",
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://redfoxdev.com/backend4/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -741,7 +758,7 @@ Issue",
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://redfoxdev.com/backend4/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -805,7 +822,7 @@ Issue",
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-              CURLOPT_URL => "http://redfoxdev.com/backend4/webservice.php",
+              CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
               CURLOPT_RETURNTRANSFER => true,
               CURLOPT_ENCODING => "",
               CURLOPT_MAXREDIRS => 10,
@@ -872,7 +889,7 @@ Issue",
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://redfoxdev.com/backend4/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -935,7 +952,7 @@ Issue",
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://redfoxdev.com/backend4/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -1000,7 +1017,7 @@ Issue",
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://redfoxdev.com/backend4/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -1063,7 +1080,7 @@ Issue",
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://redfoxdev.com/backend4/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -1131,7 +1148,7 @@ Issue",
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://redfoxdev.com/backend4/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -1194,7 +1211,7 @@ Issue",
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://redfoxdev.com/backend4/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -1256,7 +1273,7 @@ Issue",
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://redfoxdev.com/backend4/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -1315,7 +1332,7 @@ Issue",
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://redfoxdev.com/backend4/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -1377,7 +1394,7 @@ Issue",
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://redfoxdev.com/backend4/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -1442,7 +1459,7 @@ Issue",
                         $curl = curl_init();
 
                         curl_setopt_array($curl, array(
-                          CURLOPT_URL => "http://redfoxdev.com/backend4/webservice.php",
+                          CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                           CURLOPT_RETURNTRANSFER => true,
                           CURLOPT_ENCODING => "",
                           CURLOPT_MAXREDIRS => 10,
@@ -1503,7 +1520,7 @@ Issue",
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://redfoxdev.com/backend4/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -1563,7 +1580,7 @@ Issue",
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://redfoxdev.com/backend4/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -1624,7 +1641,7 @@ Issue",
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://redfoxdev.com/backend4/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -1684,7 +1701,7 @@ Issue",
              $curl = curl_init();
 
              curl_setopt_array($curl, array(
-               CURLOPT_URL => "http://redfoxdev.com/backend4/webservice.php",
+               CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => "",
                CURLOPT_MAXREDIRS => 10,
@@ -1756,7 +1773,7 @@ Issue",
           $curl = curl_init();
 
           curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://redfoxdev.com/backend4/webservice.php",
+            CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -1826,7 +1843,7 @@ Issue",
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPHEADER => array(
-              "authorization: Bearer bRd7sGRmWtGGoUK/4QK+1jvftp3UUsxsm3h9tpZMXF3Kz7aP2B1yffpbzKlKGe9kVozo/98eAK5bbEYtmlGOOB1fGiWqLif9T7OzPbAxPMPlH5fT4RuPcKvO7JT8iwDCO0aHQzKg6qOQQ4Zv6bMWLAdB04t89/1O/w1cDnyilFU=
+              "authorization: Bearer kr0/dRJjngoA6G+CdO94xUaR+SqEZia6jBbCUwA7yTQN1Wf/1fPhOuG5JyCQYsEKZTuvzSgamawjblXWaKBxIQQfGBE+J6vZDO14WrIA09wYh0iWl3isYfGlwUwb7dIWLmNC6HX/lPvg8cEUr2Vz/gdB04t89/1O/w1cDnyilFU=
 Issue",
               "cache-control: no-cache",
               "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
@@ -1903,7 +1920,7 @@ Issue",
                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                     CURLOPT_CUSTOMREQUEST => "GET",
                     CURLOPT_HTTPHEADER => array(
-                      "authorization: Bearer bRd7sGRmWtGGoUK/4QK+1jvftp3UUsxsm3h9tpZMXF3Kz7aP2B1yffpbzKlKGe9kVozo/98eAK5bbEYtmlGOOB1fGiWqLif9T7OzPbAxPMPlH5fT4RuPcKvO7JT8iwDCO0aHQzKg6qOQQ4Zv6bMWLAdB04t89/1O/w1cDnyilFU=
+                      "authorization: Bearer kr0/dRJjngoA6G+CdO94xUaR+SqEZia6jBbCUwA7yTQN1Wf/1fPhOuG5JyCQYsEKZTuvzSgamawjblXWaKBxIQQfGBE+J6vZDO14WrIA09wYh0iWl3isYfGlwUwb7dIWLmNC6HX/lPvg8cEUr2Vz/gdB04t89/1O/w1cDnyilFU=
 Issue",
                       "cache-control: no-cache",
                       "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
@@ -1956,7 +1973,7 @@ Issue",
                   $curl = curl_init();
 
                   curl_setopt_array($curl, array(
-                    CURLOPT_URL => "http://redfoxdev.com/backend4/webservice.php",
+                    CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                     CURLOPT_RETURNTRANSFER => true,
                     CURLOPT_ENCODING => "",
                     CURLOPT_MAXREDIRS => 10,
@@ -1992,7 +2009,7 @@ Issue",
                                                $curl = curl_init();
 
                                                curl_setopt_array($curl, array(
-                                                 CURLOPT_URL => "http://redfoxdev.com/backend4/webservice.php",
+                                                 CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                                                  CURLOPT_RETURNTRANSFER => true,
                                                  CURLOPT_ENCODING => "",
                                                  CURLOPT_MAXREDIRS => 10,
@@ -2031,7 +2048,7 @@ Issue",
                        $curl = curl_init();
 
                        curl_setopt_array($curl, array(
-                         CURLOPT_URL => "http://redfoxdev.com/backend4/webservice.php",
+                         CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                          CURLOPT_RETURNTRANSFER => true,
                          CURLOPT_ENCODING => "",
                          CURLOPT_MAXREDIRS => 10,
@@ -2067,7 +2084,7 @@ Issue",
                      $curl = curl_init();
 
                      curl_setopt_array($curl, array(
-                       CURLOPT_URL => "http://redfoxdev.com/backend4/webservice.php",
+                       CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                        CURLOPT_RETURNTRANSFER => true,
                        CURLOPT_ENCODING => "",
                        CURLOPT_MAXREDIRS => 10,
@@ -2138,7 +2155,7 @@ Issue",
                         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                         CURLOPT_CUSTOMREQUEST => "GET",
                         CURLOPT_HTTPHEADER => array(
-                          "authorization: Bearer bRd7sGRmWtGGoUK/4QK+1jvftp3UUsxsm3h9tpZMXF3Kz7aP2B1yffpbzKlKGe9kVozo/98eAK5bbEYtmlGOOB1fGiWqLif9T7OzPbAxPMPlH5fT4RuPcKvO7JT8iwDCO0aHQzKg6qOQQ4Zv6bMWLAdB04t89/1O/w1cDnyilFU=
+                          "authorization: Bearer kr0/dRJjngoA6G+CdO94xUaR+SqEZia6jBbCUwA7yTQN1Wf/1fPhOuG5JyCQYsEKZTuvzSgamawjblXWaKBxIQQfGBE+J6vZDO14WrIA09wYh0iWl3isYfGlwUwb7dIWLmNC6HX/lPvg8cEUr2Vz/gdB04t89/1O/w1cDnyilFU=
 Issue",
                           "cache-control: no-cache",
                           "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
@@ -2161,7 +2178,7 @@ Issue",
                       $curl = curl_init();
 
                       curl_setopt_array($curl, array(
-                        CURLOPT_URL => "http://redfoxdev.com/backend4/webservice.php",
+                        CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                         CURLOPT_RETURNTRANSFER => true,
                         CURLOPT_ENCODING => "",
                         CURLOPT_MAXREDIRS => 10,
@@ -2228,7 +2245,7 @@ Issue",
 
               $messages = [
                 'type' => 'text',
-                'text' =>  "สรุปผล ณ เวลา ".date("d-m-Y H:i:s")."\nรายรับ : ".$allincome."\nรายจ่าย : ".$allexpend
+                'text' =>  "สรุปผล ณ เวลา ".date("d-m-Y H:i:s")."\nรายรับ : ".$allincome."\nรายจ่าย : ".$allexpend."\nยอดถอน : 0 \nยอดฝาก : 0"
               ];
             } else {
 
@@ -2247,7 +2264,7 @@ Issue",
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-              CURLOPT_URL => "http://redfoxdev.com/backend4/webservice.php",
+              CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
               CURLOPT_RETURNTRANSFER => true,
               CURLOPT_ENCODING => "",
               CURLOPT_MAXREDIRS => 10,
@@ -2391,7 +2408,7 @@ Issue",
                     $curl = curl_init();
 
                     curl_setopt_array($curl, array(
-                      CURLOPT_URL => "http://redfoxdev.com/backend4/webservice.php",
+                      CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                       CURLOPT_RETURNTRANSFER => true,
                       CURLOPT_ENCODING => "",
                       CURLOPT_MAXREDIRS => 10,
@@ -2432,7 +2449,7 @@ Issue",
                     $curl = curl_init();
 
                     curl_setopt_array($curl, array(
-                      CURLOPT_URL => "http://redfoxdev.com/backend4/webservice.php",
+                      CURLOPT_URL => "http://redfoxdev.com/backend2/webservice.php",
                       CURLOPT_RETURNTRANSFER => true,
                       CURLOPT_ENCODING => "",
                       CURLOPT_MAXREDIRS => 10,
@@ -2456,8 +2473,58 @@ Issue",
                     if ($err) {
                       echo "cURL Error #:" . $err;
                     } else {
-                      echo $response;
+                      $messagesx = [
+                        'type' => 'text',
+                        // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
+                        'text' => 'สำหรับผู้เล่นใหม่ ให้พิมพ์ play เพื่อลงทะเบียนก่อน®
+  ♠️♥️♦️♣️ กติกา ♠️♥️♦️♣️
+
+  พิมพ์ T ตามด้วยขาที่จะเล่น แล้ว ขีด (-) จำนวนเงิน เช่น T12-200 คือ แทงขา 1 และขา 2 ขาละ 200 บาท
+  ⬇️
+  จำนวนเงินในการแทง 20-200 บาทต่อ 1 ขา เล่นเผื่อซ่อมเด้งด้วย
+  ⬇️
+  ไพ่ 55♠ 1010♥ JJ♦️ QQ♣️ KK♠️ คือ 7 แต้มครึ่ง และ 2 เด้ง
+  ⬇️
+  ไพ่ JQ♥ JK♦️ QK♣️ คือ 7 แต้มครึ่งไม่เด้ง ยกเว้น ดอกเดียวกัน ถือว่าเด้ง
+  ⬇️
+  ไพ่ 10J♠️ 10Q♥ 10K♦️ 9+1 8+2 7+3 6+4 ถือว่าบอด เด้งก็บอด
+  ⬇️
+  ฝากขั้นต่ำ 40 บาท
+  ⬇️
+  ถ้าฝากเกิน 100 บาท ได้โบนัสเพิ่ม 10%  โบนัสสูงสุด 100 บาท
+  ⬇️
+  ได้โบนัส 10-30 บาท  เล่นอย่างน้อย 3 ตา
+  ได้โบนัส 40-60 บาท  เล่นอย่างน้อย 7 ตา
+  ได้โบนัส 70-100 บาท  เล่นอย่างน้อย 10 ตา
+
+  ✅✅✅ช่องทางการฝาก/ถอนเงิน 24 ชั่วโมง✅✅✅
+
+  ✨พร้อมเพย์✨
+  0644318369🅿
+  ✨กสิกร ✨
+  0338744064
+  '
+                      ];
+
+
+                      $url = 'https://api.line.me/v2/bot/message/push';
+                      $datax = [
+                        'to' => 'C6da5b3c8f571113fa4d8473d89292357',
+                        'messages' => [$messagesx],
+                      ];
+                      $postx = json_encode($datax);
+                      $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+
+                      $ch = curl_init($url);
+                      curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                      curl_setopt($ch, CURLOPT_POSTFIELDS, $postx);
+                      curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                      curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+                      $result = curl_exec($ch);
+                      curl_close($ch);
                     }
+
 
                     $messages = [
                       'type' => 'text',
