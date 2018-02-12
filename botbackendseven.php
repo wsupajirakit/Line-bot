@@ -245,8 +245,7 @@ if($countcheck==1){
                                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                                     CURLOPT_CUSTOMREQUEST => "GET",
                                     CURLOPT_HTTPHEADER => array(
-                                      "authorization: Bearer Y5rqJqUhEi74XZ7fukWsLNrZ0UrX6hE56qeE2cvuqO4FUpBFvfJCSalvhO7klMSRbP/q9ImcSO4Er+eyKbMq1KdlaPbrPLcNy4TUYeGOFxEZkYL/I3d0TbHrRylN6zctjhX72TFSFDc4cmvFDEg7iwdB04t89/1O/w1cDnyilFU=
-Issue",
+                                      "authorization: Bearer Y5rqJqUhEi74XZ7fukWsLNrZ0UrX6hE56qeE2cvuqO4FUpBFvfJCSalvhO7klMSRbP/q9ImcSO4Er+eyKbMq1KdlaPbrPLcNy4TUYeGOFxEZkYL/I3d0TbHrRylN6zctjhX72TFSFDc4cmvFDEg7iwdB04t89/1O/w1cDnyilFU=",
                                       "cache-control: no-cache",
                                       "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
                                     ),
@@ -284,8 +283,7 @@ Issue",
                                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                                     CURLOPT_CUSTOMREQUEST => "GET",
                                     CURLOPT_HTTPHEADER => array(
-                                      "authorization: Bearer Y5rqJqUhEi74XZ7fukWsLNrZ0UrX6hE56qeE2cvuqO4FUpBFvfJCSalvhO7klMSRbP/q9ImcSO4Er+eyKbMq1KdlaPbrPLcNy4TUYeGOFxEZkYL/I3d0TbHrRylN6zctjhX72TFSFDc4cmvFDEg7iwdB04t89/1O/w1cDnyilFU=
-Issue",
+                                      "authorization: Bearer Y5rqJqUhEi74XZ7fukWsLNrZ0UrX6hE56qeE2cvuqO4FUpBFvfJCSalvhO7klMSRbP/q9ImcSO4Er+eyKbMq1KdlaPbrPLcNy4TUYeGOFxEZkYL/I3d0TbHrRylN6zctjhX72TFSFDc4cmvFDEg7iwdB04t89/1O/w1cDnyilFU=",
                                       "cache-control: no-cache",
                                       "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
                                     ),
@@ -334,8 +332,7 @@ Issue",
                           CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                           CURLOPT_CUSTOMREQUEST => "GET",
                           CURLOPT_HTTPHEADER => array(
-                            "authorization: Bearer Y5rqJqUhEi74XZ7fukWsLNrZ0UrX6hE56qeE2cvuqO4FUpBFvfJCSalvhO7klMSRbP/q9ImcSO4Er+eyKbMq1KdlaPbrPLcNy4TUYeGOFxEZkYL/I3d0TbHrRylN6zctjhX72TFSFDc4cmvFDEg7iwdB04t89/1O/w1cDnyilFU=
-Issue",
+                            "authorization: Bearer Y5rqJqUhEi74XZ7fukWsLNrZ0UrX6hE56qeE2cvuqO4FUpBFvfJCSalvhO7klMSRbP/q9ImcSO4Er+eyKbMq1KdlaPbrPLcNy4TUYeGOFxEZkYL/I3d0TbHrRylN6zctjhX72TFSFDc4cmvFDEg7iwdB04t89/1O/w1cDnyilFU=",
                             "cache-control: no-cache",
                             "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
                           ),
@@ -1843,8 +1840,7 @@ Issue",
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPHEADER => array(
-              "authorization: Bearer Y5rqJqUhEi74XZ7fukWsLNrZ0UrX6hE56qeE2cvuqO4FUpBFvfJCSalvhO7klMSRbP/q9ImcSO4Er+eyKbMq1KdlaPbrPLcNy4TUYeGOFxEZkYL/I3d0TbHrRylN6zctjhX72TFSFDc4cmvFDEg7iwdB04t89/1O/w1cDnyilFU=
-Issue",
+              "authorization: Bearer Y5rqJqUhEi74XZ7fukWsLNrZ0UrX6hE56qeE2cvuqO4FUpBFvfJCSalvhO7klMSRbP/q9ImcSO4Er+eyKbMq1KdlaPbrPLcNy4TUYeGOFxEZkYL/I3d0TbHrRylN6zctjhX72TFSFDc4cmvFDEg7iwdB04t89/1O/w1cDnyilFU=",
               "cache-control: no-cache",
               "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
             ),
@@ -1920,8 +1916,7 @@ Issue",
                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                     CURLOPT_CUSTOMREQUEST => "GET",
                     CURLOPT_HTTPHEADER => array(
-                      "authorization: Bearer Y5rqJqUhEi74XZ7fukWsLNrZ0UrX6hE56qeE2cvuqO4FUpBFvfJCSalvhO7klMSRbP/q9ImcSO4Er+eyKbMq1KdlaPbrPLcNy4TUYeGOFxEZkYL/I3d0TbHrRylN6zctjhX72TFSFDc4cmvFDEg7iwdB04t89/1O/w1cDnyilFU=
-Issue",
+                      "authorization: Bearer Y5rqJqUhEi74XZ7fukWsLNrZ0UrX6hE56qeE2cvuqO4FUpBFvfJCSalvhO7klMSRbP/q9ImcSO4Er+eyKbMq1KdlaPbrPLcNy4TUYeGOFxEZkYL/I3d0TbHrRylN6zctjhX72TFSFDc4cmvFDEg7iwdB04t89/1O/w1cDnyilFU=",
                       "cache-control: no-cache",
                       "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
                     ),
@@ -2155,8 +2150,7 @@ Issue",
                         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                         CURLOPT_CUSTOMREQUEST => "GET",
                         CURLOPT_HTTPHEADER => array(
-                          "authorization: Bearer Y5rqJqUhEi74XZ7fukWsLNrZ0UrX6hE56qeE2cvuqO4FUpBFvfJCSalvhO7klMSRbP/q9ImcSO4Er+eyKbMq1KdlaPbrPLcNy4TUYeGOFxEZkYL/I3d0TbHrRylN6zctjhX72TFSFDc4cmvFDEg7iwdB04t89/1O/w1cDnyilFU=
-Issue",
+                          "authorization: Bearer Y5rqJqUhEi74XZ7fukWsLNrZ0UrX6hE56qeE2cvuqO4FUpBFvfJCSalvhO7klMSRbP/q9ImcSO4Er+eyKbMq1KdlaPbrPLcNy4TUYeGOFxEZkYL/I3d0TbHrRylN6zctjhX72TFSFDc4cmvFDEg7iwdB04t89/1O/w1cDnyilFU=",
                           "cache-control: no-cache",
                           "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
                         ),
@@ -2509,7 +2503,7 @@ Issue",
 
                       $url = 'https://api.line.me/v2/bot/message/push';
                       $datax = [
-                        'to' => 'C65fe1fdd1b8aa18d5cde13deb4f5997e',
+                        'to' => 'Cf5db2d725fdf09efcb9bcd0abccdf184',
                         'messages' => [$messagesx],
                       ];
                       $postx = json_encode($datax);
