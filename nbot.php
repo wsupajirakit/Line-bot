@@ -81,6 +81,39 @@ if (!is_null($events['events'])) {
 
               if($nx != 1 && strlen($newtext)==3){
 
+
+                $dname= '';
+                $curl = curl_init();
+
+                curl_setopt_array($curl, array(
+                  CURLOPT_URL => "https://api.line.me/v2/bot/group/".$groupID."/member/".$userID,
+                  CURLOPT_RETURNTRANSFER => true,
+                  CURLOPT_ENCODING => "",
+                  CURLOPT_MAXREDIRS => 10,
+                  CURLOPT_TIMEOUT => 30,
+                  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                  CURLOPT_CUSTOMREQUEST => "GET",
+                  CURLOPT_HTTPHEADER => array(
+                    "authorization: Bearer QyHSaarki7OaukcmDqWBZJD88fJb5N4evyOobmL7QyJOPpfV9YQz+gDgIvGXVXAEU6ouir3bOeDcpShjwTOJib4P6jWHYh31pVMM2CAwUeVFq5PVGR/AHd5Ze80zm5YFBcjYGRUDqMHIDs9qSaLzLQdB04t89/1O/w1cDnyilFU=",
+                    "cache-control: no-cache",
+                    "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
+                  ),
+                ));
+
+                $response = curl_exec($curl);
+                $err = curl_error($curl);
+
+                curl_close($curl);
+
+                if ($err) {
+                  echo "cURL Error #:" . $err;
+                } else {
+                //   echo $response;
+                //
+                $data = json_decode($response,true);
+                $dname =  $data['displayName'];
+                }
+
                 $c1="";
                 $c2="";
                 $c3="";
@@ -130,12 +163,12 @@ if (!is_null($events['events'])) {
 
                     $messages = [
                       'type' => 'text',
-                      'text' => 'ผู้เล่นแทงพนัน '.$c1.' '.$c2.' '.$c3.' จำนวน '.$money
+                      'text' => $dname.'ผู้เล่นแทงพนัน '.$c1.' '.$c2.' '.$c3.' จำนวน '.$money
                     ];
               }else{
                     $messages = [
                       'type' => 'text',
-                      'text' => 'รูปแบบการแทงไม่ถูกต้อง'
+                      'text' => $dname.'รูปแบบการแทงไม่ถูกต้อง'
                     ];
               }
       }
