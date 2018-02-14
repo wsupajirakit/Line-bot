@@ -182,13 +182,13 @@ if (!is_null($events['events'])) {
               else if ($nt == 2) {
                     $messages = [
                       'type' => 'text',
-                      'text' => $dname.'ยอดเงินไม่พอสำหรับการแทง ยอดคงเหลือคือ '.$mbalance
+                      'text' => $dname.' ยอดเงินไม่พอสำหรับการแทง ยอดคงเหลือคือ '.$mbalance
                     ];
               }
               else{
                     $messages = [
                       'type' => 'text',
-                      'text' => $dname.'รูปแบบการแทงไม่ถูกต้อง'
+                      'text' => $dname.' รูปแบบการแทงไม่ถูกต้อง'
                     ];
               }
       }
