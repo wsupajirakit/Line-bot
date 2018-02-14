@@ -2128,10 +2128,10 @@ if($countcheck==1){
       else if(strtoupper($text) == "PLAY"){
 
 
-        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20where%20bmember_tks_userid='".$userID."';";
+        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_userid='".$userID."';";
         $response = \Httpful\Request::get($uri)->send();
         // echo $response;
-        $exid = $response->body->result[0]->bmember_tks_userid;
+        $exid = $response->body->result[0]->nmember_tks_userid;
         if(strcmp($exid,$userID) == 0){
           $messages = [
             'type' => 'text',
