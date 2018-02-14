@@ -65,6 +65,12 @@ if (!is_null($events['events'])) {
 
         $nx = 0;
 
+        if(is_numeric($newtext) || is_numeric($money)){
+          $nx = 0;
+        } else {
+          $nx = 1;
+        }
+
         if($nn1 > 6 || $nn2 > 6 || $nn3 > 6){
             $nx = 1;
         }
