@@ -80,18 +80,20 @@ if (!is_null($events['events'])) {
         }
 
 
-        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20where%20nmember_tks_userid='".$userID."';";
+        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_userid='".$userID."';";
         $response = \Httpful\Request::get($uri)->send();
 
         $mbalance = $response->body->result[0]->nmember_tks_balance;
         $betx = $money *3;
+        $nt = 1;
+
         if($mbalance<$betx){
-            $nx = 2;
+            $nt = 2;
         }
 
 
 
-              if($nx != 1 && $nx != 2 && strlen($newtext)==3){
+              if($nx != 1 && $nt != 2 && strlen($newtext)==3){
 
 
                 $dname= '';
@@ -178,7 +180,7 @@ if (!is_null($events['events'])) {
                       'text' => $dname.' ผู้เล่นแทงพนัน '.$c1.' '.$c2.' '.$c3.' จำนวน '.$money
                     ];
               }
-              else if ($nx == 2) {
+              else if ($nt == 2) {
                     $messages = [
                       'type' => 'text',
                       'text' => $dname.'ยอดเงินไม่พอสำหรับการแทง ยอดคงเหลือคือ '.$mbalance
