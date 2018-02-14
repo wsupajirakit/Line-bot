@@ -2138,7 +2138,7 @@ if (!is_null($events['events'])) {
         $userID = $event['source']['userId'];
 			$replyToken = $event['replyToken'];
 
-      $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x3';";
+      $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='50x872';";
       $response = \Httpful\Request::get($uri)->send();
 
       $adminID = $response->body->result[0]->bgame_tks_adminid;
