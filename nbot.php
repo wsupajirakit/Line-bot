@@ -2168,41 +2168,37 @@ if($countcheck==1){
                       //
                       $data = json_decode($response,true);
                       $dname =  $data['displayName'];
+                            $curl = curl_init();
 
-                      $curl = curl_init();
+                            curl_setopt_array($curl, array(
+                              CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                              CURLOPT_RETURNTRANSFER => true,
+                              CURLOPT_ENCODING => "",
+                              CURLOPT_MAXREDIRS => 10,
+                              CURLOPT_TIMEOUT => 30,
+                              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                              CURLOPT_CUSTOMREQUEST => "POST",
+                              CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\ncreate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$userID\",\n            \"nmember_tks_balance\": \"\",\n            \"nmember_tks_bet\": \"\",\n            \"nmember_tks_username\": \"\",\n            \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"\",\n            \"nmember_tks_schoice\": \"\",\n            \"nmember_tks_tchoice\": \"\",\n            \"nmember_tks_expend\": \"\",\n            \"nmember_tks_income\": \"\",\n            \"nmember_tks_status\": \"\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 04:47:17\",\n            \"modifiedtime\": \"2018-02-14 04:47:17\",\n            \"id\": \"52x866\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                              CURLOPT_HTTPHEADER => array(
+                                "cache-control: no-cache",
+                                "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                "postman-token: 56b5423a-b298-8856-72d9-b6262009c954"
+                              ),
+                            ));
 
-                      curl_setopt_array($curl, array(
-                        CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
-                        CURLOPT_RETURNTRANSFER => true,
-                        CURLOPT_ENCODING => "",
-                        CURLOPT_MAXREDIRS => 10,
-                        CURLOPT_TIMEOUT => 30,
-                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                        CURLOPT_CUSTOMREQUEST => "POST",
-                        CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\ncreate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bmemberno\": \"\",\n            \"bmember_tks_userid\": \"$userID\",\n            \"bmember_tks_balance\": \"0\",\n            \"bmember_tks_bet\": \"\",\n            \"bmember_tks_username\": \"001\",\n            \"bmember_tks_player\": \"\",\n            \"bmember_tks_playerbet\": \"\",\n            \"bmember_tks_expend\": \"\",\n            \"bmember_tks_income\": \"\",\n            \"bmember_tks_status\": \"\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 10:17:42\",\n            \"modifiedtime\": \"2018-02-02 10:17:42\",\n            \"id\": \"36x4\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
-                        CURLOPT_HTTPHEADER => array(
-                          "cache-control: no-cache",
-                          "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
-                          "postman-token: 02350b46-9bd1-f5f0-d377-9ee94604d536"
-                        ),
-                      ));
+                            $response = curl_exec($curl);
+                            $err = curl_error($curl);
 
-                      $response = curl_exec($curl);
-                      $err = curl_error($curl);
+                            curl_close($curl);
 
-                      curl_close($curl);
-
-                      if ($err) {
-                        echo "cURL Error #:" . $err;
-                      } else {
-                        $messages = [
-                          'type' => 'text',
-                          'text' => 'สมัครสมาชิกสำเร็จ '.$dname
-                        ];
-
-                      }
-
-
+                            if ($err) {
+                              echo "cURL Error #:" . $err;
+                            } else {
+                              $messages = [
+                                'type' => 'text',
+                                'text' => 'สมัครสมาชิกสำเร็จ '.$dname
+                              ];
+                            }
 
 
                       }
