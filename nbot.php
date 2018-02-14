@@ -177,7 +177,7 @@ if (!is_null($events['events'])) {
 
                     $messages = [
                       'type' => 'text',
-                      'text' => $dname.' ผู้เล่นแทงพนัน '.$c1.' '.$c2.'  '.$c3.'  จำนวน '.$money
+                      'text' => $dname.' ผู้เล่นแทงพนัน '.$c1.'   '.$c2.'   '.$c3.'   จำนวน '.$money
                     ];
               }
               else if ($nt == 2) {
