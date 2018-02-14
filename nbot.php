@@ -79,7 +79,7 @@ if (!is_null($events['events'])) {
             $nx = 1;
         }
 
-              if($nx != 1){
+              if($nx != 1 && strlen($newtext)==3){
 
                 $c1="";
                 $c2="";
@@ -1883,7 +1883,7 @@ if (!is_null($events['events'])) {
                               CURLOPT_TIMEOUT => 30,
                               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                               CURLOPT_CUSTOMREQUEST => "POST",
-                              CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\ncreate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$userID\",\n            \"nmember_tks_balance\": \"0\",\n            \"nmember_tks_bet\": \"\",\n            \"nmember_tks_username\": \"001\",\n            \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"\",\n            \"nmember_tks_schoice\": \"\",\n            \"nmember_tks_tchoice\": \"\",\n
+                              CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\ncreate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$userID\",\n            \"nmember_tks_balance\": \"5000\",\n            \"nmember_tks_bet\": \"\",\n            \"nmember_tks_username\": \"001\",\n            \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"\",\n            \"nmember_tks_schoice\": \"\",\n            \"nmember_tks_tchoice\": \"\",\n
                                 \"nmember_tks_expend\": \"0\",\n            \"nmember_tks_income\": \"0\",\n            \"nmember_tks_status\": \"\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 04:47:17\",\n            \"modifiedtime\": \"2018-02-14 04:47:17\",\n            \"id\": \"52x866\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                               CURLOPT_HTTPHEADER => array(
                                 "cache-control: no-cache",
