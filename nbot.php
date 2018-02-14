@@ -69,7 +69,7 @@ if (!is_null($events['events'])) {
             $nx = 1;
         }
 
-        if($nn1 <= 6 || $nn2 <= 6 || $nn3 <= 6){
+        if($nn1 <= 0 || $nn2 <= 0 || $nn3 <= 0){
             $nx = 1;
         }
 
