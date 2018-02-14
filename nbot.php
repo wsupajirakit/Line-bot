@@ -124,7 +124,7 @@ if (!is_null($events['events'])) {
                     }
 
 
-              if($nx != 1 && $nt != 2 && strlen($newtext)==3){
+              if($nx != 1 && $nt != 2 && strlen($newtext)==3 && $money > 0){
 
 
                 $c1="";
