@@ -1642,7 +1642,7 @@ if (!is_null($events['events'])) {
           }
 
 
-        } else if (strcmp($teststr,"ok") == 0){
+        } else if (strcmp($teststr,"okk") == 0){
 
 
           $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x3';";
@@ -1974,7 +1974,7 @@ if (!is_null($events['events'])) {
         ];
       }
 
-      else if(strtoupper($context) == "ED"){
+      else if(strtoupper($context) == "EDD"){
         $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x3';";
         $response = \Httpful\Request::get($uri)->send();
 
@@ -2000,7 +2000,7 @@ if (!is_null($events['events'])) {
 
             }
       }
-      else if(strtoupper($context) == "OP"){
+      else if(strtoupper($context) == "OPP"){
 
         $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x3';";
         $response = \Httpful\Request::get($uri)->send();
