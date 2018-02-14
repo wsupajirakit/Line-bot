@@ -63,11 +63,27 @@ if (!is_null($events['events'])) {
         $nn3 = substr($newtext,2,1);
         $money  = substr($text, (strpos($text, '-') ?: -1) + 1);
 
-        $messages = [
-          'type' => 'text',
-          'text' => '1'.$nn1.'//2'.$nn2.'//3'.$nn3.'//'.$money
-        ];
+        $nx = 0;
 
+        if($nn1 > 6 || $nn2 > 6 || $nn3 > 6){
+            $nx = 1;
+        }
+
+        if($nn1 <= 6 || $nn2 <= 6 || $nn3 <= 6){
+            $nx = 1;
+        }
+
+              if($nx != 1){
+                    $messages = [
+                      'type' => 'text',
+                      'text' => '1'.$nn1.'//2'.$nn2.'//3'.$nn3.'//'.$money
+                    ];
+              }else{
+                    $messages = [
+                      'type' => 'text',
+                      'text' => 'รูปแบบการแทงไม่ถูกต้อง'
+                    ];
+              }
       }
 
       else if(strtoupper($ftext) == "S"){
