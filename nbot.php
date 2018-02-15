@@ -2395,8 +2395,8 @@ if (!is_null($events['events'])) {
           $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20where%20nmember_tks_userid='".$userID."';";
           $response = \Httpful\Request::get($uri)->send();
           // echo $response;
-          $username = $response->body->result[0]->nmember_tks_username;
-          // $vid = $response->body->result[0]->id;
+          // $username = $response->body->result[0]->nmember_tks_username;
+          $vid = $response->body->result[0]->id;
           $balance = $response->body->result[0]->nmember_tks_balance;
 
           $userlen = strlen($vid);
