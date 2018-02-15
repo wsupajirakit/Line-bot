@@ -390,6 +390,1826 @@ if (!is_null($events['events'])) {
 
                           }
 
+                          if($ns1==2){
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice=2;";
+                            $response = \Httpful\Request::get($uri)->send();
+                            $data = json_decode($response,true);
+
+                            foreach($data["result"] as $item) {
+
+                              $muserid = $item['nmember_tks_userid'];
+                              $mbalance = $item['nmember_tks_balance'];
+                              $mbet = $item['nmember_tks_bet'];
+                              $musername = $item['nmember_tks_username'];
+                              $mplayer = $item['nmember_tks_player'];
+                              $mexpend = $item['nmember_tks_expend'];
+                              $mincome = $item['nmember_tks_income']+$mbet;
+                              $mid = $item['id'];
+                              $mfchoice = $item['nmember_tks_fchoice'];
+                              $mschoice = $item['nmember_tks_schoice'];
+                              $mtchoice = $item['nmember_tks_tchoice'];
+
+                              $curl = curl_init();
+
+                              curl_setopt_array($curl, array(
+                                CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                CURLOPT_RETURNTRANSFER => true,
+                                CURLOPT_ENCODING => "",
+                                CURLOPT_MAXREDIRS => 10,
+                                CURLOPT_TIMEOUT => 30,
+                                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                CURLOPT_CUSTOMREQUEST => "POST",
+                                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$muserid\",\n            \"nmember_tks_balance\": \"$mbalance\",\n            \"nmember_tks_bet\": \"$mbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                  \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$mfchoice\",\n            \"nmember_tks_schoice\": \"$mschoice\",\n            \"nmember_tks_tchoice\": \"$mtchoice\",\n            \"nmember_tks_expend\": \"$mexpend\",\n            \"nmember_tks_income\": \"$mincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                  \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$mid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                CURLOPT_HTTPHEADER => array(
+                                  "cache-control: no-cache",
+                                  "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                  "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                ),
+                              ));
+
+                              $response = curl_exec($curl);
+                              $err = curl_error($curl);
+
+                              curl_close($curl);
+
+                              if ($err) {
+                                echo "cURL Error #:" . $err;
+                              } else {
+                                  //
+                                    ///
+                              }
+
+                            }
+
+
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice!=2;";
+                                                              $responseq = \Httpful\Request::get($uriq)->send();
+                                                              $dataq = json_decode($responseq,true);
+
+                                                              foreach($dataq["result"] as $itemq) {
+
+                                                                $quserid = $itemq['nmember_tks_userid'];
+                                                                $qbalance = $itemq['nmember_tks_balance'];
+                                                                $qbet = $itemq['nmember_tks_bet'];
+                                                                $qusername = $itemq['nmember_tks_username'];
+                                                                $qplayer = $itemq['nmember_tks_player'];
+                                                                $qexpend = $itemq['nmember_tks_expend']+$qbet;
+                                                                $qincome = $itemq['nmember_tks_income'];
+                                                                $qid = $itemq['id'];
+                                                                $qfchoice = $itemq['nmember_tks_fchoice'];
+                                                                $qschoice = $itemq['nmember_tks_schoice'];
+                                                                $qtchoice = $itemq['nmember_tks_tchoice'];
+
+                                                                $curlq = curl_init();
+
+                                                                curl_setopt_array($curlq, array(
+                                                                  CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                                                  CURLOPT_RETURNTRANSFER => true,
+                                                                  CURLOPT_ENCODING => "",
+                                                                  CURLOPT_MAXREDIRS => 10,
+                                                                  CURLOPT_TIMEOUT => 30,
+                                                                  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                                                  CURLOPT_CUSTOMREQUEST => "POST",
+                                                                  CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$quserid\",\n            \"nmember_tks_balance\": \"$qbalance\",\n            \"nmember_tks_bet\": \"$qbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                                                    \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$qfchoice\",\n            \"nmember_tks_schoice\": \"$qschoice\",\n            \"nmember_tks_tchoice\": \"$qtchoice\",\n            \"nmember_tks_expend\": \"$qexpend\",\n            \"nmember_tks_income\": \"$qincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                                                    \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$qid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                                                  CURLOPT_HTTPHEADER => array(
+                                                                    "cache-control: no-cache",
+                                                                    "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                                                    "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                                                  ),
+                                                                ));
+
+                                                                $responseq = curl_exec($curlq);
+                                                                $errq = curl_error($curlq);
+
+                                                                curl_close($curlq);
+
+                                                                if ($errq) {
+                                                                  echo "cURL Error #:" . $errq;
+                                                                } else {
+
+                                                                }
+
+                                                              }
+
+                          }
+
+
+                          if($ns1==3){
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice=3;";
+                            $response = \Httpful\Request::get($uri)->send();
+                            $data = json_decode($response,true);
+
+                            foreach($data["result"] as $item) {
+
+                              $muserid = $item['nmember_tks_userid'];
+                              $mbalance = $item['nmember_tks_balance'];
+                              $mbet = $item['nmember_tks_bet'];
+                              $musername = $item['nmember_tks_username'];
+                              $mplayer = $item['nmember_tks_player'];
+                              $mexpend = $item['nmember_tks_expend'];
+                              $mincome = $item['nmember_tks_income']+$mbet;
+                              $mid = $item['id'];
+                              $mfchoice = $item['nmember_tks_fchoice'];
+                              $mschoice = $item['nmember_tks_schoice'];
+                              $mtchoice = $item['nmember_tks_tchoice'];
+
+                              $curl = curl_init();
+
+                              curl_setopt_array($curl, array(
+                                CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                CURLOPT_RETURNTRANSFER => true,
+                                CURLOPT_ENCODING => "",
+                                CURLOPT_MAXREDIRS => 10,
+                                CURLOPT_TIMEOUT => 30,
+                                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                CURLOPT_CUSTOMREQUEST => "POST",
+                                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$muserid\",\n            \"nmember_tks_balance\": \"$mbalance\",\n            \"nmember_tks_bet\": \"$mbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                  \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$mfchoice\",\n            \"nmember_tks_schoice\": \"$mschoice\",\n            \"nmember_tks_tchoice\": \"$mtchoice\",\n            \"nmember_tks_expend\": \"$mexpend\",\n            \"nmember_tks_income\": \"$mincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                  \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$mid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                CURLOPT_HTTPHEADER => array(
+                                  "cache-control: no-cache",
+                                  "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                  "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                ),
+                              ));
+
+                              $response = curl_exec($curl);
+                              $err = curl_error($curl);
+
+                              curl_close($curl);
+
+                              if ($err) {
+                                echo "cURL Error #:" . $err;
+                              } else {
+                                  //
+                                    ///
+                              }
+
+                            }
+
+
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice!=3;";
+                                                              $responseq = \Httpful\Request::get($uriq)->send();
+                                                              $dataq = json_decode($responseq,true);
+
+                                                              foreach($dataq["result"] as $itemq) {
+
+                                                                $quserid = $itemq['nmember_tks_userid'];
+                                                                $qbalance = $itemq['nmember_tks_balance'];
+                                                                $qbet = $itemq['nmember_tks_bet'];
+                                                                $qusername = $itemq['nmember_tks_username'];
+                                                                $qplayer = $itemq['nmember_tks_player'];
+                                                                $qexpend = $itemq['nmember_tks_expend']+$qbet;
+                                                                $qincome = $itemq['nmember_tks_income'];
+                                                                $qid = $itemq['id'];
+                                                                $qfchoice = $itemq['nmember_tks_fchoice'];
+                                                                $qschoice = $itemq['nmember_tks_schoice'];
+                                                                $qtchoice = $itemq['nmember_tks_tchoice'];
+
+                                                                $curlq = curl_init();
+
+                                                                curl_setopt_array($curlq, array(
+                                                                  CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                                                  CURLOPT_RETURNTRANSFER => true,
+                                                                  CURLOPT_ENCODING => "",
+                                                                  CURLOPT_MAXREDIRS => 10,
+                                                                  CURLOPT_TIMEOUT => 30,
+                                                                  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                                                  CURLOPT_CUSTOMREQUEST => "POST",
+                                                                  CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$quserid\",\n            \"nmember_tks_balance\": \"$qbalance\",\n            \"nmember_tks_bet\": \"$qbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                                                    \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$qfchoice\",\n            \"nmember_tks_schoice\": \"$qschoice\",\n            \"nmember_tks_tchoice\": \"$qtchoice\",\n            \"nmember_tks_expend\": \"$qexpend\",\n            \"nmember_tks_income\": \"$qincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                                                    \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$qid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                                                  CURLOPT_HTTPHEADER => array(
+                                                                    "cache-control: no-cache",
+                                                                    "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                                                    "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                                                  ),
+                                                                ));
+
+                                                                $responseq = curl_exec($curlq);
+                                                                $errq = curl_error($curlq);
+
+                                                                curl_close($curlq);
+
+                                                                if ($errq) {
+                                                                  echo "cURL Error #:" . $errq;
+                                                                } else {
+
+                                                                }
+
+                                                              }
+
+                          }
+                          if($ns1==4){
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice=4;";
+                            $response = \Httpful\Request::get($uri)->send();
+                            $data = json_decode($response,true);
+
+                            foreach($data["result"] as $item) {
+
+                              $muserid = $item['nmember_tks_userid'];
+                              $mbalance = $item['nmember_tks_balance'];
+                              $mbet = $item['nmember_tks_bet'];
+                              $musername = $item['nmember_tks_username'];
+                              $mplayer = $item['nmember_tks_player'];
+                              $mexpend = $item['nmember_tks_expend'];
+                              $mincome = $item['nmember_tks_income']+$mbet;
+                              $mid = $item['id'];
+                              $mfchoice = $item['nmember_tks_fchoice'];
+                              $mschoice = $item['nmember_tks_schoice'];
+                              $mtchoice = $item['nmember_tks_tchoice'];
+
+                              $curl = curl_init();
+
+                              curl_setopt_array($curl, array(
+                                CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                CURLOPT_RETURNTRANSFER => true,
+                                CURLOPT_ENCODING => "",
+                                CURLOPT_MAXREDIRS => 10,
+                                CURLOPT_TIMEOUT => 30,
+                                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                CURLOPT_CUSTOMREQUEST => "POST",
+                                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$muserid\",\n            \"nmember_tks_balance\": \"$mbalance\",\n            \"nmember_tks_bet\": \"$mbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                  \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$mfchoice\",\n            \"nmember_tks_schoice\": \"$mschoice\",\n            \"nmember_tks_tchoice\": \"$mtchoice\",\n            \"nmember_tks_expend\": \"$mexpend\",\n            \"nmember_tks_income\": \"$mincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                  \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$mid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                CURLOPT_HTTPHEADER => array(
+                                  "cache-control: no-cache",
+                                  "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                  "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                ),
+                              ));
+
+                              $response = curl_exec($curl);
+                              $err = curl_error($curl);
+
+                              curl_close($curl);
+
+                              if ($err) {
+                                echo "cURL Error #:" . $err;
+                              } else {
+                                  //
+                                    ///
+                              }
+
+                            }
+
+
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice!=4;";
+                                                              $responseq = \Httpful\Request::get($uriq)->send();
+                                                              $dataq = json_decode($responseq,true);
+
+                                                              foreach($dataq["result"] as $itemq) {
+
+                                                                $quserid = $itemq['nmember_tks_userid'];
+                                                                $qbalance = $itemq['nmember_tks_balance'];
+                                                                $qbet = $itemq['nmember_tks_bet'];
+                                                                $qusername = $itemq['nmember_tks_username'];
+                                                                $qplayer = $itemq['nmember_tks_player'];
+                                                                $qexpend = $itemq['nmember_tks_expend']+$qbet;
+                                                                $qincome = $itemq['nmember_tks_income'];
+                                                                $qid = $itemq['id'];
+                                                                $qfchoice = $itemq['nmember_tks_fchoice'];
+                                                                $qschoice = $itemq['nmember_tks_schoice'];
+                                                                $qtchoice = $itemq['nmember_tks_tchoice'];
+
+                                                                $curlq = curl_init();
+
+                                                                curl_setopt_array($curlq, array(
+                                                                  CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                                                  CURLOPT_RETURNTRANSFER => true,
+                                                                  CURLOPT_ENCODING => "",
+                                                                  CURLOPT_MAXREDIRS => 10,
+                                                                  CURLOPT_TIMEOUT => 30,
+                                                                  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                                                  CURLOPT_CUSTOMREQUEST => "POST",
+                                                                  CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$quserid\",\n            \"nmember_tks_balance\": \"$qbalance\",\n            \"nmember_tks_bet\": \"$qbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                                                    \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$qfchoice\",\n            \"nmember_tks_schoice\": \"$qschoice\",\n            \"nmember_tks_tchoice\": \"$qtchoice\",\n            \"nmember_tks_expend\": \"$qexpend\",\n            \"nmember_tks_income\": \"$qincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                                                    \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$qid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                                                  CURLOPT_HTTPHEADER => array(
+                                                                    "cache-control: no-cache",
+                                                                    "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                                                    "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                                                  ),
+                                                                ));
+
+                                                                $responseq = curl_exec($curlq);
+                                                                $errq = curl_error($curlq);
+
+                                                                curl_close($curlq);
+
+                                                                if ($errq) {
+                                                                  echo "cURL Error #:" . $errq;
+                                                                } else {
+
+                                                                }
+
+                                                              }
+
+                          }
+
+                          if($ns1==5){
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice=5;";
+                            $response = \Httpful\Request::get($uri)->send();
+                            $data = json_decode($response,true);
+
+                            foreach($data["result"] as $item) {
+
+                              $muserid = $item['nmember_tks_userid'];
+                              $mbalance = $item['nmember_tks_balance'];
+                              $mbet = $item['nmember_tks_bet'];
+                              $musername = $item['nmember_tks_username'];
+                              $mplayer = $item['nmember_tks_player'];
+                              $mexpend = $item['nmember_tks_expend'];
+                              $mincome = $item['nmember_tks_income']+$mbet;
+                              $mid = $item['id'];
+                              $mfchoice = $item['nmember_tks_fchoice'];
+                              $mschoice = $item['nmember_tks_schoice'];
+                              $mtchoice = $item['nmember_tks_tchoice'];
+
+                              $curl = curl_init();
+
+                              curl_setopt_array($curl, array(
+                                CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                CURLOPT_RETURNTRANSFER => true,
+                                CURLOPT_ENCODING => "",
+                                CURLOPT_MAXREDIRS => 10,
+                                CURLOPT_TIMEOUT => 30,
+                                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                CURLOPT_CUSTOMREQUEST => "POST",
+                                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$muserid\",\n            \"nmember_tks_balance\": \"$mbalance\",\n            \"nmember_tks_bet\": \"$mbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                  \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$mfchoice\",\n            \"nmember_tks_schoice\": \"$mschoice\",\n            \"nmember_tks_tchoice\": \"$mtchoice\",\n            \"nmember_tks_expend\": \"$mexpend\",\n            \"nmember_tks_income\": \"$mincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                  \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$mid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                CURLOPT_HTTPHEADER => array(
+                                  "cache-control: no-cache",
+                                  "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                  "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                ),
+                              ));
+
+                              $response = curl_exec($curl);
+                              $err = curl_error($curl);
+
+                              curl_close($curl);
+
+                              if ($err) {
+                                echo "cURL Error #:" . $err;
+                              } else {
+                                  //
+                                    ///
+                              }
+
+                            }
+
+
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice!=5;";
+                                                              $responseq = \Httpful\Request::get($uriq)->send();
+                                                              $dataq = json_decode($responseq,true);
+
+                                                              foreach($dataq["result"] as $itemq) {
+
+                                                                $quserid = $itemq['nmember_tks_userid'];
+                                                                $qbalance = $itemq['nmember_tks_balance'];
+                                                                $qbet = $itemq['nmember_tks_bet'];
+                                                                $qusername = $itemq['nmember_tks_username'];
+                                                                $qplayer = $itemq['nmember_tks_player'];
+                                                                $qexpend = $itemq['nmember_tks_expend']+$qbet;
+                                                                $qincome = $itemq['nmember_tks_income'];
+                                                                $qid = $itemq['id'];
+                                                                $qfchoice = $itemq['nmember_tks_fchoice'];
+                                                                $qschoice = $itemq['nmember_tks_schoice'];
+                                                                $qtchoice = $itemq['nmember_tks_tchoice'];
+
+                                                                $curlq = curl_init();
+
+                                                                curl_setopt_array($curlq, array(
+                                                                  CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                                                  CURLOPT_RETURNTRANSFER => true,
+                                                                  CURLOPT_ENCODING => "",
+                                                                  CURLOPT_MAXREDIRS => 10,
+                                                                  CURLOPT_TIMEOUT => 30,
+                                                                  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                                                  CURLOPT_CUSTOMREQUEST => "POST",
+                                                                  CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$quserid\",\n            \"nmember_tks_balance\": \"$qbalance\",\n            \"nmember_tks_bet\": \"$qbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                                                    \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$qfchoice\",\n            \"nmember_tks_schoice\": \"$qschoice\",\n            \"nmember_tks_tchoice\": \"$qtchoice\",\n            \"nmember_tks_expend\": \"$qexpend\",\n            \"nmember_tks_income\": \"$qincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                                                    \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$qid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                                                  CURLOPT_HTTPHEADER => array(
+                                                                    "cache-control: no-cache",
+                                                                    "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                                                    "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                                                  ),
+                                                                ));
+
+                                                                $responseq = curl_exec($curlq);
+                                                                $errq = curl_error($curlq);
+
+                                                                curl_close($curlq);
+
+                                                                if ($errq) {
+                                                                  echo "cURL Error #:" . $errq;
+                                                                } else {
+
+                                                                }
+
+                                                              }
+
+                          }
+
+                          if($ns1==6){
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice=6;";
+                            $response = \Httpful\Request::get($uri)->send();
+                            $data = json_decode($response,true);
+
+                            foreach($data["result"] as $item) {
+
+                              $muserid = $item['nmember_tks_userid'];
+                              $mbalance = $item['nmember_tks_balance'];
+                              $mbet = $item['nmember_tks_bet'];
+                              $musername = $item['nmember_tks_username'];
+                              $mplayer = $item['nmember_tks_player'];
+                              $mexpend = $item['nmember_tks_expend'];
+                              $mincome = $item['nmember_tks_income']+$mbet;
+                              $mid = $item['id'];
+                              $mfchoice = $item['nmember_tks_fchoice'];
+                              $mschoice = $item['nmember_tks_schoice'];
+                              $mtchoice = $item['nmember_tks_tchoice'];
+
+                              $curl = curl_init();
+
+                              curl_setopt_array($curl, array(
+                                CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                CURLOPT_RETURNTRANSFER => true,
+                                CURLOPT_ENCODING => "",
+                                CURLOPT_MAXREDIRS => 10,
+                                CURLOPT_TIMEOUT => 30,
+                                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                CURLOPT_CUSTOMREQUEST => "POST",
+                                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$muserid\",\n            \"nmember_tks_balance\": \"$mbalance\",\n            \"nmember_tks_bet\": \"$mbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                  \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$mfchoice\",\n            \"nmember_tks_schoice\": \"$mschoice\",\n            \"nmember_tks_tchoice\": \"$mtchoice\",\n            \"nmember_tks_expend\": \"$mexpend\",\n            \"nmember_tks_income\": \"$mincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                  \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$mid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                CURLOPT_HTTPHEADER => array(
+                                  "cache-control: no-cache",
+                                  "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                  "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                ),
+                              ));
+
+                              $response = curl_exec($curl);
+                              $err = curl_error($curl);
+
+                              curl_close($curl);
+
+                              if ($err) {
+                                echo "cURL Error #:" . $err;
+                              } else {
+                                  //
+                                    ///
+                              }
+
+                            }
+
+
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice!=6;";
+                                                              $responseq = \Httpful\Request::get($uriq)->send();
+                                                              $dataq = json_decode($responseq,true);
+
+                                                              foreach($dataq["result"] as $itemq) {
+
+                                                                $quserid = $itemq['nmember_tks_userid'];
+                                                                $qbalance = $itemq['nmember_tks_balance'];
+                                                                $qbet = $itemq['nmember_tks_bet'];
+                                                                $qusername = $itemq['nmember_tks_username'];
+                                                                $qplayer = $itemq['nmember_tks_player'];
+                                                                $qexpend = $itemq['nmember_tks_expend']+$qbet;
+                                                                $qincome = $itemq['nmember_tks_income'];
+                                                                $qid = $itemq['id'];
+                                                                $qfchoice = $itemq['nmember_tks_fchoice'];
+                                                                $qschoice = $itemq['nmember_tks_schoice'];
+                                                                $qtchoice = $itemq['nmember_tks_tchoice'];
+
+                                                                $curlq = curl_init();
+
+                                                                curl_setopt_array($curlq, array(
+                                                                  CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                                                  CURLOPT_RETURNTRANSFER => true,
+                                                                  CURLOPT_ENCODING => "",
+                                                                  CURLOPT_MAXREDIRS => 10,
+                                                                  CURLOPT_TIMEOUT => 30,
+                                                                  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                                                  CURLOPT_CUSTOMREQUEST => "POST",
+                                                                  CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$quserid\",\n            \"nmember_tks_balance\": \"$qbalance\",\n            \"nmember_tks_bet\": \"$qbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                                                    \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$qfchoice\",\n            \"nmember_tks_schoice\": \"$qschoice\",\n            \"nmember_tks_tchoice\": \"$qtchoice\",\n            \"nmember_tks_expend\": \"$qexpend\",\n            \"nmember_tks_income\": \"$qincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                                                    \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$qid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                                                  CURLOPT_HTTPHEADER => array(
+                                                                    "cache-control: no-cache",
+                                                                    "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                                                    "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                                                  ),
+                                                                ));
+
+                                                                $responseq = curl_exec($curlq);
+                                                                $errq = curl_error($curlq);
+
+                                                                curl_close($curlq);
+
+                                                                if ($errq) {
+                                                                  echo "cURL Error #:" . $errq;
+                                                                } else {
+
+                                                                }
+
+                                                              }
+
+                          }
+
+
+                          if($ns2==1){
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice=1;";
+                            $response = \Httpful\Request::get($uri)->send();
+                            $data = json_decode($response,true);
+
+                            foreach($data["result"] as $item) {
+
+                              $muserid = $item['nmember_tks_userid'];
+                              $mbalance = $item['nmember_tks_balance'];
+                              $mbet = $item['nmember_tks_bet'];
+                              $musername = $item['nmember_tks_username'];
+                              $mplayer = $item['nmember_tks_player'];
+                              $mexpend = $item['nmember_tks_expend'];
+                              $mincome = $item['nmember_tks_income']+$mbet;
+                              $mid = $item['id'];
+                              $mfchoice = $item['nmember_tks_fchoice'];
+                              $mschoice = $item['nmember_tks_schoice'];
+                              $mtchoice = $item['nmember_tks_tchoice'];
+
+                              $curl = curl_init();
+
+                              curl_setopt_array($curl, array(
+                                CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                CURLOPT_RETURNTRANSFER => true,
+                                CURLOPT_ENCODING => "",
+                                CURLOPT_MAXREDIRS => 10,
+                                CURLOPT_TIMEOUT => 30,
+                                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                CURLOPT_CUSTOMREQUEST => "POST",
+                                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$muserid\",\n            \"nmember_tks_balance\": \"$mbalance\",\n            \"nmember_tks_bet\": \"$mbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                  \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$mfchoice\",\n            \"nmember_tks_schoice\": \"$mschoice\",\n            \"nmember_tks_tchoice\": \"$mtchoice\",\n            \"nmember_tks_expend\": \"$mexpend\",\n            \"nmember_tks_income\": \"$mincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                  \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$mid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                CURLOPT_HTTPHEADER => array(
+                                  "cache-control: no-cache",
+                                  "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                  "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                ),
+                              ));
+
+                              $response = curl_exec($curl);
+                              $err = curl_error($curl);
+
+                              curl_close($curl);
+
+                              if ($err) {
+                                echo "cURL Error #:" . $err;
+                              } else {
+                                  //
+                                    ///
+                              }
+
+                            }
+
+
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice!=1;";
+                                                              $responseq = \Httpful\Request::get($uriq)->send();
+                                                              $dataq = json_decode($responseq,true);
+
+                                                              foreach($dataq["result"] as $itemq) {
+
+                                                                $quserid = $itemq['nmember_tks_userid'];
+                                                                $qbalance = $itemq['nmember_tks_balance'];
+                                                                $qbet = $itemq['nmember_tks_bet'];
+                                                                $qusername = $itemq['nmember_tks_username'];
+                                                                $qplayer = $itemq['nmember_tks_player'];
+                                                                $qexpend = $itemq['nmember_tks_expend']+$qbet;
+                                                                $qincome = $itemq['nmember_tks_income'];
+                                                                $qid = $itemq['id'];
+                                                                $qfchoice = $itemq['nmember_tks_fchoice'];
+                                                                $qschoice = $itemq['nmember_tks_schoice'];
+                                                                $qtchoice = $itemq['nmember_tks_tchoice'];
+
+                                                                $curlq = curl_init();
+
+                                                                curl_setopt_array($curlq, array(
+                                                                  CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                                                  CURLOPT_RETURNTRANSFER => true,
+                                                                  CURLOPT_ENCODING => "",
+                                                                  CURLOPT_MAXREDIRS => 10,
+                                                                  CURLOPT_TIMEOUT => 30,
+                                                                  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                                                  CURLOPT_CUSTOMREQUEST => "POST",
+                                                                  CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$quserid\",\n            \"nmember_tks_balance\": \"$qbalance\",\n            \"nmember_tks_bet\": \"$qbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                                                    \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$qfchoice\",\n            \"nmember_tks_schoice\": \"$qschoice\",\n            \"nmember_tks_tchoice\": \"$qtchoice\",\n            \"nmember_tks_expend\": \"$qexpend\",\n            \"nmember_tks_income\": \"$qincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                                                    \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$qid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                                                  CURLOPT_HTTPHEADER => array(
+                                                                    "cache-control: no-cache",
+                                                                    "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                                                    "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                                                  ),
+                                                                ));
+
+                                                                $responseq = curl_exec($curlq);
+                                                                $errq = curl_error($curlq);
+
+                                                                curl_close($curlq);
+
+                                                                if ($errq) {
+                                                                  echo "cURL Error #:" . $errq;
+                                                                } else {
+
+                                                                }
+
+                                                              }
+
+                          }
+
+                          if($ns2==2){
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice=2;";
+                            $response = \Httpful\Request::get($uri)->send();
+                            $data = json_decode($response,true);
+
+                            foreach($data["result"] as $item) {
+
+                              $muserid = $item['nmember_tks_userid'];
+                              $mbalance = $item['nmember_tks_balance'];
+                              $mbet = $item['nmember_tks_bet'];
+                              $musername = $item['nmember_tks_username'];
+                              $mplayer = $item['nmember_tks_player'];
+                              $mexpend = $item['nmember_tks_expend'];
+                              $mincome = $item['nmember_tks_income']+$mbet;
+                              $mid = $item['id'];
+                              $mfchoice = $item['nmember_tks_fchoice'];
+                              $mschoice = $item['nmember_tks_schoice'];
+                              $mtchoice = $item['nmember_tks_tchoice'];
+
+                              $curl = curl_init();
+
+                              curl_setopt_array($curl, array(
+                                CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                CURLOPT_RETURNTRANSFER => true,
+                                CURLOPT_ENCODING => "",
+                                CURLOPT_MAXREDIRS => 10,
+                                CURLOPT_TIMEOUT => 30,
+                                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                CURLOPT_CUSTOMREQUEST => "POST",
+                                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$muserid\",\n            \"nmember_tks_balance\": \"$mbalance\",\n            \"nmember_tks_bet\": \"$mbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                  \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$mfchoice\",\n            \"nmember_tks_schoice\": \"$mschoice\",\n            \"nmember_tks_tchoice\": \"$mtchoice\",\n            \"nmember_tks_expend\": \"$mexpend\",\n            \"nmember_tks_income\": \"$mincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                  \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$mid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                CURLOPT_HTTPHEADER => array(
+                                  "cache-control: no-cache",
+                                  "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                  "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                ),
+                              ));
+
+                              $response = curl_exec($curl);
+                              $err = curl_error($curl);
+
+                              curl_close($curl);
+
+                              if ($err) {
+                                echo "cURL Error #:" . $err;
+                              } else {
+                                  //
+                                    ///
+                              }
+
+                            }
+
+
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice!=2;";
+                                                              $responseq = \Httpful\Request::get($uriq)->send();
+                                                              $dataq = json_decode($responseq,true);
+
+                                                              foreach($dataq["result"] as $itemq) {
+
+                                                                $quserid = $itemq['nmember_tks_userid'];
+                                                                $qbalance = $itemq['nmember_tks_balance'];
+                                                                $qbet = $itemq['nmember_tks_bet'];
+                                                                $qusername = $itemq['nmember_tks_username'];
+                                                                $qplayer = $itemq['nmember_tks_player'];
+                                                                $qexpend = $itemq['nmember_tks_expend']+$qbet;
+                                                                $qincome = $itemq['nmember_tks_income'];
+                                                                $qid = $itemq['id'];
+                                                                $qfchoice = $itemq['nmember_tks_fchoice'];
+                                                                $qschoice = $itemq['nmember_tks_schoice'];
+                                                                $qtchoice = $itemq['nmember_tks_tchoice'];
+
+                                                                $curlq = curl_init();
+
+                                                                curl_setopt_array($curlq, array(
+                                                                  CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                                                  CURLOPT_RETURNTRANSFER => true,
+                                                                  CURLOPT_ENCODING => "",
+                                                                  CURLOPT_MAXREDIRS => 10,
+                                                                  CURLOPT_TIMEOUT => 30,
+                                                                  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                                                  CURLOPT_CUSTOMREQUEST => "POST",
+                                                                  CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$quserid\",\n            \"nmember_tks_balance\": \"$qbalance\",\n            \"nmember_tks_bet\": \"$qbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                                                    \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$qfchoice\",\n            \"nmember_tks_schoice\": \"$qschoice\",\n            \"nmember_tks_tchoice\": \"$qtchoice\",\n            \"nmember_tks_expend\": \"$qexpend\",\n            \"nmember_tks_income\": \"$qincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                                                    \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$qid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                                                  CURLOPT_HTTPHEADER => array(
+                                                                    "cache-control: no-cache",
+                                                                    "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                                                    "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                                                  ),
+                                                                ));
+
+                                                                $responseq = curl_exec($curlq);
+                                                                $errq = curl_error($curlq);
+
+                                                                curl_close($curlq);
+
+                                                                if ($errq) {
+                                                                  echo "cURL Error #:" . $errq;
+                                                                } else {
+
+                                                                }
+
+                                                              }
+
+                          }
+
+
+                          if($ns2==3){
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice=3;";
+                            $response = \Httpful\Request::get($uri)->send();
+                            $data = json_decode($response,true);
+
+                            foreach($data["result"] as $item) {
+
+                              $muserid = $item['nmember_tks_userid'];
+                              $mbalance = $item['nmember_tks_balance'];
+                              $mbet = $item['nmember_tks_bet'];
+                              $musername = $item['nmember_tks_username'];
+                              $mplayer = $item['nmember_tks_player'];
+                              $mexpend = $item['nmember_tks_expend'];
+                              $mincome = $item['nmember_tks_income']+$mbet;
+                              $mid = $item['id'];
+                              $mfchoice = $item['nmember_tks_fchoice'];
+                              $mschoice = $item['nmember_tks_schoice'];
+                              $mtchoice = $item['nmember_tks_tchoice'];
+
+                              $curl = curl_init();
+
+                              curl_setopt_array($curl, array(
+                                CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                CURLOPT_RETURNTRANSFER => true,
+                                CURLOPT_ENCODING => "",
+                                CURLOPT_MAXREDIRS => 10,
+                                CURLOPT_TIMEOUT => 30,
+                                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                CURLOPT_CUSTOMREQUEST => "POST",
+                                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$muserid\",\n            \"nmember_tks_balance\": \"$mbalance\",\n            \"nmember_tks_bet\": \"$mbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                  \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$mfchoice\",\n            \"nmember_tks_schoice\": \"$mschoice\",\n            \"nmember_tks_tchoice\": \"$mtchoice\",\n            \"nmember_tks_expend\": \"$mexpend\",\n            \"nmember_tks_income\": \"$mincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                  \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$mid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                CURLOPT_HTTPHEADER => array(
+                                  "cache-control: no-cache",
+                                  "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                  "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                ),
+                              ));
+
+                              $response = curl_exec($curl);
+                              $err = curl_error($curl);
+
+                              curl_close($curl);
+
+                              if ($err) {
+                                echo "cURL Error #:" . $err;
+                              } else {
+                                  //
+                                    ///
+                              }
+
+                            }
+
+
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice!=3;";
+                                                              $responseq = \Httpful\Request::get($uriq)->send();
+                                                              $dataq = json_decode($responseq,true);
+
+                                                              foreach($dataq["result"] as $itemq) {
+
+                                                                $quserid = $itemq['nmember_tks_userid'];
+                                                                $qbalance = $itemq['nmember_tks_balance'];
+                                                                $qbet = $itemq['nmember_tks_bet'];
+                                                                $qusername = $itemq['nmember_tks_username'];
+                                                                $qplayer = $itemq['nmember_tks_player'];
+                                                                $qexpend = $itemq['nmember_tks_expend']+$qbet;
+                                                                $qincome = $itemq['nmember_tks_income'];
+                                                                $qid = $itemq['id'];
+                                                                $qfchoice = $itemq['nmember_tks_fchoice'];
+                                                                $qschoice = $itemq['nmember_tks_schoice'];
+                                                                $qtchoice = $itemq['nmember_tks_tchoice'];
+
+                                                                $curlq = curl_init();
+
+                                                                curl_setopt_array($curlq, array(
+                                                                  CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                                                  CURLOPT_RETURNTRANSFER => true,
+                                                                  CURLOPT_ENCODING => "",
+                                                                  CURLOPT_MAXREDIRS => 10,
+                                                                  CURLOPT_TIMEOUT => 30,
+                                                                  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                                                  CURLOPT_CUSTOMREQUEST => "POST",
+                                                                  CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$quserid\",\n            \"nmember_tks_balance\": \"$qbalance\",\n            \"nmember_tks_bet\": \"$qbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                                                    \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$qfchoice\",\n            \"nmember_tks_schoice\": \"$qschoice\",\n            \"nmember_tks_tchoice\": \"$qtchoice\",\n            \"nmember_tks_expend\": \"$qexpend\",\n            \"nmember_tks_income\": \"$qincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                                                    \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$qid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                                                  CURLOPT_HTTPHEADER => array(
+                                                                    "cache-control: no-cache",
+                                                                    "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                                                    "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                                                  ),
+                                                                ));
+
+                                                                $responseq = curl_exec($curlq);
+                                                                $errq = curl_error($curlq);
+
+                                                                curl_close($curlq);
+
+                                                                if ($errq) {
+                                                                  echo "cURL Error #:" . $errq;
+                                                                } else {
+
+                                                                }
+
+                                                              }
+
+                          }
+                          if($ns2==4){
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice=4;";
+                            $response = \Httpful\Request::get($uri)->send();
+                            $data = json_decode($response,true);
+
+                            foreach($data["result"] as $item) {
+
+                              $muserid = $item['nmember_tks_userid'];
+                              $mbalance = $item['nmember_tks_balance'];
+                              $mbet = $item['nmember_tks_bet'];
+                              $musername = $item['nmember_tks_username'];
+                              $mplayer = $item['nmember_tks_player'];
+                              $mexpend = $item['nmember_tks_expend'];
+                              $mincome = $item['nmember_tks_income']+$mbet;
+                              $mid = $item['id'];
+                              $mfchoice = $item['nmember_tks_fchoice'];
+                              $mschoice = $item['nmember_tks_schoice'];
+                              $mtchoice = $item['nmember_tks_tchoice'];
+
+                              $curl = curl_init();
+
+                              curl_setopt_array($curl, array(
+                                CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                CURLOPT_RETURNTRANSFER => true,
+                                CURLOPT_ENCODING => "",
+                                CURLOPT_MAXREDIRS => 10,
+                                CURLOPT_TIMEOUT => 30,
+                                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                CURLOPT_CUSTOMREQUEST => "POST",
+                                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$muserid\",\n            \"nmember_tks_balance\": \"$mbalance\",\n            \"nmember_tks_bet\": \"$mbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                  \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$mfchoice\",\n            \"nmember_tks_schoice\": \"$mschoice\",\n            \"nmember_tks_tchoice\": \"$mtchoice\",\n            \"nmember_tks_expend\": \"$mexpend\",\n            \"nmember_tks_income\": \"$mincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                  \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$mid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                CURLOPT_HTTPHEADER => array(
+                                  "cache-control: no-cache",
+                                  "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                  "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                ),
+                              ));
+
+                              $response = curl_exec($curl);
+                              $err = curl_error($curl);
+
+                              curl_close($curl);
+
+                              if ($err) {
+                                echo "cURL Error #:" . $err;
+                              } else {
+                                  //
+                                    ///
+                              }
+
+                            }
+
+
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice!=4;";
+                                                              $responseq = \Httpful\Request::get($uriq)->send();
+                                                              $dataq = json_decode($responseq,true);
+
+                                                              foreach($dataq["result"] as $itemq) {
+
+                                                                $quserid = $itemq['nmember_tks_userid'];
+                                                                $qbalance = $itemq['nmember_tks_balance'];
+                                                                $qbet = $itemq['nmember_tks_bet'];
+                                                                $qusername = $itemq['nmember_tks_username'];
+                                                                $qplayer = $itemq['nmember_tks_player'];
+                                                                $qexpend = $itemq['nmember_tks_expend']+$qbet;
+                                                                $qincome = $itemq['nmember_tks_income'];
+                                                                $qid = $itemq['id'];
+                                                                $qfchoice = $itemq['nmember_tks_fchoice'];
+                                                                $qschoice = $itemq['nmember_tks_schoice'];
+                                                                $qtchoice = $itemq['nmember_tks_tchoice'];
+
+                                                                $curlq = curl_init();
+
+                                                                curl_setopt_array($curlq, array(
+                                                                  CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                                                  CURLOPT_RETURNTRANSFER => true,
+                                                                  CURLOPT_ENCODING => "",
+                                                                  CURLOPT_MAXREDIRS => 10,
+                                                                  CURLOPT_TIMEOUT => 30,
+                                                                  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                                                  CURLOPT_CUSTOMREQUEST => "POST",
+                                                                  CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$quserid\",\n            \"nmember_tks_balance\": \"$qbalance\",\n            \"nmember_tks_bet\": \"$qbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                                                    \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$qfchoice\",\n            \"nmember_tks_schoice\": \"$qschoice\",\n            \"nmember_tks_tchoice\": \"$qtchoice\",\n            \"nmember_tks_expend\": \"$qexpend\",\n            \"nmember_tks_income\": \"$qincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                                                    \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$qid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                                                  CURLOPT_HTTPHEADER => array(
+                                                                    "cache-control: no-cache",
+                                                                    "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                                                    "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                                                  ),
+                                                                ));
+
+                                                                $responseq = curl_exec($curlq);
+                                                                $errq = curl_error($curlq);
+
+                                                                curl_close($curlq);
+
+                                                                if ($errq) {
+                                                                  echo "cURL Error #:" . $errq;
+                                                                } else {
+
+                                                                }
+
+                                                              }
+
+                          }
+
+                          if($ns2==5){
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice=5;";
+                            $response = \Httpful\Request::get($uri)->send();
+                            $data = json_decode($response,true);
+
+                            foreach($data["result"] as $item) {
+
+                              $muserid = $item['nmember_tks_userid'];
+                              $mbalance = $item['nmember_tks_balance'];
+                              $mbet = $item['nmember_tks_bet'];
+                              $musername = $item['nmember_tks_username'];
+                              $mplayer = $item['nmember_tks_player'];
+                              $mexpend = $item['nmember_tks_expend'];
+                              $mincome = $item['nmember_tks_income']+$mbet;
+                              $mid = $item['id'];
+                              $mfchoice = $item['nmember_tks_fchoice'];
+                              $mschoice = $item['nmember_tks_schoice'];
+                              $mtchoice = $item['nmember_tks_tchoice'];
+
+                              $curl = curl_init();
+
+                              curl_setopt_array($curl, array(
+                                CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                CURLOPT_RETURNTRANSFER => true,
+                                CURLOPT_ENCODING => "",
+                                CURLOPT_MAXREDIRS => 10,
+                                CURLOPT_TIMEOUT => 30,
+                                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                CURLOPT_CUSTOMREQUEST => "POST",
+                                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$muserid\",\n            \"nmember_tks_balance\": \"$mbalance\",\n            \"nmember_tks_bet\": \"$mbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                  \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$mfchoice\",\n            \"nmember_tks_schoice\": \"$mschoice\",\n            \"nmember_tks_tchoice\": \"$mtchoice\",\n            \"nmember_tks_expend\": \"$mexpend\",\n            \"nmember_tks_income\": \"$mincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                  \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$mid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                CURLOPT_HTTPHEADER => array(
+                                  "cache-control: no-cache",
+                                  "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                  "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                ),
+                              ));
+
+                              $response = curl_exec($curl);
+                              $err = curl_error($curl);
+
+                              curl_close($curl);
+
+                              if ($err) {
+                                echo "cURL Error #:" . $err;
+                              } else {
+                                  //
+                                    ///
+                              }
+
+                            }
+
+
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice!=5;";
+                                                              $responseq = \Httpful\Request::get($uriq)->send();
+                                                              $dataq = json_decode($responseq,true);
+
+                                                              foreach($dataq["result"] as $itemq) {
+
+                                                                $quserid = $itemq['nmember_tks_userid'];
+                                                                $qbalance = $itemq['nmember_tks_balance'];
+                                                                $qbet = $itemq['nmember_tks_bet'];
+                                                                $qusername = $itemq['nmember_tks_username'];
+                                                                $qplayer = $itemq['nmember_tks_player'];
+                                                                $qexpend = $itemq['nmember_tks_expend']+$qbet;
+                                                                $qincome = $itemq['nmember_tks_income'];
+                                                                $qid = $itemq['id'];
+                                                                $qfchoice = $itemq['nmember_tks_fchoice'];
+                                                                $qschoice = $itemq['nmember_tks_schoice'];
+                                                                $qtchoice = $itemq['nmember_tks_tchoice'];
+
+                                                                $curlq = curl_init();
+
+                                                                curl_setopt_array($curlq, array(
+                                                                  CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                                                  CURLOPT_RETURNTRANSFER => true,
+                                                                  CURLOPT_ENCODING => "",
+                                                                  CURLOPT_MAXREDIRS => 10,
+                                                                  CURLOPT_TIMEOUT => 30,
+                                                                  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                                                  CURLOPT_CUSTOMREQUEST => "POST",
+                                                                  CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$quserid\",\n            \"nmember_tks_balance\": \"$qbalance\",\n            \"nmember_tks_bet\": \"$qbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                                                    \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$qfchoice\",\n            \"nmember_tks_schoice\": \"$qschoice\",\n            \"nmember_tks_tchoice\": \"$qtchoice\",\n            \"nmember_tks_expend\": \"$qexpend\",\n            \"nmember_tks_income\": \"$qincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                                                    \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$qid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                                                  CURLOPT_HTTPHEADER => array(
+                                                                    "cache-control: no-cache",
+                                                                    "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                                                    "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                                                  ),
+                                                                ));
+
+                                                                $responseq = curl_exec($curlq);
+                                                                $errq = curl_error($curlq);
+
+                                                                curl_close($curlq);
+
+                                                                if ($errq) {
+                                                                  echo "cURL Error #:" . $errq;
+                                                                } else {
+
+                                                                }
+
+                                                              }
+
+                          }
+
+                          if($ns2==6){
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice=6;";
+                            $response = \Httpful\Request::get($uri)->send();
+                            $data = json_decode($response,true);
+
+                            foreach($data["result"] as $item) {
+
+                              $muserid = $item['nmember_tks_userid'];
+                              $mbalance = $item['nmember_tks_balance'];
+                              $mbet = $item['nmember_tks_bet'];
+                              $musername = $item['nmember_tks_username'];
+                              $mplayer = $item['nmember_tks_player'];
+                              $mexpend = $item['nmember_tks_expend'];
+                              $mincome = $item['nmember_tks_income']+$mbet;
+                              $mid = $item['id'];
+                              $mfchoice = $item['nmember_tks_fchoice'];
+                              $mschoice = $item['nmember_tks_schoice'];
+                              $mtchoice = $item['nmember_tks_tchoice'];
+
+                              $curl = curl_init();
+
+                              curl_setopt_array($curl, array(
+                                CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                CURLOPT_RETURNTRANSFER => true,
+                                CURLOPT_ENCODING => "",
+                                CURLOPT_MAXREDIRS => 10,
+                                CURLOPT_TIMEOUT => 30,
+                                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                CURLOPT_CUSTOMREQUEST => "POST",
+                                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$muserid\",\n            \"nmember_tks_balance\": \"$mbalance\",\n            \"nmember_tks_bet\": \"$mbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                  \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$mfchoice\",\n            \"nmember_tks_schoice\": \"$mschoice\",\n            \"nmember_tks_tchoice\": \"$mtchoice\",\n            \"nmember_tks_expend\": \"$mexpend\",\n            \"nmember_tks_income\": \"$mincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                  \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$mid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                CURLOPT_HTTPHEADER => array(
+                                  "cache-control: no-cache",
+                                  "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                  "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                ),
+                              ));
+
+                              $response = curl_exec($curl);
+                              $err = curl_error($curl);
+
+                              curl_close($curl);
+
+                              if ($err) {
+                                echo "cURL Error #:" . $err;
+                              } else {
+                                  //
+                                    ///
+                              }
+
+                            }
+
+
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice!=6;";
+                                                              $responseq = \Httpful\Request::get($uriq)->send();
+                                                              $dataq = json_decode($responseq,true);
+
+                                                              foreach($dataq["result"] as $itemq) {
+
+                                                                $quserid = $itemq['nmember_tks_userid'];
+                                                                $qbalance = $itemq['nmember_tks_balance'];
+                                                                $qbet = $itemq['nmember_tks_bet'];
+                                                                $qusername = $itemq['nmember_tks_username'];
+                                                                $qplayer = $itemq['nmember_tks_player'];
+                                                                $qexpend = $itemq['nmember_tks_expend']+$qbet;
+                                                                $qincome = $itemq['nmember_tks_income'];
+                                                                $qid = $itemq['id'];
+                                                                $qfchoice = $itemq['nmember_tks_fchoice'];
+                                                                $qschoice = $itemq['nmember_tks_schoice'];
+                                                                $qtchoice = $itemq['nmember_tks_tchoice'];
+
+                                                                $curlq = curl_init();
+
+                                                                curl_setopt_array($curlq, array(
+                                                                  CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                                                  CURLOPT_RETURNTRANSFER => true,
+                                                                  CURLOPT_ENCODING => "",
+                                                                  CURLOPT_MAXREDIRS => 10,
+                                                                  CURLOPT_TIMEOUT => 30,
+                                                                  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                                                  CURLOPT_CUSTOMREQUEST => "POST",
+                                                                  CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$quserid\",\n            \"nmember_tks_balance\": \"$qbalance\",\n            \"nmember_tks_bet\": \"$qbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                                                    \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$qfchoice\",\n            \"nmember_tks_schoice\": \"$qschoice\",\n            \"nmember_tks_tchoice\": \"$qtchoice\",\n            \"nmember_tks_expend\": \"$qexpend\",\n            \"nmember_tks_income\": \"$qincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                                                    \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$qid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                                                  CURLOPT_HTTPHEADER => array(
+                                                                    "cache-control: no-cache",
+                                                                    "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                                                    "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                                                  ),
+                                                                ));
+
+                                                                $responseq = curl_exec($curlq);
+                                                                $errq = curl_error($curlq);
+
+                                                                curl_close($curlq);
+
+                                                                if ($errq) {
+                                                                  echo "cURL Error #:" . $errq;
+                                                                } else {
+
+                                                                }
+
+                                                              }
+
+                          }
+                          if($ns3==1){
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice=1;";
+                            $response = \Httpful\Request::get($uri)->send();
+                            $data = json_decode($response,true);
+
+                            foreach($data["result"] as $item) {
+
+                              $muserid = $item['nmember_tks_userid'];
+                              $mbalance = $item['nmember_tks_balance'];
+                              $mbet = $item['nmember_tks_bet'];
+                              $musername = $item['nmember_tks_username'];
+                              $mplayer = $item['nmember_tks_player'];
+                              $mexpend = $item['nmember_tks_expend'];
+                              $mincome = $item['nmember_tks_income']+$mbet;
+                              $mid = $item['id'];
+                              $mfchoice = $item['nmember_tks_fchoice'];
+                              $mschoice = $item['nmember_tks_schoice'];
+                              $mtchoice = $item['nmember_tks_tchoice'];
+
+                              $curl = curl_init();
+
+                              curl_setopt_array($curl, array(
+                                CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                CURLOPT_RETURNTRANSFER => true,
+                                CURLOPT_ENCODING => "",
+                                CURLOPT_MAXREDIRS => 10,
+                                CURLOPT_TIMEOUT => 30,
+                                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                CURLOPT_CUSTOMREQUEST => "POST",
+                                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$muserid\",\n            \"nmember_tks_balance\": \"$mbalance\",\n            \"nmember_tks_bet\": \"$mbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                  \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$mfchoice\",\n            \"nmember_tks_schoice\": \"$mschoice\",\n            \"nmember_tks_tchoice\": \"$mtchoice\",\n            \"nmember_tks_expend\": \"$mexpend\",\n            \"nmember_tks_income\": \"$mincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                  \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$mid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                CURLOPT_HTTPHEADER => array(
+                                  "cache-control: no-cache",
+                                  "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                  "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                ),
+                              ));
+
+                              $response = curl_exec($curl);
+                              $err = curl_error($curl);
+
+                              curl_close($curl);
+
+                              if ($err) {
+                                echo "cURL Error #:" . $err;
+                              } else {
+                                  //
+                                    ///
+                              }
+
+                            }
+
+
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice!=1;";
+                                                              $responseq = \Httpful\Request::get($uriq)->send();
+                                                              $dataq = json_decode($responseq,true);
+
+                                                              foreach($dataq["result"] as $itemq) {
+
+                                                                $quserid = $itemq['nmember_tks_userid'];
+                                                                $qbalance = $itemq['nmember_tks_balance'];
+                                                                $qbet = $itemq['nmember_tks_bet'];
+                                                                $qusername = $itemq['nmember_tks_username'];
+                                                                $qplayer = $itemq['nmember_tks_player'];
+                                                                $qexpend = $itemq['nmember_tks_expend']+$qbet;
+                                                                $qincome = $itemq['nmember_tks_income'];
+                                                                $qid = $itemq['id'];
+                                                                $qfchoice = $itemq['nmember_tks_fchoice'];
+                                                                $qschoice = $itemq['nmember_tks_schoice'];
+                                                                $qtchoice = $itemq['nmember_tks_tchoice'];
+
+                                                                $curlq = curl_init();
+
+                                                                curl_setopt_array($curlq, array(
+                                                                  CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                                                  CURLOPT_RETURNTRANSFER => true,
+                                                                  CURLOPT_ENCODING => "",
+                                                                  CURLOPT_MAXREDIRS => 10,
+                                                                  CURLOPT_TIMEOUT => 30,
+                                                                  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                                                  CURLOPT_CUSTOMREQUEST => "POST",
+                                                                  CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$quserid\",\n            \"nmember_tks_balance\": \"$qbalance\",\n            \"nmember_tks_bet\": \"$qbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                                                    \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$qfchoice\",\n            \"nmember_tks_schoice\": \"$qschoice\",\n            \"nmember_tks_tchoice\": \"$qtchoice\",\n            \"nmember_tks_expend\": \"$qexpend\",\n            \"nmember_tks_income\": \"$qincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                                                    \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$qid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                                                  CURLOPT_HTTPHEADER => array(
+                                                                    "cache-control: no-cache",
+                                                                    "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                                                    "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                                                  ),
+                                                                ));
+
+                                                                $responseq = curl_exec($curlq);
+                                                                $errq = curl_error($curlq);
+
+                                                                curl_close($curlq);
+
+                                                                if ($errq) {
+                                                                  echo "cURL Error #:" . $errq;
+                                                                } else {
+
+                                                                }
+
+                                                              }
+
+                          }
+
+                          if($ns3==2){
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice=2;";
+                            $response = \Httpful\Request::get($uri)->send();
+                            $data = json_decode($response,true);
+
+                            foreach($data["result"] as $item) {
+
+                              $muserid = $item['nmember_tks_userid'];
+                              $mbalance = $item['nmember_tks_balance'];
+                              $mbet = $item['nmember_tks_bet'];
+                              $musername = $item['nmember_tks_username'];
+                              $mplayer = $item['nmember_tks_player'];
+                              $mexpend = $item['nmember_tks_expend'];
+                              $mincome = $item['nmember_tks_income']+$mbet;
+                              $mid = $item['id'];
+                              $mfchoice = $item['nmember_tks_fchoice'];
+                              $mschoice = $item['nmember_tks_schoice'];
+                              $mtchoice = $item['nmember_tks_tchoice'];
+
+                              $curl = curl_init();
+
+                              curl_setopt_array($curl, array(
+                                CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                CURLOPT_RETURNTRANSFER => true,
+                                CURLOPT_ENCODING => "",
+                                CURLOPT_MAXREDIRS => 10,
+                                CURLOPT_TIMEOUT => 30,
+                                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                CURLOPT_CUSTOMREQUEST => "POST",
+                                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$muserid\",\n            \"nmember_tks_balance\": \"$mbalance\",\n            \"nmember_tks_bet\": \"$mbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                  \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$mfchoice\",\n            \"nmember_tks_schoice\": \"$mschoice\",\n            \"nmember_tks_tchoice\": \"$mtchoice\",\n            \"nmember_tks_expend\": \"$mexpend\",\n            \"nmember_tks_income\": \"$mincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                  \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$mid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                CURLOPT_HTTPHEADER => array(
+                                  "cache-control: no-cache",
+                                  "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                  "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                ),
+                              ));
+
+                              $response = curl_exec($curl);
+                              $err = curl_error($curl);
+
+                              curl_close($curl);
+
+                              if ($err) {
+                                echo "cURL Error #:" . $err;
+                              } else {
+                                  //
+                                    ///
+                              }
+
+                            }
+
+
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice!=2;";
+                                                              $responseq = \Httpful\Request::get($uriq)->send();
+                                                              $dataq = json_decode($responseq,true);
+
+                                                              foreach($dataq["result"] as $itemq) {
+
+                                                                $quserid = $itemq['nmember_tks_userid'];
+                                                                $qbalance = $itemq['nmember_tks_balance'];
+                                                                $qbet = $itemq['nmember_tks_bet'];
+                                                                $qusername = $itemq['nmember_tks_username'];
+                                                                $qplayer = $itemq['nmember_tks_player'];
+                                                                $qexpend = $itemq['nmember_tks_expend']+$qbet;
+                                                                $qincome = $itemq['nmember_tks_income'];
+                                                                $qid = $itemq['id'];
+                                                                $qfchoice = $itemq['nmember_tks_fchoice'];
+                                                                $qschoice = $itemq['nmember_tks_schoice'];
+                                                                $qtchoice = $itemq['nmember_tks_tchoice'];
+
+                                                                $curlq = curl_init();
+
+                                                                curl_setopt_array($curlq, array(
+                                                                  CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                                                  CURLOPT_RETURNTRANSFER => true,
+                                                                  CURLOPT_ENCODING => "",
+                                                                  CURLOPT_MAXREDIRS => 10,
+                                                                  CURLOPT_TIMEOUT => 30,
+                                                                  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                                                  CURLOPT_CUSTOMREQUEST => "POST",
+                                                                  CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$quserid\",\n            \"nmember_tks_balance\": \"$qbalance\",\n            \"nmember_tks_bet\": \"$qbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                                                    \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$qfchoice\",\n            \"nmember_tks_schoice\": \"$qschoice\",\n            \"nmember_tks_tchoice\": \"$qtchoice\",\n            \"nmember_tks_expend\": \"$qexpend\",\n            \"nmember_tks_income\": \"$qincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                                                    \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$qid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                                                  CURLOPT_HTTPHEADER => array(
+                                                                    "cache-control: no-cache",
+                                                                    "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                                                    "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                                                  ),
+                                                                ));
+
+                                                                $responseq = curl_exec($curlq);
+                                                                $errq = curl_error($curlq);
+
+                                                                curl_close($curlq);
+
+                                                                if ($errq) {
+                                                                  echo "cURL Error #:" . $errq;
+                                                                } else {
+
+                                                                }
+
+                                                              }
+
+                          }
+
+
+                          if($ns3==3){
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice=3;";
+                            $response = \Httpful\Request::get($uri)->send();
+                            $data = json_decode($response,true);
+
+                            foreach($data["result"] as $item) {
+
+                              $muserid = $item['nmember_tks_userid'];
+                              $mbalance = $item['nmember_tks_balance'];
+                              $mbet = $item['nmember_tks_bet'];
+                              $musername = $item['nmember_tks_username'];
+                              $mplayer = $item['nmember_tks_player'];
+                              $mexpend = $item['nmember_tks_expend'];
+                              $mincome = $item['nmember_tks_income']+$mbet;
+                              $mid = $item['id'];
+                              $mfchoice = $item['nmember_tks_fchoice'];
+                              $mschoice = $item['nmember_tks_schoice'];
+                              $mtchoice = $item['nmember_tks_tchoice'];
+
+                              $curl = curl_init();
+
+                              curl_setopt_array($curl, array(
+                                CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                CURLOPT_RETURNTRANSFER => true,
+                                CURLOPT_ENCODING => "",
+                                CURLOPT_MAXREDIRS => 10,
+                                CURLOPT_TIMEOUT => 30,
+                                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                CURLOPT_CUSTOMREQUEST => "POST",
+                                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$muserid\",\n            \"nmember_tks_balance\": \"$mbalance\",\n            \"nmember_tks_bet\": \"$mbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                  \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$mfchoice\",\n            \"nmember_tks_schoice\": \"$mschoice\",\n            \"nmember_tks_tchoice\": \"$mtchoice\",\n            \"nmember_tks_expend\": \"$mexpend\",\n            \"nmember_tks_income\": \"$mincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                  \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$mid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                CURLOPT_HTTPHEADER => array(
+                                  "cache-control: no-cache",
+                                  "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                  "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                ),
+                              ));
+
+                              $response = curl_exec($curl);
+                              $err = curl_error($curl);
+
+                              curl_close($curl);
+
+                              if ($err) {
+                                echo "cURL Error #:" . $err;
+                              } else {
+                                  //
+                                    ///
+                              }
+
+                            }
+
+
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice!=3;";
+                                                              $responseq = \Httpful\Request::get($uriq)->send();
+                                                              $dataq = json_decode($responseq,true);
+
+                                                              foreach($dataq["result"] as $itemq) {
+
+                                                                $quserid = $itemq['nmember_tks_userid'];
+                                                                $qbalance = $itemq['nmember_tks_balance'];
+                                                                $qbet = $itemq['nmember_tks_bet'];
+                                                                $qusername = $itemq['nmember_tks_username'];
+                                                                $qplayer = $itemq['nmember_tks_player'];
+                                                                $qexpend = $itemq['nmember_tks_expend']+$qbet;
+                                                                $qincome = $itemq['nmember_tks_income'];
+                                                                $qid = $itemq['id'];
+                                                                $qfchoice = $itemq['nmember_tks_fchoice'];
+                                                                $qschoice = $itemq['nmember_tks_schoice'];
+                                                                $qtchoice = $itemq['nmember_tks_tchoice'];
+
+                                                                $curlq = curl_init();
+
+                                                                curl_setopt_array($curlq, array(
+                                                                  CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                                                  CURLOPT_RETURNTRANSFER => true,
+                                                                  CURLOPT_ENCODING => "",
+                                                                  CURLOPT_MAXREDIRS => 10,
+                                                                  CURLOPT_TIMEOUT => 30,
+                                                                  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                                                  CURLOPT_CUSTOMREQUEST => "POST",
+                                                                  CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$quserid\",\n            \"nmember_tks_balance\": \"$qbalance\",\n            \"nmember_tks_bet\": \"$qbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                                                    \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$qfchoice\",\n            \"nmember_tks_schoice\": \"$qschoice\",\n            \"nmember_tks_tchoice\": \"$qtchoice\",\n            \"nmember_tks_expend\": \"$qexpend\",\n            \"nmember_tks_income\": \"$qincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                                                    \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$qid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                                                  CURLOPT_HTTPHEADER => array(
+                                                                    "cache-control: no-cache",
+                                                                    "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                                                    "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                                                  ),
+                                                                ));
+
+                                                                $responseq = curl_exec($curlq);
+                                                                $errq = curl_error($curlq);
+
+                                                                curl_close($curlq);
+
+                                                                if ($errq) {
+                                                                  echo "cURL Error #:" . $errq;
+                                                                } else {
+
+                                                                }
+
+                                                              }
+
+                          }
+                          if($ns3==4){
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice=4;";
+                            $response = \Httpful\Request::get($uri)->send();
+                            $data = json_decode($response,true);
+
+                            foreach($data["result"] as $item) {
+
+                              $muserid = $item['nmember_tks_userid'];
+                              $mbalance = $item['nmember_tks_balance'];
+                              $mbet = $item['nmember_tks_bet'];
+                              $musername = $item['nmember_tks_username'];
+                              $mplayer = $item['nmember_tks_player'];
+                              $mexpend = $item['nmember_tks_expend'];
+                              $mincome = $item['nmember_tks_income']+$mbet;
+                              $mid = $item['id'];
+                              $mfchoice = $item['nmember_tks_fchoice'];
+                              $mschoice = $item['nmember_tks_schoice'];
+                              $mtchoice = $item['nmember_tks_tchoice'];
+
+                              $curl = curl_init();
+
+                              curl_setopt_array($curl, array(
+                                CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                CURLOPT_RETURNTRANSFER => true,
+                                CURLOPT_ENCODING => "",
+                                CURLOPT_MAXREDIRS => 10,
+                                CURLOPT_TIMEOUT => 30,
+                                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                CURLOPT_CUSTOMREQUEST => "POST",
+                                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$muserid\",\n            \"nmember_tks_balance\": \"$mbalance\",\n            \"nmember_tks_bet\": \"$mbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                  \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$mfchoice\",\n            \"nmember_tks_schoice\": \"$mschoice\",\n            \"nmember_tks_tchoice\": \"$mtchoice\",\n            \"nmember_tks_expend\": \"$mexpend\",\n            \"nmember_tks_income\": \"$mincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                  \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$mid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                CURLOPT_HTTPHEADER => array(
+                                  "cache-control: no-cache",
+                                  "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                  "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                ),
+                              ));
+
+                              $response = curl_exec($curl);
+                              $err = curl_error($curl);
+
+                              curl_close($curl);
+
+                              if ($err) {
+                                echo "cURL Error #:" . $err;
+                              } else {
+                                  //
+                                    ///
+                              }
+
+                            }
+
+
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice!=4;";
+                                                              $responseq = \Httpful\Request::get($uriq)->send();
+                                                              $dataq = json_decode($responseq,true);
+
+                                                              foreach($dataq["result"] as $itemq) {
+
+                                                                $quserid = $itemq['nmember_tks_userid'];
+                                                                $qbalance = $itemq['nmember_tks_balance'];
+                                                                $qbet = $itemq['nmember_tks_bet'];
+                                                                $qusername = $itemq['nmember_tks_username'];
+                                                                $qplayer = $itemq['nmember_tks_player'];
+                                                                $qexpend = $itemq['nmember_tks_expend']+$qbet;
+                                                                $qincome = $itemq['nmember_tks_income'];
+                                                                $qid = $itemq['id'];
+                                                                $qfchoice = $itemq['nmember_tks_fchoice'];
+                                                                $qschoice = $itemq['nmember_tks_schoice'];
+                                                                $qtchoice = $itemq['nmember_tks_tchoice'];
+
+                                                                $curlq = curl_init();
+
+                                                                curl_setopt_array($curlq, array(
+                                                                  CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                                                  CURLOPT_RETURNTRANSFER => true,
+                                                                  CURLOPT_ENCODING => "",
+                                                                  CURLOPT_MAXREDIRS => 10,
+                                                                  CURLOPT_TIMEOUT => 30,
+                                                                  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                                                  CURLOPT_CUSTOMREQUEST => "POST",
+                                                                  CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$quserid\",\n            \"nmember_tks_balance\": \"$qbalance\",\n            \"nmember_tks_bet\": \"$qbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                                                    \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$qfchoice\",\n            \"nmember_tks_schoice\": \"$qschoice\",\n            \"nmember_tks_tchoice\": \"$qtchoice\",\n            \"nmember_tks_expend\": \"$qexpend\",\n            \"nmember_tks_income\": \"$qincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                                                    \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$qid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                                                  CURLOPT_HTTPHEADER => array(
+                                                                    "cache-control: no-cache",
+                                                                    "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                                                    "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                                                  ),
+                                                                ));
+
+                                                                $responseq = curl_exec($curlq);
+                                                                $errq = curl_error($curlq);
+
+                                                                curl_close($curlq);
+
+                                                                if ($errq) {
+                                                                  echo "cURL Error #:" . $errq;
+                                                                } else {
+
+                                                                }
+
+                                                              }
+
+                          }
+
+                          if($ns3==5){
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice=5;";
+                            $response = \Httpful\Request::get($uri)->send();
+                            $data = json_decode($response,true);
+
+                            foreach($data["result"] as $item) {
+
+                              $muserid = $item['nmember_tks_userid'];
+                              $mbalance = $item['nmember_tks_balance'];
+                              $mbet = $item['nmember_tks_bet'];
+                              $musername = $item['nmember_tks_username'];
+                              $mplayer = $item['nmember_tks_player'];
+                              $mexpend = $item['nmember_tks_expend'];
+                              $mincome = $item['nmember_tks_income']+$mbet;
+                              $mid = $item['id'];
+                              $mfchoice = $item['nmember_tks_fchoice'];
+                              $mschoice = $item['nmember_tks_schoice'];
+                              $mtchoice = $item['nmember_tks_tchoice'];
+
+                              $curl = curl_init();
+
+                              curl_setopt_array($curl, array(
+                                CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                CURLOPT_RETURNTRANSFER => true,
+                                CURLOPT_ENCODING => "",
+                                CURLOPT_MAXREDIRS => 10,
+                                CURLOPT_TIMEOUT => 30,
+                                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                CURLOPT_CUSTOMREQUEST => "POST",
+                                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$muserid\",\n            \"nmember_tks_balance\": \"$mbalance\",\n            \"nmember_tks_bet\": \"$mbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                  \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$mfchoice\",\n            \"nmember_tks_schoice\": \"$mschoice\",\n            \"nmember_tks_tchoice\": \"$mtchoice\",\n            \"nmember_tks_expend\": \"$mexpend\",\n            \"nmember_tks_income\": \"$mincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                  \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$mid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                CURLOPT_HTTPHEADER => array(
+                                  "cache-control: no-cache",
+                                  "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                  "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                ),
+                              ));
+
+                              $response = curl_exec($curl);
+                              $err = curl_error($curl);
+
+                              curl_close($curl);
+
+                              if ($err) {
+                                echo "cURL Error #:" . $err;
+                              } else {
+                                  //
+                                    ///
+                              }
+
+                            }
+
+
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice!=5;";
+                                                              $responseq = \Httpful\Request::get($uriq)->send();
+                                                              $dataq = json_decode($responseq,true);
+
+                                                              foreach($dataq["result"] as $itemq) {
+
+                                                                $quserid = $itemq['nmember_tks_userid'];
+                                                                $qbalance = $itemq['nmember_tks_balance'];
+                                                                $qbet = $itemq['nmember_tks_bet'];
+                                                                $qusername = $itemq['nmember_tks_username'];
+                                                                $qplayer = $itemq['nmember_tks_player'];
+                                                                $qexpend = $itemq['nmember_tks_expend']+$qbet;
+                                                                $qincome = $itemq['nmember_tks_income'];
+                                                                $qid = $itemq['id'];
+                                                                $qfchoice = $itemq['nmember_tks_fchoice'];
+                                                                $qschoice = $itemq['nmember_tks_schoice'];
+                                                                $qtchoice = $itemq['nmember_tks_tchoice'];
+
+                                                                $curlq = curl_init();
+
+                                                                curl_setopt_array($curlq, array(
+                                                                  CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                                                  CURLOPT_RETURNTRANSFER => true,
+                                                                  CURLOPT_ENCODING => "",
+                                                                  CURLOPT_MAXREDIRS => 10,
+                                                                  CURLOPT_TIMEOUT => 30,
+                                                                  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                                                  CURLOPT_CUSTOMREQUEST => "POST",
+                                                                  CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$quserid\",\n            \"nmember_tks_balance\": \"$qbalance\",\n            \"nmember_tks_bet\": \"$qbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                                                    \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$qfchoice\",\n            \"nmember_tks_schoice\": \"$qschoice\",\n            \"nmember_tks_tchoice\": \"$qtchoice\",\n            \"nmember_tks_expend\": \"$qexpend\",\n            \"nmember_tks_income\": \"$qincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                                                    \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$qid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                                                  CURLOPT_HTTPHEADER => array(
+                                                                    "cache-control: no-cache",
+                                                                    "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                                                    "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                                                  ),
+                                                                ));
+
+                                                                $responseq = curl_exec($curlq);
+                                                                $errq = curl_error($curlq);
+
+                                                                curl_close($curlq);
+
+                                                                if ($errq) {
+                                                                  echo "cURL Error #:" . $errq;
+                                                                } else {
+
+                                                                }
+
+                                                              }
+
+                          }
+
+                          if($ns3==6){
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice=6;";
+                            $response = \Httpful\Request::get($uri)->send();
+                            $data = json_decode($response,true);
+
+                            foreach($data["result"] as $item) {
+
+                              $muserid = $item['nmember_tks_userid'];
+                              $mbalance = $item['nmember_tks_balance'];
+                              $mbet = $item['nmember_tks_bet'];
+                              $musername = $item['nmember_tks_username'];
+                              $mplayer = $item['nmember_tks_player'];
+                              $mexpend = $item['nmember_tks_expend'];
+                              $mincome = $item['nmember_tks_income']+$mbet;
+                              $mid = $item['id'];
+                              $mfchoice = $item['nmember_tks_fchoice'];
+                              $mschoice = $item['nmember_tks_schoice'];
+                              $mtchoice = $item['nmember_tks_tchoice'];
+
+                              $curl = curl_init();
+
+                              curl_setopt_array($curl, array(
+                                CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                CURLOPT_RETURNTRANSFER => true,
+                                CURLOPT_ENCODING => "",
+                                CURLOPT_MAXREDIRS => 10,
+                                CURLOPT_TIMEOUT => 30,
+                                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                CURLOPT_CUSTOMREQUEST => "POST",
+                                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$muserid\",\n            \"nmember_tks_balance\": \"$mbalance\",\n            \"nmember_tks_bet\": \"$mbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                  \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$mfchoice\",\n            \"nmember_tks_schoice\": \"$mschoice\",\n            \"nmember_tks_tchoice\": \"$mtchoice\",\n            \"nmember_tks_expend\": \"$mexpend\",\n            \"nmember_tks_income\": \"$mincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                  \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$mid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                CURLOPT_HTTPHEADER => array(
+                                  "cache-control: no-cache",
+                                  "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                  "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                ),
+                              ));
+
+                              $response = curl_exec($curl);
+                              $err = curl_error($curl);
+
+                              curl_close($curl);
+
+                              if ($err) {
+                                echo "cURL Error #:" . $err;
+                              } else {
+                                  //
+                                    ///
+                              }
+
+                            }
+
+
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice!=6;";
+                                                              $responseq = \Httpful\Request::get($uriq)->send();
+                                                              $dataq = json_decode($responseq,true);
+
+                                                              foreach($dataq["result"] as $itemq) {
+
+                                                                $quserid = $itemq['nmember_tks_userid'];
+                                                                $qbalance = $itemq['nmember_tks_balance'];
+                                                                $qbet = $itemq['nmember_tks_bet'];
+                                                                $qusername = $itemq['nmember_tks_username'];
+                                                                $qplayer = $itemq['nmember_tks_player'];
+                                                                $qexpend = $itemq['nmember_tks_expend']+$qbet;
+                                                                $qincome = $itemq['nmember_tks_income'];
+                                                                $qid = $itemq['id'];
+                                                                $qfchoice = $itemq['nmember_tks_fchoice'];
+                                                                $qschoice = $itemq['nmember_tks_schoice'];
+                                                                $qtchoice = $itemq['nmember_tks_tchoice'];
+
+                                                                $curlq = curl_init();
+
+                                                                curl_setopt_array($curlq, array(
+                                                                  CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                                                                  CURLOPT_RETURNTRANSFER => true,
+                                                                  CURLOPT_ENCODING => "",
+                                                                  CURLOPT_MAXREDIRS => 10,
+                                                                  CURLOPT_TIMEOUT => 30,
+                                                                  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                                                  CURLOPT_CUSTOMREQUEST => "POST",
+                                                                  CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$quserid\",\n            \"nmember_tks_balance\": \"$qbalance\",\n            \"nmember_tks_bet\": \"$qbet\",\n            \"nmember_tks_username\": \"001\",\n
+                                                                    \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$qfchoice\",\n            \"nmember_tks_schoice\": \"$qschoice\",\n            \"nmember_tks_tchoice\": \"$qtchoice\",\n            \"nmember_tks_expend\": \"$qexpend\",\n            \"nmember_tks_income\": \"$qincome\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                                                                    \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$qid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                                                  CURLOPT_HTTPHEADER => array(
+                                                                    "cache-control: no-cache",
+                                                                    "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                                                    "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                                                                  ),
+                                                                ));
+
+                                                                $responseq = curl_exec($curlq);
+                                                                $errq = curl_error($curlq);
+
+                                                                curl_close($curlq);
+
+                                                                if ($errq) {
+                                                                  echo "cURL Error #:" . $errq;
+                                                                } else {
+
+                                                                }
+
+                                                              }
+
+                          }
+
+/////////****--++---++-//////
                           $messages = [
                             'type' => 'text',
                             'text' => $ns1.'//'.$ns2.'//'.$ns3
