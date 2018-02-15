@@ -267,7 +267,7 @@ if (!is_null($events['events'])) {
             $mplayer = $item['nmember_tks_player'];
             $mexpend = $item['nmember_tks_expend'];
             $mincome = $item['nmember_tks_income']+50;
-            $mid = $response->body->result[0]->id;
+            $mid = $item['id'];
             $mfchoice = $item['nmember_tks_fchoice'];
             $mschoice = $item['nmember_tks_schoice'];
             $mtchoice = $item['nmember_tks_tchoice'];
