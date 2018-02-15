@@ -269,6 +269,54 @@ if (!is_null($events['events'])) {
         $ns2 = substr($fftext,1,1);
         $ns3 = substr($fftext,2,1);
 
+        $ctext1="";
+        $ctext2="";
+        $ctext3="";
+
+
+          if($ns1 == "1"){
+            $ctext1="น้ำเต้า 💧";
+          }else if($ns1 == "2"){
+            $ctext1="ปู 🦀";
+          }else if($ns1 == "3"){
+            $ctext1="ปลา 🐠";
+          }else if($ns1 == "4"){
+            $ctext1="กุ้ง 🦐";
+          }else if($ns1 == "5"){
+            $ctext1="เสือ 🐯";
+          }else if($ns1 == "6"){
+            $ctext1="ไก่ 🐔";
+          }
+
+          if($ns2 == "1"){
+            $ctext2="น้ำเต้า 💧";
+          }else if($ns2 == "2"){
+            $ctext2="ปู 🦀";
+          }else if($ns2 == "3"){
+            $ctext2="ปลา 🐠";
+          }else if($ns2 == "4"){
+            $ctext2="กุ้ง 🦐";
+          }else if($ns2 == "5"){
+            $ctext2="เสือ 🐯";
+          }else if($ns2 == "6"){
+            $ctext2="ไก 🐔่";
+          }
+
+
+          if($ns3 == "1"){
+            $ctext3="น้ำเต้า 💧";
+          }else if($ns3 == "2"){
+            $ctext3="ปู 🦀";
+          }else if($ns3 == "3"){
+            $ctext3="ปลา 🐠";
+          }else if($ns3 == "4"){
+            $ctext3="กุ้ง 🦐";
+          }else if($ns3 == "5"){
+            $ctext3="เสือ 🐯";
+          }else if($ns3 == "6"){
+            $ctext3="ไก่ 🐔";
+          }
+
         $uris = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='50x872';";
         $responses = \Httpful\Request::get($uris)->send();
 
@@ -2210,9 +2258,10 @@ if (!is_null($events['events'])) {
                           }
 
 /////////****--++---++-//////
+
                           $messages = [
                             'type' => 'text',
-                            'text' => $ns1.'//'.$ns2.'//'.$ns3
+                            'text' => $ctext1."\n".$ctext2."\n".$ctext3."\n".'ยืนยันการสรุปผลหรือใหม่ ?'
                           ];
 
                     } else {
