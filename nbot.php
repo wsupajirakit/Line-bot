@@ -29,6 +29,7 @@ if (!is_null($events['events'])) {
       // $thirdtext = substr($text, 0, 3);
       $context = substr($text, 0, 2);
       $ttrdtext = substr($text, 0, 3);
+      $fourtext = substr($text, 0, 4);
       $fivetext = substr($text, 0, 5);
 			$ftext = substr($text, 0, 1);
       $sectext = strtoupper(substr($text, 0, 2));
@@ -246,7 +247,16 @@ if (!is_null($events['events'])) {
       }
 
       else if(strtoupper($ftext) == "S"){
+        $fftext = substr($fourtext, 1);
 
+        $ns1 = substr($fftext,0,1);
+        $ns2 = substr($fftext,1,1);
+        $ns3 = substr($fftext,2,1);
+
+        $messages = [
+          'type' => 'text',
+          'text' => $ns1.'//'.$ns2.'//'.$ns3
+        ];
 
     }
 
