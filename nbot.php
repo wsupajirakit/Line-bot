@@ -2415,8 +2415,7 @@ if (!is_null($events['events'])) {
                       ];
           }
 
-
-        } else if (strcmp($teststr,"ok") == 0){
+        } else if (strcmp(strtoupper($teststr),"ok") == 0){
 
 
           $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='50x872';";
@@ -2646,7 +2645,7 @@ if (!is_null($events['events'])) {
                        echo "cURL Error #:" . $err;
                      } else {
                      }
-                     
+
                     }
 
                   }
