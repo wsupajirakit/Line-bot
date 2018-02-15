@@ -2427,14 +2427,14 @@ if (!is_null($events['events'])) {
 
             if(strcmp($adminID,$userID) == 0){
 
-              $urix = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20Where%20bmember_tks_status='1';";
+              $urix = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20Where%20nmember_tks_status='1';";
               $responsex = \Httpful\Request::get($urix)->send();
 
               $datax = json_decode($responsex,true);
 
               foreach($datax["result"] as $itemx) {
                   $username = '';
-                  $userID = $itemx['bmember_tks_userid'];
+                  $userID = $itemx['nmember_tks_userid'];
 
                   $dname= '';
                   $curl = curl_init();
@@ -2467,14 +2467,27 @@ if (!is_null($events['events'])) {
                   $username =  $data['displayName'];
                   }
 
-                  $vid = $itemx['id'];
-                  $balance = $itemx['bmember_tks_balance'];
-                  $bet = $itemx['bmember_tks_bet'];
-                  $xmoneyx = $itemx['bmember_tks_player'];
-                  $expend = $itemx['bmember_tks_expend'];
-                  $income = $itemx['bmember_tks_income'];
+                  // $vid = $itemx['id'];
+                  // $balance = $itemx['bmember_tks_balance'];
+                  // $bet = $itemx['bmember_tks_bet'];
+                  // $xmoneyx = $itemx['bmember_tks_player'];
+                  // $expend = $itemx['bmember_tks_expend'];
+                  // $income = $itemx['bmember_tks_income'];
+                  // $sum = $income - $expend;
+                  // $playerbet = $itemx['bmember_tks_playerbet'];
+
+                  $muserid = $itemx['nmember_tks_userid'];
+                  $mbalance = $itemx['nmember_tks_balance'];
+                  $mbet = $itemx['nmember_tks_bet'];
+                  $musername = $itemx['nmember_tks_username'];
+                  $mplayer = $itemx['nmember_tks_player'];
+                  $expend = $itemx['nmember_tks_expend'];
+                  $income = $itemx['nmember_tks_income'];
                   $sum = $income - $expend;
-                  $playerbet = $itemx['bmember_tks_playerbet'];
+                  $mid = $itemx['id'];
+                  $mfchoice = $itemx['nmember_tks_fchoice'];
+                  $mschoice = $itemx['nmember_tks_schoice'];
+                  $mtchoice = $itemx['nmember_tks_tchoice'];
                   // เริ่ม
 
                   $urit = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='50x872';";
@@ -2528,48 +2541,46 @@ if (!is_null($events['events'])) {
 
                     if($income == 0 && $expend >=1){
                         $sum = substr($sum,1);
-                      $newbalance = $balance - $sum;
+                      $newbalance = $mbalance - $sum;
                        $resultlist = $resultlist."\n".$username." -".$sum."=".$newbalance."";
 
 
 
-                                               $curl = curl_init();
+                       $curl = curl_init();
 
-                                               curl_setopt_array($curl, array(
-                                                 CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
-                                                 CURLOPT_RETURNTRANSFER => true,
-                                                 CURLOPT_ENCODING => "",
-                                                 CURLOPT_MAXREDIRS => 10,
-                                                 CURLOPT_TIMEOUT => 30,
-                                                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                                                 CURLOPT_CUSTOMREQUEST => "POST",
-                                                 CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bmemberno\": \"\",\n
-                                                   \"bmember_tks_userid\": \"$userID\",\n            \"bmember_tks_balance\": \"$newbalance\",\n            \"bmember_tks_bet\": \"\",\n            \"bmember_tks_username\": \"001\",\n            \"bmember_tks_player\": \"\",\n            \"bmember_tks_playerbet\": \"\",\n            \"bmember_tks_expend\": \"\",\n            \"bmember_tks_income\": \"\",\n
-                                                   \"bmember_tks_status\": \"\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 05:25:21\",\n
-                                                   \"modifiedtime\": \"2018-02-02 05:25:21\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
-                                                 CURLOPT_HTTPHEADER => array(
-                                                   "cache-control: no-cache",
-                                                   "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
-                                                   "postman-token: 0dd99b19-60e4-0597-8d0b-76831d38ee2f"
-                                                 ),
-                                               ));
+                       curl_setopt_array($curl, array(
+                         CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                         CURLOPT_RETURNTRANSFER => true,
+                         CURLOPT_ENCODING => "",
+                         CURLOPT_MAXREDIRS => 10,
+                         CURLOPT_TIMEOUT => 30,
+                         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                         CURLOPT_CUSTOMREQUEST => "POST",
+                         CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$muserid\",\n            \"nmember_tks_balance\": \"$newbalance\",\n            \"nmember_tks_bet\": \"$money\",\n            \"nmember_tks_username\": \"001\",\n
+                           \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"\",\n            \"nmember_tks_schoice\": \"\",\n            \"nmember_tks_tchoice\": \"\",\n            \"nmember_tks_expend\": \"0\",\n            \"nmember_tks_income\": \"0\",\n            \"nmember_tks_status\": \"0\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                           \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$mid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                         CURLOPT_HTTPHEADER => array(
+                           "cache-control: no-cache",
+                           "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                           "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
+                         ),
+                       ));
 
-                                               $response = curl_exec($curl);
-                                               $err = curl_error($curl);
+                       $response = curl_exec($curl);
+                       $err = curl_error($curl);
 
-                                               curl_close($curl);
+                       curl_close($curl);
 
-                                               if ($err) {
-                                                 echo "cURL Error #:" . $err;
-                                               } else {
-                                                 echo $response;
-                                               }
+                       if ($err) {
+                         echo "cURL Error #:" . $err;
+                       } else {
+                       }
 
 
                     }
                     else if($sum < 0){
                         $sum = substr($sum,1);
-                      $newbalance = $balance - $sum;
+                      $newbalance = $mbalance - $sum;
                        $resultlist = $resultlist."\n".$username." -".$sum."=".$newbalance."";
 
                        $curl = curl_init();
@@ -2582,14 +2593,13 @@ if (!is_null($events['events'])) {
                          CURLOPT_TIMEOUT => 30,
                          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                          CURLOPT_CUSTOMREQUEST => "POST",
-                         CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bmemberno\": \"\",\n
-                           \"bmember_tks_userid\": \"$userID\",\n            \"bmember_tks_balance\": \"$newbalance\",\n            \"bmember_tks_bet\": \"\",\n            \"bmember_tks_username\": \"001\",\n            \"bmember_tks_player\": \"\",\n            \"bmember_tks_playerbet\": \"\",\n            \"bmember_tks_expend\": \"\",\n            \"bmember_tks_income\": \"\",\n
-                           \"bmember_tks_status\": \"\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 05:25:21\",\n
-                           \"modifiedtime\": \"2018-02-02 05:25:21\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                         CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$muserid\",\n            \"nmember_tks_balance\": \"$newbalance\",\n            \"nmember_tks_bet\": \"$money\",\n            \"nmember_tks_username\": \"001\",\n
+                           \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"\",\n            \"nmember_tks_schoice\": \"\",\n            \"nmember_tks_tchoice\": \"\",\n            \"nmember_tks_expend\": \"0\",\n            \"nmember_tks_income\": \"0\",\n            \"nmember_tks_status\": \"0\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                           \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$mid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                          CURLOPT_HTTPHEADER => array(
                            "cache-control: no-cache",
                            "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
-                           "postman-token: 0dd99b19-60e4-0597-8d0b-76831d38ee2f"
+                           "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
                          ),
                        ));
 
@@ -2601,11 +2611,10 @@ if (!is_null($events['events'])) {
                        if ($err) {
                          echo "cURL Error #:" . $err;
                        } else {
-                         echo $response;
                        }
 
                     }else if ($sum >= 0){
-                      $newbalance = $balance + $sum;
+                      $newbalance = $mbalance + $sum;
                      $resultlist = $resultlist."\n".$username." +".$sum."=".$newbalance."";
 
                      $curl = curl_init();
@@ -2618,14 +2627,13 @@ if (!is_null($events['events'])) {
                        CURLOPT_TIMEOUT => 30,
                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                        CURLOPT_CUSTOMREQUEST => "POST",
-                       CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bmemberno\": \"\",\n
-                         \"bmember_tks_userid\": \"$userID\",\n            \"bmember_tks_balance\": \"$newbalance\",\n            \"bmember_tks_bet\": \"\",\n            \"bmember_tks_username\": \"001\",\n            \"bmember_tks_player\": \"\",\n            \"bmember_tks_playerbet\": \"\",\n            \"bmember_tks_expend\": \"\",\n            \"bmember_tks_income\": \"\",\n
-                         \"bmember_tks_status\": \"\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 05:25:21\",\n
-                         \"modifiedtime\": \"2018-02-02 05:25:21\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                       CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$muserid\",\n            \"nmember_tks_balance\": \"$newbalance\",\n            \"nmember_tks_bet\": \"$money\",\n            \"nmember_tks_username\": \"001\",\n
+                         \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"\",\n            \"nmember_tks_schoice\": \"\",\n            \"nmember_tks_tchoice\": \"\",\n            \"nmember_tks_expend\": \"0\",\n            \"nmember_tks_income\": \"0\",\n            \"nmember_tks_status\": \"0\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
+                         \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$mid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                        CURLOPT_HTTPHEADER => array(
                          "cache-control: no-cache",
                          "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
-                         "postman-token: 0dd99b19-60e4-0597-8d0b-76831d38ee2f"
+                         "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
                        ),
                      ));
 
@@ -2637,8 +2645,8 @@ if (!is_null($events['events'])) {
                      if ($err) {
                        echo "cURL Error #:" . $err;
                      } else {
-                       echo $response;
                      }
+                     
                     }
 
                   }
