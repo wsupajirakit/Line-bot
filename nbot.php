@@ -272,7 +272,6 @@ if (!is_null($events['events'])) {
             $mschoice = $item['nmember_tks_schoice'];
             $mtchoice = $item['nmember_tks_tchoice'];
 
-
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
