@@ -253,6 +253,20 @@ if (!is_null($events['events'])) {
         $ns2 = substr($fftext,1,1);
         $ns3 = substr($fftext,2,1);
 
+        $uris = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='50x872';";
+        $responses = \Httpful\Request::get($uris)->send();
+
+        $adminID = $responses->body->result[0]->bgame_tks_adminid;
+        // $gameStatus = $responses->body->result[0]->bgame_tks_gamestatus;
+        // $allincome = $responses->body->result[0]->bgame_tks_allincome;
+        // $allexpend = $responses->body->result[0]->bgame_tks_allexpend;
+        // $cround = $response->body->result[0]->bgame_tks_round;
+        // $cround2 = $cround+1;
+
+
+
+                  if(strcmp($adminID,$userID) == 0){
+
                           if($ns1==1){
                             $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice=1;";
                             $response = \Httpful\Request::get($uri)->send();
@@ -360,10 +374,17 @@ if (!is_null($events['events'])) {
 
                           }
 
-        $messages = [
-          'type' => 'text',
-          'text' => $ns1.'//'.$ns2.'//'.$ns3
-        ];
+                          $messages = [
+                            'type' => 'text',
+                            'text' => $ns1.'//'.$ns2.'//'.$ns3
+                          ];
+
+                    } else {
+
+
+                    }
+
+
 
     }
 
