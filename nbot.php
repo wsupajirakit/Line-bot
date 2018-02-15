@@ -327,7 +327,7 @@ if (!is_null($events['events'])) {
 
                                                                 $curlq = curl_init();
 
-                                                                curl_setopt_array($curl, array(
+                                                                curl_setopt_array($curlq, array(
                                                                   CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
                                                                   CURLOPT_RETURNTRANSFER => true,
                                                                   CURLOPT_ENCODING => "",
