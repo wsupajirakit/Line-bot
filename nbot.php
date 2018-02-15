@@ -52,7 +52,7 @@ if (!is_null($events['events'])) {
 
 
         //gamestatus
-        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x3';";
+        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='50x872';";
         $response = \Httpful\Request::get($uri)->send();
         // echo $response;
         $gameStatus = $response->body->result[0]->bgame_tks_gamestatus;
@@ -2261,7 +2261,7 @@ if (!is_null($events['events'])) {
 
                           $messages = [
                             'type' => 'text',
-                            'text' => $ctext1."\n".$ctext2."\n".$ctext3."\n".'ยืนยันการสรุปผลหรือใหม่ ?'
+                            'text' => $ctext1."\n".$ctext2."\n".$ctext3."\n".'ยืนยันการสรุปผลหรือไม่ ?'
                           ];
 
                     } else {
@@ -2274,9 +2274,9 @@ if (!is_null($events['events'])) {
     }
 
       //แก้ไขผล
-    else if(strtoupper($fivetext) == "CLEAR"){
+    else if(strtoupper($fivetext) == "XXXCLEAR"){
 
-      $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x3';";
+      $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='50x872';";
       $response = \Httpful\Request::get($uri)->send();
 
       $adminID = $response->body->result[0]->bgame_tks_adminid;
@@ -2346,7 +2346,7 @@ if (!is_null($events['events'])) {
 
 			else if($ftext == "@"){
 
-        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x3';";
+        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='50x872';";
         $response = \Httpful\Request::get($uri)->send();
         $xround = $response->body->result[0]->bgame_tks_round-1;
 
@@ -2392,12 +2392,12 @@ if (!is_null($events['events'])) {
           }
 
 
-          $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20where%20bmember_tks_userid='".$userID."';";
+          $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20where%20nmember_tks_userid='".$userID."';";
           $response = \Httpful\Request::get($uri)->send();
           // echo $response;
-          $username = $response->body->result[0]->bmember_tks_username;
-          $vid = $response->body->result[0]->id;
-          $balance = $response->body->result[0]->bmember_tks_balance;
+          $username = $response->body->result[0]->nmember_tks_username;
+          // $vid = $response->body->result[0]->id;
+          $balance = $response->body->result[0]->nmember_tks_balance;
 
           $userlen = strlen($vid);
           if($vid > 2) {
@@ -2416,10 +2416,10 @@ if (!is_null($events['events'])) {
           }
 
 
-        } else if (strcmp($teststr,"okk") == 0){
+        } else if (strcmp($teststr,"ok") == 0){
 
 
-          $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x3';";
+          $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='50x872';";
           $response = \Httpful\Request::get($uri)->send();
 
           $adminID = $response->body->result[0]->bgame_tks_adminid;
@@ -2477,7 +2477,7 @@ if (!is_null($events['events'])) {
                   $playerbet = $itemx['bmember_tks_playerbet'];
                   // เริ่ม
 
-                  $urit = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x3';";
+                  $urit = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='50x872';";
                   $responset = \Httpful\Request::get($urit)->send();
 
                 //รายรับจ้าวมือ
@@ -2509,7 +2509,7 @@ if (!is_null($events['events'])) {
                     CURLOPT_CUSTOMREQUEST => "POST",
                     CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bgameno\": \"\",\n            \"bgame_tks_adminid\": \"$adminID\",\n            \"bgame_tks_gamestatus\": \"0\",\n            \"bgame_tks_round\": \"$xxround\",\n
                       \"bgame_tks_allincome\": \"$newincome\",\n            \"bgame_tks_allexpend\": \"$newexpend\",\n
-                      \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 06:06:23\",\n            \"modifiedtime\": \"2018-02-02 06:06:23\",\n            \"id\": \"37x3\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                      \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 06:06:23\",\n            \"modifiedtime\": \"2018-02-02 06:06:23\",\n            \"id\": \"50x872\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                     CURLOPT_HTTPHEADER => array(
                       "cache-control: no-cache",
                       "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
@@ -2749,7 +2749,7 @@ if (!is_null($events['events'])) {
       }
 
       else if(strtoupper($context) == "EDD"){
-        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x3';";
+        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='50x872';";
         $response = \Httpful\Request::get($uri)->send();
 
         $adminID = $response->body->result[0]->bgame_tks_adminid;
@@ -2757,7 +2757,7 @@ if (!is_null($events['events'])) {
 
           if(strcmp($adminID,$userID) == 0){
 
-            $urit = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x3';";
+            $urit = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='50x872';";
             $responset = \Httpful\Request::get($urit)->send();
 
           //รายรับจ้าวมือ
@@ -2776,7 +2776,7 @@ if (!is_null($events['events'])) {
       }
       else if(strtoupper($context) == "OPP"){
 
-        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x3';";
+        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='50x872';";
         $response = \Httpful\Request::get($uri)->send();
 
         $adminID = $response->body->result[0]->bgame_tks_adminid;
@@ -2794,7 +2794,7 @@ if (!is_null($events['events'])) {
               CURLOPT_TIMEOUT => 30,
               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
               CURLOPT_CUSTOMREQUEST => "POST",
-              CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n     {\n            \"bgameno\": \"\",\n            \"bgame_tks_adminid\": \"$adminID\",\n            \"bgame_tks_gamestatus\": \"0\",\n            \"bgame_tks_round\": \"1\",\n            \"bgame_tks_allincome\": \"\",\n            \"bgame_tks_allexpend\": \"\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 06:06:23\",\n            \"modifiedtime\": \"2018-02-02 06:06:23\",\n            \"id\": \"37x3\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+              CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n     {\n            \"bgameno\": \"\",\n            \"bgame_tks_adminid\": \"$adminID\",\n            \"bgame_tks_gamestatus\": \"0\",\n            \"bgame_tks_round\": \"1\",\n            \"bgame_tks_allincome\": \"\",\n            \"bgame_tks_allexpend\": \"\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 06:06:23\",\n            \"modifiedtime\": \"2018-02-02 06:06:23\",\n            \"id\": \"50x872\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
               CURLOPT_HTTPHEADER => array(
                 "cache-control: no-cache",
                 "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
