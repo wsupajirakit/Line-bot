@@ -59,6 +59,14 @@ if (!is_null($events['events'])) {
 
       if(strtoupper($ftext) == "T"){
 
+
+        $uris = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='50x872';";
+        $responses = \Httpful\Request::get($uris)->send();
+
+        $gameStatus = $responses->body->result[0]->bgame_tks_gamestatus;
+
+        if($gameStatus==1){
+
         $nn1 = substr($newtext,0,1);
         $nn2 = substr($newtext,1,1);
         $nn3 = substr($newtext,2,1);
@@ -244,6 +252,14 @@ if (!is_null($events['events'])) {
                       'text' => $dname.' รูปแบบการแทงไม่ถูกต้อง'
                     ];
               }
+
+
+            }else {
+              $messages = [
+                'type' => 'text',
+                'text' => 'ขณะนี้ไม่ใช่เวลาแทง โปรดรอเปิดรอบอีกครั้ง'
+              ];
+            }
       }
 
       else if(strtoupper($ftext) == "S"){
