@@ -2484,7 +2484,7 @@ if (!is_null($events['events'])) {
                   $income = $itemx['nmember_tks_income'];
 
 
-                  $multiplebonus =  $income/$bet;
+                  $multiplebonus =  $income/$mbet;
                   $extrabonus = '';
                   if($multiplebonus==2){
                       $income = $income+$income;
