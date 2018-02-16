@@ -2482,7 +2482,20 @@ if (!is_null($events['events'])) {
                   $mplayer = $itemx['nmember_tks_player'];
                   $expend = $itemx['nmember_tks_expend'];
                   $income = $itemx['nmember_tks_income'];
+
+
+                  $multiplebonus =  $income/$bet;
+                  $extrabonus = '';
+                  if($multiplebonus==2){
+                      $income = $income+$income;
+                      $extrabonus = '2';
+                  }else if($multiplebonus==3){
+                      $income = $income+$income+$income;
+                      $extrabonus = '3';
+                  }
+
                   $sum = $income - $expend;
+
                   $mid = $itemx['id'];
                   $mfchoice = $itemx['nmember_tks_fchoice'];
                   $mschoice = $itemx['nmember_tks_schoice'];
@@ -2614,7 +2627,7 @@ if (!is_null($events['events'])) {
 
                     }else if ($sum >= 0){
                       $newbalance = $mbalance + $sum;
-                     $resultlist = $resultlist."\n".$username." +".$sum."=".$newbalance."";
+                     $resultlist = $resultlist."\n".$username." +".$sum."=".$newbalance." Bonus :".$extrabonus." เท่า";
 
                      $curl = curl_init();
 
