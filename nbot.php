@@ -332,7 +332,7 @@ if (!is_null($events['events'])) {
                   if(strcmp($adminID,$userID) == 0){
 
                           if($ns1==1){
-                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice=1;";
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice=1%20AND%20nmember_tks_status=1;";
                             $response = \Httpful\Request::get($uri)->send();
                             $data = json_decode($response,true);
 
@@ -385,7 +385,7 @@ if (!is_null($events['events'])) {
                             }
 
 
-                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice!=1;";
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice!=1%20AND%20nmember_tks_status=1;";
                                                               $responseq = \Httpful\Request::get($uriq)->send();
                                                               $dataq = json_decode($responseq,true);
 
@@ -439,7 +439,7 @@ if (!is_null($events['events'])) {
                           }
 
                           if($ns1==2){
-                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice=2;";
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice=2%20AND%20nmember_tks_status=1;";
                             $response = \Httpful\Request::get($uri)->send();
                             $data = json_decode($response,true);
 
@@ -492,7 +492,7 @@ if (!is_null($events['events'])) {
                             }
 
 
-                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice!=2;";
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice!=2%20AND%20nmember_tks_status=1;";
                                                               $responseq = \Httpful\Request::get($uriq)->send();
                                                               $dataq = json_decode($responseq,true);
 
@@ -547,7 +547,7 @@ if (!is_null($events['events'])) {
 
 
                           if($ns1==3){
-                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice=3;";
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice=3%20AND%20nmember_tks_status=1;";
                             $response = \Httpful\Request::get($uri)->send();
                             $data = json_decode($response,true);
 
@@ -600,7 +600,7 @@ if (!is_null($events['events'])) {
                             }
 
 
-                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice!=3;";
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice!=3%20AND%20nmember_tks_status=1;";
                                                               $responseq = \Httpful\Request::get($uriq)->send();
                                                               $dataq = json_decode($responseq,true);
 
@@ -653,7 +653,7 @@ if (!is_null($events['events'])) {
 
                           }
                           if($ns1==4){
-                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice=4;";
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice=4%20AND%20nmember_tks_status=1;";
                             $response = \Httpful\Request::get($uri)->send();
                             $data = json_decode($response,true);
 
@@ -706,7 +706,7 @@ if (!is_null($events['events'])) {
                             }
 
 
-                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice!=4;";
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice!=4%20AND%20nmember_tks_status=1;";
                                                               $responseq = \Httpful\Request::get($uriq)->send();
                                                               $dataq = json_decode($responseq,true);
 
@@ -760,7 +760,7 @@ if (!is_null($events['events'])) {
                           }
 
                           if($ns1==5){
-                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice=5;";
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice=5%20AND%20nmember_tks_status=1;";
                             $response = \Httpful\Request::get($uri)->send();
                             $data = json_decode($response,true);
 
@@ -813,7 +813,7 @@ if (!is_null($events['events'])) {
                             }
 
 
-                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice!=5;";
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice!=5%20AND%20nmember_tks_status=1;";
                                                               $responseq = \Httpful\Request::get($uriq)->send();
                                                               $dataq = json_decode($responseq,true);
 
@@ -867,7 +867,7 @@ if (!is_null($events['events'])) {
                           }
 
                           if($ns1==6){
-                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice=6;";
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice=6%20AND%20nmember_tks_status=1;";
                             $response = \Httpful\Request::get($uri)->send();
                             $data = json_decode($response,true);
 
@@ -920,7 +920,7 @@ if (!is_null($events['events'])) {
                             }
 
 
-                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice!=6;";
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice!=6%20AND%20nmember_tks_status=1;";
                                                               $responseq = \Httpful\Request::get($uriq)->send();
                                                               $dataq = json_decode($responseq,true);
 
@@ -975,7 +975,7 @@ if (!is_null($events['events'])) {
 
 
                           if($ns2==1){
-                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice=1;";
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice=1%20AND%20nmember_tks_status=1;";
                             $response = \Httpful\Request::get($uri)->send();
                             $data = json_decode($response,true);
 
@@ -1028,7 +1028,7 @@ if (!is_null($events['events'])) {
                             }
 
 
-                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice!=1;";
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice!=1%20AND%20nmember_tks_status=1;";
                                                               $responseq = \Httpful\Request::get($uriq)->send();
                                                               $dataq = json_decode($responseq,true);
 
@@ -1082,7 +1082,7 @@ if (!is_null($events['events'])) {
                           }
 
                           if($ns2==2){
-                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice=2;";
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice=2%20AND%20nmember_tks_status=1;";
                             $response = \Httpful\Request::get($uri)->send();
                             $data = json_decode($response,true);
 
@@ -1135,7 +1135,7 @@ if (!is_null($events['events'])) {
                             }
 
 
-                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice!=2;";
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice!=2%20AND%20nmember_tks_status=1;";
                                                               $responseq = \Httpful\Request::get($uriq)->send();
                                                               $dataq = json_decode($responseq,true);
 
@@ -1190,7 +1190,7 @@ if (!is_null($events['events'])) {
 
 
                           if($ns2==3){
-                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice=3;";
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice=3%20AND%20nmember_tks_status=1;";
                             $response = \Httpful\Request::get($uri)->send();
                             $data = json_decode($response,true);
 
@@ -1243,7 +1243,7 @@ if (!is_null($events['events'])) {
                             }
 
 
-                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice!=3;";
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice!=3%20AND%20nmember_tks_status=1;";
                                                               $responseq = \Httpful\Request::get($uriq)->send();
                                                               $dataq = json_decode($responseq,true);
 
@@ -1296,7 +1296,7 @@ if (!is_null($events['events'])) {
 
                           }
                           if($ns2==4){
-                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice=4;";
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice=4%20AND%20nmember_tks_status=1;";
                             $response = \Httpful\Request::get($uri)->send();
                             $data = json_decode($response,true);
 
@@ -1349,7 +1349,7 @@ if (!is_null($events['events'])) {
                             }
 
 
-                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice!=4;";
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice!=4%20AND%20nmember_tks_status=1;";
                                                               $responseq = \Httpful\Request::get($uriq)->send();
                                                               $dataq = json_decode($responseq,true);
 
@@ -1403,7 +1403,7 @@ if (!is_null($events['events'])) {
                           }
 
                           if($ns2==5){
-                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice=5;";
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice=5%20AND%20nmember_tks_status=1;";
                             $response = \Httpful\Request::get($uri)->send();
                             $data = json_decode($response,true);
 
@@ -1456,7 +1456,7 @@ if (!is_null($events['events'])) {
                             }
 
 
-                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice!=5;";
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice!=5%20AND%20nmember_tks_status=1;";
                                                               $responseq = \Httpful\Request::get($uriq)->send();
                                                               $dataq = json_decode($responseq,true);
 
@@ -1510,7 +1510,7 @@ if (!is_null($events['events'])) {
                           }
 
                           if($ns2==6){
-                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice=6;";
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice=6%20AND%20nmember_tks_status=1;";
                             $response = \Httpful\Request::get($uri)->send();
                             $data = json_decode($response,true);
 
@@ -1563,7 +1563,7 @@ if (!is_null($events['events'])) {
                             }
 
 
-                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice!=6;";
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice!=6%20AND%20nmember_tks_status=1;";
                                                               $responseq = \Httpful\Request::get($uriq)->send();
                                                               $dataq = json_decode($responseq,true);
 
@@ -1616,7 +1616,7 @@ if (!is_null($events['events'])) {
 
                           }
                           if($ns3==1){
-                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice=1;";
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice=1%20AND%20nmember_tks_status=1;";
                             $response = \Httpful\Request::get($uri)->send();
                             $data = json_decode($response,true);
 
@@ -1669,7 +1669,7 @@ if (!is_null($events['events'])) {
                             }
 
 
-                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice!=1;";
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice!=1%20AND%20nmember_tks_status=1;";
                                                               $responseq = \Httpful\Request::get($uriq)->send();
                                                               $dataq = json_decode($responseq,true);
 
@@ -1723,7 +1723,7 @@ if (!is_null($events['events'])) {
                           }
 
                           if($ns3==2){
-                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice=2;";
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice=2%20AND%20nmember_tks_status=1;";
                             $response = \Httpful\Request::get($uri)->send();
                             $data = json_decode($response,true);
 
@@ -1776,7 +1776,7 @@ if (!is_null($events['events'])) {
                             }
 
 
-                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice!=2;";
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice!=2%20AND%20nmember_tks_status=1;";
                                                               $responseq = \Httpful\Request::get($uriq)->send();
                                                               $dataq = json_decode($responseq,true);
 
@@ -1831,7 +1831,7 @@ if (!is_null($events['events'])) {
 
 
                           if($ns3==3){
-                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice=3;";
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice=3%20AND%20nmember_tks_status=1;";
                             $response = \Httpful\Request::get($uri)->send();
                             $data = json_decode($response,true);
 
@@ -1884,7 +1884,7 @@ if (!is_null($events['events'])) {
                             }
 
 
-                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice!=3;";
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice!=3%20AND%20nmember_tks_status=1;";
                                                               $responseq = \Httpful\Request::get($uriq)->send();
                                                               $dataq = json_decode($responseq,true);
 
@@ -1937,7 +1937,7 @@ if (!is_null($events['events'])) {
 
                           }
                           if($ns3==4){
-                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice=4;";
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice=4%20AND%20nmember_tks_status=1;";
                             $response = \Httpful\Request::get($uri)->send();
                             $data = json_decode($response,true);
 
@@ -1990,7 +1990,7 @@ if (!is_null($events['events'])) {
                             }
 
 
-                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice!=4;";
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice!=4%20AND%20nmember_tks_status=1;";
                                                               $responseq = \Httpful\Request::get($uriq)->send();
                                                               $dataq = json_decode($responseq,true);
 
@@ -2044,7 +2044,7 @@ if (!is_null($events['events'])) {
                           }
 
                           if($ns3==5){
-                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice=5;";
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice=5%20AND%20nmember_tks_status=1;";
                             $response = \Httpful\Request::get($uri)->send();
                             $data = json_decode($response,true);
 
@@ -2097,7 +2097,7 @@ if (!is_null($events['events'])) {
                             }
 
 
-                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice!=5;";
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice!=5%20AND%20nmember_tks_status=1;";
                                                               $responseq = \Httpful\Request::get($uriq)->send();
                                                               $dataq = json_decode($responseq,true);
 
@@ -2151,7 +2151,7 @@ if (!is_null($events['events'])) {
                           }
 
                           if($ns3==6){
-                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice=6;";
+                            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice=6%20AND%20nmember_tks_status=1;";
                             $response = \Httpful\Request::get($uri)->send();
                             $data = json_decode($response,true);
 
@@ -2204,7 +2204,7 @@ if (!is_null($events['events'])) {
                             }
 
 
-                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice!=6;";
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice!=6%20AND%20nmember_tks_status=1;";
                                                               $responseq = \Httpful\Request::get($uriq)->send();
                                                               $dataq = json_decode($responseq,true);
 
