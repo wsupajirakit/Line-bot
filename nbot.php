@@ -2288,17 +2288,17 @@ if (!is_null($events['events'])) {
       $datax = json_decode($responsex,true);
 
       foreach($datax["result"] as $itemx) {
-        $muserid = $item['nmember_tks_userid'];
-        $mbalance = $item['nmember_tks_balance'];
-        $mbet = $item['nmember_tks_bet'];
-        $musername = $item['nmember_tks_username'];
-        $mplayer = $item['nmember_tks_player'];
-        $mexpend = $item['nmember_tks_expend'];
-        $mincome = $item['nmember_tks_income']+$mbet;
-        $mid = $item['id'];
-        $mfchoice = $item['nmember_tks_fchoice'];
-        $mschoice = $item['nmember_tks_schoice'];
-        $mtchoice = $item['nmember_tks_tchoice'];
+        $muserid = $itemx['nmember_tks_userid'];
+        $mbalance = $itemx['nmember_tks_balance'];
+        $mbet = $itemx['nmember_tks_bet'];
+        $musername = $itemx['nmember_tks_username'];
+        $mplayer = $itemx['nmember_tks_player'];
+        $mexpend = $itemx['nmember_tks_expend'];
+        $mincome = $itemx['nmember_tks_income'];
+        $mid = $itemx['id'];
+        $mfchoice = $itemx['nmember_tks_fchoice'];
+        $mschoice = $itemx['nmember_tks_schoice'];
+        $mtchoice = $itemx['nmember_tks_tchoice'];
 
         $curl = curl_init();
 
