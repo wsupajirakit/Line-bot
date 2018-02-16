@@ -2488,10 +2488,10 @@ if (!is_null($events['events'])) {
                   $extrabonus = '';
                   if($multiplebonus==2){
                       $income = $income+$income;
-                      $extrabonus = '2';
+                      $extrabonus = ' โบนัส 2 เท่า';
                   }else if($multiplebonus==3){
                       $income = $income+$income+$income;
-                      $extrabonus = '3';
+                      $extrabonus = ' โบนัส 3 เท่า';
                   }
 
                   $sum = $income - $expend;
@@ -2627,7 +2627,7 @@ if (!is_null($events['events'])) {
 
                     }else if ($sum >= 0){
                       $newbalance = $mbalance + $sum;
-                     $resultlist = $resultlist."\n".$username." +".$sum."=".$newbalance." Bonus :".$extrabonus." เท่า";
+                     $resultlist = $resultlist."\n".$username." +".$sum."=".$newbalance." ".$extrabonus;
 
                      $curl = curl_init();
 
