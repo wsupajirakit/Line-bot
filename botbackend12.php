@@ -443,6 +443,19 @@ if($countcheck==1){
       }
 
       else if(strtoupper($ftext) == "S"){
+        $zx=0;
+
+        if(substr_count($text, ',')>3){
+          $zx=1;
+        }
+
+        $zxtext = str_replace(",","",$text);
+
+        if(strlen($zxtext)!=13){
+          $zx=1;
+        }
+
+        if($zx!=1) {
 
         //find admin
         $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x2';";
@@ -1746,6 +1759,13 @@ if($countcheck==1){
 
       }
 
+
+    }else{
+      $messages = [
+        'type' => 'text',
+        'text' =>  'รูปแบบการสรุปผลไม่ถูกต้อง ตัวอย่าง S1-1,2-1,3-1,4-1'
+      ];
+      }
     }
 
       //แก้ไขผล
