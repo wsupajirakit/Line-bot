@@ -121,6 +121,13 @@ if (!is_null($events['events'])) {
           $tx=1;
         }
 
+        if(substr_count($text, ' ')>0){
+          $ix=1;
+        }
+        if(substr_count($text, '-')>1){
+          $ix=1;
+        }
+
           // if(strcmp($nn1,$nn2) == 0){
           //   $tx=1;
           //
