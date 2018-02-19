@@ -82,12 +82,13 @@ if (!is_null($events['events'])) {
 
         $player= strtoupper(strstr($text, '-', true));
         $moneyx  = substr($text, (strpos($text, '-') ?: -1) + 1);
-        $money = '';
+        $money = '300';
 
         $ix= '';
         $tx= '';
 
         $xlen = strlen($moneyx);
+
         if(strlen($moneyx)>3){
           $ix=1;
         }
