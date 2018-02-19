@@ -82,16 +82,17 @@ if (!is_null($events['events'])) {
 
         $player= strtoupper(strstr($text, '-', true));
         $money  = substr($text, (strpos($text, '-') ?: -1) + 1);
+        $moneylen = strlen($money);
         $money = substr($money,0,3);
 
 
         $money = preg_replace('/[^0-9]/', '', $money);
-        $moneylen = strlen($money);
+
         $ix= '';
         $tx= '';
 
-        $mcheck = $money[3];
-        if($mcheck != "" || $mcheck != " "){
+
+        if($moneylen>3){
           $ix=1;
         }
 
