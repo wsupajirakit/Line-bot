@@ -285,7 +285,7 @@ if($countcheck==1){
                                   $messages = [
                                     'type' => 'text',
                                     // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-                                    'text' => '  '.$username.' เปลี่ยนแปลงการแทงจาก T'.$newchoice3.' จำนวน'.$choicebet.'->เป็น '.$player.' จำนวน'.$money
+                                    'text' => '  '.$username.' เปลี่ยนแปลงการแทงจาก T'.$newchoice3.' ขาละ'.$choicebet.'->เป็น '.$player.' ขาละ'.$money
                                   ];
                                 }else {
 
