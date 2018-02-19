@@ -1952,13 +1952,19 @@ if($countcheck==1){
         } else if (strcmp(strtoupper($teststr),"OK") == 0){
 
 
+          $uriu = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bcenter%20Where%20id%20='39x33';";
+          $responseu = \Httpful\Request::get($uriu)->send();
+
+          $onresult = $responseu->body->result[0]->bcenter_tks_onresult;
+
+
           $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x2';";
           $response = \Httpful\Request::get($uri)->send();
 
           $adminID = $response->body->result[0]->bgame_tks_adminid;
 
 
-            if(strcmp($adminID,$userID) == 0){
+            if(strcmp($adminID,$userID) == 0 && $onresult == 1){
 
               $urix = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20Where%20bmember_tks_status='1';";
               $responsex = \Httpful\Request::get($urix)->send();
@@ -2182,6 +2188,13 @@ if($countcheck==1){
                   'text' =>  $resultlist
                 ];
 
+              }
+
+              else {
+                $messages = [
+                  'type' => 'text',
+                  'text' =>  'ยังไม่ได้สรุปผล หรือ โปรดเช็คสถานะแอดมิน'
+                ];
               }
 
         } else {
