@@ -82,7 +82,7 @@ if (!is_null($events['events'])) {
 
         $player= strtoupper(strstr($text, '-', true));
         $moneyx  = substr($text, (strpos($text, '-') ?: -1) + 1);
-        $money = '300';
+        $money = '';
 
         $ix= '';
         $tx= '';
@@ -290,7 +290,7 @@ if($countcheck==1){
                                   $messages = [
                                     'type' => 'text',
                                     // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-                                    'text' => '  '.$username.' เปลี่ยนแปลงการแทงจาก T'.$newchoice3.' จำนวน'.$choicebet.'->เป็น '.$player.' จำนวน'.$money
+                                    'text' => '  '.$username.' เปลี่ยนแปลงการแทงจาก T'.$newchoice3.' จำนวน'.$choicebet.'->เป็น '.$player.' จำนวน'.$money.'   '.$xlen
                                   ];
                                 }else {
 
