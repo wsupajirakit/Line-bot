@@ -81,12 +81,16 @@ if (!is_null($events['events'])) {
         }
 
         $player= strtoupper(strstr($text, '-', true));
-        $money  = substr($text, (strpos($text, '-') ?: -1) + 1);
-        if(strlen($money)>3){
+        $moneyx  = substr($text, (strpos($text, '-') ?: -1) + 1);
+        $money = '';
+        if(strlen($moneyx)>3){
           $ix=1;
+        }else{
+            $money  = substr($text, (strpos($text, '-') ?: -1) + 1);
+            $money = substr($money,0,3);
+            $money = preg_replace('/[^0-9]/', '', $money);
         }
-        $money = substr($money,0,3);
-        $money = preg_replace('/[^0-9]/', '', $money);
+
         $moneylen = strlen($money);
         $ix= '';
         $tx= '';
