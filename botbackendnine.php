@@ -82,6 +82,9 @@ if (!is_null($events['events'])) {
 
         $player= strtoupper(strstr($text, '-', true));
         $money  = substr($text, (strpos($text, '-') ?: -1) + 1);
+        if(strlen($money)>3){
+          $ix=1;
+        }
         $money = substr($money,0,3);
         $money = preg_replace('/[^0-9]/', '', $money);
         $moneylen = strlen($money);
@@ -114,9 +117,6 @@ if (!is_null($events['events'])) {
           $ix=1;
         }
         if(strlen($player)>5){
-          $ix=1;
-        }
-        if(strlen($money)>3){
           $ix=1;
         }
 
