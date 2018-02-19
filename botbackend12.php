@@ -496,7 +496,9 @@ if($countcheck==1){
 
         $adminID = $response->body->result[0]->bgame_tks_adminid;
         $xround = $response->body->result[0]->bgame_tks_round;
-          if(strcmp($adminID,$userID) == 0){
+        $xgamestatus = $response->body->result[0]->bgame_tks_gamestatus;
+
+          if(strcmp($adminID,$userID) == 0 && $xgamestatus == 0){
 
 
 
@@ -1788,7 +1790,10 @@ if($countcheck==1){
         ];
 
       }else {
-
+        $messages = [
+          'type' => 'text',
+          'text' =>  'ไม่สามารถสรุปยอดได้ สถานะรอบยังไม่ถูกปิด หรือ โปรดเช็คสถานะแอดมิน'
+        ];
       }
 
     }else{
