@@ -1889,6 +1889,39 @@ if($countcheck==1){
           if ($err) {
             echo "cURL Error #:" . $err;
           } else {
+
+
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+              CURLOPT_URL => "http://redfoxdev.com/backend12/webservice.php",
+              CURLOPT_RETURNTRANSFER => true,
+              CURLOPT_ENCODING => "",
+              CURLOPT_MAXREDIRS => 10,
+              CURLOPT_TIMEOUT => 30,
+              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+              CURLOPT_CUSTOMREQUEST => "POST",
+              CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\ne2a1b6a5a87dfb8085d8\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"bcenterno\": \"\",\n
+                \"bcenter_tks_onresult\": \"0\",\n            \"bcenter_tks_onok\": \"0\",\n
+                \"bcenter_tks_extraone\": \"1\",\n            \"bcenter_tks_extratwo\": \"1\",\n            \"bcenter_tks_extrathree\": \"1\",\n            \"bcenter_tks_extrafour\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-19 04:57:51\",\n            \"modifiedtime\": \"2018-02-19 05:03:56\",\n            \"id\": \"39x33\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+              CURLOPT_HTTPHEADER => array(
+                "cache-control: no-cache",
+                "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                "postman-token: 14030f30-d12c-bf51-9d6e-fbcc58b93b7b"
+              ),
+            ));
+
+            $response = curl_exec($curl);
+            $err = curl_error($curl);
+
+            curl_close($curl);
+
+            if ($err) {
+              echo "cURL Error #:" . $err;
+            } else {
+
+            }
+
             $messages = [
               'type' => 'text',
               'text' =>  'เคลียร์ผลสรุปแล้ว สรุปผลใหม่อีกครั้ง'
