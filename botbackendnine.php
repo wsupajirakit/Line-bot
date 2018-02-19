@@ -89,10 +89,10 @@ if (!is_null($events['events'])) {
 
         $xlen = strlen($moneyx);
 
-        if(strlen($moneyx)>3){
+        if($xlen>3){
           $ix=1;
         }
-        if(strlen($moneyx)<=3)
+        if($xlen<=3)
         {
             $money  = substr($text, (strpos($text, '-') ?: -1) + 1);
             $money = substr($money,0,3);
