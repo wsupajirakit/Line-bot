@@ -1985,6 +1985,7 @@ if($countcheck==1){
           $responseu = \Httpful\Request::get($uriu)->send();
 
           $onresult = $responseu->body->result[0]->bcenter_tks_onresult;
+          $onok = $responseu->body->result[0]->bcenter_tks_onok;
 
 
           $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x2';";
@@ -1994,6 +1995,8 @@ if($countcheck==1){
 
 
             if(strcmp($adminID,$userID) == 0 && $onresult == 1){
+
+              if($onok ==0){
 
               $urix = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20Where%20bmember_tks_status='1';";
               $responsex = \Httpful\Request::get($urix)->send();
@@ -2212,10 +2215,49 @@ if($countcheck==1){
                   }
 
                 }
+
+                $curl = curl_init();
+
+                curl_setopt_array($curl, array(
+                  CURLOPT_URL => "http://redfoxdev.com/backend12/webservice.php",
+                  CURLOPT_RETURNTRANSFER => true,
+                  CURLOPT_ENCODING => "",
+                  CURLOPT_MAXREDIRS => 10,
+                  CURLOPT_TIMEOUT => 30,
+                  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                  CURLOPT_CUSTOMREQUEST => "POST",
+                  CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\ne2a1b6a5a87dfb8085d8\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"bcenterno\": \"\",\n
+                    \"bcenter_tks_onresult\": \"1\",\n            \"bcenter_tks_onok\": \"1\",\n
+                    \"bcenter_tks_extraone\": \"1\",\n            \"bcenter_tks_extratwo\": \"1\",\n            \"bcenter_tks_extrathree\": \"1\",\n            \"bcenter_tks_extrafour\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-19 04:57:51\",\n            \"modifiedtime\": \"2018-02-19 05:03:56\",\n            \"id\": \"39x33\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                  CURLOPT_HTTPHEADER => array(
+                    "cache-control: no-cache",
+                    "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                    "postman-token: 14030f30-d12c-bf51-9d6e-fbcc58b93b7b"
+                  ),
+                ));
+
+                $response = curl_exec($curl);
+                $err = curl_error($curl);
+
+                curl_close($curl);
+
+                if ($err) {
+                  echo "cURL Error #:" . $err;
+                } else {
+
+                }
+
                 $messages = [
                   'type' => 'text',
                   'text' =>  $resultlist
                 ];
+
+              }else {
+                  $messages = [
+                    'type' => 'text',
+                    'text' =>  'ไม่สามารถยืนยันผลซ้ำได้'
+                  ];
+                }
 
               }
 
