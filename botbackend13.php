@@ -19,6 +19,7 @@ if (!is_null($events['events'])) {
 			// Get text sent
 			$text = $event['message']['text'];
       $text = str_replace(' ', '', $text);
+      $text = preg_replace('~[\r\n]+~', '', $text);
       $userID = $event['source']['userId'];
       $groupID = $event['source']['groupId'];
 			// Get replyToken
