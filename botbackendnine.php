@@ -90,7 +90,7 @@ if (!is_null($events['events'])) {
         $ix= '';
         $tx= '';
 
-        $mcheck = substr($money,0,4);
+        $mcheck = $money[3];
         if($mcheck != "" || $mcheck != " "){
           $ix=1;
         }
