@@ -81,26 +81,19 @@ if (!is_null($events['events'])) {
         }
 
         $player= strtoupper(strstr($text, '-', true));
-        $moneyx  = substr($text, (strpos($text, '-') ?: -1) + 1);
-        $money = '';
+        $money  = substr($text, (strpos($text, '-') ?: -1) + 1);
+        $money = substr($money,0,3);
 
+
+        $money = preg_replace('/[^0-9]/', '', $money);
+        $moneylen = strlen($money);
         $ix= '';
         $tx= '';
 
-        $xlen = strlen($moneyx);
-
-        if($xlen>3){
+        $mcheck = substr($money,0,4);
+        if($mcheck != "" || $mcheck != " "){
           $ix=1;
         }
-        if($xlen<=3)
-        {
-            $money  = substr($text, (strpos($text, '-') ?: -1) + 1);
-            $money = substr($money,0,3);
-            $money = preg_replace('/[^0-9]/', '', $money);
-        }
-
-        $moneylen = strlen($money);
-
 
         if(is_numeric($nn1)){
 
@@ -290,7 +283,7 @@ if($countcheck==1){
                                   $messages = [
                                     'type' => 'text',
                                     // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-                                    'text' => '  '.$username.' เปลี่ยนแปลงการแทงจาก T'.$newchoice3.' จำนวน'.$choicebet.'->เป็น '.$player.' จำนวน'.$money.'   '.$xlen
+                                    'text' => '  '.$username.' เปลี่ยนแปลงการแทงจาก T'.$newchoice3.' จำนวน'.$choicebet.'->เป็น '.$player.' จำนวน'.$money
                                   ];
                                 }else {
 
