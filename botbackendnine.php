@@ -85,7 +85,9 @@ if (!is_null($events['events'])) {
         $money = '';
         if(strlen($moneyx)>3){
           $ix=1;
-        }else{
+        }
+        if(strlen($moneyx)<=3)
+        {
             $money  = substr($text, (strpos($text, '-') ?: -1) + 1);
             $money = substr($money,0,3);
             $money = preg_replace('/[^0-9]/', '', $money);
