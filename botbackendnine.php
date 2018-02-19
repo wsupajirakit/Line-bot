@@ -83,6 +83,11 @@ if (!is_null($events['events'])) {
         $player= strtoupper(strstr($text, '-', true));
         $moneyx  = substr($text, (strpos($text, '-') ?: -1) + 1);
         $money = '';
+
+        $ix= '';
+        $tx= '';
+
+        $xlen = strlen($moneyx);
         if(strlen($moneyx)>3){
           $ix=1;
         }
@@ -94,8 +99,7 @@ if (!is_null($events['events'])) {
         }
 
         $moneylen = strlen($money);
-        $ix= '';
-        $tx= '';
+
 
         if(is_numeric($nn1)){
 
