@@ -116,6 +116,9 @@ if (!is_null($events['events'])) {
         if(strlen($player)>5){
           $ix=1;
         }
+        if(strlen($money)>3){
+          $ix=1;
+        }
 
         if(substr_count($alltext,1)>1){
           $tx=1;
