@@ -497,6 +497,13 @@ if($countcheck==1){
           $zx=1;
         }
 
+        $uriu = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bcenter%20Where%20id%20='39x33';";
+        $responseu = \Httpful\Request::get($uriu)->send();
+
+        $onresult = $responseu->body->result[0]->bcenter_tks_onresult;
+
+        if($onresult!=1){
+
         if($zx!=1) {
 
 
@@ -1841,6 +1848,14 @@ if($countcheck==1){
         'text' =>  '❌ รูปแบบการสรุปผลไม่ถูกต้อง ❌ ตัวอย่าง S1-1,2-1,3-1,4-1 (+2 +1 +0 -1 -2)'
       ];
       }
+
+    }else{
+      $messages = [
+        'type' => 'text',
+        'text' =>  '❌  คุณสรุปผลไปแล้ว ❌  หากต้องการแก้ไข พิมพ์ Clear'
+      ];
+
+    }
 
     }
 
