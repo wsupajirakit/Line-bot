@@ -1872,10 +1872,10 @@ if($countcheck==1){
 
                   $retotal = 'สมาชิกที่แทงรอบนี้';
 
-                  // $uriz = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20Where%20bmember_tks_status='1';";
-                  // $responsez = \Httpful\Request::get($uriz)->send();
-                  //
-                  // $dataz = json_decode($responsez,true);
+                  $uriz = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20Where%20bmember_tks_status='1';";
+                  $responsez = \Httpful\Request::get($uriz)->send();
+
+                  $dataz = json_decode($responsez,true);
                   //
                   // foreach ($dataz["result"] as $value) {
                   //
@@ -1921,7 +1921,7 @@ if($countcheck==1){
 
                   $messages = [
                     'type' => 'text',
-                    'text' =>  $retotal
+                    'text' =>  $retotal.$dataz
                   ];
 
                   }else{
