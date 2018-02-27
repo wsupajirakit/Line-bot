@@ -1868,14 +1868,16 @@ if($countcheck==1){
         if(strcmp($adminID,$userID) == 0){
 
 
+                  if(strlen($text)==2){
+
                   $retotal = 'สมาชิกที่แทงรอบนี้';
 
-                  // $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20Where%20bmember_tks_status='1';";
-                  // $response = \Httpful\Request::get($uri)->send();
+                  // $uriz = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20Where%20bmember_tks_status='1';";
+                  // $responsez = \Httpful\Request::get($uriz)->send();
                   //
-                  // $data = json_decode($response,true);
-                  // $total = 0;
-                  // foreach ($data["result"] as $value) {
+                  // $dataz = json_decode($responsez,true);
+                  //
+                  // foreach ($dataz["result"] as $value) {
                   //
                   //         $muserID = $value['bmember_tks_userid'];
                   //         $dname= '';
@@ -1922,7 +1924,9 @@ if($countcheck==1){
                     'text' =>  $retotal
                   ];
 
+                  }else{
 
+                  }
 
             }else{
 
