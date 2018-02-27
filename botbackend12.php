@@ -1912,6 +1912,11 @@ if($countcheck==1){
 
                           $retotal = $retotal+"\n ▶️".$dname
 
+                          $messages = [
+                            'type' => 'text',
+                            'text' =>  $retotal
+                          ];
+
                           }
 
 
