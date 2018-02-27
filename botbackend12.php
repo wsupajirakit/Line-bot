@@ -1922,7 +1922,7 @@ if($countcheck==1){
 
                   $messages = [
                     'type' => 'text',
-                    'text' =>  $retotal.$dataz
+                    'text' =>  $retotal
                   ];
 
                   }else{
