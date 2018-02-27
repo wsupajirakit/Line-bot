@@ -1911,7 +1911,7 @@ if($countcheck==1){
                           $data = json_decode($response,true);
                           $dname =  $data['displayName'];
 
-                          $retotal = $retotal."\n ▶️ ".$dname;
+                          $retotal = $retotal."\n ▶️  ".$dname;
 
 
 
