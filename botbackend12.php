@@ -1872,7 +1872,7 @@ if($countcheck==1){
 
                   $retotal = 'สมาชิกที่แทงรอบนี้';
 
-                  $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Bmember%20where%20bmember_tks_status=1;";
+                  $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20Where%20bmember_tks_status='1';";
                   $response = \Httpful\Request::get($uri)->send();
 
                   $data = json_decode($response,true);
@@ -1912,15 +1912,17 @@ if($countcheck==1){
 
                           $retotal = $retotal+"\n ▶️".$dname
 
-                          $messages = [
-                            'type' => 'text',
-                            'text' =>  $retotal
-                          ];
+
 
                           }
 
 
                   }
+
+                  $messages = [
+                    'type' => 'text',
+                    'text' =>  $retotal
+                  ];
 
                   }else{
 
