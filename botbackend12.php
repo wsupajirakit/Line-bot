@@ -1929,7 +1929,7 @@ if($countcheck==1){
 
                     $messages = [
                       'type' => 'text',
-                      'text' =>  'คำสั่ง Recheck ไม่ถูกต้อง พิมพ์ re อีกครั้ง '
+                      'text' =>  'คำสั่ง Recheck ไม่ถูกต้อง พิมพ์ re หรือ Re อีกครั้ง '
                     ];
 
                   }
