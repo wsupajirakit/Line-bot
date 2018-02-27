@@ -1868,8 +1868,6 @@ if($countcheck==1){
         if(strcmp($adminID,$userID) == 0){
 
 
-                  if(strlen($text)==2){
-
                   $retotal = 'สมาชิกที่แทงรอบนี้';
 
                   $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20Where%20bmember_tks_status='1';";
@@ -1924,9 +1922,7 @@ if($countcheck==1){
                     'text' =>  $retotal
                   ];
 
-                  }else{
 
-                  }
 
             }else{
 
