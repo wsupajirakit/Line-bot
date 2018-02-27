@@ -1927,6 +1927,11 @@ if($countcheck==1){
 
                   }else{
 
+                    $messages = [
+                      'type' => 'text',
+                      'text' =>  'คำสั่ง Recheck ไม่ถูกต้อง พิมพ์ re อีกครั้ง '
+                    ];
+
                   }
 
             }else{
