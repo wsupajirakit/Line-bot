@@ -1876,48 +1876,49 @@ if($countcheck==1){
                   $responsez = \Httpful\Request::get($uriz)->send();
 
                   $dataz = json_decode($responsez,true);
-                  //
-                  // foreach ($dataz["result"] as $value) {
-                  //
-                  //         $muserID = $value['bmember_tks_userid'];
-                  //         $dname= '';
-                  //         $curl = curl_init();
-                  //
-                  //         curl_setopt_array($curl, array(
-                  //           CURLOPT_URL => "https://api.line.me/v2/bot/group/".$groupID."/member/".$muserID,
-                  //           CURLOPT_RETURNTRANSFER => true,
-                  //           CURLOPT_ENCODING => "",
-                  //           CURLOPT_MAXREDIRS => 10,
-                  //           CURLOPT_TIMEOUT => 30,
-                  //           CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                  //           CURLOPT_CUSTOMREQUEST => "GET",
-                  //           CURLOPT_HTTPHEADER => array(
-                  //             "authorization: Bearer ixV71S2vDL1935GrQbSIq7bajIgzolsbFt2zhmXmnetTjETG3XyM6onopT9zGgvDoe3OLNko0Y1SVzKubnxi22+JNRzUQ8BeH34EHlnon8UTvw7BgR2fSn0B3A7F3qvVhfCdsW0A2kQ3HRbH2TtR7gdB04t89/1O/w1cDnyilFU=",
-                  //             "cache-control: no-cache",
-                  //             "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
-                  //           ),
-                  //         ));
-                  //
-                  //         $response = curl_exec($curl);
-                  //         $err = curl_error($curl);
-                  //
-                  //         curl_close($curl);
-                  //
-                  //         if ($err) {
-                  //           echo "cURL Error #:" . $err;
-                  //         } else {
-                  //
-                  //         $data = json_decode($response,true);
-                  //         $dname =  $data['displayName'];
-                  //
-                  //         $retotal = $retotal+"\n ▶️".$dname
-                  //
-                  //
-                  //
-                  //         }
-                  //
-                  //
-                  // }
+
+                  foreach ($dataz["result"] as $value) {
+
+                          $muserID = $value['bmember_tks_userid'];
+                          $retotal = $retotal+"\n ▶️".$muserID
+                          // $dname= '';
+                          // $curl = curl_init();
+                          //
+                          // curl_setopt_array($curl, array(
+                          //   CURLOPT_URL => "https://api.line.me/v2/bot/group/".$groupID."/member/".$muserID,
+                          //   CURLOPT_RETURNTRANSFER => true,
+                          //   CURLOPT_ENCODING => "",
+                          //   CURLOPT_MAXREDIRS => 10,
+                          //   CURLOPT_TIMEOUT => 30,
+                          //   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                          //   CURLOPT_CUSTOMREQUEST => "GET",
+                          //   CURLOPT_HTTPHEADER => array(
+                          //     "authorization: Bearer ixV71S2vDL1935GrQbSIq7bajIgzolsbFt2zhmXmnetTjETG3XyM6onopT9zGgvDoe3OLNko0Y1SVzKubnxi22+JNRzUQ8BeH34EHlnon8UTvw7BgR2fSn0B3A7F3qvVhfCdsW0A2kQ3HRbH2TtR7gdB04t89/1O/w1cDnyilFU=",
+                          //     "cache-control: no-cache",
+                          //     "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
+                          //   ),
+                          // ));
+                          //
+                          // $response = curl_exec($curl);
+                          // $err = curl_error($curl);
+                          //
+                          // curl_close($curl);
+                          //
+                          // if ($err) {
+                          //   echo "cURL Error #:" . $err;
+                          // } else {
+                          //
+                          // $data = json_decode($response,true);
+                          // $dname =  $data['displayName'];
+                          //
+                          // $retotal = $retotal+"\n ▶️".$dname
+                          //
+                          //
+                          //
+                          // }
+
+
+                  }
 
                   $messages = [
                     'type' => 'text',
