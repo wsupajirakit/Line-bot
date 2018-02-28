@@ -18,6 +18,8 @@ if (!is_null($events['events'])) {
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			// Get text sent
 			$text = $event['message']['text'];
+      $text = str_replace(' ', '', $text);
+      $text = preg_replace('~[\r\n]+~', '', $text);
       $userID = $event['source']['userId'];
       $groupID = $event['source']['groupId'];
 			// Get replyToken
@@ -35,6 +37,7 @@ if (!is_null($events['events'])) {
       $sectext = strtoupper(substr($text, 0, 2));
       $alltext= strtoupper(strstr($text, '-', true));
       $newtext = substr($alltext, 1);
+      $ostr = substr($text,1);
 
       // $lentext = strlen($newtext);
       //
@@ -74,19 +77,65 @@ if (!is_null($events['events'])) {
 
         $nx = 0;
 
+
         if(is_numeric($newtext) || is_numeric($money)){
           $nx = 0;
         } else {
           $nx = 1;
         }
 
-        if($nn1 > 6 || $nn2 > 6 || $nn3 > 6){
-            $nx = 1;
+        if(substr_count($text, '-')>1){
+          $nx=1;
         }
 
-        if($nn1 <= 0 || $nn2 <= 0 || $nn3 <= 0){
-            $nx = 1;
+        if(substr_count($text, '*')>0){
+          $nx=1;
         }
+
+        if(substr_count($text, '/')>0){
+          $nx=1;
+        }
+
+        if(substr_count($text, '+')>0){
+          $nx=1;
+        }
+        if(substr_count($text, '=')>0){
+          $nx=1;
+        }
+
+
+        if(strlen($newtext)==1){
+          if($nn1 > 6){
+              $nx = 1;
+          }
+          if($nn1 <= 0){
+              $nx = 1;
+          }
+        }
+
+        if(strlen($newtext)==2){
+          if($nn1 > 6 || $nn2 > 6){
+              $nx = 1;
+          }
+
+          if($nn1 <= 0 || $nn2 <= 0){
+              $nx = 1;
+          }
+
+        }
+
+        if(strlen($newtext)==3){
+          if($nn1 > 6 || $nn2 > 6 || $nn3 > 6){
+              $nx = 1;
+          }
+
+          if($nn1 <= 0 || $nn2 <= 0 || $nn3 <= 0){
+              $nx = 1;
+          }
+
+        }
+
+
 
 
         $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_userid='".$userID."';";
@@ -102,9 +151,10 @@ if (!is_null($events['events'])) {
         $betx = $money *3;
         $nt = 1;
 
-        if($mbalance<$betx){
-            $nt = 2;
-        }
+
+          if($mbalance<$betx){
+              $nt = 2;
+          }
 
                     $dname= '';
                     $curl = curl_init();
@@ -138,8 +188,8 @@ if (!is_null($events['events'])) {
                     $dname =  $data['displayName'];
                     }
 
-
-              if($nx != 1 && $nt != 2 && strlen($newtext)==3 && $money > 0){
+              // if($nx != 1 && $nt != 2 && strlen($newtext)==3 && $money > 0){
+              if($nx != 1 && $nt != 2 && strlen($newtext)<=3 && $money >= 20 && $money <=200 ){
 
 
                 $c1="";
@@ -172,7 +222,7 @@ if (!is_null($events['events'])) {
                   }else if($nn2 == "5"){
                     $c2="เสือ 🐯";
                   }else if($nn2 == "6"){
-                    $c2="ไก 🐔่";
+                    $c2="ไก่ 🐔";
                   }
 
 
@@ -190,45 +240,167 @@ if (!is_null($events['events'])) {
                     $c3="ไก่ 🐔";
                   }
 
+                  if(strlen($newtext)==1){
+                      $nn2=0;
+                      $nn3=0;
+                  }
+
+                    if(strlen($newtext)==2){
+                      $nn3=0;
+                    }
+
+                    $alln = $nn1.$nn2.$nn3;
+
+                    $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nbet%20Where%20nbet_tks_userid='".$userID."'%20AND%20nbet_tks_allchoice='".$alln."';";
+                    $responseq = \Httpful\Request::get($uriq)->send();
+                    $allchoice = $responseq->body->result[0]->nbet_tks_allchoice;
+                    $nbet = $responseq->body->result[0]->nbet_tks_bet;
+                    $nid = $responseq->body->result[0]->id;
+
+
+                    if(strcmp($allchoice,$alln) == 0){
+
+                      $curl = curl_init();
+
+                      curl_setopt_array($curl, array(
+                        CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                        CURLOPT_RETURNTRANSFER => true,
+                        CURLOPT_ENCODING => "",
+                        CURLOPT_MAXREDIRS => 10,
+                        CURLOPT_TIMEOUT => 30,
+                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                        CURLOPT_CUSTOMREQUEST => "POST",
+                        CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n3f98341d5a851e7a30336\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"nbetno\": \"\",\n
+                          \"nbet_tks_userid\": \"$userID\",\n            \"nbet_tks_fchoice\": \"$nn1\",\n            \"nbet_tks_schoice\": \"$nn2\",\n            \"nbet_tks_tchoice\": \"$nn3\",\n
+                          \"nbet_tks_bet\": \"$money\",\n            \"nbet_tks_income\": \"0\",\n            \"nbet_tks_expend\": \"0\",\n            \"nbet_tks_allchoice\": \"$alln\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-23 04:18:20\",\n            \"modifiedtime\": \"2018-02-23 04:18:20\",\n
+                          \"id\": \"$nid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNbet\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                        CURLOPT_HTTPHEADER => array(
+                          "cache-control: no-cache",
+                          "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                          "postman-token: 81acaa99-e0eb-d290-6b5d-e75245e3e73d"
+                        ),
+                      ));
+
+                      $response = curl_exec($curl);
+                      $err = curl_error($curl);
+
+                      curl_close($curl);
+
+                      if ($err) {
+                        echo "cURL Error #:" . $err;
+                      } else {
+                        $messages = [
+                          'type' => 'text',
+                          'text' => $dname." ✏️ เปลี่ยนแปลงการแทงพนัน \nขา ".$c1.$c2.$c3."\n จำนวนเดิม ".$nbet." \n เป็น ".$money
+                        ];
+                      }
+                      // เปลี่ยนแปลงจำนวนเงินการแทง จากค่าเดิม
+                    }else{
+
+                      $listbet = '';
+
+                      $uria = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nbet%20Where%20nbet_tks_userid='".$userID."';";
+                      $responseq = \Httpful\Request::get($uria)->send();
+                      $data = json_decode($responseq,true);
+
+                      foreach($data["result"] as $item) {
+                        $xfchoice = $item['nbet_tks_fchoice'];
+                        $xschoice = $item['nbet_tks_schoice'];
+                        $xtchoice = $item['nbet_tks_tchoice'];
+                        $xnbet = $item['nbet_tks_bet'];
+
+                        $tt1="";
+                        $tt2="";
+                        $tt3="";
+
+
+                          if($xfchoice == "1"){
+                            $tt1="น้ำเต้า";
+                          }else if($xfchoice == "2"){
+                            $tt1="ปู";
+                          }else if($xfchoice == "3"){
+                            $tt1="ปลา";
+                          }else if($xfchoice == "4"){
+                            $tt1="กุ้ง";
+                          }else if($xfchoice == "5"){
+                            $tt1="เสือ";
+                          }else if($xfchoice == "6"){
+                            $tt1="ไก่";
+                          }
+
+                          if($xschoice == "1"){
+                            $tt2="น้ำเต้า";
+                          }else if($xschoice == "2"){
+                            $tt2="ปู";
+                          }else if($xschoice == "3"){
+                            $tt2="ปลา";
+                          }else if($xschoice == "4"){
+                            $tt2="กุ้ง";
+                          }else if($xschoice == "5"){
+                            $tt2="เสือ";
+                          }else if($xschoice == "6"){
+                            $tt2="ไก่";
+                          }
+
+
+                          if($xtchoice == "1"){
+                            $tt3="น้ำเต้า";
+                          }else if($xtchoice == "2"){
+                            $tt3="ปู";
+                          }else if($xtchoice == "3"){
+                            $tt3="ปลา";
+                          }else if($xtchoice == "4"){
+                            $tt3="กุ้ง";
+                          }else if($xtchoice == "5"){
+                            $tt3="เสือ";
+                          }else if($xtchoice == "6"){
+                            $tt3="ไก่";
+                          }
+
+                          $listbet = $listbet."\n ▶️ แทง ".$tt1." ".$tt2." ".$tt3." ขาละ ".$xnbet;
+
+                      }
+
+
+
+
+                      $curl = curl_init();
+
+                      curl_setopt_array($curl, array(
+                        CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                        CURLOPT_RETURNTRANSFER => true,
+                        CURLOPT_ENCODING => "",
+                        CURLOPT_MAXREDIRS => 10,
+                        CURLOPT_TIMEOUT => 30,
+                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                        CURLOPT_CUSTOMREQUEST => "POST",
+                        CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\ncreate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n3f98341d5a851e7a30336\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"nbetno\": \"\",\n
+                          \"nbet_tks_userid\": \"$userID\",\n            \"nbet_tks_fchoice\": \"$nn1\",\n            \"nbet_tks_schoice\": \"$nn2\",\n            \"nbet_tks_tchoice\": \"$nn3\",\n
+                          \"nbet_tks_bet\": \"$money\",\n            \"nbet_tks_income\": \"0\",\n            \"nbet_tks_expend\": \"0\",\n            \"nbet_tks_allchoice\": \"$alln\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-23 04:18:20\",\n            \"modifiedtime\": \"2018-02-23 04:18:20\",\n            \"id\": \"53x889\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNbet\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                        CURLOPT_HTTPHEADER => array(
+                          "cache-control: no-cache",
+                          "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                          "postman-token: 81acaa99-e0eb-d290-6b5d-e75245e3e73d"
+                        ),
+                      ));
+
+                      $response = curl_exec($curl);
+                      $err = curl_error($curl);
+
+                      curl_close($curl);
+
+                      if ($err) {
+                        echo "cURL Error #:" . $err;
+                      } else {
+                        $messages = [
+                          'type' => 'text',
+                          'text' => $dname.' ผู้เล่นเพิ่มแทงพนัน '.$c1.'   '.$c2.'   '.$c3.'   ตัวละ '.$money.' ยอดคงเหลือก่อนแทง '.$mbalance."\n".$listbet
+                        ];
+                      }
+                    }
+
 
 //
-
-
-                        $curl = curl_init();
-
-                        curl_setopt_array($curl, array(
-                          CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
-                          CURLOPT_RETURNTRANSFER => true,
-                          CURLOPT_ENCODING => "",
-                          CURLOPT_MAXREDIRS => 10,
-                          CURLOPT_TIMEOUT => 30,
-                          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                          CURLOPT_CUSTOMREQUEST => "POST",
-                          CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n709c1a7e5a83bd434de8f\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n   {\n            \"nmemberno\": \"\",\n            \"nmember_tks_userid\": \"$muserid\",\n            \"nmember_tks_balance\": \"$mbalance\",\n            \"nmember_tks_bet\": \"$money\",\n            \"nmember_tks_username\": \"001\",\n
-                            \"nmember_tks_player\": \"\",\n            \"nmember_tks_fchoice\": \"$nn1\",\n            \"nmember_tks_schoice\": \"$nn2\",\n            \"nmember_tks_tchoice\": \"$nn3\",\n            \"nmember_tks_expend\": \"0\",\n            \"nmember_tks_income\": \"0\",\n            \"nmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-14 05:19:54\",\n
-                            \"modifiedtime\": \"2018-02-14 07:01:26\",\n            \"id\": \"$mid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nNmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
-                          CURLOPT_HTTPHEADER => array(
-                            "cache-control: no-cache",
-                            "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
-                            "postman-token: 2f7345c0-b598-025d-6584-37bac3668230"
-                          ),
-                        ));
-
-                        $response = curl_exec($curl);
-                        $err = curl_error($curl);
-
-                        curl_close($curl);
-
-                        if ($err) {
-                          echo "cURL Error #:" . $err;
-                        } else {
-                          $messages = [
-                            'type' => 'text',
-                            'text' => $dname.' ผู้เล่นแทงพนัน '.$c1.'   '.$c2.'   '.$c3.'   จำนวน '.$money.' ยอดคงเหลือก่อนแทง '.$mbalance
-                          ];
-                        }
-
-
 
 
 //
@@ -241,15 +413,24 @@ if (!is_null($events['events'])) {
 
               }
               else if ($nt == 2) {
+
+                if (strlen($mid) < 2) {
+                      $messages = [
+                        'type' => 'text',
+                        'text' => $dname.' คุณไม่ได้เป็นสมาชิก สมัครสมาชิกด้วยคำสั่ง PLAY'
+                      ];
+                }else{
                     $messages = [
                       'type' => 'text',
                       'text' => $dname.' ยอดเงินไม่พอสำหรับการแทง ยอดคงเหลือคือ '.$mbalance
                     ];
+                  }
               }
+
               else{
                     $messages = [
                       'type' => 'text',
-                      'text' => $dname.' รูปแบบการแทงไม่ถูกต้อง'
+                      'text' => $dname.' รูปแบบการแทงไม่ถูกต้อง ตัวอย่าง พิมพ์ T ตามด้วย สัตว์ที่ต้องการแทง น้ำเต้า ปู ปลา กุ้ง เสือ ไก่ และ - (ขีด) ตามด้วยจำนวนเงิน เช่น T123-100 (ขั้นต่ำ 20 สูงสุด 200)'
                     ];
               }
 
@@ -262,6 +443,140 @@ if (!is_null($events['events'])) {
             }
       }
 
+      else if(strtoupper($ftext) == "X"){
+        //ยกเลิกแทง
+
+        $nx = 0;
+        if(strlen($text)>4 || strlen($text)<2){
+            $nx=1;
+        }
+        $newtext = substr($text, 1);
+
+        $nn1 = substr($newtext,0,1);
+        $nn2 = substr($newtext,1,1);
+        $nn3 = substr($newtext,2,1);
+
+        $alln = $nn1.$nn2.$nn3;
+
+
+
+        if(strlen($newtext)>3 || strlen($newtext)==0){
+          $nx=1;
+        }
+
+
+        if(is_numeric($newtext)){
+          $nx = 0;
+        } else {
+          $nx = 1;
+        }
+
+        if(substr_count($newtext, '-')>0){
+          $nx=1;
+        }
+
+        if(substr_count($newtext, '*')>0){
+          $nx=1;
+        }
+
+        if(substr_count($newtext, '/')>0){
+          $nx=1;
+        }
+
+        if(substr_count($newtext, '+')>0){
+          $nx=1;
+        }
+        if(substr_count($newtext, '=')>0){
+          $nx=1;
+        }
+
+
+        if(strlen($newtext)==1){
+          if($nn1 > 6){
+              $nx = 1;
+          }
+          if($nn1 <= 0){
+              $nx = 1;
+          }
+        }
+
+        if(strlen($newtext)==2){
+          if($nn1 > 6 || $nn2 > 6){
+              $nx = 1;
+          }
+
+          if($nn1 <= 0 || $nn2 <= 0){
+              $nx = 1;
+          }
+
+        }
+
+        if(strlen($newtext)==3){
+          if($nn1 > 6 || $nn2 > 6 || $nn3 > 6){
+              $nx = 1;
+          }
+
+          if($nn1 <= 0 || $nn2 <= 0 || $nn3 <= 0){
+              $nx = 1;
+          }
+
+        }
+
+
+        if($nx==0 && is_numeric($newtext) && strlen($newtext)<=3 && strlen($newtext) >=1 ){
+
+
+          $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nbet%20Where%20nbet_tks_userid='".$userID."'%20AND%20nbet_tks_allchoice='".$alln."';";
+          $responseq = \Httpful\Request::get($uriq)->send();
+          $nid = $responseq->body->result[0]->id;
+
+          if(strlen($nid)>3){
+                    $curl = curl_init();
+
+                    curl_setopt_array($curl, array(
+                      CURLOPT_URL => "http://redfoxdev.com/vtiger/webservice.php",
+                      CURLOPT_RETURNTRANSFER => true,
+                      CURLOPT_ENCODING => "",
+                      CURLOPT_MAXREDIRS => 10,
+                      CURLOPT_TIMEOUT => 30,
+                      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                      CURLOPT_CUSTOMREQUEST => "POST",
+                      CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\ndelete\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n32b49cd45a9626a2df371\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"id\"\r\n\r\n$nid\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                      CURLOPT_HTTPHEADER => array(
+                        "cache-control: no-cache",
+                        "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                        "postman-token: f4740d0e-9ace-dbd0-a0d5-847309057070"
+                      ),
+                    ));
+
+                    $response = curl_exec($curl);
+                    $err = curl_error($curl);
+
+                    curl_close($curl);
+
+                    if ($err) {
+                      echo "cURL Error #:" . $err;
+                    } else {
+                      $messages = [
+                        'type' => 'text',
+                        'text' => 'ลบข้อมูลแล้ว '$nn1.$nn2.$nn3
+                      ];
+                    }
+
+          }else{
+            $messages = [
+              'type' => 'text',
+              'text' => 'ไม่พบข้อมูลที่ต้องการลบ'
+            ];
+          }
+        }else{
+          $messages = [
+            'type' => 'text',
+            'text' => 'รูปแบบไม่ถูกต้อง'
+          ];
+        }
+
+  }
       else if(strtoupper($ftext) == "S"){
         $fftext = substr($fourtext, 1);
 
@@ -272,6 +587,30 @@ if (!is_null($events['events'])) {
         $ctext1="";
         $ctext2="";
         $ctext3="";
+
+        $dos = 0;
+
+        if(is_numeric($ostr)){
+        } else {
+          $dos = 2;
+        }
+
+
+        if($ns1 > 6 || $ns1 < 1){
+          $dos = 2;
+        }else{
+          $dos = 1;
+        }
+        if($ns2 > 6 || $ns2 < 1){
+          $dos = 2;
+        }else{
+          $dos = 1;
+        }
+        if($ns3 > 6 || $ns3 < 1){
+          $dos = 2;
+        }else{
+          $dos = 1;
+        }
 
 
           if($ns1 == "1"){
@@ -286,6 +625,8 @@ if (!is_null($events['events'])) {
             $ctext1="เสือ 🐯";
           }else if($ns1 == "6"){
             $ctext1="ไก่ 🐔";
+          }else{
+            $dos = 2;
           }
 
           if($ns2 == "1"){
@@ -300,6 +641,8 @@ if (!is_null($events['events'])) {
             $ctext2="เสือ 🐯";
           }else if($ns2 == "6"){
             $ctext2="ไก 🐔่";
+          }else{
+            $dos = 2;
           }
 
 
@@ -315,6 +658,8 @@ if (!is_null($events['events'])) {
             $ctext3="เสือ 🐯";
           }else if($ns3 == "6"){
             $ctext3="ไก่ 🐔";
+          }else{
+            $dos = 2;
           }
 
         $uris = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='50x872';";
@@ -329,7 +674,7 @@ if (!is_null($events['events'])) {
 
 
 
-                  if(strcmp($adminID,$userID) == 0){
+                  if(strcmp($adminID,$userID) == 0 && $dos !=2 && strlen($ostr) ==3){
 
                           if($ns1==1){
                             $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_fchoice=1%20AND%20nmember_tks_status=1;";
@@ -1028,7 +1373,7 @@ if (!is_null($events['events'])) {
                             }
 
 
-                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice!=1%20AND%20nmember_tks_status=1;";
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice!=1%20AND%20nmember_tks_status=1%20AND%20nmember_tks_schoice!=0;";
                                                               $responseq = \Httpful\Request::get($uriq)->send();
                                                               $dataq = json_decode($responseq,true);
 
@@ -1135,7 +1480,7 @@ if (!is_null($events['events'])) {
                             }
 
 
-                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice!=2%20AND%20nmember_tks_status=1;";
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice!=2%20AND%20nmember_tks_status=1%20AND%20nmember_tks_schoice!=0;";
                                                               $responseq = \Httpful\Request::get($uriq)->send();
                                                               $dataq = json_decode($responseq,true);
 
@@ -1243,7 +1588,7 @@ if (!is_null($events['events'])) {
                             }
 
 
-                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice!=3%20AND%20nmember_tks_status=1;";
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice!=3%20AND%20nmember_tks_status=1%20AND%20nmember_tks_schoice!=0;";
                                                               $responseq = \Httpful\Request::get($uriq)->send();
                                                               $dataq = json_decode($responseq,true);
 
@@ -1349,7 +1694,7 @@ if (!is_null($events['events'])) {
                             }
 
 
-                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice!=4%20AND%20nmember_tks_status=1;";
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice!=4%20AND%20nmember_tks_status=1%20AND%20nmember_tks_schoice!=0;";
                                                               $responseq = \Httpful\Request::get($uriq)->send();
                                                               $dataq = json_decode($responseq,true);
 
@@ -1456,7 +1801,7 @@ if (!is_null($events['events'])) {
                             }
 
 
-                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice!=5%20AND%20nmember_tks_status=1;";
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice!=5%20AND%20nmember_tks_status=1%20AND%20nmember_tks_schoice!=0;";
                                                               $responseq = \Httpful\Request::get($uriq)->send();
                                                               $dataq = json_decode($responseq,true);
 
@@ -1563,7 +1908,7 @@ if (!is_null($events['events'])) {
                             }
 
 
-                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice!=6%20AND%20nmember_tks_status=1;";
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_schoice!=6%20AND%20nmember_tks_status=1%20AND%20nmember_tks_schoice!=0;";
                                                               $responseq = \Httpful\Request::get($uriq)->send();
                                                               $dataq = json_decode($responseq,true);
 
@@ -1669,7 +2014,7 @@ if (!is_null($events['events'])) {
                             }
 
 
-                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice!=1%20AND%20nmember_tks_status=1;";
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice!=1%20AND%20nmember_tks_status=1%20AND%20nmember_tks_schoice!=0;";
                                                               $responseq = \Httpful\Request::get($uriq)->send();
                                                               $dataq = json_decode($responseq,true);
 
@@ -1776,7 +2121,7 @@ if (!is_null($events['events'])) {
                             }
 
 
-                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice!=2%20AND%20nmember_tks_status=1;";
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice!=2%20AND%20nmember_tks_status=1%20AND%20nmember_tks_schoice!=0;";
                                                               $responseq = \Httpful\Request::get($uriq)->send();
                                                               $dataq = json_decode($responseq,true);
 
@@ -1884,7 +2229,7 @@ if (!is_null($events['events'])) {
                             }
 
 
-                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice!=3%20AND%20nmember_tks_status=1;";
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice!=3%20AND%20nmember_tks_status=1%20AND%20nmember_tks_schoice!=0;";
                                                               $responseq = \Httpful\Request::get($uriq)->send();
                                                               $dataq = json_decode($responseq,true);
 
@@ -1990,7 +2335,7 @@ if (!is_null($events['events'])) {
                             }
 
 
-                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice!=4%20AND%20nmember_tks_status=1;";
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice!=4%20AND%20nmember_tks_status=1%20AND%20nmember_tks_schoice!=0;";
                                                               $responseq = \Httpful\Request::get($uriq)->send();
                                                               $dataq = json_decode($responseq,true);
 
@@ -2097,7 +2442,7 @@ if (!is_null($events['events'])) {
                             }
 
 
-                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice!=5%20AND%20nmember_tks_status=1;";
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice!=5%20AND%20nmember_tks_status=1%20AND%20nmember_tks_schoice!=0;";
                                                               $responseq = \Httpful\Request::get($uriq)->send();
                                                               $dataq = json_decode($responseq,true);
 
@@ -2204,7 +2549,7 @@ if (!is_null($events['events'])) {
                             }
 
 
-                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice!=6%20AND%20nmember_tks_status=1;";
+                                                              $uriq = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Nmember%20where%20nmember_tks_tchoice!=6%20AND%20nmember_tks_status=1%20AND%20nmember_tks_schoice!=0;";
                                                               $responseq = \Httpful\Request::get($uriq)->send();
                                                               $dataq = json_decode($responseq,true);
 
@@ -2265,7 +2610,10 @@ if (!is_null($events['events'])) {
                           ];
 
                     } else {
-
+                      $messages = [
+                        'type' => 'text',
+                        'text' => 'รูปแบบการสรุปผลไม่ถูกต้อง'
+                      ];
 
                     }
 
@@ -2487,11 +2835,11 @@ if (!is_null($events['events'])) {
                   $multiplebonus =  $income/$mbet;
                   $extrabonus = '';
                   if($multiplebonus==2){
-                      $income = $income+$income;
-                      $extrabonus = ' โบนัส 2 เท่า';
+                      $income = $mbet*5;
+                      $extrabonus = ' โบนัส 5 เท่า';
                   }else if($multiplebonus==3){
-                      $income = $income+$income+$income;
-                      $extrabonus = ' โบนัส 3 เท่า';
+                      $income = $mbet*20;
+                      $extrabonus = ' โบนัส 20 เท่า';
                   }
 
                   $sum = $income - $expend;
