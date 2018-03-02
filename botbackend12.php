@@ -2666,6 +2666,35 @@ if($countcheck==1){
 
 			echo $result . "\r\n";
 		}
+
+        else if ($event['type'] == 'message' && $event['message']['type'] == 'image') {
+
+          $userID = $event['source']['userId'];
+          $replyToken = $event['replyToken'];
+
+
+          $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20where%20bmember_tks_userid='".$userID."';";
+          $response = \Httpful\Request::get($uri)->send();
+          // echo $response;
+          $username = $response->body->result[0]->bmember_tks_username;
+          $vid = $response->body->result[0]->id;
+          $balance = $response->body->result[0]->bmember_tks_balance;
+
+          $userlen = strlen($vid);
+          if($vid > 2) {
+
+
+                      $messages = [
+                        'type' => 'text',
+                        'text' =>  $dname.' ID คือ '.$vid.' ยอดเงินคงเหลือ '.$balance
+                      ];
+          } else {
+          }
+
+
+
+
+    }
     else if ($event['type'] == 'message' && $event['message']['type'] == 'sticker') {
 
       $pid = $event['message']['packageId'];
