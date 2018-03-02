@@ -2674,74 +2674,84 @@ if($countcheck==1){
           $replyToken = $event['replyToken'];
 
 
-          $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20where%20bmember_tks_userid='".$userID."';";
+          $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x2';";
           $response = \Httpful\Request::get($uri)->send();
-          // echo $response;
-          $username = $response->body->result[0]->bmember_tks_username;
-          $vid = $response->body->result[0]->id;
-          $balance = $response->body->result[0]->bmember_tks_balance;
 
-          $userlen = strlen($vid);
-          if($vid > 2) {
+          $adminID = $response->body->result[0]->bgame_tks_adminid;
 
-            $curl = curl_init();
+            if(strcmp($adminID,$userID) == 0){
+            }else{
 
-            curl_setopt_array($curl, array(
-              CURLOPT_URL => "https://api.line.me/v2/bot/group/".$groupID."/member/".$userID,
-              CURLOPT_RETURNTRANSFER => true,
-              CURLOPT_ENCODING => "",
-              CURLOPT_MAXREDIRS => 10,
-              CURLOPT_TIMEOUT => 30,
-              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-              CURLOPT_CUSTOMREQUEST => "GET",
-              CURLOPT_HTTPHEADER => array(
-                "authorization: Bearer ixV71S2vDL1935GrQbSIq7bajIgzolsbFt2zhmXmnetTjETG3XyM6onopT9zGgvDoe3OLNko0Y1SVzKubnxi22+JNRzUQ8BeH34EHlnon8UTvw7BgR2fSn0B3A7F3qvVhfCdsW0A2kQ3HRbH2TtR7gdB04t89/1O/w1cDnyilFU=",
-                "cache-control: no-cache",
-                "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
-              ),
-            ));
+              $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20where%20bmember_tks_userid='".$userID."';";
+              $response = \Httpful\Request::get($uri)->send();
+              // echo $response;
+              $username = $response->body->result[0]->bmember_tks_username;
+              $vid = $response->body->result[0]->id;
+              $balance = $response->body->result[0]->bmember_tks_balance;
 
-            $response = curl_exec($curl);
-            $err = curl_error($curl);
+              $userlen = strlen($vid);
+              if($vid > 2) {
 
-            curl_close($curl);
+                $curl = curl_init();
 
-            if ($err) {
-              echo "cURL Error #:" . $err;
-            } else {
+                curl_setopt_array($curl, array(
+                  CURLOPT_URL => "https://api.line.me/v2/bot/group/".$groupID."/member/".$userID,
+                  CURLOPT_RETURNTRANSFER => true,
+                  CURLOPT_ENCODING => "",
+                  CURLOPT_MAXREDIRS => 10,
+                  CURLOPT_TIMEOUT => 30,
+                  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                  CURLOPT_CUSTOMREQUEST => "GET",
+                  CURLOPT_HTTPHEADER => array(
+                    "authorization: Bearer ixV71S2vDL1935GrQbSIq7bajIgzolsbFt2zhmXmnetTjETG3XyM6onopT9zGgvDoe3OLNko0Y1SVzKubnxi22+JNRzUQ8BeH34EHlnon8UTvw7BgR2fSn0B3A7F3qvVhfCdsW0A2kQ3HRbH2TtR7gdB04t89/1O/w1cDnyilFU=",
+                    "cache-control: no-cache",
+                    "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
+                  ),
+                ));
 
-            $data = json_decode($response,true);
-            $username =  $data['displayName'];
+                $response = curl_exec($curl);
+                $err = curl_error($curl);
+
+                curl_close($curl);
+
+                if ($err) {
+                  echo "cURL Error #:" . $err;
+                } else {
+
+                $data = json_decode($response,true);
+                $username =  $data['displayName'];
+                }
+
+
+                          $messages = [
+                            'type' => 'text',
+                            'text' =>  $username.' ID คือ '.$vid.' ยอดเงินคงเหลือ '.$balance
+                          ];
+              } else {
+              }
+
+
+
+              $url = 'https://api.line.me/v2/bot/message/reply';
+              $data = [
+                'replyToken' => $replyToken,
+                'messages' => [$messages],
+              ];
+              $post = json_encode($data);
+              $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+
+              $ch = curl_init($url);
+              curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+              curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+              curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+              curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+              curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+              $result = curl_exec($ch);
+              curl_close($ch);
+
+              echo $result . "\r\n";
+
             }
-
-
-                      $messages = [
-                        'type' => 'text',
-                        'text' =>  $username.' ID คือ '.$vid.' ยอดเงินคงเหลือ '.$balance
-                      ];
-          } else {
-          }
-
-
-
-          $url = 'https://api.line.me/v2/bot/message/reply';
-    			$data = [
-    				'replyToken' => $replyToken,
-    				'messages' => [$messages],
-    			];
-    			$post = json_encode($data);
-    			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
-
-    			$ch = curl_init($url);
-    			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-    			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    			curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-    			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-    			$result = curl_exec($ch);
-    			curl_close($ch);
-
-    			echo $result . "\r\n";
 
 
 
