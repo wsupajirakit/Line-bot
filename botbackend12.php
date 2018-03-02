@@ -2670,6 +2670,7 @@ if($countcheck==1){
         else if ($event['type'] == 'message' && $event['message']['type'] == 'image') {
 
           $userID = $event['source']['userId'];
+          $groupID = $event['source']['groupId'];
           $replyToken = $event['replyToken'];
 
 
