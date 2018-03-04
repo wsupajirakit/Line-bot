@@ -464,6 +464,10 @@ if($countcheck==1){
           $zx=1;
         }
 
+        if(substr_count($text, '=')>=1){
+          $zx=1;
+        }
+
         if(substr_count($text, '-')>4){
           $zx=1;
         }
