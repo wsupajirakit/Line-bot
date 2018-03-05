@@ -904,7 +904,6 @@ if($countcheck==1){
                $expend = $item['tmember_tks_expend']+$bet;
                $income = $item['tmember_tks_income'];
                $playerbet = $item['tmember_tks_playerbet'];
-               $player = $item['tmember_tks_played'];
                $newbalance = $balance;
 
             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
