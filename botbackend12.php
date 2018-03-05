@@ -2704,7 +2704,7 @@ if($countcheck==1){
       }
 
 
-      else if(strtoupper($context) == "END" && strlen($text)==3){
+      else if(strtoupper($ttrdtext) == "END" && strlen($text)==3){
 
 
         $adminID = $response->body->result[0]->bgame_tks_adminid;
