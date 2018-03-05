@@ -4,6 +4,9 @@ date_default_timezone_set('Asia/Bangkok');
 $access_token =
 'ixV71S2vDL1935GrQbSIq7bajIgzolsbFt2zhmXmnetTjETG3XyM6onopT9zGgvDoe3OLNko0Y1SVzKubnxi22+JNRzUQ8BeH34EHlnon8UTvw7BgR2fSn0B3A7F3qvVhfCdsW0A2kQ3HRbH2TtR7gdB04t89/1O/w1cDnyilFU=';
 
+$cdate = date("d-m-Y");
+$ctime = date("d-m-Y");
+
 $sidname='636dbd215a9cebe09e04e';
 $vturl='http://redfoxdev.com/newbackend/';
 // Get POST body content
@@ -354,6 +357,51 @@ if($countcheck==1){
                                     // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
                                     'text' => '  '.$username.' แทงขา '.$player.' ขาละ '.$money.'   ยอดคงเหลือก่อนแทง '.$balance.'  '
                                   ];
+
+
+                                    ///ttt
+
+
+
+                                    $curl = curl_init();
+
+                                      curl_setopt_array($curl, array(
+                                      CURLOPT_URL => "http://redfoxdev.com/newbackend/webservice.php",
+                                      CURLOPT_RETURNTRANSFER => true,
+                                      CURLOPT_ENCODING => "",
+                                      CURLOPT_MAXREDIRS => 10,
+                                      CURLOPT_TIMEOUT => 30,
+                                      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                      CURLOPT_CUSTOMREQUEST => "POST",
+                                      CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\ncreate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"tbetlogno\": \"\",\n            \"tbetlog_tks_bet\": \"$money\",\n            \"tbetlog_tks_userid\": \"$userID\",\n            \"tbetlog_tks_playerbet\": \"$n1 |##| $n2 |##| $n3 |##| $n4\",\n
+                                        \"tbetlog_tks_part\": \"$part\",\n
+                                        \"tbetlog_tks_round\": \"$round\",\n            \"tbetlog_tks_date\": \"$cdate\",\n            \"tbetlog_tks_time\": \"$ctime\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-03-05 10:05:17\",\n            \"modifiedtime\": \"2018-03-05 10:05:17\",\n            \"id\": \"42x8\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nTbetlog\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                      CURLOPT_HTTPHEADER => array(
+                                        "cache-control: no-cache",
+                                        "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                        "postman-token: d954cc0e-cc50-7aa2-4ab6-9f5981beb8ba"
+                                      ),
+                                      ));
+
+                                      $response = curl_exec($curl);
+                                      $err = curl_error($curl);
+
+                                      curl_close($curl);
+
+                                      if ($err) {
+                                      echo "cURL Error #:" . $err;
+                                      } else {
+                                      echo $response;
+                                      }
+
+
+                                    ////
+
+
+
+
+
+
                                 }
 
                       }                     //////*
