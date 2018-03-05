@@ -551,7 +551,7 @@ if($countcheck==1){
 
         //find admin
 
-          if(strcmp($adminID,$userID) == 0 && $gamestatus == 0){
+          if(strcmp($adminID,$userID) == 0 && $gameStatus == 0){
 
 
 
@@ -1859,7 +1859,7 @@ if($countcheck==1){
           }
         $messages = [
           'type' => 'text',
-          'text' =>  'ยืนยันการสรุปผลหรือไม่ ?'.$gameStatus
+          'text' =>  'ยืนยันการสรุปผลหรือไม่ ?'
         ];
 
       }else {
