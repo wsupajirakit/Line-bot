@@ -2086,8 +2086,7 @@ if($countcheck==1){
 
 			else if($ftext == "@"){
 
-        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x3';";
-        $response = \Httpful\Request::get($uri)->send();
+
         $round = $response->body->result[0]->bgame_tks_round-1;
 
 
@@ -2132,7 +2131,7 @@ if($countcheck==1){
           }
 
 
-          $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20where%20tmember_tks_userid='".$userID."';";
+          $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Tmember%20where%20tmember_tks_userid='".$userID."';";
           $response = \Httpful\Request::get($uri)->send();
           // echo $response;
           $username = $response->body->result[0]->tmember_tks_username;
@@ -2573,7 +2572,7 @@ if($countcheck==1){
 
             }
       }
-      else if(strtoupper($context) == "OP" && strlen($text)==2 && $onend==1){
+      else if(strtoupper($context) == "OP"){
 
 
         $adminID = $response->body->result[0]->bgame_tks_adminid;
@@ -2704,7 +2703,7 @@ if($countcheck==1){
       }
 
 
-      else if(strtoupper($ttrdtext) == "END" && strlen($text)==3){
+      else if(strtoupper($ttrdtext) == "END"){
 
 
         $adminID = $response->body->result[0]->bgame_tks_adminid;
