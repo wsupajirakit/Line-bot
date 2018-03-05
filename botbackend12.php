@@ -1859,7 +1859,7 @@ if($countcheck==1){
           }
         $messages = [
           'type' => 'text',
-          'text' =>  'ยืนยันการสรุปผลหรือไม่ ?'
+          'text' =>  'ยืนยันการสรุปผลหรือไม่ ?'.$gameStatus
         ];
 
       }else {
