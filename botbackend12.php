@@ -2575,8 +2575,6 @@ if($countcheck==1){
       else if(strtoupper($context) == "OP"){
 
 
-        $adminID = $response->body->result[0]->bgame_tks_adminid;
-
 
           if(strcmp($adminID,$userID) == 0){
 
@@ -2704,9 +2702,6 @@ if($countcheck==1){
 
 
       else if(strtoupper($ttrdtext) == "END"){
-
-
-        $adminID = $response->body->result[0]->bgame_tks_adminid;
 
 
           if(strcmp($adminID,$userID) == 0){
