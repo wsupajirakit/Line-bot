@@ -285,7 +285,7 @@ if($countcheck==1){
                                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                                     CURLOPT_CUSTOMREQUEST => "GET",
                                     CURLOPT_HTTPHEADER => array(
-                                      "authorization: Bearer kr0/dRJjngoA6G+CdO94xUaR+SqEZia6jBbCUwA7yTQN1Wf/1fPhOuG5JyCQYsEKZTuvzSgamawjblXWaKBxIQQfGBE+J6vZDO14WrIA09wYh0iWl3isYfGlwUwb7dIWLmNC6HX/lPvg8cEUr2Vz/gdB04t89/1O/w1cDnyilFU=",
+                                      "authorization: Bearer ixV71S2vDL1935GrQbSIq7bajIgzolsbFt2zhmXmnetTjETG3XyM6onopT9zGgvDoe3OLNko0Y1SVzKubnxi22+JNRzUQ8BeH34EHlnon8UTvw7BgR2fSn0B3A7F3qvVhfCdsW0A2kQ3HRbH2TtR7gdB04t89/1O/w1cDnyilFU=",
                                       "cache-control: no-cache",
                                       "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
                                     ),
@@ -325,7 +325,7 @@ if($countcheck==1){
                                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                                     CURLOPT_CUSTOMREQUEST => "GET",
                                     CURLOPT_HTTPHEADER => array(
-                                      "authorization: Bearer kr0/dRJjngoA6G+CdO94xUaR+SqEZia6jBbCUwA7yTQN1Wf/1fPhOuG5JyCQYsEKZTuvzSgamawjblXWaKBxIQQfGBE+J6vZDO14WrIA09wYh0iWl3isYfGlwUwb7dIWLmNC6HX/lPvg8cEUr2Vz/gdB04t89/1O/w1cDnyilFU=",
+                                      "authorization: Bearer ixV71S2vDL1935GrQbSIq7bajIgzolsbFt2zhmXmnetTjETG3XyM6onopT9zGgvDoe3OLNko0Y1SVzKubnxi22+JNRzUQ8BeH34EHlnon8UTvw7BgR2fSn0B3A7F3qvVhfCdsW0A2kQ3HRbH2TtR7gdB04t89/1O/w1cDnyilFU=",
                                       "cache-control: no-cache",
                                       "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
                                     ),
@@ -374,7 +374,7 @@ if($countcheck==1){
                           CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                           CURLOPT_CUSTOMREQUEST => "GET",
                           CURLOPT_HTTPHEADER => array(
-                            "authorization: Bearer kr0/dRJjngoA6G+CdO94xUaR+SqEZia6jBbCUwA7yTQN1Wf/1fPhOuG5JyCQYsEKZTuvzSgamawjblXWaKBxIQQfGBE+J6vZDO14WrIA09wYh0iWl3isYfGlwUwb7dIWLmNC6HX/lPvg8cEUr2Vz/gdB04t89/1O/w1cDnyilFU=",
+                            "authorization: Bearer ixV71S2vDL1935GrQbSIq7bajIgzolsbFt2zhmXmnetTjETG3XyM6onopT9zGgvDoe3OLNko0Y1SVzKubnxi22+JNRzUQ8BeH34EHlnon8UTvw7BgR2fSn0B3A7F3qvVhfCdsW0A2kQ3HRbH2TtR7gdB04t89/1O/w1cDnyilFU=",
                             "cache-control: no-cache",
                             "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
                           ),
@@ -434,7 +434,7 @@ if($countcheck==1){
                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                 CURLOPT_CUSTOMREQUEST => "GET",
                 CURLOPT_HTTPHEADER => array(
-                  "authorization: Bearer kr0/dRJjngoA6G+CdO94xUaR+SqEZia6jBbCUwA7yTQN1Wf/1fPhOuG5JyCQYsEKZTuvzSgamawjblXWaKBxIQQfGBE+J6vZDO14WrIA09wYh0iWl3isYfGlwUwb7dIWLmNC6HX/lPvg8cEUr2Vz/gdB04t89/1O/w1cDnyilFU=",
+                  "authorization: Bearer ixV71S2vDL1935GrQbSIq7bajIgzolsbFt2zhmXmnetTjETG3XyM6onopT9zGgvDoe3OLNko0Y1SVzKubnxi22+JNRzUQ8BeH34EHlnon8UTvw7BgR2fSn0B3A7F3qvVhfCdsW0A2kQ3HRbH2TtR7gdB04t89/1O/w1cDnyilFU=",
                   "cache-control: no-cache",
                   "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
                 ),
@@ -2112,7 +2112,7 @@ if($countcheck==1){
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPHEADER => array(
-              "authorization: Bearer kr0/dRJjngoA6G+CdO94xUaR+SqEZia6jBbCUwA7yTQN1Wf/1fPhOuG5JyCQYsEKZTuvzSgamawjblXWaKBxIQQfGBE+J6vZDO14WrIA09wYh0iWl3isYfGlwUwb7dIWLmNC6HX/lPvg8cEUr2Vz/gdB04t89/1O/w1cDnyilFU=",
+              "authorization: Bearer ixV71S2vDL1935GrQbSIq7bajIgzolsbFt2zhmXmnetTjETG3XyM6onopT9zGgvDoe3OLNko0Y1SVzKubnxi22+JNRzUQ8BeH34EHlnon8UTvw7BgR2fSn0B3A7F3qvVhfCdsW0A2kQ3HRbH2TtR7gdB04t89/1O/w1cDnyilFU=",
               "cache-control: no-cache",
               "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
             ),
@@ -2198,7 +2198,7 @@ if($countcheck==1){
                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                     CURLOPT_CUSTOMREQUEST => "GET",
                     CURLOPT_HTTPHEADER => array(
-                      "authorization: Bearer kr0/dRJjngoA6G+CdO94xUaR+SqEZia6jBbCUwA7yTQN1Wf/1fPhOuG5JyCQYsEKZTuvzSgamawjblXWaKBxIQQfGBE+J6vZDO14WrIA09wYh0iWl3isYfGlwUwb7dIWLmNC6HX/lPvg8cEUr2Vz/gdB04t89/1O/w1cDnyilFU=",
+                      "authorization: Bearer ixV71S2vDL1935GrQbSIq7bajIgzolsbFt2zhmXmnetTjETG3XyM6onopT9zGgvDoe3OLNko0Y1SVzKubnxi22+JNRzUQ8BeH34EHlnon8UTvw7BgR2fSn0B3A7F3qvVhfCdsW0A2kQ3HRbH2TtR7gdB04t89/1O/w1cDnyilFU=",
                       "cache-control: no-cache",
                       "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
                     ),
@@ -2478,7 +2478,7 @@ if($countcheck==1){
                         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                         CURLOPT_CUSTOMREQUEST => "GET",
                         CURLOPT_HTTPHEADER => array(
-                          "authorization: Bearer kr0/dRJjngoA6G+CdO94xUaR+SqEZia6jBbCUwA7yTQN1Wf/1fPhOuG5JyCQYsEKZTuvzSgamawjblXWaKBxIQQfGBE+J6vZDO14WrIA09wYh0iWl3isYfGlwUwb7dIWLmNC6HX/lPvg8cEUr2Vz/gdB04t89/1O/w1cDnyilFU=",
+                          "authorization: Bearer ixV71S2vDL1935GrQbSIq7bajIgzolsbFt2zhmXmnetTjETG3XyM6onopT9zGgvDoe3OLNko0Y1SVzKubnxi22+JNRzUQ8BeH34EHlnon8UTvw7BgR2fSn0B3A7F3qvVhfCdsW0A2kQ3HRbH2TtR7gdB04t89/1O/w1cDnyilFU=",
                           "cache-control: no-cache",
                           "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
                         ),
@@ -2740,7 +2740,7 @@ if($countcheck==1){
               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
               CURLOPT_CUSTOMREQUEST => "GET",
               CURLOPT_HTTPHEADER => array(
-                "authorization: Bearer kr0/dRJjngoA6G+CdO94xUaR+SqEZia6jBbCUwA7yTQN1Wf/1fPhOuG5JyCQYsEKZTuvzSgamawjblXWaKBxIQQfGBE+J6vZDO14WrIA09wYh0iWl3isYfGlwUwb7dIWLmNC6HX/lPvg8cEUr2Vz/gdB04t89/1O/w1cDnyilFU=",
+                "authorization: Bearer ixV71S2vDL1935GrQbSIq7bajIgzolsbFt2zhmXmnetTjETG3XyM6onopT9zGgvDoe3OLNko0Y1SVzKubnxi22+JNRzUQ8BeH34EHlnon8UTvw7BgR2fSn0B3A7F3qvVhfCdsW0A2kQ3HRbH2TtR7gdB04t89/1O/w1cDnyilFU=",
                 "cache-control: no-cache",
                 "postman-token: 6dc09c6b-dd83-81ca-75ed-71ce43b5edd7"
               ),
