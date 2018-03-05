@@ -2573,15 +2573,15 @@ if($countcheck==1){
 
             }
       }
-      else if(strtoupper($context) == "OP"){
+      else if(strtoupper($context) == "OP" && strlen($text)==2 && $onend==1){
 
-        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x3';";
-        $response = \Httpful\Request::get($uri)->send();
 
         $adminID = $response->body->result[0]->bgame_tks_adminid;
 
 
           if(strcmp($adminID,$userID) == 0){
+
+            $part = $part+1;
 
             $curl = curl_init();
 
@@ -2593,11 +2593,11 @@ if($countcheck==1){
               CURLOPT_TIMEOUT => 30,
               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
               CURLOPT_CUSTOMREQUEST => "POST",
-              CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n     {\n            \"bgameno\": \"\",\n            \"bgame_tks_adminid\": \"$adminID\",\n            \"bgame_tks_gamestatus\": \"0\",\n            \"bgame_tks_round\": \"1\",\n            \"bgame_tks_allincome\": \"\",\n            \"bgame_tks_allexpend\": \"\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 06:06:23\",\n            \"modifiedtime\": \"2018-02-02 06:06:23\",\n            \"id\": \"37x3\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+              CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"gameno\": \"\",\n            \"game_tks_part\": \"$part\",\n            \"game_tks_round\": \"1\",\n            \"game_tks_gamestatus\": \"0\",\n            \"game_tks_allincome\": \"0\",\n            \"game_tks_allexpend\": \"0\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-03-03 07:37:10\",\n            \"modifiedtime\": \"2018-03-05 07:01:03\",\n            \"id\": \"39x4\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nGame\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
               CURLOPT_HTTPHEADER => array(
                 "cache-control: no-cache",
                 "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
-                "postman-token: 2854d113-098a-2091-f3a5-bc42427bc062"
+                "postman-token: 98479700-cbf1-aad4-468b-ab34f357ea72"
               ),
             ));
 
@@ -2609,13 +2609,142 @@ if($countcheck==1){
             if ($err) {
               echo "cURL Error #:" . $err;
             } else {
-              echo $response;
+              $urix = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Tmember%20Where%20tmember_tks_status='1';";
+              $responsex = \Httpful\Request::get($urix)->send();
+
+              $datax = json_decode($responsex,true);
+
+              foreach($datax["result"] as $itemx) {
+                  $username = '001';
+                  $userID = $itemx['tmember_tks_userid'];
+                  $vid = $itemx['id'];
+                  $balance = $itemx['tmember_tks_balance'];
+                  $moneybet = $itemx['tmember_tks_bet'];
+                  $played = $itemx['tmember_tks_played'];
+                  $expend = 0;
+                  $income = 0;
+                  $playerbet = $itemx['tmember_tks_playerbet'];
+
+
+                  $curl = curl_init();
+
+                  curl_setopt_array($curl, array(
+                    CURLOPT_URL => "http://redfoxdev.com/newbackend/webservice.php",
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => "",
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 30,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => "POST",
+                    CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bmemberno\": \"\",\n
+                      \"tmember_tks_userid\": \"$userID\",\n            \"tmember_tks_balance\": \"$balance\",\n            \"tmember_tks_bet\": \"0\",\n            \"tmember_tks_username\": \"$username\",\n            \"tmember_tks_played\": \"$played\",\n            \"tmember_tks_playerbet\": \"\",\n            \"tmember_tks_expend\": \"0\",\n            \"tmember_tks_income\": \"0\",\n
+                      \"tmember_tks_status\": \"0\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 05:25:21\",\n
+                      \"modifiedtime\": \"2018-02-02 05:25:21\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                    CURLOPT_HTTPHEADER => array(
+                      "cache-control: no-cache",
+                      "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                      "postman-token: 0dd99b19-60e4-0597-8d0b-76831d38ee2f"
+                    ),
+                  ));
+
+                  $response = curl_exec($curl);
+                  $err = curl_error($curl);
+
+                  curl_close($curl);
+
+                  if ($err) {
+                    echo "cURL Error #:" . $err;
+                  } else {
+
+                    $curl = curl_init();
+
+                      curl_setopt_array($curl, array(
+                      CURLOPT_URL => "http://redfoxdev.com/newbackend/webservice.php",
+                      CURLOPT_RETURNTRANSFER => true,
+                      CURLOPT_ENCODING => "",
+                      CURLOPT_MAXREDIRS => 10,
+                      CURLOPT_TIMEOUT => 30,
+                      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                      CURLOPT_CUSTOMREQUEST => "POST",
+                      CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"controlno\": \"\",\n            \"control_tks_onop\": \"1\",\n            \"control_tks_onresult\": \"0\",\n            \"control_tks_onok\": \"0\",\n            \"control_tks_onend\": \"0\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-03-03 07:36:58\",\n            \"modifiedtime\": \"2018-03-03 07:36:58\",\n            \"id\": \"38x3\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nControl\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                      CURLOPT_HTTPHEADER => array(
+                        "cache-control: no-cache",
+                        "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                        "postman-token: f2b7ea7e-5c06-78b0-9e48-d9489ecba383"
+                      ),
+                      ));
+
+                      $response = curl_exec($curl);
+                      $err = curl_error($curl);
+
+                      curl_close($curl);
+
+                      if ($err) {
+                      echo "cURL Error #:" . $err;
+                      } else {
+                      echo $response;
+                      }
+                  }
+
+
+                }
             }
 
 
         $messages = [
           'type' => 'text',
-          'text' => 'กำลังเริ่มรอบแรกเตรียมตัว ...'
+          'text' => 'เกมกำลังเริ่มรอบแรกเตรียมตัว ...'
+        ];
+
+
+      } else {
+      }
+
+
+      }
+
+
+      else if(strtoupper($context) == "END" && strlen($text)==3){
+
+
+        $adminID = $response->body->result[0]->bgame_tks_adminid;
+
+
+          if(strcmp($adminID,$userID) == 0){
+
+            $curl = curl_init();
+
+              curl_setopt_array($curl, array(
+              CURLOPT_URL => "http://redfoxdev.com/newbackend/webservice.php",
+              CURLOPT_RETURNTRANSFER => true,
+              CURLOPT_ENCODING => "",
+              CURLOPT_MAXREDIRS => 10,
+              CURLOPT_TIMEOUT => 30,
+              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+              CURLOPT_CUSTOMREQUEST => "POST",
+              CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"controlno\": \"\",\n            \"control_tks_onop\": \"0\",\n            \"control_tks_onresult\": \"0\",\n            \"control_tks_onok\": \"0\",\n            \"control_tks_onend\": \"0\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-03-03 07:36:58\",\n            \"modifiedtime\": \"2018-03-03 07:36:58\",\n            \"id\": \"38x3\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nControl\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+              CURLOPT_HTTPHEADER => array(
+                "cache-control: no-cache",
+                "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                "postman-token: f2b7ea7e-5c06-78b0-9e48-d9489ecba383"
+              ),
+              ));
+
+              $response = curl_exec($curl);
+              $err = curl_error($curl);
+
+              curl_close($curl);
+
+              if ($err) {
+              echo "cURL Error #:" . $err;
+              } else {
+              echo $response;
+              }
+
+
+        $messages = [
+          'type' => 'text',
+          'text' => 'จบการเล่นในเกมนี้'
         ];
 
 
