@@ -2892,7 +2892,7 @@ if($countcheck==1){
 
         if(strcmp($adminID,$userID) == 0){
 
-                  if($gameStatus ==0 && $onok == 1){
+                  if($gameStatus ==0 && $onop == 1){
 
 
                     $curl = curl_init();
@@ -2960,7 +2960,7 @@ if($countcheck==1){
 
 
 
-                  }else if ($gameStatus ==1){
+                  }else if ($gameStatus == 1){
 
 
 
@@ -3036,7 +3036,7 @@ if($countcheck==1){
                   }else{
                     $messages = [
                       'type' => 'text',
-                      'text' => 'รอบยังไม่จบโดยสมบูรณ์โปรดเช็คสถานะการสรุปผล'
+                      'text' => 'รอบยังไม่จบโดยสมบูรณ์โปรดเช็คสถานะการสรุปผล หรือเปิด ปิด เกมไม่ถูกต้อง'
                     ];
                   }
 
