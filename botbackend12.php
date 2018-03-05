@@ -2661,7 +2661,7 @@ if($countcheck==1){
       else if(strtoupper($ttrdtext) == "END" && strlen($text)==3){
 
 
-          if(strcmp($adminID,$userID) == 0 && $onop ==1){
+          if(strcmp($adminID,$userID) == 0 && $onop ==1 && $gameStatus==0){
 
             $curl = curl_init();
 
@@ -2703,7 +2703,7 @@ if($countcheck==1){
 
         $messages = [
           'type' => 'text',
-          'text' => 'ไม่สมารถปิดเกมซ้ำได้'
+          'text' => 'ไม่สมารถปิดเกมซ้ำได้ สถานะรอบไม่ถูกต้อง'
         ];
       }
 
