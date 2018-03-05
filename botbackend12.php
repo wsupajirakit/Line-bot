@@ -76,21 +76,6 @@ if (!is_null($events['events'])) {
 
       if(strtoupper($ftext) == "T"){
 
-            "tmemberno": "",
-            "tmember_tks_userid": "1111",
-            "tmember_tks_balance": "",
-            "tmember_tks_bet": "",
-            "tmember_tks_username": "",
-            "tmember_tks_played": "",
-            "tmember_tks_playerbet": "",
-            "tmember_tks_expend": "",
-            "tmember_tks_income": "",
-            "tmember_tks_status": "",
-            "assigned_user_id": "19x1",
-            "createdtime": "2018-03-05 04:25:30",
-            "modifiedtime": "2018-03-05 04:25:30",
-            "id": "44x5"
-
         $urim = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Tmember%20where%20tmember_tks_userid='".$userID."';";
         $responsem = \Httpful\Request::get($urim)->send();
 
