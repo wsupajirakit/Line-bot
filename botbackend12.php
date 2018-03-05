@@ -2520,7 +2520,7 @@ if($countcheck==1){
 
             }
       }
-      else if(strtoupper($context) == "OP" && strlen($text)==2){
+      else if(strtoupper($context) == "OP" && strlen($text)==2 && strcmp($adminID,$userID) == 0){
 
 
 
@@ -2658,7 +2658,7 @@ if($countcheck==1){
       }
 
 
-      else if(strtoupper($ttrdtext) == "END" && strlen($text)==3){
+      else if(strtoupper($ttrdtext) == "END" && strlen($text)==3 && strcmp($adminID,$userID) == 0){
 
 
           if(strcmp($adminID,$userID) == 0 && $onop ==1 && $gameStatus==0){
