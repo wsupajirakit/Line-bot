@@ -357,10 +357,10 @@ if($countcheck==1){
 
                         $xbalance=0;
 
-                        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20where%20bmember_tks_userid='".$userID."';";
+                        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Tmember%20where%20tmember_tks_userid='".$userID."';";
                         $response = \Httpful\Request::get($uri)->send();
                         // echo $response;
-                        $xbalance = $response->body->result[0]->bmember_tks_balance;
+                        $xbalance = $response->body->result[0]->tmember_tks_balance;
 
                         $dname= '';
                         $curl = curl_init();
@@ -539,10 +539,6 @@ if($countcheck==1){
           $zx=1;
         }
 
-        $uriu = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bcenter%20Where%20id%20='39x181';";
-        $responseu = \Httpful\Request::get($uriu)->send();
-
-        $onresult = $responseu->body->result[0]->bcenter_tks_onresult;
 
         if($onresult!=1){
 
@@ -550,33 +546,17 @@ if($countcheck==1){
 
 
         //find admin
-        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x3';";
-        $response = \Httpful\Request::get($uri)->send();
 
-        $adminID = $response->body->result[0]->bgame_tks_adminid;
-        $xround = $response->body->result[0]->bgame_tks_round;
-        $xgamestatus = $response->body->result[0]->bgame_tks_gamestatus;
-
-          if(strcmp($adminID,$userID) == 0 && $xgamestatus == 0){
+          if(strcmp($adminID,$userID) == 0 && $gamestatus == 0){
 
 
-
-        // echo $extext[0]; // piece1
-        // echo $extext[1]; // piece2
-        // echo $extext[2]; // piece2
-        // echo $extext[3]; // piece2
-        $xround = $xround-1;
-
-
-        $listname= 'สรุปผล : รอบที่ # '.$xround;
-        $resultlist= 'สรุปผล : รอบที่ # '.$xround;
 
         $x1 = substr($extext[0], 2);
 
         if ($x1=="-1"){
            $msg1 = 'ขา 1 เสียให้เจ้ามือ 1 เท่า';
 
-           $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Bmember%20where%20bmember_tks_playerbet%20LIKE%20'%P1%'%20;";
+           $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Tmember%20where%20tmember_tks_playerbet%20LIKE%20'%P1%'%20;";
            $response = \Httpful\Request::get($uri)->send();
 
 
@@ -591,15 +571,14 @@ if($countcheck==1){
 
               foreach($data["result"] as $item) { //foreach element in $arr
 
-                   $username = $item['bmember_tks_username'];
-                   $userID = $item['bmember_tks_userid'];
+                   $username = $item['tmember_tks_username'];
+                   $userID = $item['tmember_tks_userid'];
                    $vid = $item['id'];
-                   $balance = $item['bmember_tks_balance'];
-                   $bet = $item['bmember_tks_bet'];
-                   $player = $item['bmember_tks_player'];
-                   $expend = $item['bmember_tks_expend']+$bet;
-                   $income = $item['bmember_tks_income'];
-                   $playerbet = $item['bmember_tks_playerbet'];
+                   $balance = $item['tmember_tks_balance'];
+                   $bet = $item['tmember_tks_bet'];
+                   $expend = $item['tmember_tks_expend']+$bet;
+                   $income = $item['tmember_tks_income'];
+                   $playerbet = $item['tmember_tks_playerbet'];
                    $newbalance = $balance;
 
                 $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
@@ -616,7 +595,7 @@ if($countcheck==1){
                   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                   CURLOPT_CUSTOMREQUEST => "POST",
                   CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bmemberno\": \"\",\n
-                    \"bmember_tks_userid\": \"$userID\",\n            \"bmember_tks_balance\": \"$newbalance\",\n            \"bmember_tks_bet\": \"$bet\",\n            \"bmember_tks_username\": \"$username\",\n            \"bmember_tks_player\": \"0\",\n            \"bmember_tks_playerbet\": \"$playerbet\",\n            \"bmember_tks_expend\": \"$expend\",\n            \"bmember_tks_income\": \"$income\",\n
+                    \"tmember_tks_userid\": \"$userID\",\n            \"tmember_tks_balance\": \"$newbalance\",\n            \"tmember_tks_bet\": \"$bet\",\n            \"tmember_tks_username\": \"$username\",\n            \"tmember_tks_played\": \"$player\",\n            \"tmember_tks_playerbet\": \"$playerbet\",\n            \"tmember_tks_expend\": \"$expend\",\n            \"tmember_tks_income\": \"$income\",\n
                     \"bmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 05:25:21\",\n
                     \"modifiedtime\": \"2018-02-02 05:25:21\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                   CURLOPT_HTTPHEADER => array(
@@ -644,7 +623,7 @@ if($countcheck==1){
 
         } else if  ($x1=="+1"){
            $msg1 = 'ขา 1 ได้ 1 เท่า';
-                      $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Bmember%20where%20bmember_tks_playerbet%20LIKE%20'%P1%'%20;";
+                      $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Tmember%20where%20tmember_tks_playerbet%20LIKE%20'%P1%'%20;";
            $response = \Httpful\Request::get($uri)->send();
 
            $data = json_decode($response,true);
@@ -655,15 +634,15 @@ if($countcheck==1){
 
            foreach($data["result"] as $item) { //foreach element in $arr
 
-                $username = $item['bmember_tks_username'];
-                $userID = $item['bmember_tks_userid'];
+                $username = $item['tmember_tks_username'];
+                $userID = $item['tmember_tks_userid'];
                 $vid = $item['id'];
-                $balance = $item['bmember_tks_balance'];
-                $bet = $item['bmember_tks_bet'];
-                $player = $item['bmember_tks_player'];
-                $expend = $item['bmember_tks_expend'];
-                $income = $item['bmember_tks_income']+$bet;
-                $playerbet = $item['bmember_tks_playerbet'];
+                $balance = $item['tmember_tks_balance'];
+                $bet = $item['tmember_tks_bet'];
+                $player = $item['tmember_tks_played'];
+                $expend = $item['tmember_tks_expend'];
+                $income = $item['tmember_tks_income']+$bet;
+                $playerbet = $item['tmember_tks_playerbet'];
                 $newbalance = $balance;
 
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
@@ -680,7 +659,7 @@ if($countcheck==1){
                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                CURLOPT_CUSTOMREQUEST => "POST",
                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bmemberno\": \"\",\n
-                 \"bmember_tks_userid\": \"$userID\",\n            \"bmember_tks_balance\": \"$newbalance\",\n            \"bmember_tks_bet\": \"$bet\",\n            \"bmember_tks_username\": \"$username\",\n            \"bmember_tks_player\": \"0\",\n            \"bmember_tks_playerbet\": \"$playerbet\",\n            \"bmember_tks_expend\": \"$expend\",\n            \"bmember_tks_income\": \"$income\",\n
+                 \"tmember_tks_userid\": \"$userID\",\n            \"tmember_tks_balance\": \"$newbalance\",\n            \"tmember_tks_bet\": \"$bet\",\n            \"tmember_tks_username\": \"$username\",\n            \"tmember_tks_played\": \"$player\",\n            \"tmember_tks_playerbet\": \"$playerbet\",\n            \"tmember_tks_expend\": \"$expend\",\n            \"tmember_tks_income\": \"$income\",\n
                  \"bmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 05:25:21\",\n
                  \"modifiedtime\": \"2018-02-02 05:25:21\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                CURLOPT_HTTPHEADER => array(
@@ -709,7 +688,7 @@ if($countcheck==1){
         }else if  ($x1=="+0"){
            $msg1 = 'เจ๊า';
 
-                 $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Bmember%20where%20bmember_tks_playerbet%20LIKE%20'%P1%'%20;";
+                 $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Tmember%20where%20tmember_tks_playerbet%20LIKE%20'%P1%'%20;";
            $response = \Httpful\Request::get($uri)->send();
 
            $data = json_decode($response,true);
@@ -720,15 +699,15 @@ if($countcheck==1){
 
            foreach($data["result"] as $item) { //foreach element in $arr
 
-                $username = $item['bmember_tks_username'];
-                $userID = $item['bmember_tks_userid'];
+                $username = $item['tmember_tks_username'];
+                $userID = $item['tmember_tks_userid'];
                 $vid = $item['id'];
-                $balance = $item['bmember_tks_balance'];
-                $bet = $item['bmember_tks_bet'];
-                $player = $item['bmember_tks_player'];
-                $expend = $item['bmember_tks_expend'];
-                $income = $item['bmember_tks_income'];
-                $playerbet = $item['bmember_tks_playerbet'];
+                $balance = $item['tmember_tks_balance'];
+                $bet = $item['tmember_tks_bet'];
+                $player = $item['tmember_tks_played'];
+                $expend = $item['tmember_tks_expend'];
+                $income = $item['tmember_tks_income'];
+                $playerbet = $item['tmember_tks_playerbet'];
                 $newbalance = $balance;
 
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
@@ -746,7 +725,7 @@ if($countcheck==1){
                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                CURLOPT_CUSTOMREQUEST => "POST",
                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bmemberno\": \"\",\n
-                 \"bmember_tks_userid\": \"$userID\",\n            \"bmember_tks_balance\": \"$newbalance\",\n            \"bmember_tks_bet\": \"$bet\",\n            \"bmember_tks_username\": \"$username\",\n            \"bmember_tks_player\": \"0\",\n            \"bmember_tks_playerbet\": \"$playerbet\",\n            \"bmember_tks_expend\": \"$expend\",\n            \"bmember_tks_income\": \"$income\",\n
+                 \"tmember_tks_userid\": \"$userID\",\n            \"tmember_tks_balance\": \"$newbalance\",\n            \"tmember_tks_bet\": \"$bet\",\n            \"tmember_tks_username\": \"$username\",\n            \"tmember_tks_played\": \"$player\",\n            \"tmember_tks_playerbet\": \"$playerbet\",\n            \"tmember_tks_expend\": \"$expend\",\n            \"tmember_tks_income\": \"$income\",\n
                  \"bmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 05:25:21\",\n
                  \"modifiedtime\": \"2018-02-02 05:25:21\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                CURLOPT_HTTPHEADER => array(
@@ -775,7 +754,7 @@ if($countcheck==1){
         }else if  ($x1=="-2"){
            $msg1 = 'ขา 1 ได้ 2 เท่า';
 
-                      $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Bmember%20where%20bmember_tks_playerbet%20LIKE%20'%P1%'%20;";
+                      $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Tmember%20where%20tmember_tks_playerbet%20LIKE%20'%P1%'%20;";
            $response = \Httpful\Request::get($uri)->send();
 
            $data = json_decode($response,true);
@@ -786,15 +765,15 @@ if($countcheck==1){
 
            foreach($data["result"] as $item) { //foreach element in $arr
 
-                $username = $item['bmember_tks_username'];
-                $userID = $item['bmember_tks_userid'];
+                $username = $item['tmember_tks_username'];
+                $userID = $item['tmember_tks_userid'];
                 $vid = $item['id'];
-                $balance = $item['bmember_tks_balance'];
-                $bet = $item['bmember_tks_bet'];
+                $balance = $item['tmember_tks_balance'];
+                $bet = $item['tmember_tks_bet'];
                 $betx = ($bet+$bet);
-                $expend = $item['bmember_tks_expend']+$betx;
-                $income = $item['bmember_tks_income'];
-                $playerbet = $item['bmember_tks_playerbet'];
+                $expend = $item['tmember_tks_expend']+$betx;
+                $income = $item['tmember_tks_income'];
+                $playerbet = $item['tmember_tks_playerbet'];
                 $newbalance = $balance;
 
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
@@ -811,7 +790,7 @@ if($countcheck==1){
                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                CURLOPT_CUSTOMREQUEST => "POST",
                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bmemberno\": \"\",\n
-                 \"bmember_tks_userid\": \"$userID\",\n            \"bmember_tks_balance\": \"$newbalance\",\n            \"bmember_tks_bet\": \"$bet\",\n            \"bmember_tks_username\": \"$username\",\n            \"bmember_tks_player\": \"0\",\n            \"bmember_tks_playerbet\": \"$playerbet\",\n            \"bmember_tks_expend\": \"$expend\",\n            \"bmember_tks_income\": \"$income\",\n
+                 \"tmember_tks_userid\": \"$userID\",\n            \"tmember_tks_balance\": \"$newbalance\",\n            \"tmember_tks_bet\": \"$bet\",\n            \"tmember_tks_username\": \"$username\",\n            \"tmember_tks_played\": \"$player\",\n            \"tmember_tks_playerbet\": \"$playerbet\",\n            \"tmember_tks_expend\": \"$expend\",\n            \"tmember_tks_income\": \"$income\",\n
                  \"bmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 05:25:21\",\n
                  \"modifiedtime\": \"2018-02-02 05:25:21\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                CURLOPT_HTTPHEADER => array(
@@ -839,7 +818,7 @@ if($countcheck==1){
         }else if  ($x1=="+2"){
            $msg1 = 'ขา 1 ได้ 2 เท่า';
 
-                      $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Bmember%20where%20bmember_tks_playerbet%20LIKE%20'%P1%'%20;";
+                      $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Tmember%20where%20tmember_tks_playerbet%20LIKE%20'%P1%'%20;";
            $response = \Httpful\Request::get($uri)->send();
 
            $data = json_decode($response,true);
@@ -850,15 +829,15 @@ if($countcheck==1){
 
            foreach($data["result"] as $item) { //foreach element in $arr
 
-                $username = $item['bmember_tks_username'];
-                $userID = $item['bmember_tks_userid'];
+                $username = $item['tmember_tks_username'];
+                $userID = $item['tmember_tks_userid'];
                 $vid = $item['id'];
-                $balance = $item['bmember_tks_balance'];
-                $bet = $item['bmember_tks_bet'];
-                $player = $item['bmember_tks_player'];
-                $expend = $item['bmember_tks_expend'];
-                $income = $item['bmember_tks_income']+($bet*2);
-                $playerbet = $item['bmember_tks_playerbet'];
+                $balance = $item['tmember_tks_balance'];
+                $bet = $item['tmember_tks_bet'];
+                $player = $item['tmember_tks_played'];
+                $expend = $item['tmember_tks_expend'];
+                $income = $item['tmember_tks_income']+($bet*2);
+                $playerbet = $item['tmember_tks_playerbet'];
                 $newbalance = $balance;
 
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
@@ -876,7 +855,7 @@ if($countcheck==1){
                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                CURLOPT_CUSTOMREQUEST => "POST",
                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bmemberno\": \"\",\n
-                 \"bmember_tks_userid\": \"$userID\",\n            \"bmember_tks_balance\": \"$newbalance\",\n            \"bmember_tks_bet\": \"$bet\",\n            \"bmember_tks_username\": \"$username\",\n            \"bmember_tks_player\": \"0\",\n            \"bmember_tks_playerbet\": \"$playerbet\",\n            \"bmember_tks_expend\": \"$expend\",\n            \"bmember_tks_income\": \"$income\",\n
+                 \"tmember_tks_userid\": \"$userID\",\n            \"tmember_tks_balance\": \"$newbalance\",\n            \"tmember_tks_bet\": \"$bet\",\n            \"tmember_tks_username\": \"$username\",\n            \"tmember_tks_played\": \"$player\",\n            \"tmember_tks_playerbet\": \"$playerbet\",\n            \"tmember_tks_expend\": \"$expend\",\n            \"tmember_tks_income\": \"$income\",\n
                  \"bmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 05:25:21\",\n
                  \"modifiedtime\": \"2018-02-02 05:25:21\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                CURLOPT_HTTPHEADER => array(
@@ -903,7 +882,7 @@ if($countcheck==1){
         }
         $x2 = substr($extext[1], 1);
         if ($x2=="-1"){
-                     $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Bmember%20where%20bmember_tks_playerbet%20LIKE%20'%P2%'%20;";
+                     $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Tmember%20where%20tmember_tks_playerbet%20LIKE%20'%P2%'%20;";
           $response = \Httpful\Request::get($uri)->send();
 
           $data = json_decode($response,true);
@@ -914,15 +893,15 @@ if($countcheck==1){
 
           foreach($data["result"] as $item) { //foreach element in $arr
 
-               $username = $item['bmember_tks_username'];
-               $userID = $item['bmember_tks_userid'];
+               $username = $item['tmember_tks_username'];
+               $userID = $item['tmember_tks_userid'];
                $vid = $item['id'];
-               $balance = $item['bmember_tks_balance'];
-               $bet = $item['bmember_tks_bet'];
-               $player = $item['bmember_tks_player'];
-               $expend = $item['bmember_tks_expend']+$bet;
-               $income = $item['bmember_tks_income'];
-               $playerbet = $item['bmember_tks_playerbet'];
+               $balance = $item['tmember_tks_balance'];
+               $bet = $item['tmember_tks_bet'];
+               $player = $item['tmember_tks_played'];
+               $expend = $item['tmember_tks_expend']+$bet;
+               $income = $item['tmember_tks_income'];
+               $playerbet = $item['tmember_tks_playerbet'];
                $newbalance = $balance;
 
             $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
@@ -940,7 +919,7 @@ if($countcheck==1){
               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
               CURLOPT_CUSTOMREQUEST => "POST",
               CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bmemberno\": \"\",\n
-                \"bmember_tks_userid\": \"$userID\",\n            \"bmember_tks_balance\": \"$newbalance\",\n            \"bmember_tks_bet\": \"$bet\",\n            \"bmember_tks_username\": \"$username\",\n            \"bmember_tks_player\": \"0\",\n            \"bmember_tks_playerbet\": \"$playerbet\",\n            \"bmember_tks_expend\": \"$expend\",\n            \"bmember_tks_income\": \"$income\",\n
+                \"tmember_tks_userid\": \"$userID\",\n            \"tmember_tks_balance\": \"$newbalance\",\n            \"tmember_tks_bet\": \"$bet\",\n            \"tmember_tks_username\": \"$username\",\n            \"tmember_tks_played\": \"$player\",\n            \"tmember_tks_playerbet\": \"$playerbet\",\n            \"tmember_tks_expend\": \"$expend\",\n            \"tmember_tks_income\": \"$income\",\n
                 \"bmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 05:25:21\",\n
                 \"modifiedtime\": \"2018-02-02 05:25:21\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
               CURLOPT_HTTPHEADER => array(
@@ -970,7 +949,7 @@ if($countcheck==1){
 
            $msg2 = 'ขา 2 ได้ 1 เท่า';
 
-           $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Bmember%20where%20bmember_tks_playerbet%20LIKE%20'%P2%'%20;";
+           $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Tmember%20where%20tmember_tks_playerbet%20LIKE%20'%P2%'%20;";
            $response = \Httpful\Request::get($uri)->send();
 
            $data = json_decode($response,true);
@@ -981,15 +960,15 @@ if($countcheck==1){
 
            foreach($data["result"] as $item) { //foreach element in $arr
 
-                $username = $item['bmember_tks_username'];
-                $userID = $item['bmember_tks_userid'];
+                $username = $item['tmember_tks_username'];
+                $userID = $item['tmember_tks_userid'];
                 $vid = $item['id'];
-                $balance = $item['bmember_tks_balance'];
-                $bet = $item['bmember_tks_bet'];
-                $player = $item['bmember_tks_player'];
-                $expend = $item['bmember_tks_expend'];
-                $income = $item['bmember_tks_income']+$bet;
-                $playerbet = $item['bmember_tks_playerbet'];
+                $balance = $item['tmember_tks_balance'];
+                $bet = $item['tmember_tks_bet'];
+                $player = $item['tmember_tks_played'];
+                $expend = $item['tmember_tks_expend'];
+                $income = $item['tmember_tks_income']+$bet;
+                $playerbet = $item['tmember_tks_playerbet'];
                 $newbalance = $balance;
 
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
@@ -1007,7 +986,7 @@ if($countcheck==1){
                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                CURLOPT_CUSTOMREQUEST => "POST",
                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bmemberno\": \"\",\n
-                 \"bmember_tks_userid\": \"$userID\",\n            \"bmember_tks_balance\": \"$newbalance\",\n            \"bmember_tks_bet\": \"$bet\",\n            \"bmember_tks_username\": \"$username\",\n            \"bmember_tks_player\": \"0\",\n            \"bmember_tks_playerbet\": \"$playerbet\",\n            \"bmember_tks_expend\": \"$expend\",\n            \"bmember_tks_income\": \"$income\",\n
+                 \"tmember_tks_userid\": \"$userID\",\n            \"tmember_tks_balance\": \"$newbalance\",\n            \"tmember_tks_bet\": \"$bet\",\n            \"tmember_tks_username\": \"$username\",\n            \"tmember_tks_played\": \"$player\",\n            \"tmember_tks_playerbet\": \"$playerbet\",\n            \"tmember_tks_expend\": \"$expend\",\n            \"tmember_tks_income\": \"$income\",\n
                  \"bmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 05:25:21\",\n
                  \"modifiedtime\": \"2018-02-02 05:25:21\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                CURLOPT_HTTPHEADER => array(
@@ -1034,7 +1013,7 @@ if($countcheck==1){
 
         }else if  ($x2=="+0"){
            $msg2 = 'เจ๊า';
-           $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Bmember%20where%20bmember_tks_playerbet%20LIKE%20'%P2%'%20;";
+           $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Tmember%20where%20tmember_tks_playerbet%20LIKE%20'%P2%'%20;";
            $response = \Httpful\Request::get($uri)->send();
 
            $data = json_decode($response,true);
@@ -1045,15 +1024,15 @@ if($countcheck==1){
 
            foreach($data["result"] as $item) { //foreach element in $arr
 
-                $username = $item['bmember_tks_username'];
-                $userID = $item['bmember_tks_userid'];
+                $username = $item['tmember_tks_username'];
+                $userID = $item['tmember_tks_userid'];
                 $vid = $item['id'];
-                $balance = $item['bmember_tks_balance'];
-                $bet = $item['bmember_tks_bet'];
-                $player = $item['bmember_tks_player'];
-                $expend = $item['bmember_tks_expend'];
-                $income = $item['bmember_tks_income'];
-                $playerbet = $item['bmember_tks_playerbet'];
+                $balance = $item['tmember_tks_balance'];
+                $bet = $item['tmember_tks_bet'];
+                $player = $item['tmember_tks_played'];
+                $expend = $item['tmember_tks_expend'];
+                $income = $item['tmember_tks_income'];
+                $playerbet = $item['tmember_tks_playerbet'];
                 $newbalance = $balance;
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
@@ -1070,7 +1049,7 @@ if($countcheck==1){
                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                CURLOPT_CUSTOMREQUEST => "POST",
                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bmemberno\": \"\",\n
-                 \"bmember_tks_userid\": \"$userID\",\n            \"bmember_tks_balance\": \"$newbalance\",\n            \"bmember_tks_bet\": \"$bet\",\n            \"bmember_tks_username\": \"$username\",\n            \"bmember_tks_player\": \"0\",\n            \"bmember_tks_playerbet\": \"$playerbet\",\n            \"bmember_tks_expend\": \"$expend\",\n            \"bmember_tks_income\": \"$income\",\n
+                 \"tmember_tks_userid\": \"$userID\",\n            \"tmember_tks_balance\": \"$newbalance\",\n            \"tmember_tks_bet\": \"$bet\",\n            \"tmember_tks_username\": \"$username\",\n            \"tmember_tks_played\": \"$player\",\n            \"tmember_tks_playerbet\": \"$playerbet\",\n            \"tmember_tks_expend\": \"$expend\",\n            \"tmember_tks_income\": \"$income\",\n
                  \"bmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 05:25:21\",\n
                  \"modifiedtime\": \"2018-02-02 05:25:21\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                CURLOPT_HTTPHEADER => array(
@@ -1099,7 +1078,7 @@ if($countcheck==1){
 
         }else if  ($x2=="-2"){
            $msg2 = 'ขา 2 เสียให้เจ้ามือ 2 เท่า';
-          $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Bmember%20where%20bmember_tks_playerbet%20LIKE%20'%P2%'%20;";
+          $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Tmember%20where%20tmember_tks_playerbet%20LIKE%20'%P2%'%20;";
            $response = \Httpful\Request::get($uri)->send();
 
            $data = json_decode($response,true);
@@ -1110,15 +1089,15 @@ if($countcheck==1){
 
            foreach($data["result"] as $item) { //foreach element in $arr
 
-                $username = $item['bmember_tks_username'];
-                $userID = $item['bmember_tks_userid'];
+                $username = $item['tmember_tks_username'];
+                $userID = $item['tmember_tks_userid'];
                 $vid = $item['id'];
-                $balance = $item['bmember_tks_balance'];
-                $bet = $item['bmember_tks_bet'];
-                $player = $item['bmember_tks_player'];
-                $expend = $item['bmember_tks_expend']+($bet*2);
-                $income = $item['bmember_tks_income'];
-                $playerbet = $item['bmember_tks_playerbet'];
+                $balance = $item['tmember_tks_balance'];
+                $bet = $item['tmember_tks_bet'];
+                $player = $item['tmember_tks_played'];
+                $expend = $item['tmember_tks_expend']+($bet*2);
+                $income = $item['tmember_tks_income'];
+                $playerbet = $item['tmember_tks_playerbet'];
                 $newbalance = $balance;
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
 
@@ -1135,7 +1114,7 @@ if($countcheck==1){
                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                CURLOPT_CUSTOMREQUEST => "POST",
                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bmemberno\": \"\",\n
-                 \"bmember_tks_userid\": \"$userID\",\n            \"bmember_tks_balance\": \"$newbalance\",\n            \"bmember_tks_bet\": \"$bet\",\n            \"bmember_tks_username\": \"$username\",\n            \"bmember_tks_player\": \"0\",\n            \"bmember_tks_playerbet\": \"$playerbet\",\n            \"bmember_tks_expend\": \"$expend\",\n            \"bmember_tks_income\": \"$income\",\n
+                 \"tmember_tks_userid\": \"$userID\",\n            \"tmember_tks_balance\": \"$newbalance\",\n            \"tmember_tks_bet\": \"$bet\",\n            \"tmember_tks_username\": \"$username\",\n            \"tmember_tks_played\": \"$player\",\n            \"tmember_tks_playerbet\": \"$playerbet\",\n            \"tmember_tks_expend\": \"$expend\",\n            \"tmember_tks_income\": \"$income\",\n
                  \"bmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 05:25:21\",\n
                  \"modifiedtime\": \"2018-02-02 05:25:21\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                CURLOPT_HTTPHEADER => array(
@@ -1162,7 +1141,7 @@ if($countcheck==1){
 
         }else if  ($x2=="+2"){
            $msg2 = 'ขา 2 ได้ 2 เท่า';
-           $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Bmember%20where%20bmember_tks_playerbet%20LIKE%20'%P2%'%20;";
+           $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Tmember%20where%20tmember_tks_playerbet%20LIKE%20'%P2%'%20;";
            $response = \Httpful\Request::get($uri)->send();
 
            $data = json_decode($response,true);
@@ -1173,15 +1152,15 @@ if($countcheck==1){
 
            foreach($data["result"] as $item) { //foreach element in $arr
 
-                $username = $item['bmember_tks_username'];
-                $userID = $item['bmember_tks_userid'];
+                $username = $item['tmember_tks_username'];
+                $userID = $item['tmember_tks_userid'];
                 $vid = $item['id'];
-                $balance = $item['bmember_tks_balance'];
-                $bet = $item['bmember_tks_bet'];
-                $player = $item['bmember_tks_player'];
-                $expend = $item['bmember_tks_expend'];
-                $income = $item['bmember_tks_income']+($bet*2);
-                $playerbet = $item['bmember_tks_playerbet'];
+                $balance = $item['tmember_tks_balance'];
+                $bet = $item['tmember_tks_bet'];
+                $player = $item['tmember_tks_played'];
+                $expend = $item['tmember_tks_expend'];
+                $income = $item['tmember_tks_income']+($bet*2);
+                $playerbet = $item['tmember_tks_playerbet'];
                 $newbalance = $balance;
 
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
@@ -1198,7 +1177,7 @@ if($countcheck==1){
                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                CURLOPT_CUSTOMREQUEST => "POST",
                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bmemberno\": \"\",\n
-                 \"bmember_tks_userid\": \"$userID\",\n            \"bmember_tks_balance\": \"$newbalance\",\n            \"bmember_tks_bet\": \"$bet\",\n            \"bmember_tks_username\": \"$username\",\n            \"bmember_tks_player\": \"0\",\n            \"bmember_tks_playerbet\": \"$playerbet\",\n            \"bmember_tks_expend\": \"$expend\",\n            \"bmember_tks_income\": \"$income\",\n
+                 \"tmember_tks_userid\": \"$userID\",\n            \"tmember_tks_balance\": \"$newbalance\",\n            \"tmember_tks_bet\": \"$bet\",\n            \"tmember_tks_username\": \"$username\",\n            \"tmember_tks_played\": \"$player\",\n            \"tmember_tks_playerbet\": \"$playerbet\",\n            \"tmember_tks_expend\": \"$expend\",\n            \"tmember_tks_income\": \"$income\",\n
                  \"bmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 05:25:21\",\n
                  \"modifiedtime\": \"2018-02-02 05:25:21\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                CURLOPT_HTTPHEADER => array(
@@ -1229,7 +1208,7 @@ if($countcheck==1){
         if ($x3=="-1"){
            $msg3 = 'ขา3 เสียให้เจ้ามือ 1 เท่า';
 
-           $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Bmember%20where%20bmember_tks_playerbet%20LIKE%20'%P3%'%20;";
+           $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Tmember%20where%20tmember_tks_playerbet%20LIKE%20'%P3%'%20;";
            $response = \Httpful\Request::get($uri)->send();
 
            $data = json_decode($response,true);
@@ -1240,15 +1219,15 @@ if($countcheck==1){
 
            foreach($data["result"] as $item) { //foreach element in $arr
 
-                $username = $item['bmember_tks_username'];
-                $userID = $item['bmember_tks_userid'];
+                $username = $item['tmember_tks_username'];
+                $userID = $item['tmember_tks_userid'];
                 $vid = $item['id'];
-                $balance = $item['bmember_tks_balance'];
-                $bet = $item['bmember_tks_bet'];
-                $player = $item['bmember_tks_player'];
-                $expend = $item['bmember_tks_expend']+$bet;
-                $income = $item['bmember_tks_income'];
-                $playerbet = $item['bmember_tks_playerbet'];
+                $balance = $item['tmember_tks_balance'];
+                $bet = $item['tmember_tks_bet'];
+                $player = $item['tmember_tks_played'];
+                $expend = $item['tmember_tks_expend']+$bet;
+                $income = $item['tmember_tks_income'];
+                $playerbet = $item['tmember_tks_playerbet'];
                 $newbalance = $balance;
 
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
@@ -1266,7 +1245,7 @@ if($countcheck==1){
                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                CURLOPT_CUSTOMREQUEST => "POST",
                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bmemberno\": \"\",\n
-                 \"bmember_tks_userid\": \"$userID\",\n            \"bmember_tks_balance\": \"$newbalance\",\n            \"bmember_tks_bet\": \"$bet\",\n            \"bmember_tks_username\": \"$username\",\n            \"bmember_tks_player\": \"0\",\n            \"bmember_tks_playerbet\": \"$playerbet\",\n            \"bmember_tks_expend\": \"$expend\",\n            \"bmember_tks_income\": \"$income\",\n
+                 \"tmember_tks_userid\": \"$userID\",\n            \"tmember_tks_balance\": \"$newbalance\",\n            \"tmember_tks_bet\": \"$bet\",\n            \"tmember_tks_username\": \"$username\",\n            \"tmember_tks_played\": \"$player\",\n            \"tmember_tks_playerbet\": \"$playerbet\",\n            \"tmember_tks_expend\": \"$expend\",\n            \"tmember_tks_income\": \"$income\",\n
                  \"bmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 05:25:21\",\n
                  \"modifiedtime\": \"2018-02-02 05:25:21\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                CURLOPT_HTTPHEADER => array(
@@ -1293,7 +1272,7 @@ if($countcheck==1){
 
         } else if  ($x3=="+1"){
            $msg3 = 'ขา 3 ได้ 1 เท่า';
-            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Bmember%20where%20bmember_tks_playerbet%20LIKE%20'%P3%'%20;";
+            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Tmember%20where%20tmember_tks_playerbet%20LIKE%20'%P3%'%20;";
            $response = \Httpful\Request::get($uri)->send();
 
            $data = json_decode($response,true);
@@ -1304,15 +1283,15 @@ if($countcheck==1){
 
            foreach($data["result"] as $item) { //foreach element in $arr
 
-                $username = $item['bmember_tks_username'];
-                $userID = $item['bmember_tks_userid'];
+                $username = $item['tmember_tks_username'];
+                $userID = $item['tmember_tks_userid'];
                 $vid = $item['id'];
-                $balance = $item['bmember_tks_balance'];
-                $bet = $item['bmember_tks_bet'];
-                $player = $item['bmember_tks_player'];
-                $expend = $item['bmember_tks_expend'];
-                $income = $item['bmember_tks_income']+$bet;
-                $playerbet = $item['bmember_tks_playerbet'];
+                $balance = $item['tmember_tks_balance'];
+                $bet = $item['tmember_tks_bet'];
+                $player = $item['tmember_tks_played'];
+                $expend = $item['tmember_tks_expend'];
+                $income = $item['tmember_tks_income']+$bet;
+                $playerbet = $item['tmember_tks_playerbet'];
                 $newbalance = $balance;
 
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
@@ -1329,7 +1308,7 @@ if($countcheck==1){
                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                CURLOPT_CUSTOMREQUEST => "POST",
                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bmemberno\": \"\",\n
-                 \"bmember_tks_userid\": \"$userID\",\n            \"bmember_tks_balance\": \"$newbalance\",\n            \"bmember_tks_bet\": \"$bet\",\n            \"bmember_tks_username\": \"$username\",\n            \"bmember_tks_player\": \"0\",\n            \"bmember_tks_playerbet\": \"$playerbet\",\n            \"bmember_tks_expend\": \"$expend\",\n            \"bmember_tks_income\": \"$income\",\n
+                 \"tmember_tks_userid\": \"$userID\",\n            \"tmember_tks_balance\": \"$newbalance\",\n            \"tmember_tks_bet\": \"$bet\",\n            \"tmember_tks_username\": \"$username\",\n            \"tmember_tks_played\": \"$player\",\n            \"tmember_tks_playerbet\": \"$playerbet\",\n            \"tmember_tks_expend\": \"$expend\",\n            \"tmember_tks_income\": \"$income\",\n
                  \"bmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 05:25:21\",\n
                  \"modifiedtime\": \"2018-02-02 05:25:21\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                CURLOPT_HTTPHEADER => array(
@@ -1355,7 +1334,7 @@ if($countcheck==1){
              }
         }else if  ($x3=="+0"){
            $msg3 = 'เจ๊า';
-            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Bmember%20where%20bmember_tks_playerbet%20LIKE%20'%P3%'%20;";
+            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Tmember%20where%20tmember_tks_playerbet%20LIKE%20'%P3%'%20;";
            $response = \Httpful\Request::get($uri)->send();
 
            $data = json_decode($response,true);
@@ -1366,15 +1345,15 @@ if($countcheck==1){
 
            foreach($data["result"] as $item) { //foreach element in $arr
 
-                $username = $item['bmember_tks_username'];
-                $userID = $item['bmember_tks_userid'];
+                $username = $item['tmember_tks_username'];
+                $userID = $item['tmember_tks_userid'];
                 $vid = $item['id'];
-                $balance = $item['bmember_tks_balance'];
-                $bet = $item['bmember_tks_bet'];
-                $player = $item['bmember_tks_player'];
-                $expend = $item['bmember_tks_expend'];
-                $income = $item['bmember_tks_income'];
-                $playerbet = $item['bmember_tks_playerbet'];
+                $balance = $item['tmember_tks_balance'];
+                $bet = $item['tmember_tks_bet'];
+                $player = $item['tmember_tks_played'];
+                $expend = $item['tmember_tks_expend'];
+                $income = $item['tmember_tks_income'];
+                $playerbet = $item['tmember_tks_playerbet'];
                 $newbalance = $balance;
 
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
@@ -1391,7 +1370,7 @@ if($countcheck==1){
                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                CURLOPT_CUSTOMREQUEST => "POST",
                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bmemberno\": \"\",\n
-                 \"bmember_tks_userid\": \"$userID\",\n            \"bmember_tks_balance\": \"$newbalance\",\n            \"bmember_tks_bet\": \"$bet\",\n            \"bmember_tks_username\": \"$username\",\n            \"bmember_tks_player\": \"0\",\n            \"bmember_tks_playerbet\": \"$playerbet\",\n            \"bmember_tks_expend\": \"$expend\",\n            \"bmember_tks_income\": \"$income\",\n
+                 \"tmember_tks_userid\": \"$userID\",\n            \"tmember_tks_balance\": \"$newbalance\",\n            \"tmember_tks_bet\": \"$bet\",\n            \"tmember_tks_username\": \"$username\",\n            \"tmember_tks_played\": \"$player\",\n            \"tmember_tks_playerbet\": \"$playerbet\",\n            \"tmember_tks_expend\": \"$expend\",\n            \"tmember_tks_income\": \"$income\",\n
                  \"bmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 05:25:21\",\n
                  \"modifiedtime\": \"2018-02-02 05:25:21\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                CURLOPT_HTTPHEADER => array(
@@ -1415,7 +1394,7 @@ if($countcheck==1){
              }
         }else if  ($x3=="-2"){
            $msg3 = 'ขา 3 เสียให้เจ้ามือ 2 เท่า';
-            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Bmember%20where%20bmember_tks_playerbet%20LIKE%20'%P3%'%20;";
+            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Tmember%20where%20tmember_tks_playerbet%20LIKE%20'%P3%'%20;";
            $response = \Httpful\Request::get($uri)->send();
 
            $data = json_decode($response,true);
@@ -1426,15 +1405,15 @@ if($countcheck==1){
 
            foreach($data["result"] as $item) { //foreach element in $arr
 
-                $username = $item['bmember_tks_username'];
-                $userID = $item['bmember_tks_userid'];
+                $username = $item['tmember_tks_username'];
+                $userID = $item['tmember_tks_userid'];
                 $vid = $item['id'];
-                $balance = $item['bmember_tks_balance'];
-                $bet = $item['bmember_tks_bet'];
-                $player = $item['bmember_tks_player'];
-                $expend = $item['bmember_tks_expend']+($bet*2);
-                $income = $item['bmember_tks_income'];
-                $playerbet = $item['bmember_tks_playerbet'];
+                $balance = $item['tmember_tks_balance'];
+                $bet = $item['tmember_tks_bet'];
+                $player = $item['tmember_tks_played'];
+                $expend = $item['tmember_tks_expend']+($bet*2);
+                $income = $item['tmember_tks_income'];
+                $playerbet = $item['tmember_tks_playerbet'];
                 $newbalance = $balance;
 
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
@@ -1450,7 +1429,7 @@ if($countcheck==1){
                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                CURLOPT_CUSTOMREQUEST => "POST",
                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bmemberno\": \"\",\n
-                 \"bmember_tks_userid\": \"$userID\",\n            \"bmember_tks_balance\": \"$newbalance\",\n            \"bmember_tks_bet\": \"$bet\",\n            \"bmember_tks_username\": \"$username\",\n            \"bmember_tks_player\": \"0\",\n            \"bmember_tks_playerbet\": \"$playerbet\",\n            \"bmember_tks_expend\": \"$expend\",\n            \"bmember_tks_income\": \"$income\",\n
+                 \"tmember_tks_userid\": \"$userID\",\n            \"tmember_tks_balance\": \"$newbalance\",\n            \"tmember_tks_bet\": \"$bet\",\n            \"tmember_tks_username\": \"$username\",\n            \"tmember_tks_played\": \"$player\",\n            \"tmember_tks_playerbet\": \"$playerbet\",\n            \"tmember_tks_expend\": \"$expend\",\n            \"tmember_tks_income\": \"$income\",\n
                  \"bmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 05:25:21\",\n
                  \"modifiedtime\": \"2018-02-02 05:25:21\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                CURLOPT_HTTPHEADER => array(
@@ -1475,7 +1454,7 @@ if($countcheck==1){
              }
         }else if  ($x3=="+2"){
            $msg3 = 'ขา 3 ได้ 2 เท่า';
-         $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Bmember%20where%20bmember_tks_playerbet%20LIKE%20'%P3%'%20;";
+         $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Tmember%20where%20tmember_tks_playerbet%20LIKE%20'%P3%'%20;";
            $response = \Httpful\Request::get($uri)->send();
 
            $data = json_decode($response,true);
@@ -1486,15 +1465,15 @@ if($countcheck==1){
 
            foreach($data["result"] as $item) { //foreach element in $arr
 
-                $username = $item['bmember_tks_username'];
-                $userID = $item['bmember_tks_userid'];
+                $username = $item['tmember_tks_username'];
+                $userID = $item['tmember_tks_userid'];
                 $vid = $item['id'];
-                $balance = $item['bmember_tks_balance'];
-                $bet = $item['bmember_tks_bet'];
-                $player = $item['bmember_tks_player'];
-                $expend = $item['bmember_tks_expend'];
-                $income = $item['bmember_tks_income']+($bet*2);
-                $playerbet = $item['bmember_tks_playerbet'];
+                $balance = $item['tmember_tks_balance'];
+                $bet = $item['tmember_tks_bet'];
+                $player = $item['tmember_tks_played'];
+                $expend = $item['tmember_tks_expend'];
+                $income = $item['tmember_tks_income']+($bet*2);
+                $playerbet = $item['tmember_tks_playerbet'];
                 $newbalance = $balance;
 
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
@@ -1512,7 +1491,7 @@ if($countcheck==1){
                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                CURLOPT_CUSTOMREQUEST => "POST",
                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bmemberno\": \"\",\n
-                 \"bmember_tks_userid\": \"$userID\",\n            \"bmember_tks_balance\": \"$newbalance\",\n            \"bmember_tks_bet\": \"$bet\",\n            \"bmember_tks_username\": \"$username\",\n            \"bmember_tks_player\": \"0\",\n            \"bmember_tks_playerbet\": \"$playerbet\",\n            \"bmember_tks_expend\": \"$expend\",\n            \"bmember_tks_income\": \"$income\",\n
+                 \"tmember_tks_userid\": \"$userID\",\n            \"tmember_tks_balance\": \"$newbalance\",\n            \"tmember_tks_bet\": \"$bet\",\n            \"tmember_tks_username\": \"$username\",\n            \"tmember_tks_played\": \"$player\",\n            \"tmember_tks_playerbet\": \"$playerbet\",\n            \"tmember_tks_expend\": \"$expend\",\n            \"tmember_tks_income\": \"$income\",\n
                  \"bmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 05:25:21\",\n
                  \"modifiedtime\": \"2018-02-02 05:25:21\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                CURLOPT_HTTPHEADER => array(
@@ -1540,7 +1519,7 @@ if($countcheck==1){
         if ($x4=="-1"){
            $msg4 = 'ขา 4 เสียให้เจ้ามือ 1 เท่า';
 
-                       $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Bmember%20where%20bmember_tks_playerbet%20LIKE%20'%P4%'%20;";
+                       $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Tmember%20where%20tmember_tks_playerbet%20LIKE%20'%P4%'%20;";
                       $response = \Httpful\Request::get($uri)->send();
 
                       $data = json_decode($response,true);
@@ -1551,15 +1530,15 @@ if($countcheck==1){
 
                       foreach($data["result"] as $item) { //foreach element in $arr
 
-                           $username = $item['bmember_tks_username'];
-                           $userID = $item['bmember_tks_userid'];
+                           $username = $item['tmember_tks_username'];
+                           $userID = $item['tmember_tks_userid'];
                            $vid = $item['id'];
-                           $balance = $item['bmember_tks_balance'];
-                           $bet = $item['bmember_tks_bet'];
-                           $player = $item['bmember_tks_player'];
-                           $expend = $item['bmember_tks_expend']+$bet;
-                           $income = $item['bmember_tks_income'];
-                           $playerbet = $item['bmember_tks_playerbet'];
+                           $balance = $item['tmember_tks_balance'];
+                           $bet = $item['tmember_tks_bet'];
+                           $player = $item['tmember_tks_played'];
+                           $expend = $item['tmember_tks_expend']+$bet;
+                           $income = $item['tmember_tks_income'];
+                           $playerbet = $item['tmember_tks_playerbet'];
                            $newbalance = $balance;
 
                         $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
@@ -1577,7 +1556,7 @@ if($countcheck==1){
                           CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                           CURLOPT_CUSTOMREQUEST => "POST",
                           CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bmemberno\": \"\",\n
-                            \"bmember_tks_userid\": \"$userID\",\n            \"bmember_tks_balance\": \"$newbalance\",\n            \"bmember_tks_bet\": \"$bet\",\n            \"bmember_tks_username\": \"$username\",\n            \"bmember_tks_player\": \"0\",\n            \"bmember_tks_playerbet\": \"$playerbet\",\n            \"bmember_tks_expend\": \"$expend\",\n            \"bmember_tks_income\": \"$income\",\n
+                            \"tmember_tks_userid\": \"$userID\",\n            \"tmember_tks_balance\": \"$newbalance\",\n            \"tmember_tks_bet\": \"$bet\",\n            \"tmember_tks_username\": \"$username\",\n            \"tmember_tks_played\": \"$player\",\n            \"tmember_tks_playerbet\": \"$playerbet\",\n            \"tmember_tks_expend\": \"$expend\",\n            \"tmember_tks_income\": \"$income\",\n
                             \"bmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 05:25:21\",\n
                             \"modifiedtime\": \"2018-02-02 05:25:21\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                           CURLOPT_HTTPHEADER => array(
@@ -1603,7 +1582,7 @@ if($countcheck==1){
                         }
         } else if  ($x4=="+1"){
            $msg4 = 'ขา 4 ได้ 1 เท่า';
-           $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Bmember%20where%20bmember_tks_playerbet%20LIKE%20'%P4%'%20;";
+           $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Tmember%20where%20tmember_tks_playerbet%20LIKE%20'%P4%'%20;";
            $response = \Httpful\Request::get($uri)->send();
 
            $data = json_decode($response,true);
@@ -1614,15 +1593,15 @@ if($countcheck==1){
 
            foreach($data["result"] as $item) { //foreach element in $arr
 
-                $username = $item['bmember_tks_username'];
-                $userID = $item['bmember_tks_userid'];
+                $username = $item['tmember_tks_username'];
+                $userID = $item['tmember_tks_userid'];
                 $vid = $item['id'];
-                $balance = $item['bmember_tks_balance'];
-                $bet = $item['bmember_tks_bet'];
-                $player = $item['bmember_tks_player'];
-                $expend = $item['bmember_tks_expend'];
-                $income = $item['bmember_tks_income']+$bet;
-                $playerbet = $item['bmember_tks_playerbet'];
+                $balance = $item['tmember_tks_balance'];
+                $bet = $item['tmember_tks_bet'];
+                $player = $item['tmember_tks_played'];
+                $expend = $item['tmember_tks_expend'];
+                $income = $item['tmember_tks_income']+$bet;
+                $playerbet = $item['tmember_tks_playerbet'];
                 $newbalance = $balance;
 
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
@@ -1638,7 +1617,7 @@ if($countcheck==1){
                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                CURLOPT_CUSTOMREQUEST => "POST",
                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bmemberno\": \"\",\n
-                 \"bmember_tks_userid\": \"$userID\",\n            \"bmember_tks_balance\": \"$newbalance\",\n            \"bmember_tks_bet\": \"$bet\",\n            \"bmember_tks_username\": \"$username\",\n            \"bmember_tks_player\": \"0\",\n            \"bmember_tks_playerbet\": \"$playerbet\",\n            \"bmember_tks_expend\": \"$expend\",\n            \"bmember_tks_income\": \"$income\",\n
+                 \"tmember_tks_userid\": \"$userID\",\n            \"tmember_tks_balance\": \"$newbalance\",\n            \"tmember_tks_bet\": \"$bet\",\n            \"tmember_tks_username\": \"$username\",\n            \"tmember_tks_played\": \"$player\",\n            \"tmember_tks_playerbet\": \"$playerbet\",\n            \"tmember_tks_expend\": \"$expend\",\n            \"tmember_tks_income\": \"$income\",\n
                  \"bmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 05:25:21\",\n
                  \"modifiedtime\": \"2018-02-02 05:25:21\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                CURLOPT_HTTPHEADER => array(
@@ -1662,7 +1641,7 @@ if($countcheck==1){
              }
         }else if  ($x4=="+0"){
            $msg4 = 'เจ๊า';
-           $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Bmember%20where%20bmember_tks_playerbet%20LIKE%20'%P4%'%20;";
+           $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Tmember%20where%20tmember_tks_playerbet%20LIKE%20'%P4%'%20;";
            $response = \Httpful\Request::get($uri)->send();
 
            $data = json_decode($response,true);
@@ -1673,15 +1652,15 @@ if($countcheck==1){
 
            foreach($data["result"] as $item) { //foreach element in $arr
 
-                $username = $item['bmember_tks_username'];
-                $userID = $item['bmember_tks_userid'];
+                $username = $item['tmember_tks_username'];
+                $userID = $item['tmember_tks_userid'];
                 $vid = $item['id'];
-                $balance = $item['bmember_tks_balance'];
-                $bet = $item['bmember_tks_bet'];
-                $player = $item['bmember_tks_player'];
-                $expend = $item['bmember_tks_expend'];
-                $income = $item['bmember_tks_income'];
-                $playerbet = $item['bmember_tks_playerbet'];
+                $balance = $item['tmember_tks_balance'];
+                $bet = $item['tmember_tks_bet'];
+                $player = $item['tmember_tks_played'];
+                $expend = $item['tmember_tks_expend'];
+                $income = $item['tmember_tks_income'];
+                $playerbet = $item['tmember_tks_playerbet'];
                 $newbalance = $balance;
 
              $listname = $listname."\n\n".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
@@ -1698,7 +1677,7 @@ if($countcheck==1){
                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                CURLOPT_CUSTOMREQUEST => "POST",
                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bmemberno\": \"\",\n
-                 \"bmember_tks_userid\": \"$userID\",\n            \"bmember_tks_balance\": \"$newbalance\",\n            \"bmember_tks_bet\": \"$bet\",\n            \"bmember_tks_username\": \"$username\",\n            \"bmember_tks_player\": \"0\",\n            \"bmember_tks_playerbet\": \"$playerbet\",\n            \"bmember_tks_expend\": \"$expend\",\n            \"bmember_tks_income\": \"$income\",\n
+                 \"tmember_tks_userid\": \"$userID\",\n            \"tmember_tks_balance\": \"$newbalance\",\n            \"tmember_tks_bet\": \"$bet\",\n            \"tmember_tks_username\": \"$username\",\n            \"tmember_tks_played\": \"$player\",\n            \"tmember_tks_playerbet\": \"$playerbet\",\n            \"tmember_tks_expend\": \"$expend\",\n            \"tmember_tks_income\": \"$income\",\n
                  \"bmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 05:25:21\",\n
                  \"modifiedtime\": \"2018-02-02 05:25:21\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                CURLOPT_HTTPHEADER => array(
@@ -1722,7 +1701,7 @@ if($countcheck==1){
              }
         }else if  ($x4=="-2"){
            $msg4 = 'ขา 4 เสียให้เจ้ามือ 2 เท่า';
-            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Bmember%20where%20bmember_tks_playerbet%20LIKE%20'%P4%'%20;";
+            $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Tmember%20where%20tmember_tks_playerbet%20LIKE%20'%P4%'%20;";
            $response = \Httpful\Request::get($uri)->send();
 
            $data = json_decode($response,true);
@@ -1733,15 +1712,15 @@ if($countcheck==1){
 
            foreach($data["result"] as $item) { //foreach element in $arr
 
-                $username = $item['bmember_tks_username'];
-                $userID = $item['bmember_tks_userid'];
+                $username = $item['tmember_tks_username'];
+                $userID = $item['tmember_tks_userid'];
                 $vid = $item['id'];
-                $balance = $item['bmember_tks_balance'];
-                $bet = $item['bmember_tks_bet'];
-                $player = $item['bmember_tks_player'];
-                $expend = $item['bmember_tks_expend']+($bet*2);
-                $income = $item['bmember_tks_income'];
-                $playerbet = $item['bmember_tks_playerbet'];
+                $balance = $item['tmember_tks_balance'];
+                $bet = $item['tmember_tks_bet'];
+                $player = $item['tmember_tks_played'];
+                $expend = $item['tmember_tks_expend']+($bet*2);
+                $income = $item['tmember_tks_income'];
+                $playerbet = $item['tmember_tks_playerbet'];
                 $newbalance = $balance;
 
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
@@ -1759,7 +1738,7 @@ if($countcheck==1){
                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                CURLOPT_CUSTOMREQUEST => "POST",
                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bmemberno\": \"\",\n
-                 \"bmember_tks_userid\": \"$userID\",\n            \"bmember_tks_balance\": \"$newbalance\",\n            \"bmember_tks_bet\": \"$bet\",\n            \"bmember_tks_username\": \"$username\",\n            \"bmember_tks_player\": \"0\",\n            \"bmember_tks_playerbet\": \"$playerbet\",\n            \"bmember_tks_expend\": \"$expend\",\n            \"bmember_tks_income\": \"$income\",\n
+                 \"tmember_tks_userid\": \"$userID\",\n            \"tmember_tks_balance\": \"$newbalance\",\n            \"tmember_tks_bet\": \"$bet\",\n            \"tmember_tks_username\": \"$username\",\n            \"tmember_tks_played\": \"$player\",\n            \"tmember_tks_playerbet\": \"$playerbet\",\n            \"tmember_tks_expend\": \"$expend\",\n            \"tmember_tks_income\": \"$income\",\n
                  \"bmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 05:25:21\",\n
                  \"modifiedtime\": \"2018-02-02 05:25:21\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                CURLOPT_HTTPHEADER => array(
@@ -1784,7 +1763,7 @@ if($countcheck==1){
              }
         }else if  ($x4=="+2"){
            $msg4 = 'ขา 4 ได้ 2 เท่า';
-             $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Bmember%20where%20bmember_tks_playerbet%20LIKE%20'%P4%'%20;";
+             $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20%20Tmember%20where%20tmember_tks_playerbet%20LIKE%20'%P4%'%20;";
            $response = \Httpful\Request::get($uri)->send();
 
            $data = json_decode($response,true);
@@ -1795,15 +1774,15 @@ if($countcheck==1){
 
            foreach($data["result"] as $item) { //foreach element in $arr
 
-                $username = $item['bmember_tks_username'];
-                $userID = $item['bmember_tks_userid'];
+                $username = $item['tmember_tks_username'];
+                $userID = $item['tmember_tks_userid'];
                 $vid = $item['id'];
-                $balance = $item['bmember_tks_balance'];
-                $bet = $item['bmember_tks_bet'];
-                $player = $item['bmember_tks_player'];
-                $expend = $item['bmember_tks_expend'];
-                $income = $item['bmember_tks_income']+($bet*2);
-                $playerbet = $item['bmember_tks_playerbet'];
+                $balance = $item['tmember_tks_balance'];
+                $bet = $item['tmember_tks_bet'];
+                $player = $item['tmember_tks_played'];
+                $expend = $item['tmember_tks_expend'];
+                $income = $item['tmember_tks_income']+($bet*2);
+                $playerbet = $item['tmember_tks_playerbet'];
                 $newbalance = $balance;
 
              $listname = $listname."\n ".$username."  -".$bet." = ".$newbalance.'  Loop +:'.$i.'total'.$total;
@@ -1819,7 +1798,7 @@ if($countcheck==1){
                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                CURLOPT_CUSTOMREQUEST => "POST",
                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bmemberno\": \"\",\n
-                 \"bmember_tks_userid\": \"$userID\",\n            \"bmember_tks_balance\": \"$newbalance\",\n            \"bmember_tks_bet\": \"$bet\",\n            \"bmember_tks_username\": \"$username\",\n            \"bmember_tks_player\": \"0\",\n            \"bmember_tks_playerbet\": \"$playerbet\",\n            \"bmember_tks_expend\": \"$expend\",\n            \"bmember_tks_income\": \"$income\",\n
+                 \"tmember_tks_userid\": \"$userID\",\n            \"tmember_tks_balance\": \"$newbalance\",\n            \"tmember_tks_bet\": \"$bet\",\n            \"tmember_tks_username\": \"$username\",\n            \"tmember_tks_played\": \"$player\",\n            \"tmember_tks_playerbet\": \"$playerbet\",\n            \"tmember_tks_expend\": \"$expend\",\n            \"tmember_tks_income\": \"$income\",\n
                  \"bmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 05:25:21\",\n
                  \"modifiedtime\": \"2018-02-02 05:25:21\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                CURLOPT_HTTPHEADER => array(
@@ -1920,7 +1899,7 @@ if($countcheck==1){
 
                   foreach ($dataz["result"] as $value) {
 
-                          $muserID = $value['bmember_tks_userid'];
+                          $muserID = $value['tmember_tks_userid'];
 
                           $dname= '';
                           $curl = curl_init();
@@ -1996,14 +1975,14 @@ if($countcheck==1){
 
         foreach($datax["result"] as $itemx) {
             $username = '001';
-            $userID = $itemx['bmember_tks_userid'];
+            $userID = $itemx['tmember_tks_userid'];
             $vid = $itemx['id'];
-            $balance = $itemx['bmember_tks_balance'];
-            $moneybet = $itemx['bmember_tks_bet'];
-            $xmoneyx = $itemx['bmember_tks_player'];
+            $balance = $itemx['tmember_tks_balance'];
+            $moneybet = $itemx['tmember_tks_bet'];
+            $xmoneyx = $itemx['tmember_tks_played'];
             $expend = 0;
             $income = 0;
-            $playerbet = $itemx['bmember_tks_playerbet'];
+            $playerbet = $itemx['tmember_tks_playerbet'];
 
 
             $curl = curl_init();
@@ -2017,7 +1996,7 @@ if($countcheck==1){
               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
               CURLOPT_CUSTOMREQUEST => "POST",
               CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bmemberno\": \"\",\n
-                \"bmember_tks_userid\": \"$userID\",\n            \"bmember_tks_balance\": \"$balance\",\n            \"bmember_tks_bet\": \"$moneybet\",\n            \"bmember_tks_username\": \"$username\",\n            \"bmember_tks_player\": \"0\",\n            \"bmember_tks_playerbet\": \"$playerbet\",\n            \"bmember_tks_expend\": \"$expend\",\n            \"bmember_tks_income\": \"$income\",\n
+                \"tmember_tks_userid\": \"$userID\",\n            \"tmember_tks_balance\": \"$balance\",\n            \"tmember_tks_bet\": \"$moneybet\",\n            \"tmember_tks_username\": \"$username\",\n            \"tmember_tks_played\": \"$player\",\n            \"tmember_tks_playerbet\": \"$playerbet\",\n            \"tmember_tks_expend\": \"$expend\",\n            \"tmember_tks_income\": \"$income\",\n
                 \"bmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 05:25:21\",\n
                 \"modifiedtime\": \"2018-02-02 05:25:21\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
               CURLOPT_HTTPHEADER => array(
@@ -2088,11 +2067,11 @@ if($countcheck==1){
 
         $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x3';";
         $response = \Httpful\Request::get($uri)->send();
-        $xround = $response->body->result[0]->bgame_tks_round-1;
+        $round = $response->body->result[0]->bgame_tks_round-1;
 
 
-        $listname= 'สรุปผล : รอบที่ # '.$xround;
-        $resultlist= 'สรุปผล : รอบที่ # '.$xround;
+        $listname= 'สรุปผล : รอบที่ # '.$round;
+        $resultlist= 'สรุปผล : รอบที่ # '.$round;
 
 
         $myid = substr($text,1);
@@ -2132,12 +2111,12 @@ if($countcheck==1){
           }
 
 
-          $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20where%20bmember_tks_userid='".$userID."';";
+          $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20where%20tmember_tks_userid='".$userID."';";
           $response = \Httpful\Request::get($uri)->send();
           // echo $response;
-          $username = $response->body->result[0]->bmember_tks_username;
+          $username = $response->body->result[0]->tmember_tks_username;
           $vid = $response->body->result[0]->id;
-          $balance = $response->body->result[0]->bmember_tks_balance;
+          $balance = $response->body->result[0]->tmember_tks_balance;
 
           $userlen = strlen($vid);
           if($vid > 2) {
@@ -2184,7 +2163,7 @@ if($countcheck==1){
 
               foreach($datax["result"] as $itemx) {
                   $username = '';
-                  $userID = $itemx['bmember_tks_userid'];
+                  $userID = $itemx['tmember_tks_userid'];
 
                   $dname= '';
                   $curl = curl_init();
@@ -2218,13 +2197,13 @@ if($countcheck==1){
                   }
 
                   $vid = $itemx['id'];
-                  $balance = $itemx['bmember_tks_balance'];
-                  $bet = $itemx['bmember_tks_bet'];
-                  $xmoneyx = $itemx['bmember_tks_player'];
-                  $expend = $itemx['bmember_tks_expend'];
-                  $income = $itemx['bmember_tks_income'];
+                  $balance = $itemx['tmember_tks_balance'];
+                  $bet = $itemx['tmember_tks_bet'];
+                  $xmoneyx = $itemx['tmember_tks_played'];
+                  $expend = $itemx['tmember_tks_expend'];
+                  $income = $itemx['tmember_tks_income'];
                   $sum = $income - $expend;
-                  $playerbet = $itemx['bmember_tks_playerbet'];
+                  $playerbet = $itemx['tmember_tks_playerbet'];
                   // เริ่ม
 
                   $urit = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x3';";
@@ -2294,7 +2273,7 @@ if($countcheck==1){
                                                  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                                                  CURLOPT_CUSTOMREQUEST => "POST",
                                                  CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bmemberno\": \"\",\n
-                                                   \"bmember_tks_userid\": \"$userID\",\n            \"bmember_tks_balance\": \"$newbalance\",\n            \"bmember_tks_bet\": \"\",\n            \"bmember_tks_username\": \"001\",\n            \"bmember_tks_player\": \"\",\n            \"bmember_tks_playerbet\": \"\",\n            \"bmember_tks_expend\": \"\",\n            \"bmember_tks_income\": \"\",\n
+                                                   \"tmember_tks_userid\": \"$userID\",\n            \"tmember_tks_balance\": \"$newbalance\",\n            \"tmember_tks_bet\": \"\",\n            \"tmember_tks_username\": \"001\",\n            \"tmember_tks_played\": \"\",\n            \"tmember_tks_playerbet\": \"\",\n            \"tmember_tks_expend\": \"\",\n            \"tmember_tks_income\": \"\",\n
                                                    \"bmember_tks_status\": \"\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 05:25:21\",\n
                                                    \"modifiedtime\": \"2018-02-02 05:25:21\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                                                  CURLOPT_HTTPHEADER => array(
@@ -2333,7 +2312,7 @@ if($countcheck==1){
                          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                          CURLOPT_CUSTOMREQUEST => "POST",
                          CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bmemberno\": \"\",\n
-                           \"bmember_tks_userid\": \"$userID\",\n            \"bmember_tks_balance\": \"$newbalance\",\n            \"bmember_tks_bet\": \"\",\n            \"bmember_tks_username\": \"001\",\n            \"bmember_tks_player\": \"\",\n            \"bmember_tks_playerbet\": \"\",\n            \"bmember_tks_expend\": \"\",\n            \"bmember_tks_income\": \"\",\n
+                           \"tmember_tks_userid\": \"$userID\",\n            \"tmember_tks_balance\": \"$newbalance\",\n            \"tmember_tks_bet\": \"\",\n            \"tmember_tks_username\": \"001\",\n            \"tmember_tks_played\": \"\",\n            \"tmember_tks_playerbet\": \"\",\n            \"tmember_tks_expend\": \"\",\n            \"tmember_tks_income\": \"\",\n
                            \"bmember_tks_status\": \"\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 05:25:21\",\n
                            \"modifiedtime\": \"2018-02-02 05:25:21\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                          CURLOPT_HTTPHEADER => array(
@@ -2369,7 +2348,7 @@ if($countcheck==1){
                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                        CURLOPT_CUSTOMREQUEST => "POST",
                        CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bmemberno\": \"\",\n
-                         \"bmember_tks_userid\": \"$userID\",\n            \"bmember_tks_balance\": \"$newbalance\",\n            \"bmember_tks_bet\": \"\",\n            \"bmember_tks_username\": \"001\",\n            \"bmember_tks_player\": \"\",\n            \"bmember_tks_playerbet\": \"\",\n            \"bmember_tks_expend\": \"\",\n            \"bmember_tks_income\": \"\",\n
+                         \"tmember_tks_userid\": \"$userID\",\n            \"tmember_tks_balance\": \"$newbalance\",\n            \"tmember_tks_bet\": \"\",\n            \"tmember_tks_username\": \"001\",\n            \"tmember_tks_played\": \"\",\n            \"tmember_tks_playerbet\": \"\",\n            \"tmember_tks_expend\": \"\",\n            \"tmember_tks_income\": \"\",\n
                          \"bmember_tks_status\": \"\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 05:25:21\",\n
                          \"modifiedtime\": \"2018-02-02 05:25:21\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                        CURLOPT_HTTPHEADER => array(
@@ -2456,10 +2435,10 @@ if($countcheck==1){
       else if(strtoupper($text) == "PLAY"){
 
 
-        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20where%20bmember_tks_userid='".$userID."';";
+        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20where%20tmember_tks_userid='".$userID."';";
         $response = \Httpful\Request::get($uri)->send();
         // echo $response;
-        $exid = $response->body->result[0]->bmember_tks_userid;
+        $exid = $response->body->result[0]->tmember_tks_userid;
         if(strcmp($exid,$userID) == 0){
           $messages = [
             'type' => 'text',
@@ -2507,7 +2486,7 @@ if($countcheck==1){
                         CURLOPT_TIMEOUT => 30,
                         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                         CURLOPT_CUSTOMREQUEST => "POST",
-                        CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\ncreate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"tmemberno\": \"\",\n            \"tmember_tks_userid\": \"$userID\",\n            \"tmember_tks_balance\": \"1000\",\n            \"tmember_tks_bet\": \"\",\n            \"tmember_tks_username\": \"000\",\n            \"tmember_tks_played\": \"0\",\n            \"tmember_tks_playerbet\": \"\",\n            \"tmember_tks_expend\": \"0\",\n            \"tmember_tks_income\": \"0\",\n            \"tmember_tks_status\": \"0\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-03-05 04:25:30\",\n            \"modifiedtime\": \"2018-03-05 04:25:30\",\n            \"id\": \"44x5\"\n}\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nTmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                        CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\ncreate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"tmemberno\": \"\",\n            \"tmember_tks_userid\": \"$userID\",\n            \"tmember_tks_balance\": \"1000\",\n            \"tmember_tks_bet\": \"\",\n            \"tmember_tks_username\": \"000\",\n            \"tmember_tks_played\": \"$player\",\n            \"tmember_tks_playerbet\": \"\",\n            \"tmember_tks_expend\": \"0\",\n            \"tmember_tks_income\": \"0\",\n            \"tmember_tks_status\": \"0\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-03-05 04:25:30\",\n            \"modifiedtime\": \"2018-03-05 04:25:30\",\n            \"id\": \"44x5\"\n}\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nTmember\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                         CURLOPT_HTTPHEADER => array(
                           "cache-control: no-cache",
                           "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
@@ -2719,12 +2698,12 @@ if($countcheck==1){
         if(strcmp($adminID,$userID) == 0){
         }else{
 
-          $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20where%20bmember_tks_userid='".$userID."';";
+          $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20where%20tmember_tks_userid='".$userID."';";
           $response = \Httpful\Request::get($uri)->send();
           // echo $response;
-          $username = $response->body->result[0]->bmember_tks_username;
+          $username = $response->body->result[0]->tmember_tks_username;
           $vid = $response->body->result[0]->id;
-          $balance = $response->body->result[0]->bmember_tks_balance;
+          $balance = $response->body->result[0]->tmember_tks_balance;
 
           $userlen = strlen($vid);
           if($vid > 2) {
