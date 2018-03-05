@@ -2524,7 +2524,7 @@ if($countcheck==1){
 
 
 
-          if(strcmp($adminID,$userID) == 0 && $onend ==1){
+          if(strcmp($adminID,$userID) == 0 && $onop == 0){
 
             $part = $part+1;
 
@@ -2643,12 +2643,13 @@ if($countcheck==1){
 
 
       } else {
+        $messages = [
+          'type' => 'text',
+          'text' => 'ไม่สามารถเปิดเกมซ้ำได้'
+        ];
       }
 
-      $messages = [
-        'type' => 'text',
-        'text' => 'ไม่สามารถเปิดเกมซ้ำได้'
-      ];
+
       }
 
 
@@ -2886,7 +2887,7 @@ if($countcheck==1){
 
         if(strcmp($adminID,$userID) == 0){
 
-                  if($gameStatus ==0 && $onend == 1){
+                  if($gameStatus ==0 && $onok == 1){
 
 
                     $curl = curl_init();
