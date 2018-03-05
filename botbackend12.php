@@ -2572,7 +2572,7 @@ if($countcheck==1){
 
             }
       }
-      else if(strtoupper($context) == "OP"){
+      else if(strtoupper($context) == "OP" && strlen($text)==2){
 
 
 
@@ -2701,7 +2701,7 @@ if($countcheck==1){
       }
 
 
-      else if(strtoupper($ttrdtext) == "END"){
+      else if(strtoupper($ttrdtext) == "END" && strlen($text)==3){
 
 
           if(strcmp($adminID,$userID) == 0){
