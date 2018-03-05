@@ -38,6 +38,7 @@ if (!is_null($events['events'])) {
     $round = $responsegame->body->result[0]->game_tks_round;
     $adminincome= $responsegame->body->result[0]->game_tks_allincome;
     $adminexpend = $responsegame->body->result[0]->game_tks_allexpend;
+    $part = $responsegame->body->result[0]->game_tks_part;
 
 		// Reply only when message sent is in 'text' format
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
@@ -2060,9 +2061,9 @@ if($countcheck==1){
 
 			else if($ftext == "@"){
 
-
-        $listname= 'สรุปผล : รอบที่ # '.$round-1;
-        $resultlist= 'สรุปผล : รอบที่ # '.$round-1;
+        $xround = $round-1;
+        $listname= 'สรุปผล : รอบที่ # '.$xround;
+        $resultlist= 'สรุปผล : รอบที่ # '.$xround;
 
 
         $myid = substr($text,1);
@@ -2523,7 +2524,7 @@ if($countcheck==1){
 
 
 
-          if(strcmp($adminID,$userID) == 0){
+          if(strcmp($adminID,$userID) == 0 && $onend ==1){
 
             $part = $part+1;
 
@@ -2644,14 +2645,17 @@ if($countcheck==1){
       } else {
       }
 
-
+      $messages = [
+        'type' => 'text',
+        'text' => 'ไม่สามารถเปิดเกมซ้ำได้'
+      ];
       }
 
 
       else if(strtoupper($ttrdtext) == "END" && strlen($text)==3){
 
 
-          if(strcmp($adminID,$userID) == 0){
+          if(strcmp($adminID,$userID) == 0 && $onop ==1){
 
             $curl = curl_init();
 
@@ -2690,6 +2694,11 @@ if($countcheck==1){
 
 
       } else {
+
+        $messages = [
+          'type' => 'text',
+          'text' => 'ไม่สมารถปิดเกมซ้ำได้'
+        ];
       }
 
 
