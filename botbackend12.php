@@ -5,7 +5,7 @@ $access_token =
 'ixV71S2vDL1935GrQbSIq7bajIgzolsbFt2zhmXmnetTjETG3XyM6onopT9zGgvDoe3OLNko0Y1SVzKubnxi22+JNRzUQ8BeH34EHlnon8UTvw7BgR2fSn0B3A7F3qvVhfCdsW0A2kQ3HRbH2TtR7gdB04t89/1O/w1cDnyilFU=';
 
 $cdate = date("d-m-Y");
-$ctime = date("d-m-Y");
+$ctime = date("H:i:s");
 
 $sidname='636dbd215a9cebe09e04e';
 $vturl='http://redfoxdev.com/newbackend/';
