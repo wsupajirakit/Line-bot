@@ -284,7 +284,7 @@ if($countcheck==1){
                                   $messages = [
                                     'type' => 'text',
                                     // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-                                    'text' => '  '.$username.' เปลี่ยนแปลงการแทงจาก T'.$newchoice3.' ขาละ'.$choicebet.'->เป็น '.$player.' ขาละ'.$money.'  '.$newchoice3
+                                    'text' => '  '.$username.' เปลี่ยนแปลงการแทงจาก T'.$newchoice3.' ขาละ'.$choicebet.'->เป็น '.$player.' ขาละ'.$money.'  '.$lenchoice
                                   ];
                                 }else {
 
@@ -323,7 +323,7 @@ if($countcheck==1){
                                   $messages = [
                                     'type' => 'text',
                                     // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-                                    'text' => '  '.$username.' แทงขา '.$player.' ขาละ '.$money.'   ยอดคงเหลือก่อนแทง '.$balance.'  '.$newchoice3
+                                    'text' => '  '.$username.' แทงขา '.$player.' ขาละ '.$money.'   ยอดคงเหลือก่อนแทง '.$balance.'  '.$lenchoice
                                   ];
                                 }
 
