@@ -2275,8 +2275,8 @@ if($countcheck==1){
                   //รายรับจ้าวมือ = รายรับของผู้เล่น
                   $adminexpend = $adminexpend+$income;
 
-                  $xincome = $adminincome;
-                  $xexpend = $adminexpend;
+                  $xincome = $xincome+$expend;
+                  $xexpend = $xexpend+$income;
 
 
 
