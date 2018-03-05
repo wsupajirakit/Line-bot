@@ -2464,7 +2464,7 @@ if($countcheck==1){
                   'text' =>  $resultlist
                 ];
 
-
+                $rround = $round-1;
                 $curl = curl_init();
 
                 curl_setopt_array($curl, array(
@@ -2475,7 +2475,7 @@ if($countcheck==1){
                   CURLOPT_TIMEOUT => 30,
                   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                   CURLOPT_CUSTOMREQUEST => "POST",
-                  CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\ncreate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"roundlogno\": \"\",\n            \"roundlog_tks_part\": \"$part\",\n            \"roundlog_tks_round\": \"$round\",\n            \"roundlog_tks_income\": \"$xincome\",\n
+                  CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\ncreate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"roundlogno\": \"\",\n            \"roundlog_tks_part\": \"$part\",\n            \"roundlog_tks_round\": \"$rround\",\n            \"roundlog_tks_income\": \"$xincome\",\n
                     \"roundlog_tks_expend\": \"$xexpend\",\n            \"roundlog_tks_date\": \"$cdate\",\n
                   \"roundlog_tks_time\": \"$ctime\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-03-05 10:15:49\",\n            \"modifiedtime\": \"2018-03-05 10:15:49\",\n            \"id\": \"41x13\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nRoundlog\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                   CURLOPT_HTTPHEADER => array(
