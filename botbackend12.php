@@ -1821,37 +1821,35 @@ if($countcheck==1){
                echo $response;
              }
              }
-        }
-          $curl = curl_init();
 
-          curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://redfoxdev.com/newbackend/webservice.php",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"bcenterno\": \"\",\n
-              \"bcenter_tks_onresult\": \"1\",\n            \"bcenter_tks_onok\": \"0\",\n
-              \"bcenter_tks_extraone\": \"1\",\n            \"bcenter_tks_extratwo\": \"1\",\n            \"bcenter_tks_extrathree\": \"1\",\n            \"bcenter_tks_extrafour\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-19 04:57:51\",\n            \"modifiedtime\": \"2018-02-19 05:03:56\",\n            \"id\": \"39x181\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
-            CURLOPT_HTTPHEADER => array(
-              "cache-control: no-cache",
-              "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
-              "postman-token: 14030f30-d12c-bf51-9d6e-fbcc58b93b7b"
-            ),
-          ));
+           $curl = curl_init();
 
-          $response = curl_exec($curl);
-          $err = curl_error($curl);
+           curl_setopt_array($curl, array(
+             CURLOPT_URL => "http://redfoxdev.com/newbackend/webservice.php",
+             CURLOPT_RETURNTRANSFER => true,
+             CURLOPT_ENCODING => "",
+             CURLOPT_MAXREDIRS => 10,
+             CURLOPT_TIMEOUT => 30,
+             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+             CURLOPT_CUSTOMREQUEST => "POST",
+             CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"controlno\": \"\",\n            \"control_tks_onop\": \"$onop\",\n            \"control_tks_onresult\": \"1\",\n            \"control_tks_onok\": \"$onok\",\n            \"control_tks_onend\": \"$onend\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-03-03 07:36:58\",\n            \"modifiedtime\": \"2018-03-03 07:36:58\",\n            \"id\": \"38x3\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nControl\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+             CURLOPT_HTTPHEADER => array(
+               "cache-control: no-cache",
+               "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+               "postman-token: 5dcffb1d-1197-138f-5fa8-e43372c4cd30"
+             ),
+           ));
 
-          curl_close($curl);
+           $response = curl_exec($curl);
+           $err = curl_error($curl);
 
-          if ($err) {
-            echo "cURL Error #:" . $err;
-          } else {
+           curl_close($curl);
 
-          }
+           if ($err) {
+             echo "cURL Error #:" . $err;
+           } else {
+             echo $response;
+           }
         /// สิ้นสุด x4
         $messages = [
           'type' => 'text',
@@ -2010,7 +2008,34 @@ if($countcheck==1){
             } else {
 
 
-                // onresult = 0
+              $curl = curl_init();
+
+              curl_setopt_array($curl, array(
+                CURLOPT_URL => "http://redfoxdev.com/newbackend/webservice.php",
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => "",
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 30,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => "POST",
+                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n636dbd215a9cebe09e04e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"controlno\": \"\",\n            \"control_tks_onop\": \"$onop\",\n            \"control_tks_onresult\": \"0\",\n            \"control_tks_onok\": \"$onok\",\n            \"control_tks_onend\": \"$onend\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-03-03 07:36:58\",\n            \"modifiedtime\": \"2018-03-03 07:36:58\",\n            \"id\": \"38x3\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nControl\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                CURLOPT_HTTPHEADER => array(
+                  "cache-control: no-cache",
+                  "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                  "postman-token: 5dcffb1d-1197-138f-5fa8-e43372c4cd30"
+                ),
+              ));
+
+              $response = curl_exec($curl);
+              $err = curl_error($curl);
+
+              curl_close($curl);
+
+              if ($err) {
+                echo "cURL Error #:" . $err;
+              } else {
+                echo $response;
+              }
 
               $messages = [
                 'type' => 'text',
