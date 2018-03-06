@@ -1940,34 +1940,35 @@ if($countcheck==1){
 
 
 
-                $curl = curl_init();
+            $curl = curl_init();
 
-                curl_setopt_array($curl, array(
-                CURLOPT_URL => "http://redfoxdev.com/newbackend/webservice.php",
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => "",
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 30,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => "POST",
-                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\ncreate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n3f98341d5a851e7a30336\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"resultlogno\": \"\",\n            \"resultlog_tks_result\": \"$text\",\n            \"resultlog_tks_part\": \"$part\",\n            \"resultlog_tks_date\": \"$cdate\",\n            \"resultlog_tks_time\": \"$ctime\",\n            \"resultlog_tks_comment\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-03-06 04:43:46\",\n            \"modifiedtime\": \"2018-03-06 04:43:46\",\n            \"id\": \"47x39\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nResultlog\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
-                CURLOPT_HTTPHEADER => array(
+            curl_setopt_array($curl, array(
+              CURLOPT_URL => "http://redfoxdev.com/newbackend/webservice.php",
+              CURLOPT_RETURNTRANSFER => true,
+              CURLOPT_ENCODING => "",
+              CURLOPT_MAXREDIRS => 10,
+              CURLOPT_TIMEOUT => 30,
+              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+              CURLOPT_CUSTOMREQUEST => "POST",
+              CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\ncreate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n3f98341d5a851e7a30336\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"resulthistoryno\": \"\",\n            \"resulthistory_tks_result\": \"$text\",\n            \"resulthistory_tks_part\": \"$part\",\n            \"resulthistory_tks_round\": \"$round\",\n            
+                \"resulthistory_tks_date\": \"$cdate\",\n            \"resulthistory_tks_time\": \"$ctime\",\n            \"resulthistory_tks_comment\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-03-06 04:51:12\",\n            \"modifiedtime\": \"2018-03-06 04:51:12\",\n            \"id\": \"48x45\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nResulthistory\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+              CURLOPT_HTTPHEADER => array(
                 "cache-control: no-cache",
                 "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
-                "postman-token: 1c5fe1b3-61f8-849d-0888-9d615e6654b9"
-                ),
-                ));
+                "postman-token: ee5d7bd1-ab32-6167-767f-17ae6659aa73"
+              ),
+            ));
 
-                $response = curl_exec($curl);
-                $err = curl_error($curl);
+            $response = curl_exec($curl);
+            $err = curl_error($curl);
 
-                curl_close($curl);
+            curl_close($curl);
 
-                if ($err) {
-                echo "cURL Error #:" . $err;
-                } else {
-                echo $response;
-                }
+            if ($err) {
+              echo "cURL Error #:" . $err;
+            } else {
+              echo $response;
+            }
 
 
           }
