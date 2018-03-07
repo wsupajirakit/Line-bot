@@ -1,5 +1,4 @@
 <?php
-ini_set('max_execution_time', 300);
 date_default_timezone_set('Asia/Bangkok');
   include('./httpful.phar');
 $access_token =
