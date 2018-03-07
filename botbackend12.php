@@ -1,4 +1,5 @@
 <?php
+ini_set('max_execution_time', 300);
 date_default_timezone_set('Asia/Bangkok');
   include('./httpful.phar');
 $access_token =
@@ -9,6 +10,8 @@ $ctime = date("H:i:s");
 
 $sidname='636dbd215a9cebe09e04e';
 $vturl='http://redfoxdev.com/newbackend/';
+$walletur='https://www.nousx-api.com/backend/';
+$swallet='2a0089a95aa01ac1b0a5e';
 // Get POST body content
 $content = file_get_contents('php://input');
 // Parse JSON
@@ -17,6 +20,12 @@ $events = json_decode($content, true);
 if (!is_null($events['events'])) {
 	// Loop through each event
 	foreach ($events['events'] as $event) {
+
+    $mmuri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&sessionName=3f98341d5a851e7a30336&query=select%20*%20from%20Minmax%20where%20id=%2749x166%27;";
+    $mmresponse = \Httpful\Request::get($mmuri)->send();
+    $min = $mmresponse->body->result[0]->minmax_tks_min;
+    $max = $mmresponse->body->result[0]->minmax_tks_max;
+
     $controluri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Control%20Where%20id%20='38x3';";
     $responsecontrol = \Httpful\Request::get($controluri)->send();
 
@@ -86,7 +95,6 @@ if (!is_null($events['events'])) {
         $urim = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Tmember%20where%20tmember_tks_userid='".$userID."';";
         $responsem = \Httpful\Request::get($urim)->send();
 
-        $mbalance = $responsem->body->result[0]->tmember_tks_balance;
         $choice = $responsem->body->result[0]->tmember_tks_playerbet;
         $choicebet = $responsem->body->result[0]->tmember_tks_bet;
         $usernamex = $responsem->body->result[0]->tmember_tks_userid;
@@ -95,6 +103,11 @@ if (!is_null($events['events'])) {
         $newchoice3 = str_replace(" ", "", $newchoice2);
         $lenchoice = strlen($newchoice);
         $nowbet = '';
+
+        $uuri = $walletur."webservice.php?operation=query&sessionName=".$swallet."&query=select%20*%20from%20Wallet%20where%20wallet_tks_userid='".$userID."';";
+        $uresponse = \Httpful\Request::get($uuri)->send();
+
+        $mbalance =  $uresponse->body->result[0]->wallet_tks_balance;
 
         $countcheck = 0;
         if(substr_count($text,"-")){
@@ -190,7 +203,7 @@ if($countcheck==1){
             if ($ix != 1 && $tx!=1) {
                     if($gameStatus == 1) {
 
-                  if($money <= 200 && $money >=20) {
+                  if($money <= $max && $money >= $min) {
 
                               if($lentext==1){
 
@@ -443,10 +456,10 @@ if($countcheck==1){
 
                         $xbalance=0;
 
-                        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Tmember%20where%20tmember_tks_userid='".$userID."';";
-                        $response = \Httpful\Request::get($uri)->send();
-                        // echo $response;
-                        $xbalance = $response->body->result[0]->tmember_tks_balance;
+                        $uuri = $walletur."webservice.php?operation=query&sessionName=".$swallet."&query=select%20*%20from%20Wallet%20where%20wallet_tks_userid='".$userID."';";
+                        $uresponse = \Httpful\Request::get($uuri)->send();
+
+                        $xbalance = $uresponse->body->result[0]->wallet_tks_balance;
 
                         $dname= '';
                         $curl = curl_init();
@@ -489,7 +502,7 @@ if($countcheck==1){
                   $messages = [
                     'type' => 'text',
                     // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-                    'text' => 'รูปแบบการแทงไม่ถูกต้อง แทงได้แค่ T1 - T4 เท่านั้น ต่ำสุด 20 สูงสุด 200  ตัวอย่าง : T1234-50 หรือ T1-200'
+                    'text' => "รูปแบบการแทงไม่ถูกต้อง แทงได้แค่ T1 - T4 เท่านั้น ต่ำสุด ".$min." สูงสุด ".$max." ตัวอย่าง : T1234-50 หรือ T1-200"
                   ];
 
                 }
@@ -503,7 +516,7 @@ if($countcheck==1){
                 $messages = [
                   'type' => 'text',
                   // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-                  'text' => 'รูปแบบการแทงไม่ถูกต้อง แทงได้แค่ T1 - T4 เท่านั้น ต่ำสุด 20 สูงสุด 200  ตัวอย่าง : T1234-50 หรือ T1-200'
+                  'text' => "รูปแบบการแทงไม่ถูกต้อง แทงได้แค่ T1 - T4 เท่านั้น ต่ำสุด ".$min." สูงสุด ".$max." ตัวอย่าง : T1234-50 หรือ T1-200"
                 ];
               }
             }else {
@@ -554,7 +567,7 @@ if($countcheck==1){
           $messages = [
             'type' => 'text',
             // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-            'text' => 'รูปแบบการแทงไม่ถูกต้อง แทงได้แค่ T1 - T4 เท่านั้น ต่ำสุด 20 สูงสุด 200  ตัวอย่าง : T1234-50 หรือ T1-200'
+            'text' => "รูปแบบการแทงไม่ถูกต้อง แทงได้แค่ T1 - T4 เท่านั้น ต่ำสุด ".$min." สูงสุด ".$max." ตัวอย่าง : T1234-50 หรือ T1-200"
           ];
 
           }
@@ -626,7 +639,7 @@ if($countcheck==1){
         }
 
 
-        if($onresult!=1){
+        if($onresult!=1 && $onok !=1){
 
         if($zx!=1) {
 
@@ -1993,7 +2006,7 @@ if($countcheck==1){
     }else{
       $messages = [
         'type' => 'text',
-        'text' =>  '❌  คุณสรุปผลไปแล้ว ❌  หากต้องการแก้ไข พิมพ์ Clear'
+        'text' =>  '❌  คุณสรุปผล หรือ ยืนยันผลไปแล้ว ❌   ในกรณีที่คุณยังไม่ยืนยัน หากต้องการแก้ไข พิมพ์ Clear'
       ];
 
     }
@@ -2223,7 +2236,11 @@ if($countcheck==1){
           // echo $response;
           $username = $response->body->result[0]->tmember_tks_username;
           $vid = $response->body->result[0]->id;
-          $balance = $response->body->result[0]->tmember_tks_balance;
+
+          $uuri = $walletur."webservice.php?operation=query&sessionName=".$swallet."&query=select%20*%20from%20Wallet%20where%20wallet_tks_userid='".$userID."';";
+          $uresponse = \Httpful\Request::get($uuri)->send();
+          $myid = $uresponse->body->result[0]->id;
+          $mybalance =  $uresponse->body->result[0]->wallet_tks_balance;
 
           $userlen = strlen($vid);
           if($vid > 2) {
@@ -2231,7 +2248,7 @@ if($countcheck==1){
 
                       $messages = [
                         'type' => 'text',
-                        'text' =>  $dname.' ID คือ '.$vid.' ยอดเงินคงเหลือ '.$balance
+                        'text' =>  $dname.' ID คือ '.$myid.' ยอดเงินคงเหลือ '.$mybalance
                       ];
           } else {
 
@@ -2262,6 +2279,12 @@ if($countcheck==1){
               foreach($datax["result"] as $itemx) {
                   $username = '';
                   $userID = $itemx['tmember_tks_userid'];
+
+                  $uuri = $walletur."webservice.php?operation=query&sessionName=".$swallet."&query=select%20*%20from%20Wallet%20where%20wallet_tks_userid='".$userID."';";
+                  $uresponse = \Httpful\Request::get($uuri)->send();
+                  $myid = $uresponse->body->result[0]->id;
+                  $balance =  $uresponse->body->result[0]->wallet_tks_balance;
+
 
                   $dname= '';
                   $curl = curl_init();
@@ -2295,7 +2318,6 @@ if($countcheck==1){
                   }
 
                   $vid = $itemx['id'];
-                  $balance = $itemx['tmember_tks_balance'];
                   $bet = $itemx['tmember_tks_bet'];
                   $played = $itemx['tmember_tks_played'];
                   $expend = $itemx['tmember_tks_expend'];
@@ -2342,6 +2364,8 @@ if($countcheck==1){
         echo "cURL Error #:" . $err;
       } else {
 
+
+
                     if($income == 0 && $expend >=1){
                         $sum = substr($sum,1);
                       $newbalance = $balance - $sum;
@@ -2379,7 +2403,7 @@ if($countcheck==1){
                                                  echo "cURL Error #:" . $err;
                                                } else {
 
-
+                                                 $round = $round-1;
                                                  $curl = curl_init();
 
                                                 curl_setopt_array($curl, array(
@@ -2411,6 +2435,36 @@ if($countcheck==1){
                                                   echo $response;
                                                 }
 
+                                               }
+
+
+                                               $curl = curl_init();
+
+                                               curl_setopt_array($curl, array(
+                                                 CURLOPT_URL => "https://www.nousx-api.com/backend/webservice.php",
+                                                 CURLOPT_RETURNTRANSFER => true,
+                                                 CURLOPT_ENCODING => "",
+                                                 CURLOPT_MAXREDIRS => 10,
+                                                 CURLOPT_TIMEOUT => 30,
+                                                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                                 CURLOPT_CUSTOMREQUEST => "POST",
+                                                 CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n2a0089a95aa01ac1b0a5e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"walletno\": \"\",\n
+                                                   \"wallet_tks_userid\": \"$userID\",\n            \"wallet_tks_balance\": \"$newbalance\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-03-07 17:04:02\",\n            \"modifiedtime\": \"2018-03-07 17:04:02\",\n            \"id\": \"$myid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nWallet\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                                                 CURLOPT_HTTPHEADER => array(
+                                                   "cache-control: no-cache",
+                                                   "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                                   "postman-token: cf5b243a-2127-8dcc-2145-184ab74cd6a9"
+                                                 ),
+                                               ));
+
+                                               $response = curl_exec($curl);
+                                               $err = curl_error($curl);
+
+                                               curl_close($curl);
+
+                                               if ($err) {
+                                                 echo "cURL Error #:" . $err;
+                                               } else {
                                                }
 
 
@@ -2450,7 +2504,7 @@ if($countcheck==1){
                          echo "cURL Error #:" . $err;
                        } else {
                          $curl = curl_init();
-
+                           $round = $round-1;
                         curl_setopt_array($curl, array(
                           CURLOPT_URL => "http://redfoxdev.com/newbackend/webservice.php",
                           CURLOPT_RETURNTRANSFER => true,
@@ -2480,6 +2534,36 @@ if($countcheck==1){
                           echo $response;
                         }
                        }
+
+                       $curl = curl_init();
+
+                       curl_setopt_array($curl, array(
+                         CURLOPT_URL => "https://www.nousx-api.com/backend/webservice.php",
+                         CURLOPT_RETURNTRANSFER => true,
+                         CURLOPT_ENCODING => "",
+                         CURLOPT_MAXREDIRS => 10,
+                         CURLOPT_TIMEOUT => 30,
+                         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                         CURLOPT_CUSTOMREQUEST => "POST",
+                         CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n2a0089a95aa01ac1b0a5e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"walletno\": \"\",\n
+                           \"wallet_tks_userid\": \"$userID\",\n            \"wallet_tks_balance\": \"$newbalance\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-03-07 17:04:02\",\n            \"modifiedtime\": \"2018-03-07 17:04:02\",\n            \"id\": \"$myid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nWallet\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                         CURLOPT_HTTPHEADER => array(
+                           "cache-control: no-cache",
+                           "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                           "postman-token: cf5b243a-2127-8dcc-2145-184ab74cd6a9"
+                         ),
+                       ));
+
+                       $response = curl_exec($curl);
+                       $err = curl_error($curl);
+
+                       curl_close($curl);
+
+                       if ($err) {
+                         echo "cURL Error #:" . $err;
+                       } else {
+                       }
+
 
                     }else if ($sum >= 0){
                       $newbalance = $balance + $sum;
@@ -2515,7 +2599,7 @@ if($countcheck==1){
                        echo "cURL Error #:" . $err;
                      } else {
                        $curl = curl_init();
-
+                               $round = $round-1;
                       curl_setopt_array($curl, array(
                         CURLOPT_URL => "http://redfoxdev.com/newbackend/webservice.php",
                         CURLOPT_RETURNTRANSFER => true,
@@ -2545,6 +2629,35 @@ if($countcheck==1){
                         echo $response;
                       }
                      }
+                     $curl = curl_init();
+
+                     curl_setopt_array($curl, array(
+                       CURLOPT_URL => "https://www.nousx-api.com/backend/webservice.php",
+                       CURLOPT_RETURNTRANSFER => true,
+                       CURLOPT_ENCODING => "",
+                       CURLOPT_MAXREDIRS => 10,
+                       CURLOPT_TIMEOUT => 30,
+                       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                       CURLOPT_CUSTOMREQUEST => "POST",
+                       CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n2a0089a95aa01ac1b0a5e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"walletno\": \"\",\n
+                         \"wallet_tks_userid\": \"$userID\",\n            \"wallet_tks_balance\": \"$newbalance\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-03-07 17:04:02\",\n            \"modifiedtime\": \"2018-03-07 17:04:02\",\n            \"id\": \"$myid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nWallet\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                       CURLOPT_HTTPHEADER => array(
+                         "cache-control: no-cache",
+                         "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                         "postman-token: cf5b243a-2127-8dcc-2145-184ab74cd6a9"
+                       ),
+                     ));
+
+                     $response = curl_exec($curl);
+                     $err = curl_error($curl);
+
+                     curl_close($curl);
+
+                     if ($err) {
+                       echo "cURL Error #:" . $err;
+                     } else {
+                     }
+
                     }
 
                   }
@@ -2711,6 +2824,46 @@ if($countcheck==1){
                       if ($err) {
                         echo "cURL Error #:" . $err;
                       } else {
+
+
+                        $uuri = $walletur."webservice.php?operation=query&sessionName=".$swallet."&query=select%20*%20from%20Wallet%20where%20wallet_tks_userid='".$userID."';";
+                        $uresponse = \Httpful\Request::get($uuri)->send();
+
+                        $myid = $uresponse->body->result[0]->id;
+
+                        if($myid<2){
+
+                          $curl = curl_init();
+
+                            curl_setopt_array($curl, array(
+                              CURLOPT_URL => "https://www.nousx-api.com/backend/webservice.php",
+                              CURLOPT_RETURNTRANSFER => true,
+                              CURLOPT_ENCODING => "",
+                              CURLOPT_MAXREDIRS => 10,
+                              CURLOPT_TIMEOUT => 30,
+                              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                              CURLOPT_CUSTOMREQUEST => "POST",
+                              CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\ncreate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n2a0089a95aa01ac1b0a5e\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"walletno\": \"\",\n            \"wallet_tks_userid\": \"$userID\",\n            \"wallet_tks_balance\": \"0\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-03-07 17:04:02\",\n            \"modifiedtime\": \"2018-03-07 17:04:02\",\n            \"id\": \"40x30\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nWallet\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                              CURLOPT_HTTPHEADER => array(
+                                "cache-control: no-cache",
+                                "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                                "postman-token: 31cd0d2f-e4f1-6149-a7fa-8a904e71a247"
+                              ),
+                            ));
+
+                            $response = curl_exec($curl);
+                            $err = curl_error($curl);
+
+                            curl_close($curl);
+
+                            if ($err) {
+                              echo "cURL Error #:" . $err;
+                            } else {
+                              echo $response;
+                            }
+
+                        }
+
                         $messages = [
                           'type' => 'text',
                           'text' => 'สมัครสมาชิกสำเร็จ '.$dname
@@ -3066,15 +3219,11 @@ if($countcheck==1){
       $replyToken = $event['replyToken'];
 
 
-      $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x3';";
-      $response = \Httpful\Request::get($uri)->send();
-
-      $adminID = $response->body->result[0]->bgame_tks_adminid;
 
         if(strcmp($adminID,$userID) == 0){
         }else{
 
-          $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20where%20tmember_tks_userid='".$userID."';";
+          $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Tmember%20where%20tmember_tks_userid='".$userID."';";
           $response = \Httpful\Request::get($uri)->send();
           // echo $response;
           $username = $response->body->result[0]->tmember_tks_username;
@@ -3147,7 +3296,7 @@ if($countcheck==1){
 
 
 
-}
+  }
     else if ($event['type'] == 'message' && $event['message']['type'] == 'sticker') {
 
       $pid = $event['message']['packageId'];
