@@ -19,6 +19,7 @@ $events = json_decode($content, true);
 if (!is_null($events['events'])) {
 	// Loop through each event
 	foreach ($events['events'] as $event) {
+    //
 
     $mmuri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&sessionName=3f98341d5a851e7a30336&query=select%20*%20from%20Minmax%20where%20id=%2749x166%27;";
     $mmresponse = \Httpful\Request::get($mmuri)->send();
