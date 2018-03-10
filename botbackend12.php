@@ -326,7 +326,7 @@ if($countcheck==1){
                                   $messages = [
                                     'type' => 'text',
                                     // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-                                    'text' => '  '.$username.' เปลี่ยนแปลงการแทงจาก T'.$newchoice3.' ขาละ'.$choicebet.'->เป็น '.$player.' ขาละ'.$money
+                                    'text' => '  '.$username.' ✏️ เปลี่ยนแปลงการแทงจาก T'.$newchoice3.' ขาละ'.$choicebet.'->เป็น '.$player.' ขาละ'.$money
                                   ];
 
                                   $curl = curl_init();
@@ -364,6 +364,10 @@ if($countcheck==1){
 
                                 }else {
 
+                                  $uuri = $walletur."webservice.php?operation=query&sessionName=".$swallet."&query=select%20*%20from%20Wallet%20where%20wallet_tks_userid='".$userID."';";
+                                  $uresponse = \Httpful\Request::get($uuri)->send();
+
+                                  $xbalance = $uresponse->body->result[0]->wallet_tks_balance;
 
 
                                   $dname= '';
@@ -401,7 +405,7 @@ if($countcheck==1){
                                   $messages = [
                                     'type' => 'text',
                                     // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
-                                    'text' => '  '.$username.' แทงขา '.$player.' ขาละ '.$money.'   ยอดคงเหลือก่อนแทง '.$balance.'  '
+                                    'text' => '  '.$username.' แทงขา '.$player.' ขาละ '.$money.'  💰 ยอดคงเหลือก่อนแทง '.$xbalance.'  '
                                   ];
 
 
@@ -493,7 +497,7 @@ if($countcheck==1){
 
                         $messages = [
                           'type' => 'text',
-                          'text' => $username.' ยอดเงินคงเหลือ '.$xbalance.' ไม่พอสำหรับการแทง กรุณาเติมเงินด้วยคะ'
+                          'text' => $username.'💰 ยอดเงินคงเหลือ '.$xbalance.' ไม่พอสำหรับการแทง กรุณาเติมเงินด้วยคะ'
                         ];
 
                       }
@@ -626,12 +630,26 @@ if($countcheck==1){
         $yx1 = substr($extext[0], 2);
         $yx2 = substr($extext[1], 1);
         $yx3 = substr($extext[2], 1);
-        $yx3 = substr($extext[3], 1);
+        $yx4 = substr($extext[3], 1);
 
         $yo1 = substr($yx1,1);
         $yo2 = substr($yx2,1);
         $yo3 = substr($yx3,1);
         $yo4 = substr($yx4,1);
+
+
+        if(strlen($yx1) != 2){
+          $zx=1;
+        }
+        if(strlen($yx2) != 2){
+          $zx=1;
+        }
+        if(strlen($yx3) != 2){
+          $zx=1;
+        }
+        if(strlen($yx4) != 2){
+          $zx=1;
+        }
 
         if($yo1>2 || $yo2>2 || $yo3>2 || $yo4>2){
           $zx=1;
@@ -1979,15 +1997,15 @@ if($countcheck==1){
             if ($err) {
               echo "cURL Error #:" . $err;
             } else {
-              echo $response;
+              $messages = [
+                'type' => 'text',
+                'text' =>  'ยืนยันการสรุปผลหรือไม่ ?'
+              ];
             }
 
 
           }
-        $messages = [
-          'type' => 'text',
-          'text' =>  'ยืนยันการสรุปผลหรือไม่ ?'
-        ];
+
 
       }else {
         $messages = [
@@ -2247,7 +2265,7 @@ if($countcheck==1){
 
                       $messages = [
                         'type' => 'text',
-                        'text' =>  $dname.' ID คือ '.$myid.' ยอดเงินคงเหลือ '.$mybalance
+                        'text' =>  $dname.' ID คือ '.$myid.'💰 ยอดเงินคงเหลือ '.$mybalance
                       ];
           } else {
 
@@ -2259,7 +2277,7 @@ if($countcheck==1){
 
 
 
-        } else if (strcmp(strtoupper($teststr),"OK") == 0){
+        } else if (strcmp(strtoupper($teststr),"OK") == 0 && strcmp($adminID,$userID) == 0){
 
 
 
@@ -2402,7 +2420,7 @@ if($countcheck==1){
                                                  echo "cURL Error #:" . $err;
                                                } else {
 
-                                                 $round = $round-1;
+                                                 $around = $round-1;
                                                  $curl = curl_init();
 
                                                 curl_setopt_array($curl, array(
@@ -2414,7 +2432,7 @@ if($countcheck==1){
                                                   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                                                   CURLOPT_CUSTOMREQUEST => "POST",
                                                   CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\ncreate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n3f98341d5a851e7a30336\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"balanceflowno\": \"\",\n            \"balanceflow_tks_userid\": \"$userID\",\n            \"balanceflow_tks_income\": \"0\",\n            \"balanceflow_tks_expend\": \"1\",\n            \"balanceflow_tks_balance\": \"$sum\",\n
-                                                    \"balanceflow_tks_part\": \"$part\",\n            \"balanceflow_tks_round\": \"$round\",\n
+                                                    \"balanceflow_tks_part\": \"$part\",\n            \"balanceflow_tks_round\": \"$around\",\n
                                                     \"balanceflow_tks_date\": \"$cdate\",\n            \"balanceflow_tks_time\": \"$ctime\",\n            \"balanceflow_tks_comment\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-03-06 04:33:44\",\n            \"modifiedtime\": \"2018-03-06 04:33:44\",\n            \"id\": \"46x31\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalanceflow\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                                                   CURLOPT_HTTPHEADER => array(
                                                     "cache-control: no-cache",
@@ -2503,7 +2521,7 @@ if($countcheck==1){
                          echo "cURL Error #:" . $err;
                        } else {
                          $curl = curl_init();
-                           $round = $round-1;
+                           $bround = $round-1;
                         curl_setopt_array($curl, array(
                           CURLOPT_URL => "http://redfoxdev.com/newbackend/webservice.php",
                           CURLOPT_RETURNTRANSFER => true,
@@ -2513,7 +2531,7 @@ if($countcheck==1){
                           CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                           CURLOPT_CUSTOMREQUEST => "POST",
                           CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\ncreate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n3f98341d5a851e7a30336\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"balanceflowno\": \"\",\n            \"balanceflow_tks_userid\": \"$userID\",\n            \"balanceflow_tks_income\": \"1\",\n            \"balanceflow_tks_expend\": \"0\",\n            \"balanceflow_tks_balance\": \"$sum\",\n
-                            \"balanceflow_tks_part\": \"$part\",\n            \"balanceflow_tks_round\": \"$round\",\n
+                            \"balanceflow_tks_part\": \"$part\",\n            \"balanceflow_tks_round\": \"$bround\",\n
                             \"balanceflow_tks_date\": \"$cdate\",\n            \"balanceflow_tks_time\": \"$ctime\",\n            \"balanceflow_tks_comment\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-03-06 04:33:44\",\n            \"modifiedtime\": \"2018-03-06 04:33:44\",\n            \"id\": \"46x31\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalanceflow\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                           CURLOPT_HTTPHEADER => array(
                             "cache-control: no-cache",
@@ -2598,7 +2616,7 @@ if($countcheck==1){
                        echo "cURL Error #:" . $err;
                      } else {
                        $curl = curl_init();
-                               $round = $round-1;
+                               $cround = $round-1;
                       curl_setopt_array($curl, array(
                         CURLOPT_URL => "http://redfoxdev.com/newbackend/webservice.php",
                         CURLOPT_RETURNTRANSFER => true,
@@ -2608,7 +2626,7 @@ if($countcheck==1){
                         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                         CURLOPT_CUSTOMREQUEST => "POST",
                         CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\ncreate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n3f98341d5a851e7a30336\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"balanceflowno\": \"\",\n            \"balanceflow_tks_userid\": \"$userID\",\n            \"balanceflow_tks_income\": \"1\",\n            \"balanceflow_tks_expend\": \"0\",\n            \"balanceflow_tks_balance\": \"$sum\",\n
-                          \"balanceflow_tks_part\": \"$part\",\n            \"balanceflow_tks_round\": \"$round\",\n
+                          \"balanceflow_tks_part\": \"$part\",\n            \"balanceflow_tks_round\": \"$cround\",\n
                           \"balanceflow_tks_date\": \"$cdate\",\n            \"balanceflow_tks_time\": \"$ctime\",\n            \"balanceflow_tks_comment\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-03-06 04:33:44\",\n            \"modifiedtime\": \"2018-03-06 04:33:44\",\n            \"id\": \"46x31\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"elementType\"\r\n\r\nBalanceflow\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
                         CURLOPT_HTTPHEADER => array(
                           "cache-control: no-cache",
@@ -2699,7 +2717,7 @@ if($countcheck==1){
                   'text' =>  $resultlist
                 ];
 
-                $rround = $round-1;
+                $rround = $gameround-1;
                 $curl = curl_init();
 
                 curl_setopt_array($curl, array(
@@ -2728,7 +2746,39 @@ if($countcheck==1){
                 if ($err) {
                   echo "cURL Error #:" . $err;
                 } else {
-                  echo $response;
+
+
+                            $around = $gameround-1;
+
+                            $quri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Roundlog%20where%20roundlog_tks_part=%27".$gamepart."%27%20AND%20roundlog_tks_round=%27".$around."%27;";
+                            $qresponse = \Httpful\Request::get($quri)->send();
+                            $myi1 = $qresponse->body->result[0]->roundlog_tks_income;
+                            $myi2 = $qresponse->body->result[0]->roundlog_tks_expend;
+
+
+                            $messagesx = [
+                              'type' => 'text',
+                              // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
+                              'text' => "สรุปยอด รอบที่".$around."\n 💰 ได้ ".$myi1." \n 📤 เสีย ".$myi2
+                            ];
+
+
+                            $url = 'https://api.line.me/v2/bot/message/push';
+                            $datax = [
+                              'to' => 'C56e01e820787ba9a4723af64f01455b7',
+                              'messages' => [$messagesx],
+                            ];
+                            $postx = json_encode($datax);
+                            $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+
+                            $ch = curl_init($url);
+                            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                            curl_setopt($ch, CURLOPT_POSTFIELDS, $postx);
+                            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+                            $result = curl_exec($ch);
+                            curl_close($ch);
                 }
 
               }else {
@@ -2756,7 +2806,7 @@ if($countcheck==1){
       else if(strtoupper($text) == "PLAY"){
 
 
-        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20where%20tmember_tks_userid='".$userID."';";
+        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Tmember%20where%20tmember_tks_userid='".$userID."';";
         $response = \Httpful\Request::get($uri)->send();
         // echo $response;
         $exid = $response->body->result[0]->tmember_tks_userid;
@@ -2887,31 +2937,12 @@ if($countcheck==1){
         ];
       }
 
-      else if(strtoupper($context) == "ED"){
-        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x3';";
-        $response = \Httpful\Request::get($uri)->send();
-
-        $adminID = $response->body->result[0]->bgame_tks_adminid;
-
-
-          if(strcmp($adminID,$userID) == 0){
-
-            $urit = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x3';";
-            $responset = \Httpful\Request::get($urit)->send();
-
-          //รายรับจ้าวมือ
-            $allincome = $responset->body->result[0]->bgame_tks_allincome;
-          //รายจ่ายจ้าวมือ
-            $allexpend = $responset->body->result[0]->bgame_tks_allexpend;
-
+      else if(strtoupper($text) == "EDDDDSDSD"){
 
               $messages = [
                 'type' => 'text',
                 'text' =>  "สรุปผล ณ เวลา ".date("d-m-Y H:i:s")."\nรายรับ : ".$allincome."\nรายจ่าย : ".$allexpend."\nยอดถอน : 0 \nยอดฝาก : 0"
               ];
-            } else {
-
-            }
       }
       else if(strtoupper($context) == "OP" && strlen($text)==2 && strcmp($adminID,$userID) == 0){
 
@@ -3110,7 +3141,59 @@ if($countcheck==1){
                           if ($err) {
                             echo "cURL Error #:" . $err;
                           } else {
-                            echo $response;
+
+                            $dpx=0;
+                            $wdx=0;
+
+                            $quri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Partlog%20where%20partlog_tks_part=%27".$gamepart."%27;";
+                            $qresponse = \Httpful\Request::get($quri)->send();
+                            $myi1 = $qresponse->body->result[0]->partlog_tks_income;
+                            $myi2 = $qresponse->body->result[0]->partlog_tks_expend;
+                            $myi3 = $qresponse->body->result[0]->partlog_tks_allround;
+
+                            $xquri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Alltransaction%20where%20alltransaction_tks_comment=%27".$gamepart."%27;";
+                            $xresponse = \Httpful\Request::get($xquri)->send();
+
+                            $datar = json_decode($xresponse,true);
+
+                            foreach($datar["result"] as $itemx) {
+                                $isd = $itemx['alltransaction_tks_isd'];
+                                $isw = $itemx['alltransaction_tks_isw'];
+
+                                if($isd>0){
+                                  $dpx = $itemx['alltransaction_tks_balance'];
+
+                                }
+                                if($isw>0){
+                                  $wdx = $itemx['alltransaction_tks_balance'];
+                                }
+
+                              }
+
+
+                            $messagesx = [
+                              'type' => 'text',
+                              // 'text' => 'แทงผู้เล่น'.$player.'จำนวน'.$money.'ชื่อผู้เล่น'.$username.'ยอดคงเหลือ'.$balance.'vid:'.$vid
+                              'text' => "สรุปยอด เกมที่".$gamepart."\n จำนวนรอบทั้งหมด ".$myi3."\n 💰 ได้ ".$myi1." \n 📤 เสีย ".$myi2." \n 🔵 ฝากเงิน ".$dpx." \n 🔴 ถอนเงิน ".$wdx
+                            ];
+
+
+                            $url = 'https://api.line.me/v2/bot/message/push';
+                            $datax = [
+                              'to' => 'C56e01e820787ba9a4723af64f01455b7',
+                              'messages' => [$messagesx],
+                            ];
+                            $postx = json_encode($datax);
+                            $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+
+                            $ch = curl_init($url);
+                            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                            curl_setopt($ch, CURLOPT_POSTFIELDS, $postx);
+                            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+                            $result = curl_exec($ch);
+                            curl_close($ch);
                           }
               }
 
@@ -3265,7 +3348,7 @@ if($countcheck==1){
 
                       $messages = [
                         'type' => 'text',
-                        'text' =>  $username.' ID คือ '.$vid.' ยอดเงินคงเหลือ '.$balance
+                        'text' =>  $username.' ID คือ '.$vid.'💰 ยอดเงินคงเหลือ '.$balance
                       ];
           } else {
           }
