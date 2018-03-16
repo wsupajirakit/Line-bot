@@ -498,6 +498,14 @@ if($countcheck==1){
           $zx=1;
         }
 
+        $uriu = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bcenter%20Where%20id%20='39x33';";
+        $responseu = \Httpful\Request::get($uriu)->send();
+
+        $onresult = $responseu->body->result[0]->bcenter_tks_onresult;
+
+        if($onresult!=1){
+
+
         if($zx!=1) {
 
 
@@ -1843,63 +1851,41 @@ if($countcheck==1){
       ];
       }
 
+    }else{
+      $messages = [
+        'type' => 'text',
+        'text' =>  '❌  คุณสรุปผลไปแล้ว ❌  หากต้องการแก้ไข พิมพ์ Clear'
+      ];
+
+    }
+
+
     }
 
       //แก้ไขผล
-    else if(strtoupper($fivetext) == "CLEAR"){
+      else if(strtoupper($fivetext) == "CLEAR"){
 
-      $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x2';";
-      $response = \Httpful\Request::get($uri)->send();
+        $uri = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bgame%20Where%20id%20='37x2';";
+        $response = \Httpful\Request::get($uri)->send();
 
-      $adminID = $response->body->result[0]->bgame_tks_adminid;
-        if(strcmp($adminID,$userID) == 0){
+        $adminID = $response->body->result[0]->bgame_tks_adminid;
+          if(strcmp($adminID,$userID) == 0){
 
-      $urix = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20Where%20bmember_tks_status='1';";
-      $responsex = \Httpful\Request::get($urix)->send();
+        $urix = $vturl."webservice.php?operation=query&sessionName=".$sidname."&query=select%20*%20from%20Bmember%20Where%20bmember_tks_status='1';";
+        $responsex = \Httpful\Request::get($urix)->send();
 
-      $datax = json_decode($responsex,true);
+        $datax = json_decode($responsex,true);
 
-      foreach($datax["result"] as $itemx) {
-          $username = '001';
-          $userID = $itemx['bmember_tks_userid'];
-          $vid = $itemx['id'];
-          $balance = $itemx['bmember_tks_balance'];
-          $moneybet = $itemx['bmember_tks_bet'];
-          $xmoneyx = $itemx['bmember_tks_player'];
-          $expend = 0;
-          $income = 0;
-          $playerbet = $itemx['bmember_tks_playerbet'];
-
-
-          $curl = curl_init();
-
-          curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://redfoxdev.com/backend8/webservice.php",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n69692cb05a898a5002995\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bmemberno\": \"\",\n
-              \"bmember_tks_userid\": \"$userID\",\n            \"bmember_tks_balance\": \"$balance\",\n            \"bmember_tks_bet\": \"$moneybet\",\n            \"bmember_tks_username\": \"$username\",\n            \"bmember_tks_player\": \"0\",\n            \"bmember_tks_playerbet\": \"$playerbet\",\n            \"bmember_tks_expend\": \"$expend\",\n            \"bmember_tks_income\": \"$income\",\n
-              \"bmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 05:25:21\",\n
-              \"modifiedtime\": \"2018-02-02 05:25:21\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
-            CURLOPT_HTTPHEADER => array(
-              "cache-control: no-cache",
-              "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
-              "postman-token: 0dd99b19-60e4-0597-8d0b-76831d38ee2f"
-            ),
-          ));
-
-          $response = curl_exec($curl);
-          $err = curl_error($curl);
-
-          curl_close($curl);
-
-          if ($err) {
-            echo "cURL Error #:" . $err;
-          } else {
+        foreach($datax["result"] as $itemx) {
+            $username = '001';
+            $userID = $itemx['bmember_tks_userid'];
+            $vid = $itemx['id'];
+            $balance = $itemx['bmember_tks_balance'];
+            $moneybet = $itemx['bmember_tks_bet'];
+            $xmoneyx = $itemx['bmember_tks_player'];
+            $expend = 0;
+            $income = 0;
+            $playerbet = $itemx['bmember_tks_playerbet'];
 
 
             $curl = curl_init();
@@ -1912,13 +1898,14 @@ if($countcheck==1){
               CURLOPT_TIMEOUT => 30,
               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
               CURLOPT_CUSTOMREQUEST => "POST",
-              CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n69692cb05a898a5002995\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"bcenterno\": \"\",\n
-                \"bcenter_tks_onresult\": \"0\",\n            \"bcenter_tks_onok\": \"0\",\n
-                \"bcenter_tks_extraone\": \"1\",\n            \"bcenter_tks_extratwo\": \"1\",\n            \"bcenter_tks_extrathree\": \"1\",\n            \"bcenter_tks_extrafour\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-19 04:57:51\",\n            \"modifiedtime\": \"2018-02-19 05:03:56\",\n            \"id\": \"39x33\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+              CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n69692cb05a898a5002995\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n        {\n            \"bmemberno\": \"\",\n
+                \"bmember_tks_userid\": \"$userID\",\n            \"bmember_tks_balance\": \"$balance\",\n            \"bmember_tks_bet\": \"$moneybet\",\n            \"bmember_tks_username\": \"$username\",\n            \"bmember_tks_player\": \"0\",\n            \"bmember_tks_playerbet\": \"$playerbet\",\n            \"bmember_tks_expend\": \"$expend\",\n            \"bmember_tks_income\": \"$income\",\n
+                \"bmember_tks_status\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-02 05:25:21\",\n
+                \"modifiedtime\": \"2018-02-02 05:25:21\",\n            \"id\": \"$vid\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
               CURLOPT_HTTPHEADER => array(
                 "cache-control: no-cache",
                 "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
-                "postman-token: 14030f30-d12c-bf51-9d6e-fbcc58b93b7b"
+                "postman-token: 0dd99b19-60e4-0597-8d0b-76831d38ee2f"
               ),
             ));
 
@@ -1931,20 +1918,50 @@ if($countcheck==1){
               echo "cURL Error #:" . $err;
             } else {
 
+
+              $curl = curl_init();
+
+              curl_setopt_array($curl, array(
+                CURLOPT_URL => "http://redfoxdev.com/backend8/webservice.php",
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => "",
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 30,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => "POST",
+                CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"operation\"\r\n\r\nupdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"sessionName\"\r\n\r\n69692cb05a898a5002995\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"element\"\r\n\r\n{\n            \"bcenterno\": \"\",\n
+                  \"bcenter_tks_onresult\": \"0\",\n            \"bcenter_tks_onok\": \"0\",\n
+                  \"bcenter_tks_extraone\": \"1\",\n            \"bcenter_tks_extratwo\": \"1\",\n            \"bcenter_tks_extrathree\": \"1\",\n            \"bcenter_tks_extrafour\": \"1\",\n            \"assigned_user_id\": \"19x1\",\n            \"createdtime\": \"2018-02-19 04:57:51\",\n            \"modifiedtime\": \"2018-02-19 05:03:56\",\n            \"id\": \"39x33\"\n        }\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
+                CURLOPT_HTTPHEADER => array(
+                  "cache-control: no-cache",
+                  "content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+                  "postman-token: 14030f30-d12c-bf51-9d6e-fbcc58b93b7b"
+                ),
+              ));
+
+              $response = curl_exec($curl);
+              $err = curl_error($curl);
+
+              curl_close($curl);
+
+              if ($err) {
+                echo "cURL Error #:" . $err;
+              } else {
+
+              }
+
+              $messages = [
+                'type' => 'text',
+                'text' =>  'เคลียร์ผลสรุปแล้ว สรุปผลใหม่อีกครั้ง'
+              ];
             }
 
-            $messages = [
-              'type' => 'text',
-              'text' =>  'เคลียร์ผลสรุปแล้ว สรุปผลใหม่อีกครั้ง'
-            ];
+
           }
 
+          }
 
-        }
-
-        }
-
-    }
+      }
     //สิ้นสุดแก้ไขผล
 
 
@@ -2698,7 +2715,7 @@ if($countcheck==1){
 😃สมาชิกใหม่ ฝากขั้นต่ำ 40 บาท ฝากเกิน 100 บาท ได้โบนัสเพิ่ม 10%  โบนัสสูงสุด 100 บาท
 🏧ช่องทางการฝากเงิน 24 ชั่วโมง
       กสิกรไทย 0372570407
-      พร้อมเพย์ 0968276120      🆓ค่าธรรมเนียม 
+      พร้อมเพย์ 0968276120      🆓ค่าธรรมเนียม
 🚩ถอนเงินแจ้งแอดมิน แปะ พพ. ไว้หลังปิด live โอนให้ทุกคน
   '
                       ];
