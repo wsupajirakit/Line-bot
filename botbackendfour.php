@@ -167,7 +167,7 @@ if($countcheck==1){
             if ($ix != 1 && $tx!=1) {
                     if($gameStatus == 1) {
 
-                  if($money <= 200 && $money >=20) {
+                  if($money <= 500 && $money >=20) {
 
                               if($lentext==1){
 
