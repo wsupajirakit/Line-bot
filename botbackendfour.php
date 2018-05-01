@@ -2042,7 +2042,7 @@ if($countcheck==1){
 
                       $messages = [
                         'type' => 'text',
-                        'text' =>  $dname.' ID คือ '.$vid.' ยอดเงินคงเหลือ '.$balance
+                        'text' =>  $dname.' ID คือ '.$vid.' ยอดเงินคงเหลือ '.$balance.$alltext
                       ];
           } else {
 
