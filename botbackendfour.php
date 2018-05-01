@@ -8,7 +8,7 @@ $sidname='2b0573625a7565d479a0d';
 $vturl='http://redfoxdev.com/backend4/';
 // Get POST body content
 $content = file_get_contents('php://input');
-$alltext = json_encode($postdata));
+$alltext = json_encode($content);
 
 $curl = curl_init();
 
